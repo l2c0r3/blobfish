@@ -11,6 +11,7 @@ release.properties
 .classpath
 .settings/
 bin/
+.factorypath
 
 # IntelliJ
 .idea
@@ -23,7 +24,6 @@ nb-configuration.xml
 
 # Visual Studio Code
 .vscode
-.factorypath
 
 # OSX
 .DS_Store
