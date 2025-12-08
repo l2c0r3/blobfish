@@ -3,7 +3,6 @@ package ch.hslu.cas.msed.blobfish.board;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -66,8 +65,8 @@ public class ChessBoardPrinter {
                 var fenCode = fenBlocks[rowPointer].charAt(columnPointer);
 
                 // skip by numbers
-                if (StringUtils.isNumeric(String.valueOf(fenCode))) {
-                    int parsedFenCode = Integer.parseInt(String.valueOf(fenCode));
+                if (Character.isDigit(fenCode)) {
+                    int parsedFenCode = Character.getNumericValue(fenCode);
                     fieldsColumnPointer = fieldsColumnPointer + parsedFenCode;
                     continue;
                 }
@@ -117,9 +116,9 @@ public class ChessBoardPrinter {
 
             var amountOfPiecesAndEmptyFields = 0;
             for (int i = 0; i < block.length(); i++) {
-                Character c = block.charAt(i);
-                if (StringUtils.isNumeric(String.valueOf(c))) {
-                    int parsedInt = Integer.parseInt(String.valueOf(c));
+                var c = block.charAt(i);
+                if (Character.isDigit(c)) {
+                    int parsedInt = Character.getNumericValue(c);
                     amountOfPiecesAndEmptyFields += parsedInt;
                 } else {
                     amountOfPiecesAndEmptyFields++;
@@ -152,15 +151,7 @@ public class ChessBoardPrinter {
         for (int row = 0; row < 8; row++) {
             var rowList = new ArrayList<Character>();
             for (int col = 0; col < 8; col++) {
-                if (row % 2 == 0 && col % 2 == 0) {
-                    rowList.add(WHITE_SQUARE);
-                } else if (row % 2 == 0) {
-                    rowList.add(BLACK_SQUARE);
-                } else if (col % 2 == 0) {
-                    rowList.add(BLACK_SQUARE);
-                } else {
-                    rowList.add(WHITE_SQUARE);
-                }
+                rowList.add((row + col) % 2 == 0 ? WHITE_SQUARE : BLACK_SQUARE);
             }
             boardList.add(rowList);
         }
