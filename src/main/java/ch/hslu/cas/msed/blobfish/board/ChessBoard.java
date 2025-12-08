@@ -8,7 +8,6 @@ public class ChessBoard {
     private final static String STARTPOSITION_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
     private final Board board;
-    private final EvalBar evalBar;
 
     /**
      * Starts a chessboard with standard start position
@@ -23,21 +22,22 @@ public class ChessBoard {
     public ChessBoard(String fen) {
         board = new Board();
         board.loadFromFen(fen);
-
-        evalBar = new EvalBar(fen);
     }
 
     /**
      * Do move with SAN annotation. e.g Nc6
      */
-    public ChessBoard doMove(String san) {
-        board.doMove(san);
-        var newBoardPosition = board.getFen();
-        return new ChessBoard(newBoardPosition);
+    public void doMove(String san) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public int getEvaluation() {
-        return this.evalBar.getEvaluation();
+        var position = this.board.getFen();
+        return EvalBar.getEvaluation(position);
+    }
+
+    public boolean isGameOver() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
