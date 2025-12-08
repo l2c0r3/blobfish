@@ -41,10 +41,9 @@ public class ChessBoard {
     }
 
     /**
-     * @param perspective which color is at the bottom
      * @return the position of the chessboard in a String with Ascii Characters
      */
-    public String displayBoardAscii(PlayerColor perspective) {
-        return ChessBoardPrinter.displayBoardAscii(this.board.getFen(), perspective);
+    public String displayBoardAscii() {
+        return ChessBoardPrinter.displayBoardAscii(this.board.getFen());
     }
 }
