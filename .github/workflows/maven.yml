@@ -29,7 +29,7 @@ jobs:
       with:
         name: Package
         path: staging
-    - uses: Commit generated diagrams
+    - name: Commit generated diagrams
       if: github.ref != 'refs/heads/main'
       uses: EndBug/add-and-commit@v9
       with:
