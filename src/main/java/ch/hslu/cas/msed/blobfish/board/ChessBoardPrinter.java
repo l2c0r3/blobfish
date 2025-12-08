@@ -53,11 +53,6 @@ public class ChessBoardPrinter {
      * @return the position of the chessboard in a String with Ascii Characters
      */
     public static String displayBoardAscii(String fenString) {
-        var isFenStringValid = validateFenBlocks(fenString);
-        if (!isFenStringValid) {
-            throw new IllegalArgumentException(String.format("Got invalid fenString: [%s]" , fenString));
-        }
-
         var fields = initFields();
         var fenBlocks = getFenBlocks(fenString);
 
@@ -84,10 +79,6 @@ public class ChessBoardPrinter {
         }
 
         return mapFieldsToString(fields);
-    }
-
-    private static boolean validateFenBlocks(String fenString) {
-        return true;
     }
 
     private static String[] getFenBlocks(String fenString) {
