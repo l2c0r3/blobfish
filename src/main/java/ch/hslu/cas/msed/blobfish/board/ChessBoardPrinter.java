@@ -82,7 +82,7 @@ public class ChessBoardPrinter {
     }
 
     private static String[] getFenBlocks(String fenString) {
-        if (StringUtils.isEmpty(fenString)) {
+        if (StringUtils.isBlank(fenString)) {
             return new String[0];
         }
 
