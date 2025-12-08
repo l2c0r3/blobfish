@@ -42,6 +42,59 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.4</version>
             </plugin>
+
+            <!--
+                class uml and dependency digram generation
+                see https://github.com/talsma-ict/umldoclet
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
+                    <docletArtifact>
+                        <groupId>nl.talsmasoftware</groupId>
+                        <artifactId>umldoclet</artifactId>
+                        <version>2.2.4</version>
+                    </docletArtifact>
+                </configuration>
+            </plugin>
+
+            <!-- copy diagramms to doc folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-uml-diagrams</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${project.basedir}/docs/diagrams"/>
+                                <copy file="${project.build.directory}/reports/apidocs/package-dependencies.svg"
+                                      tofile="${project.basedir}/docs/diagrams/dependencies.svg"
+                                      overwrite="true" />
+                                <copy file="${project.build.directory}/reports/apidocs/ch/hslu/cas/msed/blobfish/package.svg"
+                                      tofile="${project.basedir}/docs/diagrams/uml.svg"
+                                      overwrite="true" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
