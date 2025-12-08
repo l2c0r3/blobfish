@@ -32,5 +32,3 @@ jobs:
       with:
         add: 'docs/diagrams'
         message: 'update generated UML diagrams'
-        default_author: github_actions
-        fetch: false
