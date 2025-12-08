@@ -19,7 +19,8 @@ jobs:
       with:
         java-version: '25'
         distribution: 'temurin'
-    - run: mvn clean site
+    - run: mvn --batch-mode --update-snapshots verify
+    - run: mvn site
     - run: mkdir staging && cp target/*.jar staging
     - uses: actions/upload-artifact@v4
       with:
