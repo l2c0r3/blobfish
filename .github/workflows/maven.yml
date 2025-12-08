@@ -26,7 +26,15 @@ jobs:
       with:
         name: Package
         path: staging
-    - uses: actions/upload-artifact@v4
-      with:
-        name: Doc
-        path: docs/*
+    - name: Commit generated diagrams
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/diagrams || true
+
+          if git diff --cached --quiet; then
+            echo "No diagram changes to commit."
+          else
+            git commit -m "update generated UML diagrams"
+            git push
+          fi
