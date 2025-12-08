@@ -2,6 +2,8 @@ package ch.hslu.cas.msed.blobfish.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
+import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
 
 public abstract class AbstractPlayer {
 
@@ -16,9 +18,9 @@ public abstract class AbstractPlayer {
     }
 
     /**
-     * @param board
+     * @param board The chessboard
      * @return returns next move in SAN annotation
      */
-    public abstract String getNextMove(ChessBoard board);
+    public abstract String getNextMove(ChessBoard board) throws MatchAbortedException, GameAbortedException;
 
 }

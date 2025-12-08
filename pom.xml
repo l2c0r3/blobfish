@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <junit.version>6.0.1</junit.version>
+        <jline.version>3.30.6</jline.version>
     </properties>
 
     <dependencyManagement>
@@ -24,6 +25,12 @@
                 <version>${junit.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>${jline.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -46,6 +53,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jline</groupId>
+            <artifactId>jline</artifactId>
         </dependency>
     </dependencies>
 
@@ -99,14 +111,23 @@
                                 <mkdir dir="${project.basedir}/docs/diagrams"/>
                                 <copy file="${project.build.directory}/reports/apidocs/package-dependencies.svg"
                                       tofile="${project.basedir}/docs/diagrams/dependencies.svg"
-                                      overwrite="true" />
+                                      overwrite="true"/>
                                 <copy file="${project.build.directory}/reports/apidocs/ch/hslu/cas/msed/blobfish/package.svg"
                                       tofile="${project.basedir}/docs/diagrams/uml.svg"
-                                      overwrite="true" />
+                                      overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <mainClass>ch.hslu.cas.msed.blobfish.Main</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
