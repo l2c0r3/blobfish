@@ -31,4 +31,6 @@ jobs:
       uses: EndBug/add-and-commit@v9
       with:
         add: 'docs/diagrams'
-        message: 'update generated UML diagrams'
+        message: 'chore: update generated UML diagrams'
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
