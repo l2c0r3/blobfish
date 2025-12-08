@@ -45,6 +45,6 @@ public class ChessBoard {
      * @return the position of the chessboard in a String with Ascii Characters
      */
     public String displayBoardAscii(PlayerColor perspective) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ChessBoardPrinter.displayBoardAscii(this.board.getFen(), perspective);
     }
 }
