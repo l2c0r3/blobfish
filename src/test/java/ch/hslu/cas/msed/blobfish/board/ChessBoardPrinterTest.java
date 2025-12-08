@@ -2,6 +2,7 @@ package ch.hslu.cas.msed.blobfish.board;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static ch.hslu.cas.msed.blobfish.board.ChessBoardPrinter.*;
@@ -12,8 +13,11 @@ class ChessBoardPrinterTest {
 
     @Test
     void displayBoardAscii_nullPosition() {
+        // Arrange
+        var position = "8/8/8/8/8/8/8/8";
+
         // Act
-        var result = ChessBoardPrinter.displayBoardAscii(null);
+        var result = ChessBoardPrinter.displayBoardAscii(position);
 
         // Assert
         var expected = new StringBuilder()
@@ -84,6 +88,7 @@ class ChessBoardPrinterTest {
             "pppppppp/p2pBpNp/8/8/8/8/PPPPPPPP",                           // too little blocks
             "ppppppppp/p2pBpNp/8/8/8/8/PPPPPPPP/RNBQKBNR/ppppppppp/",      // too much blocks
     })
+    @NullAndEmptySource
     void displayBoardAscii_invalidFenString_throwsException(String fenString) {
         // Act & assert
         assertThrows(IllegalArgumentException.class, () -> ChessBoardPrinter.displayBoardAscii(fenString));

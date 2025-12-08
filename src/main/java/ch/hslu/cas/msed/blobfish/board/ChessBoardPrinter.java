@@ -98,7 +98,7 @@ public class ChessBoardPrinter {
 
     private static void validateFenString(String fenString) {
         if (StringUtils.isBlank(fenString)) {
-            return;
+            throw new IllegalArgumentException("FEN string must not be blank");
         }
 
         var blocks = getFenBlocks(fenString);
