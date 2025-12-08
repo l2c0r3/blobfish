@@ -27,7 +27,7 @@ jobs:
         name: Package
         path: staging
     - name: Commit generated diagrams
-      if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+      if: github.ref != 'refs/heads/main'
       uses: EndBug/add-and-commit@v9
       with:
         add: 'docs/diagrams'
