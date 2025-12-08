@@ -7,7 +7,6 @@ import java.io.IOException;
 public class Main {
 
     static void main() throws IOException {
-        // Create terminal & line reader with history, editing, etc.
         ChessGame game = new ChessGame();
         game.start();
     }
