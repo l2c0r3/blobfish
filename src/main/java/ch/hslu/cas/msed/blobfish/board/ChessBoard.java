@@ -31,7 +31,7 @@ public class ChessBoard {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public int getEvaluation() {
+    public double getEvaluation() {
         var position = this.board.getFen();
         return EvalBar.getEvaluation(position);
     }
