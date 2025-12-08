@@ -53,6 +53,8 @@ public class ChessBoardPrinter {
      * @return the position of the chessboard in a String with Ascii Characters
      */
     public static String displayBoardAscii(String fenString) {
+        validateFenString(fenString);
+
         var fields = initFields();
         var fenBlocks = getFenBlocks(fenString);
 
@@ -92,6 +94,49 @@ public class ChessBoardPrinter {
         }
 
         return fenString.split("/");
+    }
+
+    private static void validateFenString(String fenString) {
+        if (StringUtils.isBlank(fenString)) {
+            return;
+        }
+
+        var blocks = getFenBlocks(fenString);
+        String invalidFenStringPrefix = String.format("Invalid FEN string: [%s] -", fenString);
+
+        // check amount of blocks
+        if (blocks.length > 8) {
+            throw new IllegalArgumentException(invalidFenStringPrefix + " too much blocks");
+        } else if (blocks.length < 8) {
+            throw new IllegalArgumentException(invalidFenStringPrefix + " too less blocks");
+        }
+
+        // check block content - amount and is piece valid
+        for (var block : blocks) {
+            var blockMessage = String.format("in block [%s]", block);
+
+            var amountOfPiecesAndEmptyFields = 0;
+            for (int i = 0; i < block.length(); i++) {
+                Character c = block.charAt(i);
+                if (StringUtils.isNumeric(String.valueOf(c))) {
+                    int parsedInt = Integer.parseInt(String.valueOf(c));
+                    amountOfPiecesAndEmptyFields += parsedInt;
+                } else {
+                    amountOfPiecesAndEmptyFields++;
+
+                    // check if piece is valid
+                    if(!CHARACTER_MAP.containsKey(c)) {
+                        throw new IllegalArgumentException(invalidFenStringPrefix + " invalid piece " + blockMessage);
+                    }
+                }
+            }
+
+            if (amountOfPiecesAndEmptyFields < 8) {
+                throw new IllegalArgumentException(invalidFenStringPrefix + " too less pieces " + blockMessage);
+            } else if (amountOfPiecesAndEmptyFields > 8) {
+                throw new IllegalArgumentException(invalidFenStringPrefix + " too many pieces " + blockMessage);
+            }
+        }
     }
 
     private static String mapFieldsToString(List<List<Character>> fields) {
