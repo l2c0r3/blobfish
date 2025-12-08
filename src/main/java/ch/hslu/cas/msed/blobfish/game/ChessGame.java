@@ -28,10 +28,38 @@ public class ChessGame {
 
                 var matchScreen = new MatchScreen(matchScreenConfig.white(), matchScreenConfig.black(), new ChessBoard(), writer);
                 matchScreen.start();
+
+                if(!shouldRestart(reader, writer)) {
+                    writeEndGameMessage(writer);
+                    break;
+                }
             } catch (GameAbortedException e) {
-                writer.printlnAndFlush("Thanks for playing!");
+                writeEndGameMessage(writer);
                 break;
             }
         }
+    }
+
+    private boolean shouldRestart(InputReader reader, OutputWriter writer) {
+        Boolean restart;
+        do {
+            var input = reader.readLine("Restart game? [y|n]");
+
+            restart = switch (input) {
+                case "y" -> true;
+                case "n" -> false;
+
+                default -> {
+                    writer.printlnAndFlush("Invalid input.");
+                    yield null;
+                }
+            };
+        } while (restart == null);
+
+        return restart;
+    }
+
+    private void writeEndGameMessage(OutputWriter writer) {
+        writer.printlnAndFlush("Thanks for playing!");
     }
 }
