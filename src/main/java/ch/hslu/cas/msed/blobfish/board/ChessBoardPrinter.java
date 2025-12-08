@@ -26,23 +26,23 @@ public class ChessBoardPrinter {
     public static final char BLACK_PAWN = '♟';
     public static final char BLACK_SQUARE = '■';
 
-    private static final Map<Character, Character> CHARACTER_MAP = new HashMap<Character, Character>() {{
-        // black pieces
-        put('r', BLACK_ROOK);
-        put('n', BLACK_KNIGHT);
-        put('b', BLACK_BISHOP);
-        put('q', BLACK_QUEEN);
-        put('k', BLACK_KING);
-        put('p', BLACK_PAWN);
+    private static final Map<Character, Character> CHARACTER_MAP = Map.ofEntries(
+            // black pieces
+    Map.entry('r', BLACK_ROOK),
+            Map.entry('n', BLACK_KNIGHT),
+            Map.entry('b', BLACK_BISHOP),
+            Map.entry('q', BLACK_QUEEN),
+            Map.entry('k', BLACK_KING),
+            Map.entry('p', BLACK_PAWN),
 
-        // white pieces
-        put('R', WHITE_ROOK);
-        put('N', WHITE_KNIGHT);
-        put('B', WHITE_BISHOP);
-        put('Q', WHITE_QUEEN);
-        put('K', WHITE_KING);
-        put('P', WHITE_PAWN);
-    }};
+            // white pieces
+            Map.entry('R', WHITE_ROOK),
+            Map.entry('N', WHITE_KNIGHT),
+            Map.entry('B', WHITE_BISHOP),
+            Map.entry('Q', WHITE_QUEEN),
+            Map.entry('K', WHITE_KING),
+            Map.entry('P', WHITE_PAWN)
+    );
 
     private ChessBoardPrinter() {
         // utility class
