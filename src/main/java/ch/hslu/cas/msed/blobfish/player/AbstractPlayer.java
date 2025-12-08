@@ -11,6 +11,10 @@ public abstract class AbstractPlayer {
         this.playerColor = playerColor;
     }
 
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
     /**
      * @param board
      * @return returns next move in SAN annotation
