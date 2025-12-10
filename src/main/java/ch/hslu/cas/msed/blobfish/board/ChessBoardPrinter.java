@@ -54,32 +54,37 @@ public class ChessBoardPrinter {
     public static String displayBoardAscii(String fenString) {
         validateFenString(fenString);
 
-        var fields = initFields();
+        var board = new ArrayList<List<Character>>();
         var fenBlocks = getFenBlocks(fenString);
 
         // replace empty blocks by characters
-        for (int rowPointer = 0; rowPointer < fenBlocks.length; rowPointer++) {
-            var fieldsColumnPointer = 0;
+        for (int rowIndex = 0; rowIndex < fenBlocks.length; rowIndex++) {
+            var rowList = new ArrayList<Character>();
+            var fenBlock = fenBlocks[rowIndex];
+            var colIndex = 0;
 
-            for (int columnPointer = 0; columnPointer < fenBlocks[rowPointer].length(); columnPointer++) {
-                var fenCode = fenBlocks[rowPointer].charAt(columnPointer);
+            for (int fenBlockIndex = 0; fenBlockIndex < fenBlock.length(); fenBlockIndex++) {
+                var fenCode = fenBlock.charAt(fenBlockIndex);
 
-                // skip by numbers
+                // empty field by numbers
                 if (Character.isDigit(fenCode)) {
-                    int parsedFenCode = Character.getNumericValue(fenCode);
-                    fieldsColumnPointer = fieldsColumnPointer + parsedFenCode;
-                    continue;
+                    int amountOfEmptyFields = Character.getNumericValue(fenCode);
+                    for (int i = 0; i < amountOfEmptyFields; i++) {
+                        var square = (rowIndex + colIndex) % 2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
+                        rowList.add(square);
+                        colIndex++;
+                    }
+                } else {
+                    // replace pieces in list
+                    var pieceToSet = CHARACTER_MAP.get(fenCode);
+                    rowList.add(pieceToSet);
+                    colIndex++;
                 }
-
-                // replace pieces in list
-                var pieceToSet = CHARACTER_MAP.get(fenCode);
-                var row = fields.get(rowPointer);
-                row.set(fieldsColumnPointer, pieceToSet);
-                fieldsColumnPointer++;
             }
+            board.add(rowList);
         }
 
-        return mapFieldsToString(fields);
+        return mapBoardToString(board);
     }
 
     private static String[] getFenBlocks(String fenString) {
@@ -138,23 +143,11 @@ public class ChessBoardPrinter {
         }
     }
 
-    private static String mapFieldsToString(List<List<Character>> fields) {
+    private static String mapBoardToString(List<List<Character>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
                         .map(String::valueOf)
                         .collect(Collectors.joining()))
                 .collect(Collectors.joining("\n"));
-    }
-
-    private static List<List<Character>> initFields() {
-        var boardList = new ArrayList<List<Character>>();
-        for (int row = 0; row < 8; row++) {
-            var rowList = new ArrayList<Character>();
-            for (int col = 0; col < 8; col++) {
-                rowList.add((row + col) % 2 == 0 ? WHITE_SQUARE : BLACK_SQUARE);
-            }
-            boardList.add(rowList);
-        }
-        return boardList;
     }
 }
