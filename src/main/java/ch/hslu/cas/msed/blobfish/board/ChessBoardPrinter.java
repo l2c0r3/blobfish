@@ -54,12 +54,12 @@ public class ChessBoardPrinter {
     public static String displayBoardAscii(String fenString) {
         validateFenString(fenString);
 
-        var board = new ArrayList<List<Character>>();
+        var board = new ArrayList<List<String>>();
         var fenBlocks = getFenBlocks(fenString);
 
         // replace empty blocks by characters
         for (int rowIndex = 0; rowIndex < fenBlocks.length; rowIndex++) {
-            var rowList = new ArrayList<Character>();
+            var rowList = new ArrayList<String>();
             var fenBlock = fenBlocks[rowIndex];
             var colIndex = 0;
 
@@ -71,13 +71,13 @@ public class ChessBoardPrinter {
                     int amountOfEmptyFields = Character.getNumericValue(fenCode);
                     for (int i = 0; i < amountOfEmptyFields; i++) {
                         var square = (rowIndex + colIndex) % 2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
-                        rowList.add(square);
+                        rowList.add(String.valueOf(square));
                         colIndex++;
                     }
                 } else {
                     // replace pieces in list
                     var pieceToSet = CHARACTER_MAP.get(fenCode);
-                    rowList.add(pieceToSet);
+                    rowList.add(String.valueOf(pieceToSet));
                     colIndex++;
                 }
             }
@@ -145,7 +145,7 @@ public class ChessBoardPrinter {
         }
     }
 
-    private static String mapBoardToString(List<List<Character>> fields) {
+    private static String mapBoardToString(List<List<String>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
                         .map(String::valueOf)
