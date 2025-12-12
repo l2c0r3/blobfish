@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.board;
 
+import ch.hslu.cas.msed.blobfish.base.Piece;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -9,6 +11,27 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ChessBoardPrinter {
+
+    @Getter
+    enum UiPiece {
+
+        KING(Piece.KING, '♚', '♔'),
+        QUEEN(Piece.QUEEN, '♛', '♕'),
+        ROOK(Piece.ROOK, '♜', '♖'),
+        BISHOP(Piece.BISHOP, '♝', '♗'),
+        KNIGHT(Piece.KNIGHT, '♞', '♘'),
+        PAWN(Piece.PAWN, '♟', '♙');
+
+        private final Piece piece;
+        private final Character whiteRepresent;
+        private final Character blackRepresent;
+
+        UiPiece(Piece piece, Character whiteRepresent, Character blackRepresent) {
+            this.piece = piece;
+            this.whiteRepresent = whiteRepresent;
+            this.blackRepresent = blackRepresent;
+        }
+    }
 
     public static final char WHITE_KING = '♚';
     public static final char WHITE_QUEEN = '♛';
@@ -174,7 +197,7 @@ public class ChessBoardPrinter {
                     amountOfPiecesAndEmptyFields++;
 
                     // check if piece is valid
-                    if(!CHARACTER_MAP.containsKey(c)) {
+                    if (!CHARACTER_MAP.containsKey(c)) {
                         throw new IllegalArgumentException(invalidFenStringPrefix + " invalid piece " + blockMessage);
                     }
                 }
