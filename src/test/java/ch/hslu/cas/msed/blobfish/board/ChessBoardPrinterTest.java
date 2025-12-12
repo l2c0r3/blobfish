@@ -93,14 +93,4 @@ class ChessBoardPrinterTest {
         // Act & assert
         assertThrows(IllegalArgumentException.class, () -> ChessBoardPrinter.displayBoardAscii(fenString));
     }
-
-    @Test
-    void messure() {
-        long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 10000; i++) {
-            displayBoardAscii_startPosition();
-            displayBoardAscii_nullPosition();
-        }
-        long estimatedTime = System.currentTimeMillis() - startTime;
-    }
 }
