@@ -13,23 +13,21 @@ import java.util.stream.Collectors;
 public class ChessBoardPrinter {
 
     @Getter
-    enum UiPiece {
+    private enum UiPiece {
 
-        KING(Piece.KING, '♚', '♔'),
-        QUEEN(Piece.QUEEN, '♛', '♕'),
-        ROOK(Piece.ROOK, '♜', '♖'),
-        BISHOP(Piece.BISHOP, '♝', '♗'),
-        KNIGHT(Piece.KNIGHT, '♞', '♘'),
-        PAWN(Piece.PAWN, '♟', '♙');
+        KING(Piece.KING, '♚'),
+        QUEEN(Piece.QUEEN, '♛'),
+        ROOK(Piece.ROOK, '♜'),
+        BISHOP(Piece.BISHOP, '♝'),
+        KNIGHT(Piece.KNIGHT, '♞'),
+        PAWN(Piece.PAWN, '♟');
 
         private final Piece piece;
-        private final Character whiteRepresent;
-        private final Character blackRepresent;
+        private final Character uiRepresent;
 
-        UiPiece(Piece piece, Character whiteRepresent, Character blackRepresent) {
+        UiPiece(Piece piece, Character uiRepresent) {
             this.piece = piece;
-            this.whiteRepresent = whiteRepresent;
-            this.blackRepresent = blackRepresent;
+            this.uiRepresent = uiRepresent;
         }
     }
 
