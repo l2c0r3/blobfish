@@ -14,7 +14,6 @@ public class ChessBoardAsciiPrinter {
 
     @Getter
     private enum UiPiece {
-
         KING(Piece.KING, '♚'),
         QUEEN(Piece.QUEEN, '♛'),
         ROOK(Piece.ROOK, '♜'),
@@ -78,47 +77,11 @@ public class ChessBoardAsciiPrinter {
 
         var fenBlocks = getFenBlocks(fenString);
         var board = getFenBlocksAsBoard(fenBlocks);
-        var boardWithPadding = addPaddingToBoard(board);
-        var boardStr = mapBoardToString(boardWithPadding);
+        var boardStr = mapBoardToString(board);
 
 
         System.out.println(boardStr);
         return boardStr;
-    }
-
-    private static ArrayList<List<String>> addPaddingToBoard(ArrayList<List<Character>> board) {
-        final Character whiteSpace = ' ';
-        Predicate<Character> isPieceASquare = p -> p.equals(WHITE_SQUARE) || p.equals(BLACK_SQUARE);
-
-        var boardWithPadding = new ArrayList<List<String>>();
-
-        board.forEach(row -> {
-            var rowWithPadding = new ArrayList<String>();
-
-            for (int i = 0; i < row.size(); i++) {
-                StringBuilder fieldAsString = new StringBuilder();
-                var piece = row.get(i);
-
-                if (i == 0) {
-                    fieldAsString.append(whiteSpace);
-                }
-
-                fieldAsString.append(piece);
-
-                // double squares
-                if (isPieceASquare.test(piece)) {
-                    fieldAsString.append(piece);
-                }
-
-                if (i != row.size() - 1) {
-                    fieldAsString.append(whiteSpace);
-                }
-                rowWithPadding.add(fieldAsString.toString());
-            }
-            boardWithPadding.add(rowWithPadding);
-        });
-
-        return boardWithPadding;
     }
 
     private static ArrayList<List<Character>> getFenBlocksAsBoard(String[] fenBlocks) {
@@ -209,7 +172,7 @@ public class ChessBoardAsciiPrinter {
         }
     }
 
-    private static String mapBoardToString(List<List<String>> fields) {
+    private static String mapBoardToString(List<List<Character>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
                         .map(String::valueOf)
