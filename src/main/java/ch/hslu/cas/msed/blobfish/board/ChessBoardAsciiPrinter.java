@@ -1,25 +1,24 @@
 package ch.hslu.cas.msed.blobfish.board;
 
 import ch.hslu.cas.msed.blobfish.base.Piece;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ChessBoardAsciiPrinter {
 
-    @Getter
     private enum UiPiece {
         KING(Piece.KING, '♚'),
         QUEEN(Piece.QUEEN, '♛'),
         ROOK(Piece.ROOK, '♜'),
         BISHOP(Piece.BISHOP, '♝'),
         KNIGHT(Piece.KNIGHT, '♞'),
-        PAWN(Piece.PAWN, '♟');
+        PAWN(Piece.PAWN, '♟'),
+        FIELD(null, null);
 
         private final Piece piece;
         private final Character uiRepresent;
@@ -28,41 +27,31 @@ public class ChessBoardAsciiPrinter {
             this.piece = piece;
             this.uiRepresent = uiRepresent;
         }
+
+        public static UiPiece getRepresentOfPiece(Piece p) {
+            for(UiPiece piece : UiPiece.values()) {
+                if (piece.piece.equals(p)) {
+                    return piece;
+                }
+            }
+            throw new IllegalArgumentException("Unknown piece [" + p + "]");
+        }
     }
 
-    public static final char WHITE_KING = '♚';
-    public static final char WHITE_QUEEN = '♛';
-    public static final char WHITE_ROOK = '♜';
-    public static final char WHITE_BISHOP = '♝';
-    public static final char WHITE_KNIGHT = '♞';
-    public static final char WHITE_PAWN = '♟';
-    public static final char WHITE_SQUARE = '■';
+    private record UiField(UiPiece uiPiece, PlayerColor color) {
+        private UiPiece getUiPiece() {
+            return uiPiece;
+        };
 
-    public static final char BLACK_KING = '♔';
-    public static final char BLACK_QUEEN = '♕';
-    public static final char BLACK_ROOK = '♖';
-    public static final char BLACK_BISHOP = '♗';
-    public static final char BLACK_KNIGHT = '♘';
-    public static final char BLACK_PAWN = '♙';
-    public static final char BLACK_SQUARE = '□';
+        private PlayerColor getColor() {
+            return color;
+        }
 
-    private static final Map<Character, Character> CHARACTER_MAP = Map.ofEntries(
-            // black pieces
-            Map.entry('r', BLACK_ROOK),
-            Map.entry('n', BLACK_KNIGHT),
-            Map.entry('b', BLACK_BISHOP),
-            Map.entry('q', BLACK_QUEEN),
-            Map.entry('k', BLACK_KING),
-            Map.entry('p', BLACK_PAWN),
+        public String getRepresentation() {
+            return uiPiece.uiRepresent.toString();
+        }
+    }
 
-            // white pieces
-            Map.entry('R', WHITE_ROOK),
-            Map.entry('N', WHITE_KNIGHT),
-            Map.entry('B', WHITE_BISHOP),
-            Map.entry('Q', WHITE_QUEEN),
-            Map.entry('K', WHITE_KING),
-            Map.entry('P', WHITE_PAWN)
-    );
 
     private ChessBoardAsciiPrinter() {
         // utility class
@@ -84,12 +73,12 @@ public class ChessBoardAsciiPrinter {
         return boardStr;
     }
 
-    private static ArrayList<List<Character>> getFenBlocksAsBoard(String[] fenBlocks) {
-        var board = new ArrayList<List<Character>>();
+    private static ArrayList<List<UiField>> getFenBlocksAsBoard(String[] fenBlocks) {
+        var board = new ArrayList<List<UiField>>();
 
         // replace empty blocks by characters
         for (int rowIndex = 0; rowIndex < fenBlocks.length; rowIndex++) {
-            var rowList = new ArrayList<Character>();
+            var rowList = new ArrayList<UiField>();
             var fenBlock = fenBlocks[rowIndex];
             var colIndex = 0;
 
@@ -100,20 +89,28 @@ public class ChessBoardAsciiPrinter {
                 if (Character.isDigit(fenCode)) {
                     int amountOfEmptyFields = Character.getNumericValue(fenCode);
                     for (int i = 0; i < amountOfEmptyFields; i++) {
-                        var square = (rowIndex + colIndex) % 2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
+                        var square = (rowIndex + colIndex) % 2 == 0 ?
+                                new UiField(UiPiece.FIELD, PlayerColor.WHITE) :
+                                new UiField(UiPiece.FIELD, PlayerColor.BLACK);
                         rowList.add(square);
                         colIndex++;
                     }
                 } else {
                     // replace pieces in list
-                    var pieceToSet = CHARACTER_MAP.get(fenCode);
+                    var pieceToSet = mapFenCodeToUiField(fenCode);
                     rowList.add(pieceToSet);
-                    colIndex++;
                 }
             }
             board.add(rowList);
         }
         return board;
+    }
+
+    private static UiField mapFenCodeToUiField(char fenCode) {
+        var piece = Piece.fromFen(fenCode);
+        var color = piece.isBlack() ? PlayerColor.BLACK : PlayerColor.WHITE;
+        var uiPiece = UiPiece.getRepresentOfPiece(piece);
+        return new UiField(uiPiece, color);
     }
 
     private static String[] getFenBlocks(String fenString) {
@@ -158,7 +155,9 @@ public class ChessBoardAsciiPrinter {
                     amountOfPiecesAndEmptyFields++;
 
                     // check if piece is valid
-                    if (!CHARACTER_MAP.containsKey(c)) {
+                    try {
+                        Piece.fromFen(c);
+                    } catch (Exception e) {
                         throw new IllegalArgumentException(invalidFenStringPrefix + " invalid piece " + blockMessage);
                     }
                 }
@@ -172,10 +171,10 @@ public class ChessBoardAsciiPrinter {
         }
     }
 
-    private static String mapBoardToString(List<List<Character>> fields) {
+    private static String mapBoardToString(List<List<UiField>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
-                        .map(String::valueOf)
+                        .map(UiField::getRepresentation)
                         .collect(Collectors.joining()))
                 .collect(Collectors.joining("\n"));
     }

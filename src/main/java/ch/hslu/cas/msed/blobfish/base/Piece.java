@@ -22,13 +22,20 @@ public enum Piece {
         this.fen = fen;
     }
 
-    public static Piece fromFen(char fenChar) {
-        char f = Character.toLowerCase(fenChar);
+    public static Piece fromFen(char fenCode) {
+        char f = Character.toLowerCase(fenCode);
         for (Piece t : values()) {
             if (t.fen == f) return t;
         }
-        throw new IllegalArgumentException("Unknown FEN: " + fenChar);
+        throw new IllegalArgumentException("Unknown FEN: " + fenCode);
     }
 
+    public boolean isWhite() {
+        return Character.isUpperCase(fen);
+    }
+
+    public boolean isBlack() {
+        return !isWhite();
+    }
 }
 
