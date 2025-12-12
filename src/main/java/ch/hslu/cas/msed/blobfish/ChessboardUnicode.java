@@ -30,9 +30,9 @@ public class ChessboardUnicode {
         if(piece.equals(" ")) {
             // Use pawn as invisible filler (foreground same as background)
             String invisiblePawn = lightSquare ? WHITE_PIECE + "♟" : BLACK_PIECE + "♟";
-            return bg + invisiblePawn + RESET;
+            return bg + " " + invisiblePawn + " " + RESET;
         } else {
-            return bg + piece + RESET;
+            return bg + " " + piece + " " + RESET;
         }
     }
 
