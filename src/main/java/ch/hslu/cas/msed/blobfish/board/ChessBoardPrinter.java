@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ChessBoardPrinter {
@@ -27,7 +28,7 @@ public class ChessBoardPrinter {
 
     private static final Map<Character, Character> CHARACTER_MAP = Map.ofEntries(
             // black pieces
-    Map.entry('r', BLACK_ROOK),
+            Map.entry('r', BLACK_ROOK),
             Map.entry('n', BLACK_KNIGHT),
             Map.entry('b', BLACK_BISHOP),
             Map.entry('q', BLACK_QUEEN),
@@ -56,10 +57,47 @@ public class ChessBoardPrinter {
 
         var fenBlocks = getFenBlocks(fenString);
         var board = getFenBlocksAsBoard(fenBlocks);
-        var boardStr = mapBoardToString(board);
+        var boardWithPadding = addPaddingToBoard(board);
+        var boardStr = mapBoardToString(boardWithPadding);
+
 
         System.out.println(boardStr);
         return boardStr;
+    }
+
+    private static ArrayList<List<String>> addPaddingToBoard(ArrayList<List<Character>> board) {
+        final Character whiteSpace = ' ';
+        Predicate<Character> isPieceASquare = p -> p.equals(WHITE_SQUARE) || p.equals(BLACK_SQUARE);
+
+        var boardWithPadding = new ArrayList<List<String>>();
+
+        board.forEach(row -> {
+            var rowWithPadding = new ArrayList<String>();
+
+            for (int i = 0; i < row.size(); i++) {
+                StringBuilder fieldAsString = new StringBuilder();
+                var piece = row.get(i);
+
+                if (i == 0) {
+                    fieldAsString.append(whiteSpace);
+                }
+
+                fieldAsString.append(piece);
+
+                // double squares
+                if (isPieceASquare.test(piece)) {
+                    fieldAsString.append(piece);
+                }
+
+                if (i != row.size() - 1) {
+                    fieldAsString.append(whiteSpace);
+                }
+                rowWithPadding.add(fieldAsString.toString());
+            }
+            boardWithPadding.add(rowWithPadding);
+        });
+
+        return boardWithPadding;
     }
 
     private static ArrayList<List<Character>> getFenBlocksAsBoard(String[] fenBlocks) {
@@ -150,7 +188,7 @@ public class ChessBoardPrinter {
         }
     }
 
-    private static String mapBoardToString(List<List<Character>> fields) {
+    private static String mapBoardToString(List<List<String>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
                         .map(String::valueOf)
