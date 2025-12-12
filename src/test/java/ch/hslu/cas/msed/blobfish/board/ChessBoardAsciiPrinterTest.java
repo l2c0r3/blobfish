@@ -5,11 +5,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ch.hslu.cas.msed.blobfish.board.ChessBoardPrinter.*;
+import static ch.hslu.cas.msed.blobfish.board.ChessBoardAsciiPrinter.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ChessBoardPrinterTest {
+class ChessBoardAsciiPrinterTest {
 
     @Test
     void displayBoardAscii_nullPosition() {
@@ -17,7 +17,7 @@ class ChessBoardPrinterTest {
         var position = "8/8/8/8/8/8/8/8";
 
         // Act
-        var result = ChessBoardPrinter.displayBoardAscii(position);
+        var result = ChessBoardAsciiPrinter.displayBoardAscii(position);
 
         // Assert
         var expected = new StringBuilder()
@@ -39,7 +39,7 @@ class ChessBoardPrinterTest {
         var position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
         // Act
-        var result = ChessBoardPrinter.displayBoardAscii(position);
+        var result = ChessBoardAsciiPrinter.displayBoardAscii(position);
 
         // Assert
         var expected = new StringBuilder()
@@ -61,7 +61,7 @@ class ChessBoardPrinterTest {
         var position = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
 
         // Act
-        var result = ChessBoardPrinter.displayBoardAscii(position);
+        var result = ChessBoardAsciiPrinter.displayBoardAscii(position);
 
         // Assert
         var expected = new StringBuilder()
@@ -91,6 +91,6 @@ class ChessBoardPrinterTest {
     @NullAndEmptySource
     void displayBoardAscii_invalidFenString_throwsException(String fenString) {
         // Act & assert
-        assertThrows(IllegalArgumentException.class, () -> ChessBoardPrinter.displayBoardAscii(fenString));
+        assertThrows(IllegalArgumentException.class, () -> ChessBoardAsciiPrinter.displayBoardAscii(fenString));
     }
 }

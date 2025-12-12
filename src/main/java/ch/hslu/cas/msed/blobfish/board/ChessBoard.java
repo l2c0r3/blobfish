@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish.board;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import com.github.bhlangonijr.chesslib.Board;
 
 public class ChessBoard {
@@ -44,6 +43,6 @@ public class ChessBoard {
      * @return the position of the chessboard in a String with Ascii Characters
      */
     public String displayBoardAscii() {
-        return ChessBoardPrinter.displayBoardAscii(this.board.getFen());
+        return ChessBoardAsciiPrinter.displayBoardAscii(this.board.getFen());
     }
 }

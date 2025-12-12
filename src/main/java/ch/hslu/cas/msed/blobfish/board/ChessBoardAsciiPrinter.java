@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ChessBoardPrinter {
+public class ChessBoardAsciiPrinter {
 
     @Getter
     private enum UiPiece {
@@ -65,7 +65,7 @@ public class ChessBoardPrinter {
             Map.entry('P', WHITE_PAWN)
     );
 
-    private ChessBoardPrinter() {
+    private ChessBoardAsciiPrinter() {
         // utility class
     }
 
