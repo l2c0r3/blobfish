@@ -9,21 +9,21 @@ import java.util.stream.Collectors;
 
 public class ChessBoardPrinter {
 
-    public static final char WHITE_KING = '♔';
-    public static final char WHITE_QUEEN = '♕';
-    public static final char WHITE_ROOK = '♖';
-    public static final char WHITE_BISHOP = '♗';
-    public static final char WHITE_KNIGHT = '♘';
-    public static final char WHITE_PAWN = '♙';
-    public static final char WHITE_SQUARE = '□';
+    public static final char WHITE_KING = '♚';
+    public static final char WHITE_QUEEN = '♛';
+    public static final char WHITE_ROOK = '♜';
+    public static final char WHITE_BISHOP = '♝';
+    public static final char WHITE_KNIGHT = '♞';
+    public static final char WHITE_PAWN = '♟';
+    public static final char WHITE_SQUARE = '■';
 
-    public static final char BLACK_KING = '♚';
-    public static final char BLACK_QUEEN = '♛';
-    public static final char BLACK_ROOK = '♜';
-    public static final char BLACK_BISHOP = '♝';
-    public static final char BLACK_KNIGHT = '♞';
-    public static final char BLACK_PAWN = '♟';
-    public static final char BLACK_SQUARE = '■';
+    public static final char BLACK_KING = '♔';
+    public static final char BLACK_QUEEN = '♕';
+    public static final char BLACK_ROOK = '♖';
+    public static final char BLACK_BISHOP = '♗';
+    public static final char BLACK_KNIGHT = '♘';
+    public static final char BLACK_PAWN = '♙';
+    public static final char BLACK_SQUARE = '□';
 
     private static final Map<Character, Character> CHARACTER_MAP = Map.ofEntries(
             // black pieces
@@ -84,7 +84,9 @@ public class ChessBoardPrinter {
             board.add(rowList);
         }
 
-        return mapBoardToString(board);
+        var boardStr = mapBoardToString(board);
+        System.out.println(boardStr);
+        return boardStr;
     }
 
     private static String[] getFenBlocks(String fenString) {
