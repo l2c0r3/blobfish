@@ -5,4 +5,6 @@ public interface Piece {
     int getPoint();
 
     Character getUIRepresent();
+
+    Character getFENRepresent();
 }

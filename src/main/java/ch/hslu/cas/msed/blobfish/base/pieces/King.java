@@ -11,4 +11,9 @@ public class King implements Piece {
     public Character getUIRepresent() {
         return '♚';
     }
+
+    @Override
+    public Character getFENRepresent() {
+        return 'k';
+    }
 }

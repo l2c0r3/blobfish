@@ -11,4 +11,9 @@ public class Rook implements Piece {
     public Character getUIRepresent() {
         return '♜';
     }
+
+    @Override
+    public Character getFENRepresent() {
+        return 'r';
+    }
 }

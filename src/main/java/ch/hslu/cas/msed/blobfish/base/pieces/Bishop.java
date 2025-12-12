@@ -11,4 +11,9 @@ public class Bishop implements Piece {
     public Character getUIRepresent() {
         return '♝';
     }
+
+    @Override
+    public Character getFENRepresent() {
+        return 'b';
+    }
 }

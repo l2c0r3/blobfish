@@ -11,4 +11,9 @@ public class Queen implements Piece {
     public Character getUIRepresent() {
         return '♛';
     }
+
+    @Override
+    public Character getFENRepresent() {
+        return 'q';
+    }
 }

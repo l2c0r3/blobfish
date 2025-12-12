@@ -11,4 +11,9 @@ public class Pawn implements Piece {
     public Character getUIRepresent() {
         return '♟';
     }
+
+    @Override
+    public Character getFENRepresent() {
+        return 'p';
+    }
 }
