@@ -47,10 +47,29 @@ record UiFieldPrinter(Piece piece, Color pieceColor, Color squareColor) {
     }
 
     private String getEmptyField() {
-        return "";
+        var backgroundColor = getBackgroundColor();
+        var placeholderCharacter = CHARACTER_MAP.get(Piece.PAWN);
+        var invisiblePawn = switch (this.squareColor()) {
+            case WHITE -> INVISIBLE_WHITE_PIECE;
+            case BLACK -> INVISIBLE_BLACK_PIECE;
+        };
+        return backgroundColor + " " + invisiblePawn + placeholderCharacter + " " + RESET;
     }
 
     private String getPieceField() {
-        return CHARACTER_MAP.get(piece).toString();
+        var backgroundColor = getBackgroundColor();
+        var piece = CHARACTER_MAP.get(this.piece);
+        var foregroundColor = switch (this.squareColor()) {
+            case WHITE -> WHITE_PIECE;
+            case BLACK -> BLACK_PIECE;
+        };
+        return backgroundColor + foregroundColor + " " + piece + RESET;
+    }
+
+    private String getBackgroundColor() {
+        return switch (this.squareColor()) {
+            case WHITE -> LIGHT_BG;
+            case BLACK -> DARK_BG;
+        };
     }
 }

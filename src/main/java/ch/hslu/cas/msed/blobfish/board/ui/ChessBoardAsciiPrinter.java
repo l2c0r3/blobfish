@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class ChessBoardAsciiPrinter {
 
-
     private ChessBoardAsciiPrinter() {
         // utility class
     }
