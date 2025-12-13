@@ -1,5 +1,6 @@
 package ch.hslu.cas.msed.blobfish.board;
 
+import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardAsciiPrinter;
 import com.github.bhlangonijr.chesslib.Board;
 
 public class ChessBoard {

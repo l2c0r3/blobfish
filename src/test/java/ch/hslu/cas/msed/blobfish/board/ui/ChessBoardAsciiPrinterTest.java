@@ -1,11 +1,10 @@
-package ch.hslu.cas.msed.blobfish.board;
+package ch.hslu.cas.msed.blobfish.board.ui;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ch.hslu.cas.msed.blobfish.board.ChessBoardAsciiPrinter.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

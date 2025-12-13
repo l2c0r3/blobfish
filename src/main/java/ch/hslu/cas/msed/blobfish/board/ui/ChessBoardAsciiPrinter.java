@@ -1,8 +1,7 @@
-package ch.hslu.cas.msed.blobfish.board;
+package ch.hslu.cas.msed.blobfish.board.ui;
 
+import ch.hslu.cas.msed.blobfish.base.Color;
 import ch.hslu.cas.msed.blobfish.base.Piece;
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -10,50 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ChessBoardAsciiPrinter {
-
-    private enum UiPiece {
-        KING(Piece.KING, '♚'),
-        QUEEN(Piece.QUEEN, '♛'),
-        ROOK(Piece.ROOK, '♜'),
-        BISHOP(Piece.BISHOP, '♝'),
-        KNIGHT(Piece.KNIGHT, '♞'),
-        PAWN(Piece.PAWN, '♟'),
-        FIELD(null, null);
-
-        private final Piece piece;
-        private final Character uiRepresent;
-
-        UiPiece(Piece piece, Character uiRepresent) {
-            this.piece = piece;
-            this.uiRepresent = uiRepresent;
-        }
-
-        public static UiPiece getRepresentOfPiece(Piece p) {
-            for(UiPiece piece : UiPiece.values()) {
-                if (piece.piece.equals(p)) {
-                    return piece;
-                }
-            }
-            throw new IllegalArgumentException("Unknown piece [" + p + "]");
-        }
-    }
-
-    private record UiField(UiPiece uiPiece, PlayerColor color) {
-        private UiPiece getUiPiece() {
-            return uiPiece;
-        };
-
-        private PlayerColor getColor() {
-            return color;
-        }
-
-        public String getRepresentation() {
-            if(uiPiece == null || uiPiece.uiRepresent == null) {
-                return "";
-            }
-            return uiPiece.uiRepresent.toString();
-        }
-    }
 
 
     private ChessBoardAsciiPrinter() {
@@ -76,44 +31,36 @@ public class ChessBoardAsciiPrinter {
         return boardStr;
     }
 
-    private static ArrayList<List<UiField>> getFenBlocksAsBoard(String[] fenBlocks) {
-        var board = new ArrayList<List<UiField>>();
+    private static ArrayList<List<UiFieldPrinter>> getFenBlocksAsBoard(String[] fenBlocks) {
+        var board = new ArrayList<List<UiFieldPrinter>>();
 
         // replace empty blocks by characters
         for (int rowIndex = 0; rowIndex < fenBlocks.length; rowIndex++) {
-            var rowList = new ArrayList<UiField>();
+            var rowList = new ArrayList<UiFieldPrinter>();
             var fenBlock = fenBlocks[rowIndex];
             var colIndex = 0;
 
             for (int fenBlockIndex = 0; fenBlockIndex < fenBlock.length(); fenBlockIndex++) {
                 var fenCode = fenBlock.charAt(fenBlockIndex);
+                var squareColor = (rowIndex + colIndex) % 2 == 0 ? Color.WHITE : Color.BLACK;
 
                 // empty field by numbers
                 if (Character.isDigit(fenCode)) {
                     int amountOfEmptyFields = Character.getNumericValue(fenCode);
                     for (int i = 0; i < amountOfEmptyFields; i++) {
-                        var square = (rowIndex + colIndex) % 2 == 0 ?
-                                new UiField(UiPiece.FIELD, PlayerColor.WHITE) :
-                                new UiField(UiPiece.FIELD, PlayerColor.BLACK);
+                        var square = new UiFieldPrinter(null, null, squareColor);
                         rowList.add(square);
                         colIndex++;
                     }
                 } else {
                     // replace pieces in list
-                    var pieceToSet = mapFenCodeToUiField(fenCode);
+                    var pieceToSet = new UiFieldPrinter(fenCode, squareColor);
                     rowList.add(pieceToSet);
                 }
             }
             board.add(rowList);
         }
         return board;
-    }
-
-    private static UiField mapFenCodeToUiField(char fenCode) {
-        var piece = Piece.fromFen(fenCode);
-        var color = piece.isBlack() ? PlayerColor.BLACK : PlayerColor.WHITE;
-        var uiPiece = UiPiece.getRepresentOfPiece(piece);
-        return new UiField(uiPiece, color);
     }
 
     private static String[] getFenBlocks(String fenString) {
@@ -174,10 +121,10 @@ public class ChessBoardAsciiPrinter {
         }
     }
 
-    private static String mapBoardToString(List<List<UiField>> fields) {
+    private static String mapBoardToString(List<List<UiFieldPrinter>> fields) {
         return fields.stream()
                 .map(row -> row.stream()
-                        .map(UiField::getRepresentation)
+                        .map(UiFieldPrinter::print)
                         .collect(Collectors.joining()))
                 .collect(Collectors.joining("\n"));
     }
