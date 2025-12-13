@@ -42,6 +42,7 @@ public class MatchScreen {
 
             // TODO: error handling
             chessboard.doMove(move);
+            writer.printlnAndFlush(chessboard.displayBoardAscii());
 
             currentPlayer = currentPlayer == white ? black : white;
         }

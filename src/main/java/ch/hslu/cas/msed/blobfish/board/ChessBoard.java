@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.board;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardAsciiPrinter;
 import com.github.bhlangonijr.chesslib.Board;
 
 public class ChessBoard {
@@ -41,10 +41,9 @@ public class ChessBoard {
     }
 
     /**
-     * @param perspective which color is at the bottom
      * @return the position of the chessboard in a String with Ascii Characters
      */
-    public String displayBoardAscii(PlayerColor perspective) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public String displayBoardAscii() {
+        return ChessBoardAsciiPrinter.displayBoardAscii(this.board.getFen());
     }
 }
