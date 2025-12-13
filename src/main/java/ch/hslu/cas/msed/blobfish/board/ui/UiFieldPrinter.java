@@ -13,8 +13,8 @@ record UiFieldPrinter(Piece piece, Color pieceColor, Color squareColor) {
     private static final String RESET = "\u001B[0m";
 
     // Piece foreground colors
-    private static final String WHITE_PIECE = "\u001B[38;5;255m"; // white
-    private static final String BLACK_PIECE = "\u001B[38;5;0m";  // black
+    private static final String WHITE_PIECE = "\u001B[38;5;255m";
+    private static final String BLACK_PIECE = "\u001B[38;5;0m";
 
     // Piece foreground colors of the invisible pawns
     private static final String INVISIBLE_WHITE_PIECE = "\u001B[38;5;180m";
@@ -63,7 +63,7 @@ record UiFieldPrinter(Piece piece, Color pieceColor, Color squareColor) {
             case WHITE -> WHITE_PIECE;
             case BLACK -> BLACK_PIECE;
         };
-        return backgroundColor + foregroundColor + " " + piece + RESET;
+        return backgroundColor + foregroundColor + " " + piece + " " + RESET;
     }
 
     private String getBackgroundColor() {

@@ -41,25 +41,32 @@ public class ChessBoardAsciiPrinter {
 
             for (int fenBlockIndex = 0; fenBlockIndex < fenBlock.length(); fenBlockIndex++) {
                 var fenCode = fenBlock.charAt(fenBlockIndex);
-                var squareColor = (rowIndex + colIndex) % 2 == 0 ? Color.WHITE : Color.BLACK;
+
 
                 // empty field by numbers
                 if (Character.isDigit(fenCode)) {
                     int amountOfEmptyFields = Character.getNumericValue(fenCode);
                     for (int i = 0; i < amountOfEmptyFields; i++) {
+                        var squareColor = getSquareColor(rowIndex, colIndex);
                         var square = new UiFieldPrinter(null, null, squareColor);
                         rowList.add(square);
                         colIndex++;
                     }
                 } else {
                     // replace pieces in list
+                    var squareColor = getSquareColor(rowIndex, colIndex);
                     var pieceToSet = new UiFieldPrinter(fenCode, squareColor);
                     rowList.add(pieceToSet);
+                    colIndex++;
                 }
             }
             board.add(rowList);
         }
         return board;
+    }
+
+    private static Color getSquareColor(int rowIndex, int colIndex) {
+        return (rowIndex + colIndex) % 2 == 0 ? Color.WHITE : Color.BLACK;
     }
 
     private static String[] getFenBlocks(String fenString) {
