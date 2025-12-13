@@ -48,6 +48,9 @@ public class ChessBoardAsciiPrinter {
         }
 
         public String getRepresentation() {
+            if(uiPiece == null || uiPiece.uiRepresent == null) {
+                return "";
+            }
             return uiPiece.uiRepresent.toString();
         }
     }
