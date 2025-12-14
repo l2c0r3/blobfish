@@ -100,7 +100,7 @@ class FenBoardParserTest {
             "ppppppppp/p2pBpNp/8/8/8/8/PPPPPPPP/RNBQKBNR/ppppppppp/",      // too much blocks
     })
     @NullAndEmptySource
-    void displayBoardAscii_invalidFenString_throwsException(String position) {
+    void parse_invalidFenString_throwsException(String position) {
         // Act & assert
         assertThrows(IllegalArgumentException.class, () -> testee.parse(position));
     }
