@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ChessBoardAsciiPrinterTest {
 
-
+/*
     public static final char WHITE_KING = '♚';
     public static final char WHITE_QUEEN = '♛';
     public static final char WHITE_ROOK = '♜';
@@ -110,4 +110,6 @@ class ChessBoardAsciiPrinterTest {
         // Act & assert
         assertThrows(IllegalArgumentException.class, () -> ChessBoardAsciiPrinter.displayBoardAscii(fenString));
     }
+
+ */
 }

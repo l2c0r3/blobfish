@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
@@ -13,6 +14,7 @@ public class MatchScreen {
     AbstractPlayer white;
     AbstractPlayer black;
     AbstractPlayer currentPlayer;
+    ChessBoardRenderer chessBoardRenderer = new ChessBoardRenderer();
 
 
     public MatchScreen(
@@ -42,11 +44,17 @@ public class MatchScreen {
 
             // TODO: error handling
             chessboard.doMove(move);
-            writer.printlnAndFlush(chessboard.displayBoardAscii());
+            printPosition();
 
             currentPlayer = currentPlayer == white ? black : white;
         }
 
         writer.printlnAndFlush("Game over.");
+    }
+
+    private void printPosition() {
+        var fen = chessboard.getFen();
+        var uiStr = chessBoardRenderer.render(fen);
+        writer.printlnAndFlush(uiStr);
     }
 }

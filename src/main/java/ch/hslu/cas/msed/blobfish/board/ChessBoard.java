@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish.board;
 
-import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardAsciiPrinter;
 import com.github.bhlangonijr.chesslib.Board;
 
 public class ChessBoard {
@@ -40,10 +39,7 @@ public class ChessBoard {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * @return the position of the chessboard in a String with Ascii Characters
-     */
-    public String displayBoardAscii() {
-        return ChessBoardAsciiPrinter.displayBoardAscii(this.board.getFen());
+    public String getFen() {
+        return board.getFen();
     }
 }

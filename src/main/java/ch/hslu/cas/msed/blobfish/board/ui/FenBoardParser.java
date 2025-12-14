@@ -2,65 +2,46 @@ package ch.hslu.cas.msed.blobfish.board.ui;
 
 import ch.hslu.cas.msed.blobfish.base.Color;
 import ch.hslu.cas.msed.blobfish.base.Piece;
+import ch.hslu.cas.msed.blobfish.base.PieceType;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+class FenBoardParser {
 
-public class ChessBoardAsciiPrinter {
-
-    private ChessBoardAsciiPrinter() {
-        // utility class
+    UiBoard parse(String fen) {
+        validateFenString(fen);
+        var fenBlocks = getFenBlocks(fen);
+        return parseFenBlocksAsBoard(fenBlocks);
     }
 
-    /**
-     * @param fenString position of board
-     * @return the position of the chessboard in a String with Ascii Characters
-     */
-    public static String displayBoardAscii(String fenString) {
-        validateFenString(fenString);
-
-        var fenBlocks = getFenBlocks(fenString);
-        var board = getFenBlocksAsBoard(fenBlocks);
-        var boardStr = mapBoardToString(board);
-
-
-        System.out.println(boardStr);
-        return boardStr;
-    }
-
-    private static ArrayList<List<UiFieldPrinter>> getFenBlocksAsBoard(String[] fenBlocks) {
-        var board = new ArrayList<List<UiFieldPrinter>>();
+    private static UiBoard parseFenBlocksAsBoard(String[] fenBlocks) {
+        var board = new UiBoard();
 
         // replace empty blocks by characters
         for (int rowIndex = 0; rowIndex < fenBlocks.length; rowIndex++) {
-            var rowList = new ArrayList<UiFieldPrinter>();
             var fenBlock = fenBlocks[rowIndex];
             var colIndex = 0;
 
             for (int fenBlockIndex = 0; fenBlockIndex < fenBlock.length(); fenBlockIndex++) {
                 var fenCode = fenBlock.charAt(fenBlockIndex);
 
-
                 // empty field by numbers
                 if (Character.isDigit(fenCode)) {
                     int amountOfEmptyFields = Character.getNumericValue(fenCode);
                     for (int i = 0; i < amountOfEmptyFields; i++) {
                         var squareColor = getSquareColor(rowIndex, colIndex);
-                        var square = new UiFieldPrinter(null, null, squareColor);
-                        rowList.add(square);
+                        var uiField = new UiField(null, squareColor);
+                        board.set(rowIndex, colIndex, uiField);
                         colIndex++;
                     }
                 } else {
                     // replace pieces in list
                     var squareColor = getSquareColor(rowIndex, colIndex);
-                    var pieceToSet = new UiFieldPrinter(fenCode, squareColor);
-                    rowList.add(pieceToSet);
+                    var piece = new Piece(fenCode);
+                    var uiField = new UiField(piece, squareColor);
+                    board.set(rowIndex, colIndex, uiField);
                     colIndex++;
                 }
             }
-            board.add(rowList);
         }
         return board;
     }
@@ -112,7 +93,7 @@ public class ChessBoardAsciiPrinter {
 
                     // check if piece is valid
                     try {
-                        Piece.fromFen(c);
+                        PieceType.fromFen(c);
                     } catch (Exception e) {
                         throw new IllegalArgumentException(invalidFenStringPrefix + " invalid piece " + blockMessage);
                     }
@@ -125,13 +106,5 @@ public class ChessBoardAsciiPrinter {
                 throw new IllegalArgumentException(invalidFenStringPrefix + " too many pieces " + blockMessage);
             }
         }
-    }
-
-    private static String mapBoardToString(List<List<UiFieldPrinter>> fields) {
-        return fields.stream()
-                .map(row -> row.stream()
-                        .map(UiFieldPrinter::print)
-                        .collect(Collectors.joining()))
-                .collect(Collectors.joining("\n"));
     }
 }
