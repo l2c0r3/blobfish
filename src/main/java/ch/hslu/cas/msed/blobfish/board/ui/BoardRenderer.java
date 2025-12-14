@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+
 public class BoardRenderer {
 
     private final FieldRenderer render;
@@ -8,16 +10,23 @@ public class BoardRenderer {
         this.render = fieldRenderer;
     }
 
-    String render(UiBoard board) {
-        var uiString = new StringBuilder();
-        for (int rowIndex = 0; rowIndex < 8; rowIndex++) {
-            for (int cellIndex = 0; cellIndex < 8; cellIndex++) {
-                var field = board.get(rowIndex, cellIndex);
-                var fieldStr = render.render(field);
-                uiString.append(fieldStr);
+    String render(UiBoard board, PlayerColor perspective) {
+        var sb = new StringBuilder();
+
+        int rowStart = (perspective == PlayerColor.BLACK) ? 7 : 0;
+        int rowEnd = (perspective == PlayerColor.BLACK) ? -1 : 8;
+        int rowStep = (perspective == PlayerColor.BLACK) ? -1 : 1;
+
+        int colStart = (perspective == PlayerColor.BLACK) ? 7 : 0;
+        int colEnd = (perspective == PlayerColor.BLACK) ? -1 : 8;
+        int colStep = (perspective == PlayerColor.BLACK) ? -1 : 1;
+
+        for (int r = rowStart; r != rowEnd; r += rowStep) {
+            for (int c = colStart; c != colEnd; c += colStep) {
+                sb.append(render.render(board.get(r, c)));
             }
-            uiString.append("\n");
+            sb.append('\n');
         }
-        return uiString.toString();
+        return sb.toString();
     }
 }

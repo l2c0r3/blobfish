@@ -8,4 +8,11 @@ public record Piece(PieceType type, PlayerColor color) {
         this(pieceType, color);
     }
 
+    public Character fen() {
+        char character = this.type.getFen();
+        return switch (this.color) {
+            case WHITE -> Character.toUpperCase(character);
+            case BLACK -> Character.toLowerCase(character);
+        };
+    }
 }

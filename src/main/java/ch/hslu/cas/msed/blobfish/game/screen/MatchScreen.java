@@ -1,5 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
@@ -44,7 +45,7 @@ public class MatchScreen {
 
             // TODO: error handling
             chessboard.doMove(move);
-            printPosition();
+            printPosition(currentPlayer.getPlayerColor());
 
             currentPlayer = currentPlayer == white ? black : white;
         }
@@ -52,9 +53,9 @@ public class MatchScreen {
         writer.printlnAndFlush("Game over.");
     }
 
-    private void printPosition() {
+    private void printPosition(PlayerColor playerColor) {
         var fen = chessboard.getFen();
-        var uiStr = chessBoardRenderer.render(fen);
+        var uiStr = chessBoardRenderer.render(fen, playerColor);
         writer.printlnAndFlush(uiStr);
     }
 }

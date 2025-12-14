@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+
 public class ChessBoardRenderer {
 
     private final FenBoardParser parser;
@@ -12,8 +14,8 @@ public class ChessBoardRenderer {
         this.boardRenderer = new BoardRenderer(fieldRenderer);
     }
 
-    public String render(String fen) {
+    public String render(String fen, PlayerColor playerPerspective) {
         var board = parser.parse(fen);
-        return boardRenderer.render(board);
+        return boardRenderer.render(board, playerPerspective);
     }
 }
