@@ -19,7 +19,7 @@ class FenBoardParserTest {
     private final FenBoardParser testee = new FenBoardParser();
 
     @Test
-    void displayBoardAscii_nullPosition() {
+    void parse_emptyBoard_returnsAllEmptyFields() {
         // Arrange
         var position = "8/8/8/8/8/8/8/8";
 
@@ -41,7 +41,7 @@ class FenBoardParserTest {
     }
 
     @Test
-    void displayBoardAscii_startPosition() {
+    void parse_startPosition_returnsCorrectPieces() {
         // Arrange
         var position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
@@ -65,7 +65,7 @@ class FenBoardParserTest {
     }
 
     @Test
-    void displayBoardAscii_randomPos1() {
+    void parse_midGamePosition_returnsCorrectPieces() {
         // Arrange
         var position = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
 
