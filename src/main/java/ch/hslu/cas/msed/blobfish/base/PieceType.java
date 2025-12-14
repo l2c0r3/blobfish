@@ -21,6 +21,9 @@ public enum PieceType {
     }
 
     public static PieceType fromFen(final char fenCode) {
+        if (!Character.isAlphabetic(fenCode)) {
+            throw new IllegalArgumentException("FEN has to be alphabetic");
+        }
         char f = Character.toLowerCase(fenCode);
         for (PieceType t : values()) {
             if (t.fen == f) return t;
