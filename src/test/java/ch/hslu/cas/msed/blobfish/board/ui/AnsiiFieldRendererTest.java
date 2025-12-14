@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static ch.hslu.cas.msed.blobfish.board.ui.AnsiiFieldRenderer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AnsiiFieldRendererParameterizedTest {
+class AnsiiFieldRendererTest {
 
     private final AnsiiFieldRenderer testee = new AnsiiFieldRenderer();
 
