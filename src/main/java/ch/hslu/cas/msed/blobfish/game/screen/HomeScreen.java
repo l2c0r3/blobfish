@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
@@ -25,24 +25,24 @@ public class HomeScreen {
         var humanPlayerColor = getPlayerColor();
 
         return switch (humanPlayerColor) {
-            case WHITE -> new MatchConfig(new HumanPlayer(Color.WHITE), new BotPlayer(Color.BLACK));
-            case BLACK -> new MatchConfig(new BotPlayer(Color.WHITE), new HumanPlayer(Color.BLACK));
+            case WHITE -> new MatchConfig(new HumanPlayer(PlayerColor.WHITE), new BotPlayer(PlayerColor.BLACK));
+            case BLACK -> new MatchConfig(new BotPlayer(PlayerColor.WHITE), new HumanPlayer(PlayerColor.BLACK));
         };
     }
 
-    private Color getPlayerColor() {
-        Color color;
+    private PlayerColor getPlayerColor() {
+        PlayerColor playerColor;
         do {
             var input = reader.readLine("Choose a color to start a match [white|black]:");
 
             try {
-                color = Color.valueOf(input.toUpperCase());
+                playerColor = PlayerColor.valueOf(input.toUpperCase());
             } catch (IllegalArgumentException e) {
                 writer.printlnAndFlush("Invalid input.");
-                color = null;
+                playerColor = null;
             }
-        } while (color == null);
+        } while (playerColor == null);
 
-        return color;
+        return playerColor;
     }
 }

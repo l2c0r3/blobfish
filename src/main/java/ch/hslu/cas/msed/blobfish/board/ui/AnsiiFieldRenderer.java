@@ -1,10 +1,8 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
-
-import java.util.Map;
 
 class AnsiiFieldRenderer implements FieldRenderer {
 
@@ -30,7 +28,7 @@ class AnsiiFieldRenderer implements FieldRenderer {
         return renderPiece(uiField.piece(), uiField.fieldColor());
     }
 
-    private static String renderEmptyField(Color color) {
+    private static String renderEmptyField(PlayerColor color) {
         var backgroundColor = getBackgroundColor(color);
         var placeholderCharacter = getCharacterOfPieceType(PieceType.PAWN);
         var invisiblePawn = switch (color) {
@@ -40,7 +38,7 @@ class AnsiiFieldRenderer implements FieldRenderer {
         return backgroundColor + " " + invisiblePawn + placeholderCharacter + " " + RESET;
     }
 
-    private static String renderPiece(Piece piece, Color squareColor) {
+    private static String renderPiece(Piece piece, PlayerColor squareColor) {
         var backgroundColor = getBackgroundColor(squareColor);
         var pieceCharacter = getCharacterOfPieceType(piece.type());
         var foregroundColor = switch (piece.color()) {
@@ -51,7 +49,7 @@ class AnsiiFieldRenderer implements FieldRenderer {
         return backgroundColor + foregroundColor + " " + pieceCharacter + " " + RESET;
     }
 
-    private static String getBackgroundColor(Color squareColor) {
+    private static String getBackgroundColor(PlayerColor squareColor) {
         return switch (squareColor) {
             case WHITE -> LIGHT_BG;
             case BLACK -> DARK_BG;

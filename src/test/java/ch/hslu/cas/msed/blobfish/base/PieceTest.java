@@ -11,24 +11,24 @@ public class PieceTest {
 
     static Stream<Object[]> fenToPiece() {
         return Stream.of(
-                new Object[]{'k', PieceType.KING, Color.BLACK},
-                new Object[]{'K', PieceType.KING, Color.WHITE},
-                new Object[]{'q', PieceType.QUEEN, Color.BLACK},
-                new Object[]{'Q', PieceType.QUEEN, Color.WHITE},
-                new Object[]{'r', PieceType.ROOK, Color.BLACK},
-                new Object[]{'R', PieceType.ROOK, Color.WHITE},
-                new Object[]{'b', PieceType.BISHOP, Color.BLACK},
-                new Object[]{'B', PieceType.BISHOP, Color.WHITE},
-                new Object[]{'n', PieceType.KNIGHT, Color.BLACK},
-                new Object[]{'N', PieceType.KNIGHT, Color.WHITE},
-                new Object[]{'p', PieceType.PAWN, Color.BLACK},
-                new Object[]{'P', PieceType.PAWN, Color.WHITE}
+                new Object[]{'k', PieceType.KING, PlayerColor.BLACK},
+                new Object[]{'K', PieceType.KING, PlayerColor.WHITE},
+                new Object[]{'q', PieceType.QUEEN, PlayerColor.BLACK},
+                new Object[]{'Q', PieceType.QUEEN, PlayerColor.WHITE},
+                new Object[]{'r', PieceType.ROOK, PlayerColor.BLACK},
+                new Object[]{'R', PieceType.ROOK, PlayerColor.WHITE},
+                new Object[]{'b', PieceType.BISHOP, PlayerColor.BLACK},
+                new Object[]{'B', PieceType.BISHOP, PlayerColor.WHITE},
+                new Object[]{'n', PieceType.KNIGHT, PlayerColor.BLACK},
+                new Object[]{'N', PieceType.KNIGHT, PlayerColor.WHITE},
+                new Object[]{'p', PieceType.PAWN, PlayerColor.BLACK},
+                new Object[]{'P', PieceType.PAWN, PlayerColor.WHITE}
         );
     }
 
     @ParameterizedTest
     @MethodSource("fenToPiece")
-    void fromFen_parsesUpperAndLowerCase(char fenCode, PieceType expectedType, Color expectedColor) {
+    void fromFen_parsesUpperAndLowerCase(char fenCode, PieceType expectedType, PlayerColor expectedColor) {
         // Act
         var result = new Piece(fenCode);
 

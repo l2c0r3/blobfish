@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.base;
 
-public enum Color {
+public enum PlayerColor {
     BLACK,
     WHITE
 }

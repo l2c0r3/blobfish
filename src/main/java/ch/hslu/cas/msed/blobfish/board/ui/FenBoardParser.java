@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
 import org.apache.commons.lang3.StringUtils;
@@ -46,8 +46,8 @@ class FenBoardParser {
         return board;
     }
 
-    private static Color getSquareColor(int rowIndex, int colIndex) {
-        return (rowIndex + colIndex) % 2 == 0 ? Color.WHITE : Color.BLACK;
+    private static PlayerColor getSquareColor(int rowIndex, int colIndex) {
+        return (rowIndex + colIndex) % 2 == 0 ? PlayerColor.WHITE : PlayerColor.BLACK;
     }
 
     private static String[] getFenBlocks(String fenString) {

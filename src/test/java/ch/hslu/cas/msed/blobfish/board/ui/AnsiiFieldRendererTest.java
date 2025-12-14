@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,12 +31,12 @@ class AnsiiFieldRendererParameterizedTest {
 
 
         return Stream.of(
-                Arguments.of(new UiField(new Piece(PieceType.KING, Color.WHITE), Color.WHITE), '♚', LIGHT_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.QUEEN, Color.BLACK), Color.BLACK), '♛', DARK_BG, BLACK_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.ROOK, Color.WHITE), Color.BLACK), '♜', DARK_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.BISHOP, Color.BLACK), Color.WHITE), '♝', LIGHT_BG, BLACK_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.KNIGHT, Color.WHITE), Color.WHITE), '♞', LIGHT_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.PAWN, Color.BLACK), Color.BLACK), '♟', DARK_BG, BLACK_PIECE)
+                Arguments.of(new UiField(new Piece(PieceType.KING, PlayerColor.WHITE), PlayerColor.WHITE), '♚', LIGHT_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.QUEEN, PlayerColor.BLACK), PlayerColor.BLACK), '♛', DARK_BG, BLACK_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.ROOK, PlayerColor.WHITE), PlayerColor.BLACK), '♜', DARK_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.BISHOP, PlayerColor.BLACK), PlayerColor.WHITE), '♝', LIGHT_BG, BLACK_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.KNIGHT, PlayerColor.WHITE), PlayerColor.WHITE), '♞', LIGHT_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.PAWN, PlayerColor.BLACK), PlayerColor.BLACK), '♟', DARK_BG, BLACK_PIECE)
         );
     }
 }

@@ -1,12 +1,12 @@
 package ch.hslu.cas.msed.blobfish.player;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 
 public class HumanPlayer extends AbstractPlayer {
 
-    public HumanPlayer(Color color) {
-        super(color);
+    public HumanPlayer(PlayerColor playerColor) {
+        super(playerColor);
     }
 
     @Override

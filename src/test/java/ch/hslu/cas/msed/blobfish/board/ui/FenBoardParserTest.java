@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
-import ch.hslu.cas.msed.blobfish.base.Color;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
 import org.junit.jupiter.api.Test;
@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ch.hslu.cas.msed.blobfish.base.Color.BLACK;
-import static ch.hslu.cas.msed.blobfish.base.Color.WHITE;
+import static ch.hslu.cas.msed.blobfish.base.PlayerColor.BLACK;
+import static ch.hslu.cas.msed.blobfish.base.PlayerColor.WHITE;
 import static ch.hslu.cas.msed.blobfish.base.PieceType.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -105,11 +105,11 @@ class FenBoardParserTest {
         assertThrows(IllegalArgumentException.class, () -> testee.parse(position));
     }
 
-    private UiField emptyField(Color color) {
+    private UiField emptyField(PlayerColor color) {
         return new UiField(null, color);
     }
 
-    private static UiField field(PieceType pieceType, Color pieceColor, Color fieldColor) {
+    private static UiField field(PieceType pieceType, PlayerColor pieceColor, PlayerColor fieldColor) {
         return new UiField(new Piece(pieceType, pieceColor), fieldColor);
     }
 }
