@@ -73,9 +73,9 @@ class FenBoardParser {
 
         // check amount of blocks
         if (blocks.length > 8) {
-            throw new IllegalArgumentException(invalidFenStringPrefix + " too much blocks");
+            throw new IllegalArgumentException(invalidFenStringPrefix + " too many blocks");
         } else if (blocks.length < 8) {
-            throw new IllegalArgumentException(invalidFenStringPrefix + " too less blocks");
+            throw new IllegalArgumentException(invalidFenStringPrefix + " too few blocks");
         }
 
         // check block content - amount and is piece valid
@@ -101,7 +101,7 @@ class FenBoardParser {
             }
 
             if (amountOfPiecesAndEmptyFields < 8) {
-                throw new IllegalArgumentException(invalidFenStringPrefix + " too less pieces " + blockMessage);
+                throw new IllegalArgumentException(invalidFenStringPrefix + " too few pieces " + blockMessage);
             } else if (amountOfPiecesAndEmptyFields > 8) {
                 throw new IllegalArgumentException(invalidFenStringPrefix + " too many pieces " + blockMessage);
             }
