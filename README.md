@@ -1,4 +1,7 @@
 # blobfisch
+
+![icon.png](docs/icon.png)
+
 A simple alternative to Stockfish.
 
 ## Class diagram
