@@ -31,12 +31,12 @@ class AnsiiFieldRendererTest {
 
 
         return Stream.of(
-                Arguments.of(new UiField(new Piece(PieceType.KING, PlayerColor.WHITE), PlayerColor.WHITE), '♚', LIGHT_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.QUEEN, PlayerColor.BLACK), PlayerColor.BLACK), '♛', DARK_BG, BLACK_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.ROOK, PlayerColor.WHITE), PlayerColor.BLACK), '♜', DARK_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.BISHOP, PlayerColor.BLACK), PlayerColor.WHITE), '♝', LIGHT_BG, BLACK_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.KNIGHT, PlayerColor.WHITE), PlayerColor.WHITE), '♞', LIGHT_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.PAWN, PlayerColor.BLACK), PlayerColor.BLACK), '♟', DARK_BG, BLACK_PIECE)
+                Arguments.of(new UiField(new Piece(PieceType.KING, PlayerColor.WHITE), SquareColor.LIGHT), '♚', LIGHT_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.QUEEN, PlayerColor.BLACK), SquareColor.DARK), '♛', DARK_BG, BLACK_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.ROOK, PlayerColor.WHITE), SquareColor.DARK), '♜', DARK_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.BISHOP, PlayerColor.BLACK), SquareColor.LIGHT), '♝', LIGHT_BG, BLACK_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.KNIGHT, PlayerColor.WHITE), SquareColor.LIGHT), '♞', LIGHT_BG, WHITE_PIECE),
+                Arguments.of(new UiField(new Piece(PieceType.PAWN, PlayerColor.BLACK), SquareColor.DARK), '♟', DARK_BG, BLACK_PIECE)
         );
     }
 }

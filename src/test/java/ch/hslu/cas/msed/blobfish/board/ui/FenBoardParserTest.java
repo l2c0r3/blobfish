@@ -8,9 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ch.hslu.cas.msed.blobfish.base.PlayerColor.BLACK;
-import static ch.hslu.cas.msed.blobfish.base.PlayerColor.WHITE;
 import static ch.hslu.cas.msed.blobfish.base.PieceType.*;
+import static ch.hslu.cas.msed.blobfish.base.PlayerColor.*;
+import static ch.hslu.cas.msed.blobfish.board.ui.SquareColor.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -29,14 +29,14 @@ class FenBoardParserTest {
         // Assert
         assertArrayEquals(
                 new UiField[][]{
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
                 }, result);
     }
 
@@ -51,14 +51,14 @@ class FenBoardParserTest {
         // Assert
         assertArrayEquals(
                 new UiField[][]{
-                        new UiField[]{field(ROOK, BLACK, WHITE), field(KNIGHT, BLACK, BLACK), field(BISHOP, BLACK, WHITE), field(QUEEN, BLACK, BLACK), field(KING, BLACK, WHITE), field(BISHOP, BLACK, BLACK), field(KNIGHT, BLACK, WHITE), field(ROOK, BLACK, BLACK)},
-                        new UiField[]{field(PAWN, BLACK, BLACK), field(PAWN, BLACK, WHITE), field(PAWN, BLACK, BLACK), field(PAWN, BLACK, WHITE), field(PAWN, BLACK, BLACK), field(PAWN, BLACK, WHITE), field(PAWN, BLACK, BLACK), field(PAWN, BLACK, WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{field(PAWN, WHITE, WHITE), field(PAWN, WHITE, BLACK), field(PAWN, WHITE, WHITE), field(PAWN, WHITE, BLACK), field(PAWN, WHITE, WHITE), field(PAWN, WHITE, BLACK), field(PAWN, WHITE, WHITE), field(PAWN, WHITE, BLACK)},
-                        new UiField[]{field(ROOK, WHITE, BLACK), field(KNIGHT, WHITE, WHITE), field(BISHOP, WHITE, BLACK), field(QUEEN, WHITE, WHITE), field(KING, WHITE, BLACK), field(BISHOP, WHITE, WHITE), field(KNIGHT, WHITE, BLACK), field(ROOK, WHITE, WHITE)}
+                        new UiField[]{field(ROOK, BLACK, LIGHT), field(KNIGHT, BLACK, DARK), field(BISHOP, BLACK, LIGHT), field(QUEEN, BLACK, DARK), field(KING, BLACK, LIGHT), field(BISHOP, BLACK, DARK), field(KNIGHT, BLACK, LIGHT), field(ROOK, BLACK, DARK)},
+                        new UiField[]{field(PAWN, BLACK, DARK), field(PAWN, BLACK, LIGHT), field(PAWN, BLACK, DARK), field(PAWN, BLACK, LIGHT), field(PAWN, BLACK, DARK), field(PAWN, BLACK, LIGHT), field(PAWN, BLACK, DARK), field(PAWN, BLACK, LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{field(PAWN, WHITE, LIGHT), field(PAWN, WHITE, DARK), field(PAWN, WHITE, LIGHT), field(PAWN, WHITE, DARK), field(PAWN, WHITE, LIGHT), field(PAWN, WHITE, DARK), field(PAWN, WHITE, LIGHT), field(PAWN, WHITE, DARK)},
+                        new UiField[]{field(ROOK, WHITE, DARK), field(KNIGHT, WHITE, LIGHT), field(BISHOP, WHITE, DARK), field(QUEEN, WHITE, LIGHT), field(KING, WHITE, DARK), field(BISHOP, WHITE, LIGHT), field(KNIGHT, WHITE, DARK), field(ROOK, WHITE, LIGHT)}
                 },
                 result
         );
@@ -75,14 +75,14 @@ class FenBoardParserTest {
         // Assert
         assertArrayEquals(
                 new UiField[][]{
-                        new UiField[]{field(ROOK, BLACK, WHITE), emptyField(BLACK), field(BISHOP, BLACK, WHITE), field(KING, BLACK, BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), field(ROOK, BLACK, BLACK)},
-                        new UiField[]{field(PAWN, BLACK, BLACK), emptyField(WHITE), emptyField(BLACK), field(PAWN, BLACK, WHITE), field(BISHOP, WHITE, BLACK), field(PAWN, BLACK, WHITE), field(KNIGHT, WHITE, BLACK), field(PAWN, BLACK, WHITE)},
-                        new UiField[]{field(KNIGHT, BLACK, WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), field(KNIGHT, BLACK, BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), field(PAWN, BLACK, WHITE), emptyField(BLACK), field(KNIGHT, WHITE, WHITE), field(PAWN, WHITE, BLACK), emptyField(WHITE), emptyField(BLACK), field(PAWN, WHITE, WHITE)},
-                        new UiField[]{emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), field(PAWN, WHITE, WHITE), emptyField(BLACK)},
-                        new UiField[]{emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), field(PAWN, WHITE, WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE)},
-                        new UiField[]{field(PAWN, WHITE, WHITE), emptyField(BLACK), field(PAWN, WHITE, WHITE), emptyField(BLACK), field(KING, WHITE, WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK)},
-                        new UiField[]{field(QUEEN, BLACK, BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), emptyField(BLACK), emptyField(WHITE), field(BISHOP, BLACK, BLACK), emptyField(WHITE)},
+                        new UiField[]{field(ROOK, BLACK, LIGHT), emptyField(DARK), field(BISHOP, BLACK, LIGHT), field(KING, BLACK, DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), field(ROOK, BLACK, DARK)},
+                        new UiField[]{field(PAWN, BLACK, DARK), emptyField(LIGHT), emptyField(DARK), field(PAWN, BLACK, LIGHT), field(BISHOP, WHITE, DARK), field(PAWN, BLACK, LIGHT), field(KNIGHT, WHITE, DARK), field(PAWN, BLACK, LIGHT)},
+                        new UiField[]{field(KNIGHT, BLACK, LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), field(KNIGHT, BLACK, DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), field(PAWN, BLACK, LIGHT), emptyField(DARK), field(KNIGHT, WHITE, LIGHT), field(PAWN, WHITE, DARK), emptyField(LIGHT), emptyField(DARK), field(PAWN, WHITE, LIGHT)},
+                        new UiField[]{emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), field(PAWN, WHITE, LIGHT), emptyField(DARK)},
+                        new UiField[]{emptyField(DARK), emptyField(LIGHT), emptyField(DARK), field(PAWN, WHITE, LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT)},
+                        new UiField[]{field(PAWN, WHITE, LIGHT), emptyField(DARK), field(PAWN, WHITE, LIGHT), emptyField(DARK), field(KING, WHITE, LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK)},
+                        new UiField[]{field(QUEEN, BLACK, DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), emptyField(DARK), emptyField(LIGHT), field(BISHOP, BLACK, DARK), emptyField(LIGHT)},
                 },
                 result
         );
@@ -105,11 +105,11 @@ class FenBoardParserTest {
         assertThrows(IllegalArgumentException.class, () -> testee.parse(position));
     }
 
-    private UiField emptyField(PlayerColor color) {
+    private UiField emptyField(SquareColor color) {
         return new UiField(null, color);
     }
 
-    private static UiField field(PieceType pieceType, PlayerColor pieceColor, PlayerColor fieldColor) {
+    private static UiField field(PieceType pieceType, PlayerColor pieceColor, SquareColor fieldColor) {
         return new UiField(new Piece(pieceType, pieceColor), fieldColor);
     }
 }

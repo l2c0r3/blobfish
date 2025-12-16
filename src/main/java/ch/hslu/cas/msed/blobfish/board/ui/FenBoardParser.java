@@ -46,8 +46,8 @@ class FenBoardParser {
         return board;
     }
 
-    private static PlayerColor getSquareColor(int rowIndex, int colIndex) {
-        return (rowIndex + colIndex) % 2 == 0 ? PlayerColor.WHITE : PlayerColor.BLACK;
+    private static SquareColor getSquareColor(int rowIndex, int colIndex) {
+        return (rowIndex + colIndex) % 2 == 0 ? SquareColor.LIGHT : SquareColor.DARK;
     }
 
     private static String[] getFenBlocks(String fenString) {

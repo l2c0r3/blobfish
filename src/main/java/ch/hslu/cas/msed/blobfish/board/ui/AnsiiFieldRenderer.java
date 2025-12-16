@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish.board.ui;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
 
@@ -16,29 +15,29 @@ class AnsiiFieldRenderer implements FieldRenderer {
     public static final String BLACK_PIECE = "\u001B[38;5;0m";
 
     // Piece foreground colors of the invisible pawns
-    private static final String INVISIBLE_WHITE_PIECE = "\u001B[38;5;180m";
-    private static final String INVISIBLE_BLACK_PIECE = "\u001B[38;5;95m";
+    private static final String INVISIBLE_LIGHT_PIECE = "\u001B[38;5;180m";
+    private static final String INVISIBLE_DARK_PIECE = "\u001B[38;5;95m";
 
     @Override
     public String render(UiField uiField) {
         if (uiField.piece() == null) {
-            return renderEmptyField(uiField.fieldColor());
+            return renderEmptyField(uiField.squareColor());
         }
 
-        return renderPiece(uiField.piece(), uiField.fieldColor());
+        return renderPiece(uiField.piece(), uiField.squareColor());
     }
 
-    private static String renderEmptyField(PlayerColor color) {
+    private static String renderEmptyField(SquareColor color) {
         var backgroundColor = getBackgroundColor(color);
         var placeholderCharacter = getCharacterOfPieceType(PieceType.PAWN);
         var invisiblePawn = switch (color) {
-            case WHITE -> INVISIBLE_WHITE_PIECE;
-            case BLACK -> INVISIBLE_BLACK_PIECE;
+            case LIGHT -> INVISIBLE_LIGHT_PIECE;
+            case DARK -> INVISIBLE_DARK_PIECE;
         };
         return backgroundColor + " " + invisiblePawn + placeholderCharacter + " " + RESET;
     }
 
-    private static String renderPiece(Piece piece, PlayerColor squareColor) {
+    private static String renderPiece(Piece piece, SquareColor squareColor) {
         var backgroundColor = getBackgroundColor(squareColor);
         var pieceCharacter = getCharacterOfPieceType(piece.type());
         var foregroundColor = switch (piece.color()) {
@@ -49,10 +48,10 @@ class AnsiiFieldRenderer implements FieldRenderer {
         return backgroundColor + foregroundColor + " " + pieceCharacter + " " + RESET;
     }
 
-    private static String getBackgroundColor(PlayerColor squareColor) {
+    private static String getBackgroundColor(SquareColor squareColor) {
         return switch (squareColor) {
-            case WHITE -> LIGHT_BG;
-            case BLACK -> DARK_BG;
+            case LIGHT -> LIGHT_BG;
+            case DARK -> DARK_BG;
         };
     }
 
