@@ -33,5 +33,5 @@ jobs:
       if: github.ref != 'refs/heads/main'
       uses: EndBug/add-and-commit@v9
       with:
-        add: 'docs/diagrams'
+        add: 'docs/generated-diagrams'
         message: 'update generated UML diagrams'

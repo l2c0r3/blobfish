@@ -69,28 +69,101 @@
             </plugin>
 
             <!--
-                class uml and dependency digram generation
-                see https://github.com/talsma-ict/umldoclet
+                class uml generation
             -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.11.3</version>
+                <groupId>de.elnarion.maven</groupId>
+                <artifactId>plantuml-generator-maven-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <!-- overview.puml  -->
+                    <execution>
+                        <id>overview-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputFilename>overview.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish</scanPackage>
+                            </scanPackages>
+                            <hideMethods>true</hideMethods>
+                            <hideFields>true</hideFields>
+                        </configuration>
+                    </execution>
+                    <!-- board.puml  -->
+                    <execution>
+                        <id>board-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputFilename>board.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.board</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
+                    <!-- game.puml  -->
+                    <execution>
+                        <id>game-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputFilename>game.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.game</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
+                    <!-- player.puml  -->
+                    <execution>
+                        <id>player-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputFilename>player.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.player</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- puml to svg -->
+            <plugin>
+                <groupId>com.github.davidmoten</groupId>
+                <artifactId>plantuml-maven-plugin</artifactId>
+                <version>0.2.14</version>
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <phase>process-classes</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
-                    <docletArtifact>
-                        <groupId>nl.talsmasoftware</groupId>
-                        <artifactId>umldoclet</artifactId>
-                        <version>2.2.4</version>
-                    </docletArtifact>
+                    <sources>
+                        <directory>${project.build.directory}/generated-diagrams/puml/</directory>
+                    </sources>
+                    <outputDirectory>${project.build.directory}/generated-diagrams/svg/</outputDirectory>
+                    <formats>
+                        <format>svg</format>
+                    </formats>
+                    <preserveDirectoryStructure>false</preserveDirectoryStructure>
                 </configuration>
             </plugin>
 
@@ -102,19 +175,14 @@
                 <executions>
                     <execution>
                         <id>copy-uml-diagrams</id>
-                        <phase>site</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
+                        <phase>prepare-package</phase>
+                        <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <mkdir dir="${project.basedir}/docs/diagrams"/>
-                                <copy file="${project.build.directory}/reports/apidocs/package-dependencies.svg"
-                                      tofile="${project.basedir}/docs/diagrams/dependencies.svg"
-                                      overwrite="true"/>
-                                <copy file="${project.build.directory}/reports/apidocs/ch/hslu/cas/msed/blobfish/package.svg"
-                                      tofile="${project.basedir}/docs/diagrams/uml.svg"
-                                      overwrite="true"/>
+                                <mkdir dir="${project.basedir}/docs/generated-diagrams"/>
+                                <copy todir="${project.basedir}/docs/generated-diagrams">
+                                    <fileset dir="${project.build.directory}/generated-diagrams" includes="**/*" />
+                                </copy>
                             </target>
                         </configuration>
                     </execution>
