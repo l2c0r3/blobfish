@@ -2,6 +2,7 @@ package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
+import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
 import ch.hslu.cas.msed.blobfish.game.screen.HomeScreen;
 import ch.hslu.cas.msed.blobfish.game.screen.MatchScreen;
 import org.jline.reader.impl.DefaultParser;
@@ -36,6 +37,9 @@ public class ChessGame {
             } catch (GameAbortedException e) {
                 writeEndGameMessage(writer);
                 break;
+            } catch (MatchAbortedException e) {
+                writer.printlnAndFlush("Match aborted.");
+                continue;
             }
         }
     }
