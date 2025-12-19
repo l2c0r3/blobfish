@@ -18,7 +18,7 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
       - run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir -p staging && cp target/*.jar staging && cp -r target/generated-diagrams/* staging/generated-diagrams/
+      - run: mkdir -p staging/generated-diagrams && cp target/*.jar staging && cp -r target/generated-diagrams/* staging/generated-diagrams/
       - uses: actions/upload-artifact@v4
         with:
           name: Package
