@@ -26,13 +26,20 @@ jobs:
       - name: Detect PUML changes
         id: puml
         run: |
-          if git diff --quiet -- docs/generated-diagrams/puml; then
-            echo "no change"
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "change"
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+          changed=false
+          
+          # tracked files
+          if ! git diff --quiet -- docs/generated-diagrams/puml/; then
+            changed=true
           fi
+      
+          # untracked files 
+          if [ "$changed" = false ] && \
+            [ -n "$(git ls-files --others --exclude-standard -- docs/generated-diagrams/puml/)" ]; then
+            changed=true
+          fi
+      
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
       - name: Commit generated diagrams
         if: >
           github.event_name == 'pull_request' &&
