@@ -17,9 +17,9 @@ public class InputReader {
     }
 
     public String readLine(String prompt) throws GameAbortedException {
-        var input = reader.readLine(prompt).trim().toLowerCase();
+        var input = reader.readLine(prompt).trim();
 
-        if (input.equals("exit")) {
+        if ("exit".equalsIgnoreCase(input)) {
             throw new GameAbortedException("Game aborted by user.");
         }
 
