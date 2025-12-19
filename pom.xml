@@ -95,7 +95,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                             <outputFilename>overview.puml</outputFilename>
                             <scanPackages>
                                 <scanPackage>ch.hslu.cas.msed.blobfish</scanPackage>
@@ -112,7 +112,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                             <outputFilename>board.puml</outputFilename>
                             <scanPackages>
                                 <scanPackage>ch.hslu.cas.msed.blobfish.board</scanPackage>
@@ -127,7 +127,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                             <outputFilename>game.puml</outputFilename>
                             <scanPackages>
                                 <scanPackage>ch.hslu.cas.msed.blobfish.game</scanPackage>
@@ -142,7 +142,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                             <outputFilename>player.puml</outputFilename>
                             <scanPackages>
                                 <scanPackage>ch.hslu.cas.msed.blobfish.player</scanPackage>
@@ -157,7 +157,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                             <outputFilename>base.puml</outputFilename>
                             <scanPackages>
                                 <scanPackage>ch.hslu.cas.msed.blobfish.base</scanPackage>
@@ -183,9 +183,9 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <directory>${project.build.directory}/generated-diagrams/puml/</directory>
+                        <directory>${project.build.directory}/generated-diagrams/</directory>
                     </sources>
-                    <outputDirectory>${project.build.directory}/generated-diagrams/svg/</outputDirectory>
+                    <outputDirectory>${project.build.directory}/generated-diagrams/</outputDirectory>
                     <formats>
                         <format>svg</format>
                     </formats>
