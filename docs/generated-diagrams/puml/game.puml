@@ -1,0 +1,70 @@
+@startuml
+
+class ch.hslu.cas.msed.blobfish.game.ChessGame {
+	{field} -terminal : org.jline.terminal.Terminal
+	{method} -shouldRestart ( paramInputReader1 : ch.hslu.cas.msed.blobfish.game.InputReader , paramOutputWriter2 : ch.hslu.cas.msed.blobfish.game.OutputWriter ) : boolean
+	{method} +start () : void
+	{method} -writeEndGameMessage ( paramOutputWriter1 : ch.hslu.cas.msed.blobfish.game.OutputWriter ) : void
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.InputReader {
+	{field} -reader : org.jline.reader.LineReader
+	{method} +readLine ( paramString1 : String ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.MatchConfig {
+	{field} -black : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{field} -white : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{method} +black () : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{method} +equals ( paramObject1 : Object ) : boolean
+	{method} +hashCode () : int
+	{method} +toString () : String
+	{method} +white () : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.OutputWriter {
+	{field} ~terminal : org.jline.terminal.Terminal
+	{method} +flush () : void
+	{method} +print ( paramString1 : String ) : void
+	{method} +printAndFlush ( paramString1 : String ) : void
+	{method} +println ( paramString1 : String ) : void
+	{method} +printlnAndFlush ( paramString1 : String ) : void
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException {
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException {
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.screen.HomeScreen {
+	{method} +getMatchConfig () : ch.hslu.cas.msed.blobfish.game.MatchConfig
+	{method} -getPlayerColor () : ch.hslu.cas.msed.blobfish.base.PlayerColor
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.screen.MatchScreen {
+	{field} ~black : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{field} ~chessBoardRenderer : ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer
+	{field} ~chessboard : ch.hslu.cas.msed.blobfish.board.ChessBoard
+	{field} ~currentPlayer : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{field} ~white : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+	{method} -printPosition ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : void
+	{method} +start () : void
+}
+
+
+
+
+ch.hslu.cas.msed.blobfish.game.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
+ch.hslu.cas.msed.blobfish.game.screen.HomeScreen -->  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
+ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
+
+
+@enduml
