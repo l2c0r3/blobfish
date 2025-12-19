@@ -149,6 +149,21 @@
                             </scanPackages>
                         </configuration>
                     </execution>
+                    <!-- base.puml  -->
+                    <execution>
+                        <id>base-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams/puml</outputDirectory>
+                            <outputFilename>base.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.base</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
