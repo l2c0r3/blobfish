@@ -1,4 +1,4 @@
-<img style="float: right" src="docs/icon.png" alt="Blobfish icon" width="160"/>
+<img align="right" src="docs/icon.png" alt="Blobfish icon" width="160"/>
 
 # Blobfish
 
@@ -6,61 +6,27 @@ A simple alternative to Stockfish.
 
 ## What is this?
 
-**Blobfish** is a small Java chess engine project with the stated goal of being *“a simple alternative to Stockfish.”*
+**Blobfish** is a small Java chess engine with a CLI on top of it. 
 
-## How to start it
+## Packaging and running the application
 
-First you have to build an the to start it
+The application can be packaged using:
 
-### How to build
+```shell script
+./mvnw package
+```
 
-#### Linux / macOS
+It produces the `blobfish-1.0.0-SNAPSHOT.jar` file in the `target/` directory.
+
+The application is now runnable using
 
 ```bash
-./mvnw clean test
-./mvnw clean package
+java -jar target/blobfish-1.0.0-SNAPSHOT.jar
 ```
 
-#### Windows (PowerShell)
 
-```powershell
-.\mvnw.cmd clean test
-.\mvnw.cmd clean package
-```
+## Overview of the implementation
 
-## Run
+<img src="docs/generated-diagrams/overview.svg" alt="Overview icon" width="500"/>
 
-Depending on how the jar is configured (manifest / plugins), one common way is:
-
-```bash
-java -jar target/*.jar
-```
-
-If that doesn’t work, open the project in your IDE as a Maven project and run the configured main class.
-
-## Implementation Details
-
-
-### Overview of the implementation
-
-
-### Class diagrams (SVG)
-
-Generated class diagrams are stored here:
-
-- Folder: `docs/generated-diagrams/svg/`
-- Repo view: https://github.com/l2c0r3/blobfish/tree/main/docs/generated-diagrams/svg
-
-#### Embedded diagrams
-
-> Note: GitHub README embeds need exact filenames. If you add/rename diagrams, update the paths below.
-
-<details>
-  <summary><strong>Class diagrams</strong> (click to expand)</summary>
-
-  <!-- Replace these filenames with the actual SVG names in docs/generated-diagrams/svg/ -->
-  <p>
-    <img src="docs/generated-diagrams/svg/class-diagram.svg" alt="Class diagram" />
-  </p>
-
-</details>
+Generated class diagrams are stored in  `docs/generated-diagrams/`. A class diagram is available for each package.
