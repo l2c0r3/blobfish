@@ -27,6 +27,6 @@ java -jar target/blobfish-1.0.0-SNAPSHOT.jar
 
 ## Overview of the implementation
 
-<img src="docs/generated-diagrams/overview.svg" alt="Overview icon" width="500"/>
+<img align="center" src="docs/generated-diagrams/overview.svg" alt="Overview icon" width="500"/>
 
 Generated class diagrams are stored in  `docs/generated-diagrams/`. A class diagram is available for each package.
