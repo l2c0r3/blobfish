@@ -5,8 +5,8 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 
 public class HumanPlayer extends AbstractPlayer {
 
-    public HumanPlayer(PlayerColor color) {
-        super(color);
+    public HumanPlayer(PlayerColor playerColor) {
+        super(playerColor);
     }
 
     @Override
