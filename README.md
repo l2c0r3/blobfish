@@ -1,4 +1,4 @@
-<img src="docs/icon.png" alt="Blobfish icon" width="160" />
+<img style="float: right" src="docs/icon.png" alt="Blobfish icon" width="160"/>
 
 # Blobfish
 
@@ -8,36 +8,25 @@ A simple alternative to Stockfish.
 
 **Blobfish** is a small Java chess engine project with the stated goal of being *“a simple alternative to Stockfish.”*
 
-It’s intentionally lightweight and hackable — useful if you want a compact codebase to learn from or experiment with.
-
 ## How to start it
 
-## Project layout
+First you have to build an the to start it
 
-- `src/` — source code
-- `docs/` — documentation assets (icon + diagrams)
-- `.mvn/`, `mvnw`, `mvnw.cmd` — Maven Wrapper
-- `pom.xml` — Maven project config
+### How to build
 
-## Build
-
-This repo includes the Maven Wrapper, so you don’t need Maven installed.
-
-### Linux / macOS
+#### Linux / macOS
 
 ```bash
 ./mvnw clean test
 ./mvnw clean package
 ```
 
-### Windows (PowerShell)
+#### Windows (PowerShell)
 
 ```powershell
 .\mvnw.cmd clean test
 .\mvnw.cmd clean package
 ```
-
-Artifacts are typically written to `target/`.
 
 ## Run
 
