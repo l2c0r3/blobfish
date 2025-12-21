@@ -3,9 +3,7 @@
     <img src="docs/icon.png" alt="blobfish icon" style="height: 180px; width: auto;"/>
   </div>
 
-  <h1>blobfish</h1>
-  <h3>A simple alternative to Stockfish.</h3>
-    
+  <h1>blobfish - A simple alternative to Stockfish.</h1>
 </div>
 
 ---
