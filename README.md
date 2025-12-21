@@ -6,8 +6,6 @@
   <h1>blobfish - A simple alternative to Stockfish.</h1>
 </div>
 
----
-
 
 ## What is this?
 
