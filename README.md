@@ -10,10 +10,16 @@ A simple alternative to Stockfish.
 
 ## Packaging and running the application
 
-The application can be packaged using:
+For Linux or macOS use:
 
-```shell script
-./mvnw package
+```bash
+./mvnw clean package
+```
+
+or for Windows use:
+
+```powershell
+.\mvnw.cmd clean package
 ```
 
 It produces the `blobfish-1.0.0-SNAPSHOT.jar` file in the `target/` directory.
