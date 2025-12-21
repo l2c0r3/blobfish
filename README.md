@@ -1,8 +1,15 @@
-<img align="right" src="docs/icon.png" alt="Blobfish icon" width="160"/>
+<div align="center">
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <img src="docs/icon.png" alt="blobfish icon" style="height: 180px; width: auto;"/>
+  </div>
 
-# Blobfish
+  <h1>blobfish</h1>
+  <h3>A simple alternative to Stockfish.</h3>
+    
+</div>
 
-A simple alternative to Stockfish.
+---
+
 
 ## What is this?
 
