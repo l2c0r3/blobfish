@@ -36,8 +36,9 @@ java -jar target/blobfish-1.0.0-SNAPSHOT.jar
 
 ## Overview of the implementation
 
-<div style="display: flex; align-items: center; justify-content: center;">
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
     <img src="docs/generated-diagrams/overview.svg" alt="overview of packages with relations" style="height: auto; width: 500px;"/>
 </div>
+
 
 Generated class diagrams are stored in  `docs/generated-diagrams/`. A class diagram is available for each package.
