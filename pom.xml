@@ -78,9 +78,7 @@
                 <version>3.5.4</version>
             </plugin>
 
-            <!--
-                class uml generation
-            -->
+            <!-- class uml generation -->
             <plugin>
                 <groupId>de.elnarion.maven</groupId>
                 <artifactId>plantuml-generator-maven-plugin</artifactId>
@@ -165,7 +163,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
             <!-- puml to svg -->
             <plugin>
