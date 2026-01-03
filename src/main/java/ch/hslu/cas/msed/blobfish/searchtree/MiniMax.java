@@ -16,7 +16,7 @@ public class MiniMax {
 
     public String getBestNextMove(ChessBoard chessPosition) {
         Move bestMove = null;
-        var maxEval = Double.MIN_VALUE;
+        double maxEval = Double.NEGATIVE_INFINITY;
 
         for (var move : chessPosition.legalMoves()) {
             var newPosition = chessPosition.doMove(move.getSan());
@@ -27,7 +27,7 @@ public class MiniMax {
             }
         }
 
-        return bestMove.getSan();
+        return bestMove != null ? bestMove.getSan() : null;
     }
 
     private double calcMiniMax(ChessBoard position, int depth, boolean maximizingPlayer) {
@@ -36,21 +36,22 @@ public class MiniMax {
         }
 
         if (maximizingPlayer) {
-            var maxEval = Double.MIN_VALUE;
+            double maxEval = Double.NEGATIVE_INFINITY;
             for (var move : position.legalMoves()) {
                 var newPosition = position.doMove(move.getSan());
                 var eval = calcMiniMax(newPosition, depth - 1, false);
-                maxEval = Double.max(maxEval, eval);
+                maxEval = Math.max(maxEval, eval);
             }
             return maxEval;
         } else {
-            var minEval = Double.MAX_VALUE;
+            double minEval = Double.POSITIVE_INFINITY;
             for (var move : position.legalMoves()) {
                 var newPosition = position.doMove(move.getSan());
                 var eval = calcMiniMax(newPosition, depth - 1, true);
-                minEval = Double.min(minEval, eval);
+                minEval = Math.min(minEval, eval);
             }
             return minEval;
         }
     }
+
 }
