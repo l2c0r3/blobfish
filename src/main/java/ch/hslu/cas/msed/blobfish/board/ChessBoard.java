@@ -30,11 +30,6 @@ public class ChessBoard {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public double getEvaluation() {
-        var position = this.board.getFen();
-        return EvalBar.getEvaluation(position);
-    }
-
     public boolean isGameOver() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
