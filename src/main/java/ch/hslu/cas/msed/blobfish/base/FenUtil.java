@@ -55,7 +55,7 @@ public class FenUtil {
 
     public static String[] getFenPositionBlocks(String fenString) {
         if (StringUtils.isBlank(fenString)) {
-            return new String[0];
+            throw new IllegalArgumentException("FEN string must not be blank");
         }
 
         // only get the pos infos
