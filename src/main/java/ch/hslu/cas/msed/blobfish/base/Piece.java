@@ -15,4 +15,8 @@ public record Piece(PieceType type, PlayerColor color) {
             case BLACK -> Character.toLowerCase(character);
         };
     }
+
+    public int materialPoints() {
+        return this.type.getPoints();
+    }
 }

@@ -14,9 +14,9 @@ import static ch.hslu.cas.msed.blobfish.board.ui.SquareColor.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class FenBoardParserTest {
+class FenUiBoardParserTest {
 
-    private final FenBoardParser testee = new FenBoardParser();
+    private final FenUiBoardParser testee = new FenUiBoardParser();
 
     @Test
     void parse_emptyBoard_returnsAllEmptyFields() {
