@@ -4,11 +4,11 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 
 public class ChessBoardRenderer {
 
-    private final FenBoardParser parser;
+    private final FenUiBoardParser parser;
     private final BoardRenderer boardRenderer;
 
     public ChessBoardRenderer() {
-        this.parser = new FenBoardParser();
+        this.parser = new FenUiBoardParser();
 
         var fieldRenderer = new AnsiiFieldRenderer();
         this.boardRenderer = new BoardRenderer(fieldRenderer);
