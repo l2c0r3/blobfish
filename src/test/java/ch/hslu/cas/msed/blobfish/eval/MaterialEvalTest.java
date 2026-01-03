@@ -22,7 +22,7 @@ class MaterialEvalTest {
 
     @ParameterizedTest
     @MethodSource("positionToEvalProvider")
-    void render_piece_rendersExpectedAnsiString(String position, double expectedEval) {
+    void getEvaluation_returnsExpected(String position, double expectedEval) {
         // Act
         var actual = testee.getEvaluation(position);
 
