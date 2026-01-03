@@ -3,7 +3,7 @@
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
-	{method} +doMove ( paramString1 : String ) : void
+	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getEvaluation () : double
 	{method} +getFen () : String
 	{method} +isGameOver () : boolean
