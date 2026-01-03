@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 
-public class MaterialStrategy implements EvalStrategy {
+public class MaterialEval implements EvalStrategy {
 
     /**
      * A positive number (e.g., +1.0) means White has an advantage equal of a pawn;

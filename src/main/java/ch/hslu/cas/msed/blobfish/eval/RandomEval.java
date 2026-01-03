@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.eval;
 
 import java.util.Random;
 
-public class RandomStrategy implements EvalStrategy {
+public class RandomEval implements EvalStrategy {
 
     private final Random r = new Random();
 

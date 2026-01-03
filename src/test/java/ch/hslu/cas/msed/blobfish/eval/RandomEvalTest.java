@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RandomStrategyTest {
+class RandomEvalTest {
 
-    private final RandomStrategy testee = new RandomStrategy();
+    private final RandomEval testee = new RandomEval();
 
     @Test
     void getEvaluation_isAlwaysDifferent() {
