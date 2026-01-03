@@ -43,7 +43,7 @@ public class MatchScreen {
             }
 
             var move = getNextMove();
-            chessboard.doMove(move);
+            this.chessboard = chessboard.doMove(move);
 
             currentPlayer = currentPlayer == white ? black : white;
         }
