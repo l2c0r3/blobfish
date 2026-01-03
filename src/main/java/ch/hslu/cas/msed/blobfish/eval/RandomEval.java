@@ -1,13 +1,11 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomEval implements EvalStrategy {
 
-    private final Random r = new Random();
-
     @Override
     public double getEvaluation(String positionFen) {
-        return r.nextDouble();
+        return ThreadLocalRandom.current().nextDouble(-10.0, 10.0);
     }
 }
