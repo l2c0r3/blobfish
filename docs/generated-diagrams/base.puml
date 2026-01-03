@@ -2,7 +2,7 @@
 
 class ch.hslu.cas.msed.blobfish.base.FenUtil {
 	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
-	{method}  {static} +isFenStringValid ( paramString1 : String ) : void
+	{method}  {static} +validateFenString ( paramString1 : String ) : void
 }
 
 

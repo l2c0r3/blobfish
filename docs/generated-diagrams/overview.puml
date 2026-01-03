@@ -7,7 +7,7 @@ class ch.hslu.cas.msed.blobfish.Main {
 
 class ch.hslu.cas.msed.blobfish.base.FenUtil {
 	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
-	{method}  {static} +isFenStringValid ( paramString1 : String ) : void
+	{method}  {static} +validateFenString ( paramString1 : String ) : void
 }
 
 
@@ -82,7 +82,6 @@ class ch.hslu.cas.msed.blobfish.eval.MaterialEval {
 
 
 class ch.hslu.cas.msed.blobfish.eval.RandomEval {
-	{field} -r : java.util.Random
 	{method} +getEvaluation ( paramString1 : String ) : double
 }
 
