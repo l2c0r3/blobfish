@@ -74,14 +74,14 @@ interface ch.hslu.cas.msed.blobfish.eval.EvalStrategy {
 }
 
 
-class ch.hslu.cas.msed.blobfish.eval.MaterialStrategy {
+class ch.hslu.cas.msed.blobfish.eval.MaterialEval {
 	{method} +getEvaluation ( paramString1 : String ) : double
 	{method} -parseFen ( paramString1 : String ) : java.util.List
 	{method} -removeEmptyFieldsFromPosition ( paramString1 : String ) : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.eval.RandomStrategy {
+class ch.hslu.cas.msed.blobfish.eval.RandomEval {
 	{field} -r : java.util.Random
 	{method} +getEvaluation ( paramString1 : String ) : double
 }
@@ -161,8 +161,8 @@ ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PieceTy
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : color
 ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer : render
 ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer : boardRenderer
-ch.hslu.cas.msed.blobfish.eval.MaterialStrategy ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
-ch.hslu.cas.msed.blobfish.eval.RandomStrategy ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+ch.hslu.cas.msed.blobfish.eval.MaterialEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+ch.hslu.cas.msed.blobfish.eval.RandomEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.game.MatchConfig *--  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : black
 ch.hslu.cas.msed.blobfish.game.MatchConfig *--  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : white
 ch.hslu.cas.msed.blobfish.game.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
