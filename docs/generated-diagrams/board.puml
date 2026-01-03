@@ -4,7 +4,6 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
 	{method} +doMove ( paramString1 : String ) : void
-	{method} +getEvaluation () : double
 	{method} +getFen () : String
 	{method} +isGameOver () : boolean
 }
@@ -16,7 +15,7 @@ class ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer {
 
 
 class ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer {
-	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenBoardParser
+	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenUiBoardParser
 	{method} +render ( paramString1 : String , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
 }
 

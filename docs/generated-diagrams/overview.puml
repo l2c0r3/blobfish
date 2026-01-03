@@ -5,11 +5,18 @@ class ch.hslu.cas.msed.blobfish.Main {
 }
 
 
+class ch.hslu.cas.msed.blobfish.base.FenUtil {
+	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
+	{method}  {static} +isFenStringValid ( paramString1 : String ) : void
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.Piece {
 	{method} +color () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +equals ( paramObject1 : Object ) : boolean
 	{method} +fen () : Character
 	{method} +hashCode () : int
+	{method} +materialPoints () : int
 	{method} +toString () : String
 	{method} +type () : ch.hslu.cas.msed.blobfish.base.PieceType
 }
@@ -35,7 +42,6 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
 	{method} +doMove ( paramString1 : String ) : void
-	{method} +getEvaluation () : double
 	{method} +getFen () : String
 	{method} +isGameOver () : boolean
 }
@@ -47,7 +53,7 @@ class ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer {
 
 
 class ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer {
-	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenBoardParser
+	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenUiBoardParser
 	{method} +render ( paramString1 : String , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
 }
 
@@ -60,6 +66,24 @@ interface ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer {
 enum ch.hslu.cas.msed.blobfish.board.ui.SquareColor {
 	{field} +DARK
 	{field} +LIGHT
+}
+
+
+interface ch.hslu.cas.msed.blobfish.eval.EvalStrategy {
+	{method}  {abstract} +getEvaluation ( paramString1 : String ) : double
+}
+
+
+class ch.hslu.cas.msed.blobfish.eval.MaterialStrategy {
+	{method} +getEvaluation ( paramString1 : String ) : double
+	{method} -parseFen ( paramString1 : String ) : java.util.List
+	{method} -removeEmptyFieldsFromPosition ( paramString1 : String ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.eval.RandomStrategy {
+	{field} -r : java.util.Random
+	{method} +getEvaluation ( paramString1 : String ) : double
 }
 
 
@@ -137,6 +161,8 @@ ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PieceTy
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : color
 ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer : render
 ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer : boardRenderer
+ch.hslu.cas.msed.blobfish.eval.MaterialStrategy ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+ch.hslu.cas.msed.blobfish.eval.RandomStrategy ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.game.MatchConfig *--  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : black
 ch.hslu.cas.msed.blobfish.game.MatchConfig *--  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : white
 ch.hslu.cas.msed.blobfish.game.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
