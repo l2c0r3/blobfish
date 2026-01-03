@@ -7,7 +7,7 @@ import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
 
 public class HumanPlayer extends AbstractPlayer {
 
-    InputReader reader;
+    private final InputReader reader;
 
     public HumanPlayer(PlayerColor playerColor, InputReader reader) {
         super(playerColor);
