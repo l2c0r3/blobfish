@@ -1,6 +1,10 @@
 package ch.hslu.cas.msed.blobfish.board;
 
 import com.github.bhlangonijr.chesslib.Board;
+import com.github.bhlangonijr.chesslib.move.Move;
+import com.github.bhlangonijr.chesslib.move.MoveList;
+
+import java.util.List;
 
 public class ChessBoard {
 
@@ -27,11 +31,36 @@ public class ChessBoard {
      * Do move with SAN annotation. e.g Nc6
      */
     public void doMove(String san) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        board.doMove(san);
+    }
+
+    /**
+     * Return the list of all possible legal moves
+     *
+     * @return the list of legal Moves
+     */
+    public List<Move> legalMoves() {
+        return board.legalMoves();
+    }
+
+    /***
+     * Verifies if the move still to be executed will leave the resulting board in a valid (legal) position.
+     * @param san the SAN representation of a move
+     * @return whether the move is legal
+     */
+    public boolean isMoveLegal(String san) {
+        MoveList moves = new MoveList(board.getFen());
+        try {
+            moves.addSanMove(san);
+        } catch (RuntimeException e) {
+            return false;
+        }
+
+        return board.isMoveLegal(moves.getLast(), true);
     }
 
     public boolean isGameOver() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return board.legalMoves().isEmpty();
     }
 
     public String getFen() {

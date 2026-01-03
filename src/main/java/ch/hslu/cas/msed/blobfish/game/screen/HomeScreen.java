@@ -25,8 +25,8 @@ public class HomeScreen {
         var humanPlayerColor = getPlayerColor();
 
         return switch (humanPlayerColor) {
-            case WHITE -> new MatchConfig(new HumanPlayer(PlayerColor.WHITE), new BotPlayer(PlayerColor.BLACK));
-            case BLACK -> new MatchConfig(new BotPlayer(PlayerColor.WHITE), new HumanPlayer(PlayerColor.BLACK));
+            case WHITE -> new MatchConfig(new HumanPlayer(PlayerColor.WHITE, reader), new BotPlayer(PlayerColor.BLACK));
+            case BLACK -> new MatchConfig(new BotPlayer(PlayerColor.WHITE), new HumanPlayer(PlayerColor.BLACK, reader));
         };
     }
 
