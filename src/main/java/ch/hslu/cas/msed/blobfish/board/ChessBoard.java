@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish.board;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveList;
@@ -31,9 +30,8 @@ public class ChessBoard {
     /**
      * Do move with SAN annotation. e.g Nc6
      */
-    public ChessBoard doMove(String san) {
+    public void doMove(String san) {
         board.doMove(san);
-        return new ChessBoard(board.getFen());
     }
 
     /**
@@ -57,19 +55,8 @@ public class ChessBoard {
         } catch (RuntimeException e) {
             return false;
         }
+
         return board.isMoveLegal(moves.getLast(), true);
-    }
-
-    public double getEvaluation() {
-        var position = this.board.getFen();
-        return EvalBar.getEvaluation(position);
-    }
-
-    public PlayerColor getSideToMove() {
-        return switch (this.board.getSideToMove()) {
-            case BLACK -> PlayerColor.BLACK;
-            case WHITE -> PlayerColor.WHITE;
-        };
     }
 
     public boolean isGameOver() {
