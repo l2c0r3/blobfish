@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PieceTest {
 
-    static Stream<Object[]> fenToPiece() {
+    private static Stream<Object[]> fenToPiece() {
         return Stream.of(
                 new Object[]{'k', PieceType.KING, PlayerColor.BLACK},
                 new Object[]{'K', PieceType.KING, PlayerColor.WHITE},
