@@ -57,7 +57,7 @@ class ch.hslu.cas.msed.blobfish.game.screen.MatchScreen {
 	{field} ~white : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 	{method} -getNextMove () : String
 	{method} -printPosition ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : void
-	{method} -shouldDisplayBoard ( paramAbstractPlayer1 : ch.hslu.cas.msed.blobfish.player.AbstractPlayer ) : Boolean
+	{method} -shouldDisplayBoard ( paramAbstractPlayer1 : ch.hslu.cas.msed.blobfish.player.AbstractPlayer ) : boolean
 	{method} +start () : void
 }
 

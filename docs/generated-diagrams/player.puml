@@ -12,7 +12,7 @@ class ch.hslu.cas.msed.blobfish.player.BotPlayer {
 
 
 class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
-	{field} ~reader : ch.hslu.cas.msed.blobfish.game.InputReader
+	{field} -reader : ch.hslu.cas.msed.blobfish.game.InputReader
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
