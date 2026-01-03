@@ -30,8 +30,9 @@ public class ChessBoard {
     /**
      * Do move with SAN annotation. e.g Nc6
      */
-    public void doMove(String san) {
+    public ChessBoard doMove(String san) {
         board.doMove(san);
+        return new ChessBoard(board.getFen());
     }
 
     /**
