@@ -68,7 +68,7 @@ public class MatchScreen {
         return move;
     }
 
-    private Boolean shouldDisplayBoard(AbstractPlayer currentPlayer) {
+    private boolean shouldDisplayBoard(AbstractPlayer currentPlayer) {
         if (white instanceof HumanPlayer && black instanceof HumanPlayer) {
             return true;
         } else if (white instanceof BotPlayer && black instanceof BotPlayer) {
