@@ -2,7 +2,6 @@ package ch.hslu.cas.msed.blobfish.base;
 
 import lombok.Getter;
 
-// TODO: integrate in Piece?
 @Getter
 public enum PieceType {
 
