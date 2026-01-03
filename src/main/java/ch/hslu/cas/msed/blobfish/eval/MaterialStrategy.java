@@ -1,5 +1,13 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
+import ch.hslu.cas.msed.blobfish.base.FenUtil;
+import ch.hslu.cas.msed.blobfish.base.Piece;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class MaterialStrategy implements EvalStrategy {
 
     /**
@@ -8,8 +16,34 @@ public class MaterialStrategy implements EvalStrategy {
      */
     @Override
     public double getEvaluation(String positionFen) {
-        return 0;
+        var pieces = parseFen(positionFen);
+
+        var whitePoints = pieces.stream()
+                .filter(p -> PlayerColor.WHITE.equals(p.color()))
+                .mapToInt(Piece::materialPoints)
+                .sum();
+        var blackPoints = pieces.stream()
+                .filter(p -> PlayerColor.BLACK.equals(p.color()))
+                .mapToInt(Piece::materialPoints)
+                .sum();
+
+        return whitePoints - blackPoints;
     }
 
+    private List<Piece> parseFen(String fen) {
+        FenUtil.isFenStringValid(fen);
+        var posBlocks = FenUtil.getFenPositionBlocks(fen);
 
+        return Arrays.stream(posBlocks)
+                .map(this::removeEmptyFieldsFromPosition)
+                .filter(StringUtils::isNotBlank)
+                .flatMapToInt(String::chars)
+                .mapToObj(c -> (char) c)
+                .map(Piece::new)
+                .toList();
+    }
+
+    private String removeEmptyFieldsFromPosition(String fenBlock) {
+        return  fenBlock.replaceAll("\\d", "");
+    }
 }
