@@ -30,7 +30,6 @@ public class MaterialEval implements EvalStrategy {
         return whitePoints - blackPoints;
     }
 
-    // TODO: could be merged in a fen parser Class with FenUiBoardParser
     private List<Piece> parseFen(String fen) {
         FenUtil.isFenStringValid(fen);
         var posBlocks = FenUtil.getFenPositionBlocks(fen);
