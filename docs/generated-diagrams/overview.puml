@@ -37,6 +37,7 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getEvaluation () : double
 	{method} +getFen () : String
+	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +isGameOver () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
 	{method} +legalMoves () : java.util.List
@@ -147,7 +148,8 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 class ch.hslu.cas.msed.blobfish.searchtree.MiniMax {
 	{field} -calculationDepth : int
-	{method} -calcMiniMax ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramboolean3 : boolean ) : double
+	{method} -calcMiniMax ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int ) : double
+	{method} -evaluateForMaximizer ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : double
 	{method} +getBestNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
@@ -172,6 +174,7 @@ ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.b
 ch.hslu.cas.msed.blobfish.player.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.searchtree.MiniMax *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : colorToMaximize
 ch.hslu.cas.msed.blobfish.searchtree.MiniMax *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
 
 hide fields
