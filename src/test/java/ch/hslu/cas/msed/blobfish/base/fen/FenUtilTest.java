@@ -23,7 +23,7 @@ class FenUtilTest {
     @NullAndEmptySource
     void parse_invalidFenString_throwsException(String position) {
         // Act & assert
-        assertThrows(IllegalArgumentException.class, () -> FenUtil.isFenStringValid(position));
+        assertThrows(IllegalArgumentException.class, () -> FenUtil.validateFenString(position));
     }
 
 }

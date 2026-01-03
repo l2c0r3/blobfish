@@ -8,7 +8,7 @@ public class FenUtil {
         // utility class
     }
 
-    public static void isFenStringValid(String fenString) {
+    public static void validateFenString(String fenString) {
         if (StringUtils.isBlank(fenString)) {
             throw new IllegalArgumentException("FEN string must not be blank");
         }

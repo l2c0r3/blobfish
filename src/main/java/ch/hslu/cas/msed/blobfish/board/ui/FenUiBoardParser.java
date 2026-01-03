@@ -6,7 +6,7 @@ import ch.hslu.cas.msed.blobfish.base.FenUtil;
 class FenUiBoardParser {
 
     UiBoard parse(String fen) {
-        FenUtil.isFenStringValid(fen);
+        FenUtil.validateFenString(fen);
         var fenBlocks = FenUtil.getFenPositionBlocks(fen);
         return parseFenBlocksAsBoard(fenBlocks);
     }

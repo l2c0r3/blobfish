@@ -31,7 +31,7 @@ public class MaterialEval implements EvalStrategy {
     }
 
     private List<Piece> parseFen(String fen) {
-        FenUtil.isFenStringValid(fen);
+        FenUtil.validateFenString(fen);
         var posBlocks = FenUtil.getFenPositionBlocks(fen);
 
         return Arrays.stream(posBlocks)
