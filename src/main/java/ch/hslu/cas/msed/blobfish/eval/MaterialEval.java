@@ -16,18 +16,9 @@ public class MaterialEval implements EvalStrategy {
      */
     @Override
     public double getEvaluation(String positionFen) {
-        var pieces = parseFen(positionFen);
-
-        var whitePoints = pieces.stream()
-                .filter(p -> PlayerColor.WHITE.equals(p.color()))
-                .mapToInt(Piece::materialPoints)
+        return parseFen(positionFen).stream()
+                .mapToInt(p -> PlayerColor.WHITE.equals(p.color()) ? p.materialPoints() : -p.materialPoints())
                 .sum();
-        var blackPoints = pieces.stream()
-                .filter(p -> PlayerColor.BLACK.equals(p.color()))
-                .mapToInt(Piece::materialPoints)
-                .sum();
-
-        return whitePoints - blackPoints;
     }
 
     private List<Piece> parseFen(String fen) {
