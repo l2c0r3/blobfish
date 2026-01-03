@@ -38,6 +38,8 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{method} +getEvaluation () : double
 	{method} +getFen () : String
 	{method} +isGameOver () : boolean
+	{method} +isMoveLegal ( paramString1 : String ) : boolean
+	{method} +legalMoves () : java.util.List
 }
 
 
@@ -111,7 +113,9 @@ class ch.hslu.cas.msed.blobfish.game.screen.HomeScreen {
 
 
 class ch.hslu.cas.msed.blobfish.game.screen.MatchScreen {
+	{method} -getNextMove () : String
 	{method} -printPosition ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : void
+	{method} -shouldDisplayBoard ( paramAbstractPlayer1 : ch.hslu.cas.msed.blobfish.player.AbstractPlayer ) : boolean
 	{method} +start () : void
 }
 
@@ -128,6 +132,11 @@ class ch.hslu.cas.msed.blobfish.player.BotPlayer {
 
 class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
+	{field} -originalMove : String
 }
 
 
@@ -149,6 +158,7 @@ ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish
 ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : white
 ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : playerColor
 ch.hslu.cas.msed.blobfish.player.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 
 hide fields
