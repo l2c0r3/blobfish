@@ -16,8 +16,18 @@ abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
 }
 
 
+class ch.hslu.cas.msed.blobfish.player.bot.MiniMax {
+	{field} -calculationDepth : int
+	{field} -evalStrategy : ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+	{field} -ownPlayerColor : ch.hslu.cas.msed.blobfish.base.PlayerColor
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.MiniMax$ButtomNode
+	{method} -copyAndAddToHistory ( paramLinkedList1 : java.util.LinkedList , paramMove2 : com.github.bhlangonijr.chesslib.move.Move ) : java.util.LinkedList
+	{method} +getBestNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
+}
+
+
 class ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer {
-	{field} -miniMax : ch.hslu.cas.msed.blobfish.searchtree.MiniMax
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
@@ -31,6 +41,7 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.MiniMax : miniMax
 ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 
 
