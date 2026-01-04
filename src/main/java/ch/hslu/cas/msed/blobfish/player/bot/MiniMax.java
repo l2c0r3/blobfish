@@ -5,6 +5,9 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import com.github.bhlangonijr.chesslib.move.Move;
 
+import java.util.Collections;
+import java.util.LinkedList;
+
 
 /**
  * Optimize Options
@@ -20,6 +23,8 @@ public class MiniMax {
     private final EvalStrategy evalStrategy;
     private final PlayerColor ownPlayerColor;
 
+    private record ButtomNode(double eval, LinkedList<Move> history) {}
+
     public MiniMax(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor){
         this.calculationDepth = calculationDepth;
         this.evalStrategy = evalStrategy;
@@ -27,55 +32,66 @@ public class MiniMax {
     }
 
     public String getBestNextMove(ChessBoard chessBoard) {
-        Move bestMoveNextMove = null;
-        var bestEval = PlayerColor.WHITE.equals(this.ownPlayerColor) ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        var history = new LinkedList<Move>();
+        var bestNextNode = PlayerColor.WHITE.equals(this.ownPlayerColor) ? new ButtomNode(Double.NEGATIVE_INFINITY, history) : new ButtomNode(Double.POSITIVE_INFINITY, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(this.ownPlayerColor);
         var nextPlayerColor = PlayerColor.WHITE.equals(this.ownPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
-            var eval = calcNextPosition(newPosition, calculationDepth - 1, nextPlayerColor);
+            var newHistory = copyAndAddToHistory(history, move);
+            var nextNode = calcBestPath(newPosition, calculationDepth - 1, nextPlayerColor, newHistory);
 
             if (hasToMaximizingEvalBar) {
-                if (eval > bestEval) {
-                    bestEval = eval;
-                    bestMoveNextMove = move;
+                if (nextNode.eval() > bestNextNode.eval()) {
+                    bestNextNode = nextNode;
                 }
             } else {
-                if (eval < bestEval) {
-                    bestEval = eval;
-                    bestMoveNextMove = move;
+                if (nextNode.eval() < bestNextNode.eval()) {
+                    bestNextNode = nextNode;
                 }
             }
         }
 
-        return bestMoveNextMove != null ? getSanOfMove(bestMoveNextMove) : null;
+        return bestNextNode.history().getFirst().toString();
     }
 
-    private double calcNextPosition(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn) {
+    private ButtomNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            return evalStrategy.getEvaluation(chessBoard.getFen());
+            var eval = evalStrategy.getEvaluation(chessBoard.getFen());
+            return new ButtomNode(eval, history);
         }
 
-        var bestEval = PlayerColor.WHITE.equals(playerAtTurn) ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new ButtomNode(Double.NEGATIVE_INFINITY, history) : new ButtomNode(Double.POSITIVE_INFINITY, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
-            var eval = calcNextPosition(newPosition, depth - 1, nextPlayerColor);
+            var newHistory = copyAndAddToHistory(history, move);
+            var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory);
 
             if (hasToMaximizingEvalBar) {
-                bestEval = Math.max(bestEval, eval);
+                if (nextNode.eval() > bestNextNode.eval()) {
+                    bestNextNode = nextNode;
+                }
             } else {
-                bestEval = Math.min(bestEval, eval);
+                if (nextNode.eval() < bestNextNode.eval()) {
+                    bestNextNode = nextNode;
+                }
             }
         }
 
-        return bestEval;
+        return bestNextNode;
     }
 
     private static String getSanOfMove(Move move) {
         return move.toString();
+    }
+
+    private LinkedList<Move> copyAndAddToHistory(LinkedList<Move> history, Move move) {
+        LinkedList<Move> newHistory = new LinkedList<>(history);
+        newHistory.add(move);
+        return newHistory;
     }
 }
