@@ -1,11 +1,13 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
-import ch.hslu.cas.msed.blobfish.player.BotPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer;
 
 public class HomeScreen {
     OutputWriter writer;
@@ -23,10 +25,14 @@ public class HomeScreen {
         writer.flush();
 
         var humanPlayerColor = getPlayerColor();
+        var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
+
+        var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
+        var botPlayer = new MiniMaxBotPlayer(botPlayerColor, new MaterialEval(), 4);
 
         return switch (humanPlayerColor) {
-            case WHITE -> new MatchConfig(new HumanPlayer(PlayerColor.WHITE, reader), new BotPlayer(PlayerColor.BLACK));
-            case BLACK -> new MatchConfig(new BotPlayer(PlayerColor.WHITE), new HumanPlayer(PlayerColor.BLACK, reader));
+            case WHITE -> new MatchConfig(humanPlayer, botPlayer);
+            case BLACK -> new MatchConfig(botPlayer, humanPlayer);
         };
     }
 
