@@ -6,9 +6,10 @@ import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
-import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
 
 public class HomeScreen {
     OutputWriter writer;
@@ -29,7 +30,8 @@ public class HomeScreen {
         var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
 
         var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
-        var botPlayer = new MiniMaxBotPlayer(botPlayerColor, new MateAwareEval(new MaterialEval()), 4);
+        var miniMaxAlgo = new MiniMaxSequential(4, new MateAwareEval(new MaterialEval()), botPlayerColor);
+        var botPlayer = new MiniMaxBotPlayer(botPlayerColor, miniMaxAlgo);
 
         return switch (humanPlayerColor) {
             case WHITE -> new MatchConfig(humanPlayer, botPlayer);

@@ -4,6 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MiniMaxTest {
+class MiniMaxSequentialTest {
 
     private static Stream<Arguments> oneMovePositionsProviderWhite() {
         return Stream.of(
@@ -27,7 +28,7 @@ class MiniMaxTest {
     @MethodSource("oneMovePositionsProviderWhite")
     void getBestNextMove_asWhite_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
-        var testee = new MiniMax(3, new MateAwareEval(new MaterialEval()), PlayerColor.WHITE);
+        var testee = new MiniMaxSequential(3, new MateAwareEval(new MaterialEval()), PlayerColor.WHITE);
 
         // Act
         String result = testee.getBestNextMove(board);
@@ -49,7 +50,7 @@ class MiniMaxTest {
     @MethodSource("oneMovePositionsProviderBlack")
     void getBestNextMove_asBlack_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
-        var testee = new MiniMax(3, new MateAwareEval(new MaterialEval()), PlayerColor.BLACK);
+        var testee = new MiniMaxSequential(3, new MateAwareEval(new MaterialEval()), PlayerColor.BLACK);
 
         // Act
         String result = testee.getBestNextMove(board);
