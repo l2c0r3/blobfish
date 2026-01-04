@@ -2,13 +2,14 @@ package ch.hslu.cas.msed.blobfish.board.ui;
 
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoardRendererTest {
 
-    BoardRenderer testee = new BoardRenderer(new TestRenderer());
+    BoardRenderer testee = new BoardRenderer(new TestFieldRenderer(), new TestBorderFieldRenderer());
 
     @Test
     void render_perspectiveWhite() {
@@ -21,14 +22,16 @@ class BoardRendererTest {
         // Assert
         assertEquals(
     """
-            _,_,b,_,_,_,_,_,
-            r,_,k,n,_,_,_,p,
-            p,_,_,_,_,_,_,_,
-            _,_,P,_,p,_,_,B,
-            _,_,_,_,_,_,P,_,
-            _,K,_,R,_,_,_,_,
-            P,_,_,_,_,r,_,_,
-            _,_,_,_,_,_,N,R,
+            _,A,B,C,D,E,F,G,H,_
+            8,_,_,b,_,_,_,_,_,8,
+            7,r,_,k,n,_,_,_,p,7,
+            6,p,_,_,_,_,_,_,_,6,
+            5,_,_,P,_,p,_,_,B,5,
+            4,_,_,_,_,_,_,P,_,4,
+            3,_,K,_,R,_,_,_,_,3,
+            2,P,_,_,_,_,r,_,_,2,
+            1,_,_,_,_,_,_,N,R,1,
+            _,A,B,C,D,E,F,G,H,_
             """, result
         );
     }
@@ -44,14 +47,16 @@ class BoardRendererTest {
         // Assert
         assertEquals(
     """
-            R,N,_,_,_,_,_,_,
-            _,_,r,_,_,_,_,P,
-            _,_,_,_,R,_,K,_,
-            _,P,_,_,_,_,_,_,
-            B,_,_,p,_,P,_,_,
-            _,_,_,_,_,_,_,p,
-            p,_,_,_,n,k,_,r,
-            _,_,_,_,_,b,_,_,
+            _,H,G,F,E,D,C,B,A,_
+            1,R,N,_,_,_,_,_,_,1,
+            2,_,_,r,_,_,_,_,P,2,
+            3,_,_,_,_,R,_,K,_,3,
+            4,_,P,_,_,_,_,_,_,4,
+            5,B,_,_,p,_,P,_,_,5,
+            6,_,_,_,_,_,_,_,p,6,
+            7,p,_,_,_,n,k,_,r,7,
+            8,_,_,_,_,_,b,_,_,8,
+            _,H,G,F,E,D,C,B,A,_
             """, result
         );
 
@@ -79,7 +84,7 @@ class BoardRendererTest {
     }
 
 
-    private static class TestRenderer implements FieldRenderer {
+    private static class TestFieldRenderer implements FieldRenderer {
         @Override
         public String render(UiField field) {
             var p = field.piece();
@@ -88,6 +93,22 @@ class BoardRendererTest {
             } else {
                 return p.fen() + ",";
             }
+        }
+    }
+
+    private static class TestBorderFieldRenderer implements BorderFieldRenderer {
+        @Override
+        public String renderRow(PlayerColor perspective) {
+            var row = "_,A,B,C,D,E,F,G,H,_";
+            return switch (perspective) {
+                case WHITE -> row;
+                case BLACK -> StringUtils.reverse(row);
+            };
+        }
+
+        @Override
+        public String renderColumnField(int colNumber) {
+            return colNumber + ",";
         }
     }
 
