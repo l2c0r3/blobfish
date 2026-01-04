@@ -32,28 +32,8 @@ public class MiniMax {
     }
 
     public String getBestNextMove(ChessBoard chessBoard) {
-        var history = new LinkedList<Move>();
-        var bestNextNode = PlayerColor.WHITE.equals(this.ownPlayerColor) ? new ButtomNode(Double.NEGATIVE_INFINITY, history) : new ButtomNode(Double.POSITIVE_INFINITY, history);
-        var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(this.ownPlayerColor);
-        var nextPlayerColor = PlayerColor.WHITE.equals(this.ownPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
-
-        for (var move : chessBoard.legalMoves()) {
-            var newPosition = chessBoard.doMove(getSanOfMove(move));
-            var newHistory = copyAndAddToHistory(history, move);
-            var nextNode = calcBestPath(newPosition, calculationDepth - 1, nextPlayerColor, newHistory);
-
-            if (hasToMaximizingEvalBar) {
-                if (nextNode.eval() > bestNextNode.eval()) {
-                    bestNextNode = nextNode;
-                }
-            } else {
-                if (nextNode.eval() < bestNextNode.eval()) {
-                    bestNextNode = nextNode;
-                }
-            }
-        }
-
-        return bestNextNode.history().getFirst().toString();
+        var bestPath = calcBestPath(chessBoard, this.calculationDepth, this.ownPlayerColor, new LinkedList<>());
+        return bestPath.history().getFirst().toString();
     }
 
     private ButtomNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
