@@ -175,7 +175,7 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer {
 
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential {
-	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential$ButtomNode
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential$BottomNode
 	{method} -copyAndAddToHistory ( paramLinkedList1 : java.util.LinkedList , paramMove2 : com.github.bhlangonijr.chesslib.move.Move ) : java.util.LinkedList
 	{method} +getBestNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
