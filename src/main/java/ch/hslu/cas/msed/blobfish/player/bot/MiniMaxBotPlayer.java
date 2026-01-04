@@ -4,7 +4,6 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
-import ch.hslu.cas.msed.blobfish.searchtree.MiniMax;
 
 public class MiniMaxBotPlayer extends BotPlayer {
 

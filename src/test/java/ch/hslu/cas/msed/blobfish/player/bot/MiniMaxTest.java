@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.searchtree;
+package ch.hslu.cas.msed.blobfish.player.bot;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
