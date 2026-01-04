@@ -3,10 +3,8 @@
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
-	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
-	{method} +getEvaluation () : double
+	{method} +doMove ( paramString1 : String ) : void
 	{method} +getFen () : String
-	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +isGameOver () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
 	{method} +legalMoves () : java.util.List
@@ -19,7 +17,7 @@ class ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer {
 
 
 class ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer {
-	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenBoardParser
+	{field} -parser : ch.hslu.cas.msed.blobfish.board.ui.FenUiBoardParser
 	{method} +render ( paramString1 : String , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
 }
 

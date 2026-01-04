@@ -60,11 +60,6 @@ public class ChessBoard {
         return board.isMoveLegal(moves.getLast(), true);
     }
 
-    public double getEvaluation() {
-        var position = this.board.getFen();
-        return EvalBar.getEvaluation(position);
-    }
-
     public PlayerColor getSideToMove() {
         return switch (this.board.getSideToMove()) {
             case BLACK -> PlayerColor.BLACK;

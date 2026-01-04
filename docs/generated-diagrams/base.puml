@@ -1,10 +1,17 @@
 @startuml
 
+class ch.hslu.cas.msed.blobfish.base.FenUtil {
+	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
+	{method}  {static} +validateFenString ( paramString1 : String ) : void
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.Piece {
 	{method} +color () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +equals ( paramObject1 : Object ) : boolean
 	{method} +fen () : Character
 	{method} +hashCode () : int
+	{method} +materialPoints () : int
 	{method} +toString () : String
 	{method} +type () : ch.hslu.cas.msed.blobfish.base.PieceType
 }
