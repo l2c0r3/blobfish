@@ -28,12 +28,18 @@ public class ChessBoard {
         board.loadFromFen(fen);
     }
 
+    private ChessBoard(Board board) {
+        this.board = board;
+    }
+
     /**
      * Do move with SAN annotation. e.g Nc6
      */
     public ChessBoard doMove(String san) {
-        board.doMove(san);
-        return new ChessBoard(board.getFen());
+        var copyOfBoard = new Board();
+        copyOfBoard.loadFromFen(this.board.getFen());
+        copyOfBoard.doMove(san);
+        return new ChessBoard(copyOfBoard);
     }
 
     /**
