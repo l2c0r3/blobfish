@@ -16,7 +16,7 @@ abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
 }
 
 
-abstract class ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo {
+abstract class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo {
 	{field} -calculationDepth : int
 	{field} -evalStrategy : ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 	{field} -ownPlayerColor : ch.hslu.cas.msed.blobfish.base.PlayerColor
@@ -46,9 +46,9 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo : miniMaxAlgo
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo : miniMaxAlgo
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
-ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
 
 
 @enduml

@@ -77,7 +77,7 @@ interface ch.hslu.cas.msed.blobfish.eval.EvalStrategy {
 
 
 class ch.hslu.cas.msed.blobfish.eval.MateAwareEval {
-	{field} -MAX_NUMBER : double
+	{field} {static} -MAX_NUMBER : double
 	{method} +getEvaluation ( paramString1 : String ) : double
 }
 
@@ -163,7 +163,7 @@ abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
 }
 
 
-abstract class ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo {
+abstract class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo {
 	{field} -calculationDepth : int
 	{method}  {abstract} +getBestNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
@@ -211,11 +211,11 @@ ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.b
 ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
-ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
-ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo : miniMaxAlgo
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo : miniMaxAlgo
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
-ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
 
 hide fields
 hide methods
