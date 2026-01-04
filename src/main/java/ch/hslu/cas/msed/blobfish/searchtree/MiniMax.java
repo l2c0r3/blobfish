@@ -9,67 +9,60 @@ public class MiniMax {
 
     private final int calculationDepth;
     private final EvalStrategy evalStrategy;
-    private final PlayerColor colorToMaximize;
+    private final PlayerColor ownPlayerColor;
 
-    public MiniMax(int calculationDepth, EvalStrategy evalStrategy, PlayerColor player){
+    public MiniMax(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor){
         this.calculationDepth = calculationDepth;
         this.evalStrategy = evalStrategy;
-        this.colorToMaximize = player;
+        this.ownPlayerColor = ownPlayerColor;
     }
 
     public String getBestNextMove(ChessBoard chessPosition) {
-        Move bestMove = null;
-
-        boolean maximizingAtRoot = colorToMaximize.equals(chessPosition.getSideToMove());
-        double bestEval = maximizingAtRoot ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        Move bestMoveNextMove = null;
+        var bestEval = PlayerColor.WHITE.equals(this.ownPlayerColor) ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(this.ownPlayerColor);
+        var nextPlayerColor = PlayerColor.WHITE.equals(this.ownPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         for (var move : chessPosition.legalMoves()) {
             var newPosition = chessPosition.doMove(move.getSan());
-            var eval = calcMiniMax(newPosition, calculationDepth - 1);
+            var eval = calcNextPosition(newPosition, calculationDepth - 1, nextPlayerColor);
 
-            if (maximizingAtRoot) {
+            if (hasToMaximizingEvalBar) {
                 if (eval > bestEval) {
                     bestEval = eval;
-                    bestMove = move;
+                    bestMoveNextMove = move;
                 }
             } else {
                 if (eval < bestEval) {
                     bestEval = eval;
-                    bestMove = move;
+                    bestMoveNextMove = move;
                 }
             }
         }
 
-        return bestMove != null ? bestMove.getSan() : null;
+        return bestMoveNextMove != null ? bestMoveNextMove.getSan() : null;
     }
 
-    private double calcMiniMax(ChessBoard position, int depth) {
+    private double calcNextPosition(ChessBoard position, int depth, PlayerColor playerAtTurn) {
         if (depth <= 0 || position.isGameOver()) {
-            return evaluateForMaximizer(position);
+            return evalStrategy.getEvaluation(position.getFen());
         }
 
-        boolean maximizingPlayer = colorToMaximize.equals(position.getSideToMove());
+        var bestEval = PlayerColor.WHITE.equals(playerAtTurn) ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
+        var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
-        if (maximizingPlayer) {
-            double maxEval = Double.NEGATIVE_INFINITY;
-            for (var move : position.legalMoves()) {
-                var newPosition = position.doMove(move.getSan());
-                maxEval = Math.max(maxEval, calcMiniMax(newPosition, depth - 1));
+        for (var move : position.legalMoves()) {
+            var newPosition = position.doMove(move.getSan());
+            var eval = calcNextPosition(newPosition, depth - 1, nextPlayerColor);
+
+            if (hasToMaximizingEvalBar) {
+                bestEval = Math.max(bestEval, eval);
+            } else {
+                bestEval = Math.min(bestEval, eval);
             }
-            return maxEval;
-        } else {
-            double minEval = Double.POSITIVE_INFINITY;
-            for (var move : position.legalMoves()) {
-                var newPosition = position.doMove(move.getSan());
-                minEval = Math.min(minEval, calcMiniMax(newPosition, depth - 1));
-            }
-            return minEval;
         }
-    }
 
-    private double evaluateForMaximizer(ChessBoard position) {
-        double whitePositiveEval = evalStrategy.getEvaluation(position.getFen());
-        // eval bar returns in favor of white
-        return (colorToMaximize == PlayerColor.WHITE) ? whitePositiveEval : -whitePositiveEval;
+        return bestEval;
     }
 }
