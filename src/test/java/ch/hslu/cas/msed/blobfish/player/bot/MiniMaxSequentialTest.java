@@ -61,14 +61,4 @@ class MiniMaxSequentialTest {
         // Assert
         assertEquals(expectedNextMove, result);
     }
-
-    @Test
-    @Disabled("Look a further time")
-    void hello() {
-        var testee = new MiniMaxSequential(4, new MateAwareEval(new MaterialEval()), PlayerColor.BLACK);
-        var result = testee.getBestNextMove(new ChessBoard("r1b5/6k1/P7/8/8/8/6K1/R7 b - - 0 1"));
-
-        assertEquals("c8a6", result);
-    }
-
 }
