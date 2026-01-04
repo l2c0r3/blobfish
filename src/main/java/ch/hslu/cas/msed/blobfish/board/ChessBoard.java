@@ -66,13 +66,6 @@ public class ChessBoard {
         return board.isMoveLegal(moves.getLast(), true);
     }
 
-    public PlayerColor getSideToMove() {
-        return switch (this.board.getSideToMove()) {
-            case BLACK -> PlayerColor.BLACK;
-            case WHITE -> PlayerColor.WHITE;
-        };
-    }
-
     public boolean isGameOver() {
         return board.legalMoves().isEmpty();
     }
