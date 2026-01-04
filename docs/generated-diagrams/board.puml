@@ -3,8 +3,9 @@
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
-	{method} +doMove ( paramString1 : String ) : void
+	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
+	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +isGameOver () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
 	{method} +legalMoves () : java.util.List
