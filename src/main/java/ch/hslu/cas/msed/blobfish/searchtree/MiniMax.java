@@ -24,7 +24,7 @@ public class MiniMax {
         var nextPlayerColor = PlayerColor.WHITE.equals(this.ownPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         for (var move : chessPosition.legalMoves()) {
-            var newPosition = chessPosition.doMove(move.getSan());
+            var newPosition = chessPosition.doMove(getSanOfMove(move));
             var eval = calcNextPosition(newPosition, calculationDepth - 1, nextPlayerColor);
 
             if (hasToMaximizingEvalBar) {
@@ -40,7 +40,7 @@ public class MiniMax {
             }
         }
 
-        return bestMoveNextMove != null ? bestMoveNextMove.getSan() : null;
+        return bestMoveNextMove != null ? getSanOfMove(bestMoveNextMove) : null;
     }
 
     private double calcNextPosition(ChessBoard position, int depth, PlayerColor playerAtTurn) {
@@ -53,7 +53,7 @@ public class MiniMax {
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         for (var move : position.legalMoves()) {
-            var newPosition = position.doMove(move.getSan());
+            var newPosition = position.doMove(getSanOfMove(move));
             var eval = calcNextPosition(newPosition, depth - 1, nextPlayerColor);
 
             if (hasToMaximizingEvalBar) {
@@ -64,5 +64,9 @@ public class MiniMax {
         }
 
         return bestEval;
+    }
+
+    private static String getSanOfMove(Move move) {
+        return move.toString();
     }
 }
