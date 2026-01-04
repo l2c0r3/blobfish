@@ -44,7 +44,6 @@ public class MatchScreen {
 
             var move = getNextMove();
             this.chessboard = chessboard.doMove(move);
-
             currentPlayer = currentPlayer == white ? black : white;
         }
 

@@ -8,7 +8,7 @@ import com.github.bhlangonijr.chesslib.Side;
  */
 public class MateAwareEval implements EvalStrategy {
 
-    private final double MAX_NUMBER = 1_000;
+    private static final double MAX_NUMBER = 1_000;
     private final EvalStrategy evalStrategy;
 
     public MateAwareEval(EvalStrategy evalStrategy) {
