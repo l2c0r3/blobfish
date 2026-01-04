@@ -13,9 +13,6 @@ import java.util.LinkedList;
  * Optimize Options
  * - shortest Path to Mate e.g (6k1/1R6/2R5/8/8/8/8/K7 w - - 0 1)
  * - Threading
- * - add max Time (and also calc first with depth 1, then with depth 2)
- * - add calculated tree in return value
- * - everything in one method
  */
 public class MiniMax {
 
