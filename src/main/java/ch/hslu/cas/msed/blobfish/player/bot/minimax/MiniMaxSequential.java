@@ -1,36 +1,30 @@
-package ch.hslu.cas.msed.blobfish.player.bot;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo;
 import com.github.bhlangonijr.chesslib.move.Move;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 
-public class MiniMax {
-
-    private final int calculationDepth;
-    private final EvalStrategy evalStrategy;
-    private final PlayerColor ownPlayerColor;
+public class MiniMaxSequential extends MiniMaxAlgo {
 
     private record ButtomNode(double eval, LinkedList<Move> history) {}
 
-    public MiniMax(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor){
-        this.calculationDepth = calculationDepth;
-        this.evalStrategy = evalStrategy;
-        this.ownPlayerColor = ownPlayerColor;
+    public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor){
+        super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     public String getBestNextMove(ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, this.calculationDepth, this.ownPlayerColor, new LinkedList<>());
+        var bestPath = calcBestPath(chessBoard, super.getCalculationDepth(), super.getOwnPlayerColor(), new LinkedList<>());
         return bestPath.history().getFirst().toString();
     }
 
     private ButtomNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = evalStrategy.getEvaluation(chessBoard.getFen());
+            var eval = super.getEvalStrategy().getEvaluation(chessBoard.getFen());
             return new ButtomNode(eval, history);
         }
 

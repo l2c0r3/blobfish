@@ -1,22 +1,24 @@
-package ch.hslu.cas.msed.blobfish.player.bot;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
 
 public class MiniMaxBotPlayer extends BotPlayer {
 
-    private final MiniMax miniMax;
+    private final MiniMaxAlgo miniMaxAlgo;
 
-    public MiniMaxBotPlayer(PlayerColor playerColor, EvalStrategy evalStrategy, int calculationDepth) {
+    public MiniMaxBotPlayer(PlayerColor playerColor, MiniMaxAlgo miniMaxAlgo) {
         super(playerColor);
-        this.miniMax = new MiniMax(calculationDepth, evalStrategy, playerColor);
+        this.miniMaxAlgo = miniMaxAlgo;
     }
 
     @Override
     public String getNextMove(ChessBoard board) throws InvalidMoveException {
-        return miniMax.getBestNextMove(board);
+        return miniMaxAlgo.getBestNextMove(board);
     }
 
 }
