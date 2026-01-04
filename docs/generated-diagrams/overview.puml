@@ -149,12 +149,16 @@ abstract class ch.hslu.cas.msed.blobfish.player.AbstractPlayer {
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.BotPlayer {
+class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
+abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
@@ -166,9 +170,9 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 class ch.hslu.cas.msed.blobfish.searchtree.MiniMax {
 	{field} -calculationDepth : int
-	{method} -calcMiniMax ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int ) : double
-	{method} -evaluateForMaximizer ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : double
+	{method} -calcNextPosition ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : double
 	{method} +getBestNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
 }
 
 
@@ -191,10 +195,12 @@ ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish
 ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : currentPlayer
 ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : white
 ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : playerColor
-ch.hslu.cas.msed.blobfish.player.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-ch.hslu.cas.msed.blobfish.searchtree.MiniMax *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : colorToMaximize
+ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.searchtree.MiniMax : miniMax
+ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+ch.hslu.cas.msed.blobfish.searchtree.MiniMax *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
 ch.hslu.cas.msed.blobfish.searchtree.MiniMax *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
 
 hide fields

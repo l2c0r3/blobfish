@@ -6,13 +6,18 @@ abstract class ch.hslu.cas.msed.blobfish.player.AbstractPlayer {
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.BotPlayer {
+class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
+	{field} -reader : ch.hslu.cas.msed.blobfish.game.InputReader
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
-	{field} -reader : ch.hslu.cas.msed.blobfish.game.InputReader
+abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer {
+	{field} -miniMax : ch.hslu.cas.msed.blobfish.searchtree.MiniMax
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
@@ -24,8 +29,9 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 
 
-ch.hslu.cas.msed.blobfish.player.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 
 
 @enduml
