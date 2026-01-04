@@ -49,12 +49,24 @@ public class MiniMax {
             var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory);
 
             if (hasToMaximizingEvalBar) {
-                if (nextNode.eval() > bestNextNode.eval()) {
-                    bestNextNode = nextNode;
+                if (nextNode.eval() >= bestNextNode.eval()) {
+                    // if better result -> do it
+                    if (nextNode.eval() > bestNextNode.eval()) {
+                        bestNextNode = nextNode;
+                    // if shorter path for same result (e.g checkmate) -> do it
+                    } else if (nextNode.history().size() < bestNextNode.history().size()) {
+                        bestNextNode = nextNode;
+                    }
                 }
             } else {
-                if (nextNode.eval() < bestNextNode.eval()) {
-                    bestNextNode = nextNode;
+                if (nextNode.eval() <= bestNextNode.eval()) {
+                    // if better result -> do it
+                    if (nextNode.eval() < bestNextNode.eval()) {
+                        bestNextNode = nextNode;
+                        // if shorter path for same result (e.g checkmate) -> do it
+                    } else if (nextNode.history().size() < bestNextNode.history().size()) {
+                        bestNextNode = nextNode;
+                    }
                 }
             }
         }
