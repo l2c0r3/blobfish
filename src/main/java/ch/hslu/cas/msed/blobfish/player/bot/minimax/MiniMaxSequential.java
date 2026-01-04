@@ -3,7 +3,6 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.player.bot.MiniMaxAlgo;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.LinkedList;
@@ -13,12 +12,16 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private record ButtomNode(double eval, LinkedList<Move> history) {}
 
-    public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor){
+    public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     public String getBestNextMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, super.getCalculationDepth(), super.getOwnPlayerColor(), new LinkedList<>());
+
+        if (bestPath == null || bestPath.history.isEmpty()) {
+            return null;
+        }
         return bestPath.history().getFirst().toString();
     }
 
@@ -37,26 +40,14 @@ public class MiniMaxSequential extends MiniMaxAlgo {
             var newHistory = copyAndAddToHistory(history, move);
             var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory);
 
-            if (hasToMaximizingEvalBar) {
-                if (nextNode.eval() >= bestNextNode.eval()) {
-                    // if better result -> do it
-                    if (nextNode.eval() > bestNextNode.eval()) {
-                        bestNextNode = nextNode;
-                    // if shorter path for same result (e.g checkmate) -> do it
-                    } else if (nextNode.history().size() < bestNextNode.history().size()) {
-                        bestNextNode = nextNode;
-                    }
-                }
-            } else {
-                if (nextNode.eval() <= bestNextNode.eval()) {
-                    // if better result -> do it
-                    if (nextNode.eval() < bestNextNode.eval()) {
-                        bestNextNode = nextNode;
-                        // if shorter path for same result (e.g checkmate) -> do it
-                    } else if (nextNode.history().size() < bestNextNode.history().size()) {
-                        bestNextNode = nextNode;
-                    }
-                }
+            boolean isBetter = hasToMaximizingEvalBar ?
+                    nextNode.eval() > bestNextNode.eval() :
+                    nextNode.eval() < bestNextNode.eval();
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() &&
+                    nextNode.history().size() < bestNextNode.history().size();
+
+            if (isBetter || isEqualButShorter) {
+                bestNextNode = nextNode;
             }
         }
 
