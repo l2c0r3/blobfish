@@ -49,8 +49,28 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 }
 
 
+class ch.hslu.cas.msed.blobfish.board.ui.AlphanumericBorderFieldRenderer {
+	{field} {static} +BG_COLOR : String
+	{field} {static} +FG_COLOR : String
+	{field} {static} +PLACEHOLDER_CHARACTER : char
+	{field} {static} +PLACEHOLDER_COLOR : String
+	{field} {static} +RESET : String
+	{field} {static} +ROW_STRING_WHITE : String
+	{method} +renderColumnField ( paramint1 : int ) : String
+	{method}  {static} -renderEmptyField () : String
+	{method} +renderRow ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+	{method}  {static} -renderRowString ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
 class ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer {
 	{method} ~render ( paramUiBoard1 : ch.hslu.cas.msed.blobfish.board.ui.UiBoard , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
+interface ch.hslu.cas.msed.blobfish.board.ui.BorderFieldRenderer {
+	{method}  {abstract} +renderColumnField ( paramint1 : int ) : String
+	{method}  {abstract} +renderRow ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
 }
 
 
@@ -191,7 +211,9 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PieceType : type
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : color
-ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer : render
+ch.hslu.cas.msed.blobfish.board.ui.AlphanumericBorderFieldRenderer ..|>  ch.hslu.cas.msed.blobfish.board.ui.BorderFieldRenderer
+ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BorderFieldRenderer : borderFieldRenderer
+ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer : fieldRenderer
 ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer : boardRenderer
 ch.hslu.cas.msed.blobfish.eval.MateAwareEval *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
 ch.hslu.cas.msed.blobfish.eval.MateAwareEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
