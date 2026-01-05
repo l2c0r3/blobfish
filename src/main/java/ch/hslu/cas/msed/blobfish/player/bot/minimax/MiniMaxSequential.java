@@ -17,7 +17,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
     }
 
     public String getNextBestMove(ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, super.getCalculationDepth(), super.getOwnPlayerColor(), new LinkedList<>());
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), new LinkedList<>());
 
         if (bestPath == null || bestPath.history.isEmpty()) {
             return null;
@@ -27,7 +27,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private BottomNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = super.getEvalStrategy().getEvaluation(chessBoard.getFen());
+            var eval = getEvalStrategy().getEvaluation(chessBoard.getFen());
             return new BottomNode(eval, history);
         }
 
