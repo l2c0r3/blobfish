@@ -16,7 +16,7 @@ public class MiniMaxBotPlayer extends BotPlayer {
 
     @Override
     public String getNextMove(ChessBoard board) throws InvalidMoveException {
-        return miniMaxAlgo.getBestNextMove(board);
+        return miniMaxAlgo.getNextBestMove(board);
     }
 
 }

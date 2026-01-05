@@ -16,7 +16,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
-    public String getBestNextMove(ChessBoard chessBoard) {
+    public String getNextBestMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, super.getCalculationDepth(), super.getOwnPlayerColor(), new LinkedList<>());
 
         if (bestPath == null || bestPath.history.isEmpty()) {

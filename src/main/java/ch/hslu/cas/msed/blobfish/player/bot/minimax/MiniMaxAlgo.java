@@ -19,6 +19,6 @@ public abstract class MiniMaxAlgo {
         this.ownPlayerColor = ownPlayerColor;
     }
 
-    public abstract String getBestNextMove(ChessBoard chessBoard);
+    public abstract String getNextBestMove(ChessBoard chessBoard);
 
 }

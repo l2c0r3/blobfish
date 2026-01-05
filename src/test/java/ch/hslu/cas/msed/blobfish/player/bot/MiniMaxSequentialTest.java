@@ -5,8 +5,6 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,12 +27,12 @@ class MiniMaxSequentialTest {
 
     @ParameterizedTest
     @MethodSource("oneMovePositionsProviderWhite")
-    void getBestNextMove_asWhite_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
+    void getNextBestMove_asWhite_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
         var testee = new MiniMaxSequential(3, new MateAwareEval(new MaterialEval()), PlayerColor.WHITE);
 
         // Act
-        String result = testee.getBestNextMove(board);
+        String result = testee.getNextBestMove(board);
 
         // Assert
         assertEquals(expectedNextMove, result);
@@ -51,12 +49,12 @@ class MiniMaxSequentialTest {
 
     @ParameterizedTest
     @MethodSource("oneMovePositionsProviderBlack")
-    void getBestNextMove_asBlack_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
+    void getNextBestMove_asBlack_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
         var testee = new MiniMaxSequential(4, new MateAwareEval(new MaterialEval()), PlayerColor.BLACK);
 
         // Act
-        String result = testee.getBestNextMove(board);
+        String result = testee.getNextBestMove(board);
 
         // Assert
         assertEquals(expectedNextMove, result);
