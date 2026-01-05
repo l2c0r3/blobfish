@@ -7,7 +7,7 @@ import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
 import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
-import ch.hslu.cas.msed.blobfish.player.BotPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
 import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
 
@@ -43,8 +43,7 @@ public class MatchScreen {
             }
 
             var move = getNextMove();
-            chessboard.doMove(move);
-
+            this.chessboard = chessboard.doMove(move);
             currentPlayer = currentPlayer == white ? black : white;
         }
 

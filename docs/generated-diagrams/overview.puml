@@ -41,9 +41,11 @@ enum ch.hslu.cas.msed.blobfish.base.PlayerColor {
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
-	{method} +doMove ( paramString1 : String ) : void
+	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
+	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +isGameOver () : boolean
+	{method} +isMated () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
 	{method} +legalMoves () : java.util.List
 }
@@ -93,6 +95,12 @@ enum ch.hslu.cas.msed.blobfish.board.ui.SquareColor {
 
 interface ch.hslu.cas.msed.blobfish.eval.EvalStrategy {
 	{method}  {abstract} +getEvaluation ( paramString1 : String ) : double
+}
+
+
+class ch.hslu.cas.msed.blobfish.eval.MateAwareEval {
+	{field} {static} -MAX_NUMBER : double
+	{method} +getEvaluation ( paramString1 : String ) : double
 }
 
 
@@ -168,13 +176,31 @@ abstract class ch.hslu.cas.msed.blobfish.player.AbstractPlayer {
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.BotPlayer {
+class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
+abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
+}
+
+
+abstract class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo {
+	{field} -calculationDepth : int
+	{method}  {abstract} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential {
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential$BottomNode
+	{method} -copyAndAddToHistory ( paramLinkedList1 : java.util.LinkedList , paramMove2 : com.github.bhlangonijr.chesslib.move.Move ) : java.util.LinkedList
+	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
 }
 
 
@@ -191,6 +217,8 @@ ch.hslu.cas.msed.blobfish.board.ui.AlphanumericBorderFieldRenderer ..|>  ch.hslu
 ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BorderFieldRenderer : borderFieldRenderer
 ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.FieldRenderer : fieldRenderer
 ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer *--  ch.hslu.cas.msed.blobfish.board.ui.BoardRenderer : boardRenderer
+ch.hslu.cas.msed.blobfish.eval.MateAwareEval *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
+ch.hslu.cas.msed.blobfish.eval.MateAwareEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.eval.MaterialEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.eval.RandomEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.game.MatchConfig *--  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : black
@@ -204,9 +232,14 @@ ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish
 ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : currentPlayer
 ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish.player.AbstractPlayer : white
 ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : playerColor
-ch.hslu.cas.msed.blobfish.player.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo : miniMaxAlgo
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
 
 hide fields
 hide methods
