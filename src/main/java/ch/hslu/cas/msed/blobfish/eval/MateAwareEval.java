@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
-import com.github.bhlangonijr.chesslib.Board;
-import com.github.bhlangonijr.chesslib.Side;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 
 /**
  * Wrapper Class
@@ -17,11 +17,10 @@ public class MateAwareEval implements EvalStrategy {
 
     @Override
     public double getEvaluation(String positionFen) {
-        var board = new Board();
-        board.loadFromFen(positionFen);
+        var board = new ChessBoard(positionFen);
 
         if (board.isMated()) {
-            return Side.WHITE.equals(board.getSideToMove()) ? -MAX_NUMBER : MAX_NUMBER;
+            return PlayerColor.WHITE.equals(board.getSideToMove()) ? -MAX_NUMBER : MAX_NUMBER;
         }
 
         return evalStrategy.getEvaluation(positionFen);
