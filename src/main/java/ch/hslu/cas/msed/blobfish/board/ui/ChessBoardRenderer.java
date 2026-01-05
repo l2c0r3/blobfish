@@ -11,7 +11,8 @@ public class ChessBoardRenderer {
         this.parser = new FenUiBoardParser();
 
         var fieldRenderer = new AnsiiFieldRenderer();
-        this.boardRenderer = new BoardRenderer(fieldRenderer);
+        var borderRenderer = new AlphanumericBorderFieldRenderer();
+        this.boardRenderer = new BoardRenderer(fieldRenderer, borderRenderer);
     }
 
     public String render(String fen, PlayerColor playerPerspective) {
