@@ -17,11 +17,11 @@ class MiniMaxSequentialTest {
 
     private static Stream<Arguments> oneMovePositionsProviderWhite() {
         return Stream.of(
-            Arguments.of(new ChessBoard("k7/8/8/3r4/8/3R4/8/K7 w - - 0 1"), "d3d5"),  // eat free rook
+            Arguments.of(new ChessBoard("k7/8/8/3r4/8/3R4/8/K7 w - - 0 1"), "d3d5"),          // eat free rook
                 Arguments.of(new ChessBoard("7k/8/5NPK/8/8/8/8/8 w - - 0 1"), "g6g7"),        // mateInOne
                 Arguments.of(new ChessBoard("6k1/1R6/2R5/8/8/8/8/K7 w - - 0 1"), "c6c8"),     // shortes mate
-                Arguments.of(new ChessBoard("8/8/8/1r2k3/8/7R/8/K7 w - - 0 1"), "h3h5"),       // don't know how its called
-                Arguments.of(new ChessBoard("r5k1/8/8/8/8/p7/8/R1B1K3 w - - 0 1"), "c1a3")       // do best trade
+                Arguments.of(new ChessBoard("8/8/8/1r2k3/8/7R/8/K7 w - - 0 1"), "h3h5"),      // checking skewer
+                Arguments.of(new ChessBoard("r5k1/8/8/8/8/p7/8/R1B1K3 w - - 0 1"), "c1a3")    // do best trade
         );
     }
 
@@ -41,9 +41,9 @@ class MiniMaxSequentialTest {
     private static Stream<Arguments> oneMovePositionsProviderBlack() {
         return Stream.of(
                 Arguments.of(new ChessBoard("7k/8/8/8/8/4p3/3R4/K7 b - - 0 1"), "e3d2"),  // eat free rook
-                Arguments.of(new ChessBoard("7k/8/8/8/8/pq6/8/K7 b - - 0 1"), "b3b2"),  // mateInOne
+                Arguments.of(new ChessBoard("7k/8/8/8/8/pq6/8/K7 b - - 0 1"), "b3b2"),    // mateInOne
                 Arguments.of(new ChessBoard("7k/8/8/8/1r6/1q6/8/K7 b - - 0 1"), "b4a4"),  // shortest mate
-                Arguments.of(new ChessBoard("8/8/5R2/8/3K4/8/2q5/k7 b - - 0 1"), "c2b2")  // don't know how its called
+                Arguments.of(new ChessBoard("8/8/5R2/8/3K4/8/2q5/k7 b - - 0 1"), "c2b2")  // checking skewer
         );
     }
 
