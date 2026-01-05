@@ -5,7 +5,9 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} -board : com.github.bhlangonijr.chesslib.Board
 	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
+	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} +isGameOver () : boolean
+	{method} +isMated () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
 	{method} +legalMoves () : java.util.List
 }
