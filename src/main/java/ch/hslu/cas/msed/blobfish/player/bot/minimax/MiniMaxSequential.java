@@ -10,8 +10,6 @@ import java.util.LinkedList;
 
 public class MiniMaxSequential extends MiniMaxAlgo {
 
-    private record BottomNode(double eval, LinkedList<Move> history) {}
-
     public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
@@ -19,19 +17,19 @@ public class MiniMaxSequential extends MiniMaxAlgo {
     public String getNextBestMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), new LinkedList<>());
 
-        if (bestPath == null || bestPath.history.isEmpty()) {
+        if (bestPath == null || bestPath.history().isEmpty()) {
             return null;
         }
         return bestPath.history().getFirst().toString();
     }
 
-    private BottomNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
+    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard.getFen());
-            return new BottomNode(eval, history);
+            return new MoveNode(eval, history);
         }
 
-        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new BottomNode(Double.NEGATIVE_INFINITY, history) : new BottomNode(Double.POSITIVE_INFINITY, history);
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Double.NEGATIVE_INFINITY, history) : new MoveNode(Double.POSITIVE_INFINITY, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
