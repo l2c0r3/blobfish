@@ -17,10 +17,9 @@ public class MiniMaxParallel extends MiniMaxAlgo {
     public String getNextBestMove(ChessBoard chessBoard) {
         var task = new MiniMaxRecursiveTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), new LinkedList<>());
 
-        MoveNode resultNode;
-        try (var forkJoinPool = new ForkJoinPool()) {
-            resultNode = forkJoinPool.invoke(task);
-        }
+        @SuppressWarnings("resource")
+        var forkJoinPool = ForkJoinPool.commonPool();
+        var resultNode = forkJoinPool.invoke(task);
 
         if (resultNode == null || resultNode.history().isEmpty()) {
             return null;
