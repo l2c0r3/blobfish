@@ -1,0 +1,7 @@
+@startuml
+start
+
+:call Minimax(position, depth, playerColor, history);
+
+stop
+@enduml
