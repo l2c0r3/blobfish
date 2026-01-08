@@ -32,15 +32,15 @@ jobs:
           path: staging
       - name: Generate PlantUML diagrams
         run: |
-          mkdir -p docs/generated-diagrams
+          shopt -s globstar
           
           curl -L -o plantuml.jar \
             https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
           
           java -jar plantuml.jar \
             -tsvg \
-            -o ../generated-diagrams \
-            docs/plantuml/**/*.puml
+            -o staging/generated-diagrams \
+            docs/plantuml/minimax-diagrams/*.puml
       - name: Detect PUML changes
         id: puml
         run: |
