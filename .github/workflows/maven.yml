@@ -47,13 +47,13 @@ jobs:
           changed=false
           
           # tracked files
-          if ! git diff --quiet -- docs/generated-diagrams/**/*.puml; then
+          if ! git diff --quiet -- docs/generated-diagrams; then
             changed=true
           fi
       
           # untracked files 
           if [ "$changed" = false ] && \
-            [ -n "$(git ls-files --others --exclude-standard -- docs/generated-diagrams/**/*.puml)" ]; then
+            [ -n "$(git ls-files --others --exclude-standard -- docs/generated-diagrams)" ]; then
             changed=true
           fi
       
