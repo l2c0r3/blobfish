@@ -30,7 +30,7 @@ jobs:
         with:
           name: Package
           path: staging
-      - name: Generate PlantUML diagrams
+      - name: Generate custom PlantUML diagrams
         run: |
           shopt -s globstar
           
@@ -39,8 +39,8 @@ jobs:
           
           java -jar plantuml.jar \
             -tsvg \
-            -o staging/generated-diagrams \
-            docs/plantuml/minimax-diagrams/*.puml
+            -o ../../../docs/generated-diagrams \
+            "./docs/plantuml/**/*.puml"
       - name: Detect PUML changes
         id: puml
         run: |
