@@ -30,19 +30,30 @@ jobs:
         with:
           name: Package
           path: staging
+      - name: Generate PlantUML diagrams
+        run: |
+          mkdir -p docs/generated-diagrams
+          
+          curl -L -o plantuml.jar \
+            https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
+          
+          java -jar plantuml.jar \
+            -tsvg \
+            -o ../generated-diagrams \
+            docs/plantuml/**/*.puml
       - name: Detect PUML changes
         id: puml
         run: |
           changed=false
           
           # tracked files
-          if ! git diff --quiet -- docs/generated-diagrams/*.puml; then
+          if ! git diff --quiet -- docs/generated-diagrams/**/*.puml; then
             changed=true
           fi
       
           # untracked files 
           if [ "$changed" = false ] && \
-            [ -n "$(git ls-files --others --exclude-standard -- docs/generated-diagrams/*.puml)" ]; then
+            [ -n "$(git ls-files --others --exclude-standard -- docs/generated-diagrams/**/*.puml)" ]; then
             changed=true
           fi
       
