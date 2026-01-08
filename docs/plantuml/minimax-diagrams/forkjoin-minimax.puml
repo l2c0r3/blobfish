@@ -10,7 +10,7 @@ if (depth <= 0 OR isGameOver()?) then (yes)
 endif
 
 :determine nodeComparator;
-note right
+note
 playerColor WHITE  -> maximize eval
 playerColor BLACK  -> minimize eval
 Always prefer shorter history
@@ -23,8 +23,9 @@ repeat
     :newPosition = doMove(move);
     :newHistory = history + move;
     :new Minimax(newPosition, depth - 1, nextPlayerColor, newHistory);
-    note right
-    creates minimax subtask which gets executed in the fork
+    note left
+    creates minimax subtask which
+    gets executed in the fork
     end note
 repeat while (has legal moves?)
 
