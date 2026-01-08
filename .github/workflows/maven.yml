@@ -32,8 +32,6 @@ jobs:
           path: staging
       - name: Generate custom PlantUML diagrams
         run: |
-          shopt -s globstar
-          
           curl -L -o plantuml.jar \
             https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
           
