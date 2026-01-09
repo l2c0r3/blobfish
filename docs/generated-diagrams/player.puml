@@ -29,11 +29,40 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer {
 }
 
 
+class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel {
+	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxRecursiveTask {
+	{field} -chessBoard : ch.hslu.cas.msed.blobfish.board.ChessBoard
+	{field} -depth : int
+	{field} -evalStrategy : ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+	{field} -history : java.util.LinkedList
+	{field} -playerAtTurn : ch.hslu.cas.msed.blobfish.base.PlayerColor
+	{method} #compute () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
+	{method} -copyAndAddToHistory ( paramLinkedList1 : java.util.LinkedList , paramMove2 : com.github.bhlangonijr.chesslib.move.Move ) : java.util.LinkedList
+	{method} -createSubTasks () : java.util.Collection
+	{method} -getMoveNodeComparator () : java.util.Comparator
+}
+
+
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential {
-	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential$BottomNode
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramLinkedList4 : java.util.LinkedList ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} -copyAndAddToHistory ( paramLinkedList1 : java.util.LinkedList , paramMove2 : com.github.bhlangonijr.chesslib.move.Move ) : java.util.LinkedList
 	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : String
 	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode {
+	{field} -eval : double
+	{field} -history : java.util.LinkedList
+	{method} +equals ( paramObject1 : Object ) : boolean
+	{method} +eval () : double
+	{method} +hashCode () : int
+	{method} +history () : java.util.LinkedList
+	{method} +toString () : String
 }
 
 
@@ -48,6 +77,7 @@ ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.pla
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo : miniMaxAlgo
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
 
 

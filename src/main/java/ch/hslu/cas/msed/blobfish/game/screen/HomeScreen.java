@@ -11,7 +11,7 @@ import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
 
 public class HomeScreen {
-    OutputWriter writer;
+    private final OutputWriter writer;
     private final InputReader reader;
 
     public HomeScreen(InputReader reader, OutputWriter writer) {

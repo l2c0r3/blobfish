@@ -1,10 +1,9 @@
-package ch.hslu.cas.msed.blobfish.player.bot;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
-import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

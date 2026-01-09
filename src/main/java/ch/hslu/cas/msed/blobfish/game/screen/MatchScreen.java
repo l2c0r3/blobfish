@@ -12,13 +12,13 @@ import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
 import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
 
 public class MatchScreen {
-    OutputWriter writer;
+    private final OutputWriter writer;
 
-    ChessBoard chessboard;
-    AbstractPlayer white;
-    AbstractPlayer black;
-    AbstractPlayer currentPlayer;
-    ChessBoardRenderer chessBoardRenderer = new ChessBoardRenderer();
+    private final AbstractPlayer white;
+    private final AbstractPlayer black;
+    private final ChessBoardRenderer chessBoardRenderer = new ChessBoardRenderer();
+    private ChessBoard chessboard;
+    private AbstractPlayer currentPlayer;
 
 
     public MatchScreen(
