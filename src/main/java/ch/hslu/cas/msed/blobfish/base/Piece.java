@@ -16,6 +16,7 @@ public record Piece(PieceType type, PlayerColor color) {
         };
     }
 
+
     public int materialPoints() {
         return this.type.getPoints();
     }
