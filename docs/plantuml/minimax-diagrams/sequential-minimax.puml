@@ -1,0 +1,43 @@
+@startuml
+start
+
+:call Minimax(position, depth, playerColor, history);
+
+if (depth <= 0 OR isGameOver()?) then (yes)
+  :evaluate position;
+  :return new MoveNode(eval, history);
+  stop
+
+else (no)
+    if (playerColor == WHITE?) then (yes)
+      :bestValue = -infinity;
+      :isMaximizing = true;
+    else (no)
+      :bestValue = +infinity;
+      :isMaximizing = false;
+    endif
+
+    :nextPlayerColor = invert(playerColor);
+
+    :bestNode = new MoveNode(bestValue, history);
+
+    repeat
+      :get next legal move;
+      :newPosition = doMove(move);
+      :newHistory = history + move;
+
+      :nextNode = call Minimax(newPosition, depth - 1, nextPlayerColor, newHistory);
+
+      if (isMaximizing?) then (yes)
+        :bestNode = max(nextNode, bestNode);
+      else (no)
+        :bestNode = min(nextNode, bestNode);
+      endif
+    repeat while (more legal moves?)
+
+    :return bestNode;
+    stop
+
+endif
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+start
+
+:call Minimax(position, depth, playerColor, history);
+
+if (depth <= 0 OR isGameOver()?) then (yes)
+  :evaluate position;
+  :return new MoveNode(eval, history);
+  stop
+else (no)
+
+    :determine nodeComparator;
+    note
+    playerColor WHITE  -> maximize eval
+    playerColor BLACK  -> minimize eval
+    Always prefer shorter history
+    end note
+
+    :nextPlayerColor = invert(playerColor);
+
+    repeat
+        :get next legal move;
+        :newPosition = doMove(move);
+        :newHistory = history + move;
+        :new Minimax(newPosition, depth - 1, nextPlayerColor, newHistory);
+        note left
+        creates minimax subtask which
+        gets executed in the fork
+        end note
+    repeat while (has legal moves?)
+
+    fork
+        :execute subtask (1..n);
+    end fork
+    :join all subtasks;
+
+    :collect all MoveNodes from subtasks;
+
+    :select best MoveNode using nodeComparator;
+
+    :return selected MoveNode;
+    stop
+
+endif
+
+
+
+@enduml

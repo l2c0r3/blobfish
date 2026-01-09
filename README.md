@@ -40,3 +40,18 @@ java -jar target/blobfish-1.0.0-SNAPSHOT.jar
 </div>
 
 Generated class diagrams are stored in  `docs/generated-diagrams/`. A class diagram is available for each package.
+
+### General MiniMax algorithm
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+    <img src="docs/generated-diagrams/general-minimax.svg" alt="general minimax algorithm" style="height: auto; width: 500px;"/>
+</div>
+
+### Our sequential MiniMax algorithm implementation
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+    <img src="docs/generated-diagrams/sequential-minimax.svg" alt="sequential minimax algorithm implementation" style="height: auto; width: 500px;"/>
+</div>
+
+### Our fork-join parallel MiniMax algorithm implementation
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+    <img src="docs/generated-diagrams/forkjoin-minimax.svg" alt="fork-join minimax algorithm implementation" style="height: auto; width: 500px;"/>
+</div>
