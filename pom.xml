@@ -180,6 +180,10 @@
                 <configuration>
                     <sources>
                         <directory>${project.build.directory}/generated-diagrams/</directory>
+                        <directory>${basedir}/docs/plantuml/</directory>
+                        <includes>
+                            <include>**/*.puml</include>
+                        </includes>
                     </sources>
                     <outputDirectory>${project.build.directory}/generated-diagrams/</outputDirectory>
                     <formats>
@@ -189,7 +193,7 @@
                 </configuration>
             </plugin>
 
-            <!-- copy diagramms to doc folder -->
+            <!-- copy diagrams to doc folder -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
