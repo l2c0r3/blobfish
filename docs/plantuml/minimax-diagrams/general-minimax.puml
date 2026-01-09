@@ -5,24 +5,24 @@ start
 
 if (terminal node OR depth == 0?) then (yes)
   :evaluate node;
-  :return score;
+  :return evaluation;
   stop
-endif
-
-if (isMaximizing?) then (yes)
-  :bestValue = -infinity;
-  repeat
-    :generate child;
-    :value = Minimax(child, depth-1, !isMaximizing);
-    :bestValue = max(bestValue, value);
-  repeat while (More children?)
 else (no)
-  :bestValue = +infinity;
-  repeat
-    :generate child;
-    :value = Minimax(child, depth-1, !isMaximizing);
-    :bestValue = min(bestValue, value);
-  repeat while (More children?)
+    if (isMaximizing?) then (yes)
+      :bestValue = -infinity;
+      repeat
+        :generate child node;
+        :value = Minimax(child, depth-1, !isMaximizing);
+        :bestValue = max(bestValue, value);
+      repeat while (More children?)
+    else (no)
+      :bestValue = +infinity;
+      repeat
+        :generate child node;
+        :value = Minimax(child, depth-1, !isMaximizing);
+        :bestValue = min(bestValue, value);
+      repeat while (More children?)
+    endif
 endif
 
 :return bestValue;
