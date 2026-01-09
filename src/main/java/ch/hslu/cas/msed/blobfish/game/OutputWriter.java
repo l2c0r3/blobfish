@@ -3,7 +3,7 @@ package ch.hslu.cas.msed.blobfish.game;
 import org.jline.terminal.Terminal;
 
 public class OutputWriter {
-    Terminal terminal;
+    private final Terminal terminal;
 
     public OutputWriter(Terminal terminal) {
         this.terminal = terminal;
