@@ -15,10 +15,13 @@ import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.stream.Collectors;
 
-public class BotPlayerFactory {
+public final class BotPlayerFactory {
 
     private static final Map<String, BotPlayerProvider<? extends BotAlgorithm>> BOT_PLAYERS;
     private static final Map<String, BotAlgorithmProvider> ALGORITHMS;
+
+    private BotPlayerFactory() {
+    }
 
     static {
         BOT_PLAYERS = ServiceLoader.load(BotPlayerProvider.class)
@@ -28,7 +31,11 @@ public class BotPlayerFactory {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toMap(
                         BotPlayerProvider::getBotName,
-                        p -> p
+                        p -> p,
+                        (existing, _) -> {
+                            throw new IllegalStateException(
+                                    "Duplicate BotPlayerProvider for name: " + existing.getBotName());
+                        }
                 ));
 
         ALGORITHMS = ServiceLoader.load(BotAlgorithmProvider.class)
@@ -36,7 +43,11 @@ public class BotPlayerFactory {
                 .map(ServiceLoader.Provider::get)
                 .collect(Collectors.toMap(
                         BotAlgorithmProvider::getAlgorithmName,
-                        p -> p
+                        p -> p,
+                        (existing, _) -> {
+                            throw new IllegalStateException(
+                                    "Duplicate BotAlgorithmProvider for name: " + existing.getAlgorithmName());
+                        }
                 ));
     }
 
