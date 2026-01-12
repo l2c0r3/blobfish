@@ -73,6 +73,8 @@ class PerformanceTest {
                 for (int depth = 1; depth <= maxDepth; depth++) {
                     try {
                         var miniMaxAlgoToTest = (MiniMaxAlgo) miniMaxAlgoConstructor.newInstance(depth, strategy.strategy(), positionToTest.playerToMove());
+
+                        // TODO: Calculate average and not do only one measurement
                         var measurement = MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard));
 
                         key = miniMaxAlgoToTest.getClass().getSimpleName() + " (" + strategy.description() + ")";
