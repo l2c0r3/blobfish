@@ -2,8 +2,6 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
-import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,13 +10,13 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MiniMaxSequentialTest {
+public abstract class AbstractMiniMaxTest {
 
     private static Stream<Arguments> oneMovePositionsProviderWhite() {
         return Stream.of(
-            Arguments.of(new ChessBoard("k7/8/8/3r4/8/3R4/8/K7 w - - 0 1"), "d3d5"),          // eat free rook
+                Arguments.of(new ChessBoard("k7/8/8/3r4/8/3R4/8/K7 w - - 0 1"), "d3d5"),      // eat free rook
                 Arguments.of(new ChessBoard("7k/8/5NPK/8/8/8/8/8 w - - 0 1"), "g6g7"),        // mateInOne
-                Arguments.of(new ChessBoard("6k1/1R6/2R5/8/8/8/8/K7 w - - 0 1"), "c6c8"),     // shortes mate
+                Arguments.of(new ChessBoard("6k1/1R6/2R5/8/8/8/8/K7 w - - 0 1"), "c6c8"),     // shortest mate
                 Arguments.of(new ChessBoard("8/8/8/1r2k3/8/7R/8/K7 w - - 0 1"), "h3h5"),      // checking skewer
                 Arguments.of(new ChessBoard("r5k1/8/8/8/8/p7/8/R1B1K3 w - - 0 1"), "c1a3")    // do best trade
         );
@@ -28,7 +26,7 @@ class MiniMaxSequentialTest {
     @MethodSource("oneMovePositionsProviderWhite")
     void getNextBestMove_asWhite_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
-        var testee = new MiniMaxSequential(3, new MateAwareEval(new MaterialEval()), PlayerColor.WHITE);
+        var testee = getTestee(PlayerColor.WHITE);
 
         // Act
         String result = testee.getNextBestMove(board);
@@ -50,7 +48,7 @@ class MiniMaxSequentialTest {
     @MethodSource("oneMovePositionsProviderBlack")
     void getNextBestMove_asBlack_materialStrategy_depth3_returnsExpected(ChessBoard board, String expectedNextMove) {
         // Arrange
-        var testee = new MiniMaxSequential(4, new MateAwareEval(new MaterialEval()), PlayerColor.BLACK);
+        var testee = getTestee(PlayerColor.BLACK);
 
         // Act
         String result = testee.getNextBestMove(board);
@@ -58,4 +56,7 @@ class MiniMaxSequentialTest {
         // Assert
         assertEquals(expectedNextMove, result);
     }
+
+    abstract MiniMaxAlgo getTestee(PlayerColor playerColor);
+
 }
