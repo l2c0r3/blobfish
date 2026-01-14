@@ -181,10 +181,6 @@ class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 }
 
 
-class ch.hslu.cas.msed.blobfish.player.NewTestJavaClass {
-}
-
-
 abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
 }
 
@@ -264,7 +260,6 @@ ch.hslu.cas.msed.blobfish.game.screen.MatchScreen -->  ch.hslu.cas.msed.blobfish
 ch.hslu.cas.msed.blobfish.player.AbstractPlayer *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : playerColor
 ch.hslu.cas.msed.blobfish.player.HumanPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-ch.hslu.cas.msed.blobfish.player.NewTestJavaClass -->  ch.hslu.cas.msed.blobfish.player.HumanPlayer : humanPlayer
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
