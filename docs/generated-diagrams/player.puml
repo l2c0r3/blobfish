@@ -12,6 +12,10 @@ class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 }
 
 
+class ch.hslu.cas.msed.blobfish.player.NewTestJavaClass {
+}
+
+
 abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
 }
 
@@ -74,6 +78,7 @@ class ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException {
 
 
 ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.player.NewTestJavaClass -->  ch.hslu.cas.msed.blobfish.player.HumanPlayer : humanPlayer
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo : miniMaxAlgo
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
