@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.concurrent.ForkJoinPool;
 
 public class MiniMaxParallel extends MiniMaxAlgo {
-
     public MiniMaxParallel(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }

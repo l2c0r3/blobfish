@@ -9,11 +9,11 @@ import java.util.LinkedList;
 
 
 public class MiniMaxSequential extends MiniMaxAlgo {
-
     public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
+    @Override
     public String getNextBestMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), new LinkedList<>());
 

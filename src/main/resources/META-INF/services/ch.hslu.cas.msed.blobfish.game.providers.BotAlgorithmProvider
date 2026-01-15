@@ -1,0 +1,2 @@
+ch.hslu.cas.msed.blobfish.game.providers.MiniMaxSequentialAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.providers.MiniMaxParallelAlgorithmProvider

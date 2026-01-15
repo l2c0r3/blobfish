@@ -1,5 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
+import ch.hslu.cas.msed.blobfish.ThreadLocalUtils;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer;
@@ -7,9 +8,10 @@ import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
 import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
+import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
+import com.github.bhlangonijr.chesslib.move.MoveList;
 
 public class MatchScreen {
     private final OutputWriter writer;
@@ -37,6 +39,7 @@ public class MatchScreen {
 
 
     public void start() throws GameAbortedException {
+        resetInternalBoard();
         while (!chessboard.isGameOver()) {
             if (shouldDisplayBoard(currentPlayer)) {
                 printPosition(currentPlayer.getPlayerColor());
@@ -79,5 +82,15 @@ public class MatchScreen {
         var fen = chessboard.getFen();
         var uiStr = chessBoardRenderer.render(fen, playerColor);
         writer.printlnAndFlush(uiStr);
+    }
+
+    private void resetInternalBoard() {
+        // for some reason (probably performance), the MoveList class saves the board in a ThreadLocal
+        // variable and reuses it in new instantiations. This is supposed to reset that variable before
+        // instantiating the class, to get a clean slate.
+        try {
+            ThreadLocalUtils.resetStaticThreadLocal(MoveList.class, "boardHolder");
+        } catch (ReflectiveOperationException _) {
+        }
     }
 }

@@ -5,8 +5,11 @@ import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
 
 public abstract class BotPlayer extends AbstractPlayer {
 
-    public BotPlayer(PlayerColor playerColor) {
+    protected final BotAlgorithm botAlgorithm;
+
+    public BotPlayer(PlayerColor playerColor, BotAlgorithm botAlgorithm) {
         super(playerColor);
+        this.botAlgorithm = botAlgorithm;
     }
 
 }
