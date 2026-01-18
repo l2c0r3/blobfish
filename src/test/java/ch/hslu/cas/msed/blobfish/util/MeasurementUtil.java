@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish.util;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class MeasurementUtil {
@@ -22,5 +23,13 @@ public class MeasurementUtil {
         var endTime = System.nanoTime();
         var duration = Duration.ofNanos(endTime - startTime);
         return new MeasurementResult<>(duration, result);
+    }
+
+    public static Duration calcAverageDuration(List<MeasurementResult<String>> measurements) {
+        Duration total = measurements.stream()
+                .map(MeasurementUtil.MeasurementResult::duration)
+                .reduce(Duration.ZERO, Duration::plus);
+
+        return total.dividedBy(measurements.size());
     }
 }

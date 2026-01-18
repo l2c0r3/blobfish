@@ -10,9 +10,8 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.lang3.text.WordUtils;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.apache.commons.text.WordUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,12 +21,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class PerformanceTest {
+
+    @FunctionalInterface
+    private interface MiniMaxAlgoConstructor {
+        MiniMaxAlgo create(int depth, EvalStrategy strategy, PlayerColor playerToMove);
+    }
 
     private record PossibleStrategy(EvalStrategy strategy, String description) {
     }
@@ -59,37 +63,35 @@ class PerformanceTest {
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
-    @Execution(ExecutionMode.CONCURRENT)
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 2;
+        var maxDepth = 5;
+        var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
 
-        HashMap<String, List<MeasurementOfDepth>> results = new HashMap<>();
+        Map<String, List<MeasurementOfDepth>> results = new HashMap<>();
 
-        getAllMiniMaxClasses().forEach(miniMaxAlgoConstructor -> {
-            possibleStrategies.forEach(strategy -> {
-                String key = null;
-                List<MeasurementOfDepth> measurements = new ArrayList<>();
-                for (int depth = 1; depth <= maxDepth; depth++) {
-                    try {
-                        var miniMaxAlgoToTest = (MiniMaxAlgo) miniMaxAlgoConstructor.newInstance(depth, strategy.strategy(), positionToTest.playerToMove());
+        getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
+                possibleStrategies.forEach(strategy ->
+                        IntStream.range(1, maxDepth + 1).forEach(depth -> {
+                            var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
+                            var key = miniMaxAlgoToTest.getClass().getSimpleName() + " (" + strategy.description() + ")";
 
-                        // TODO: Calculate median/average or something and not do only one measurement
-                        var measurement = MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard));
+                            // do multiple measurements and calculate the average
+                            var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
+                                    MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
+                            ).toList();
 
-                        key = miniMaxAlgoToTest.getClass().getSimpleName() + " (" + strategy.description() + ")";
-                        measurements.add(new MeasurementOfDepth(measurement, depth));
+                            assertSameMovesAcrossMeasurements(measurements);
+                            var averageDuration = MeasurementUtil.calcAverageDuration(measurements);
+                            var measurementResult = new MeasurementUtil.MeasurementResult<>(averageDuration, measurements.getFirst().result());
 
-                        // TODO: compare moves from algorithms to make sure they deliver the same moves
+                            results.putIfAbsent(key, new ArrayList<>());
+                            results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
+                        })
+                )
+        );
 
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-                results.put(key, measurements);
-            });
-        });
+        assertSameMovesAcrossAlgorithms(results);
 
         printResultFile(positionToTest, results);
     }
@@ -105,11 +107,11 @@ class PerformanceTest {
      * (Mate aware material evaluation)
      *
      */
-    private void printResultFile(PositionToTest positionToTest, HashMap<String, List<MeasurementOfDepth>> results) {
+    private void printResultFile(PositionToTest positionToTest, Map<String, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
-        List<String> depths = results.values()
+        List<String> depthHeaders = results.values()
                 .stream()
-                .findFirst()
+                .max(Comparator.comparingInt(List::size))
                 .orElse(List.of())
                 .stream()
                 .map(m -> m.depth)
@@ -117,7 +119,7 @@ class PerformanceTest {
                 .toList();
 
         var headers = new ArrayList<>(List.of(positionToTest.fen()));
-        headers.addAll(depths);
+        headers.addAll(depthHeaders);
 
         var fileName = getFileNameOfPosition(positionToTest);
         File file = new File(fileName + ".csv");
@@ -161,7 +163,45 @@ class PerformanceTest {
         return WordUtils.capitalizeFully(position.description()).replaceAll(" ", "");
     }
 
-    private static List<? extends Constructor<?>> getAllMiniMaxClasses() {
+    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<String>> measurements) {
+        long distinctMoves = measurements.stream()
+                .map(MeasurementUtil.MeasurementResult::result)
+                .distinct()
+                .count();
+
+        Assertions.assertEquals(1, distinctMoves, "Moves of the repeating executions do not match.");
+    }
+
+    private static void assertSameMovesAcrossAlgorithms(Map<String, List<MeasurementOfDepth>> measurements) {
+        var byDepth = measurements.entrySet().stream()
+                .flatMap(entry -> entry.getValue().stream()
+                        .map(m -> new AbstractMap.SimpleEntry<>(
+                                m.depth(),
+                                Map.entry(entry.getKey(), m.measurementResult().result())
+                        ))
+                )
+                .collect(Collectors.groupingBy(
+                        Map.Entry::getKey, // depth
+                        Collectors.toMap(
+                                e -> e.getValue().getKey(),   // algorithm
+                                e -> e.getValue().getValue()  // result
+                        )
+                ));
+
+        byDepth.forEach((depth, depthEntry) -> {
+            var moveCount = depthEntry.values().stream().distinct().count();
+
+            if (moveCount > 1) {
+                var mismatchDetail = depthEntry.entrySet().stream()
+                        .map(e -> e.getKey() + "=" + e.getValue())
+                        .collect(Collectors.joining(System.lineSeparator()));
+
+                Assertions.fail(String.format("Algorithms return different moves at depth %s: %s%s", depth, System.lineSeparator(), mismatchDetail));
+            }
+        });
+    }
+
+    private static List<MiniMaxAlgoConstructor> getAllMiniMaxConstructors() {
         Class<?> base = MiniMaxAlgo.class;
 
         try (ScanResult scan = new ClassGraph()
@@ -170,9 +210,14 @@ class PerformanceTest {
                 .scan()) {
 
             return scan.getSubclasses(base.getName()).loadClasses()
-                    .stream().map(a -> {
+                    .stream().map(clazz -> {
                         try {
-                            return a.getDeclaredConstructor(int.class, EvalStrategy.class, PlayerColor.class);
+                            var constructor = clazz.getDeclaredConstructor(int.class, EvalStrategy.class, PlayerColor.class);
+                            return (MiniMaxAlgoConstructor) (
+                                    int depth,
+                                    EvalStrategy strategy,
+                                    PlayerColor playerToMove
+                            ) -> instantiateAlgorithm(constructor, depth, strategy, playerToMove);
                         } catch (NoSuchMethodException e) {
                             throw new RuntimeException(e);
                         }
@@ -180,5 +225,16 @@ class PerformanceTest {
         }
     }
 
-
+    private static MiniMaxAlgo instantiateAlgorithm(
+            Constructor<?> constructor,
+            int depth,
+            EvalStrategy strategy,
+            PlayerColor playerToMove
+    ) {
+        try {
+            return (MiniMaxAlgo) constructor.newInstance(depth, strategy, playerToMove);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
