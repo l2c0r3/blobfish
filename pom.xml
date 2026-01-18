@@ -188,25 +188,32 @@
                 <version>0.2.14</version>
                 <executions>
                     <execution>
+                        <id>diagrams-docs</id>
                         <phase>process-classes</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
+                        <goals><goal>generate</goal></goals>
+                        <configuration>
+                            <sources>
+                                <directory>${basedir}/docs/plantuml</directory>
+                            </sources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>diagrams-generated</id>
+                        <phase>process-classes</phase>
+                        <goals><goal>generate</goal></goals>
+                        <configuration>
+                            <sources>
+                                <directory>${project.build.directory}/generated-diagrams</directory>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <sources>
-                        <directory>${project.build.directory}/generated-diagrams/</directory>
-                        <directory>${basedir}/docs/plantuml/</directory>
-                        <includes>
-                            <include>**/*.puml</include>
-                        </includes>
-                    </sources>
                     <outputDirectory>${project.build.directory}/generated-diagrams/</outputDirectory>
                     <formats>
                         <format>svg</format>
                     </formats>
-                    <preserveDirectoryStructure>false</preserveDirectoryStructure>
                 </configuration>
             </plugin>
 

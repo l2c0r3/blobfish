@@ -1,9 +1,15 @@
-### forkjoin-minimax
-![forkjoin-minimax](forkjoin-minimax.svg)
+### base
+![base](base.svg)
 
-### general-minimax
-![general-minimax](general-minimax.svg)
+### board
+![board](board.svg)
 
-### sequential-minimax
-![sequential-minimax](sequential-minimax.svg)
+### game
+![game](game.svg)
+
+### overview
+![overview](overview.svg)
+
+### player
+![player](player.svg)
 
