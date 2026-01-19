@@ -36,7 +36,7 @@ class AnsiiFieldRendererTest {
                 Arguments.of(new UiField(new Piece(PieceType.ROOK, PlayerColor.WHITE), SquareColor.DARK), '♜', DARK_BG, WHITE_PIECE),
                 Arguments.of(new UiField(new Piece(PieceType.BISHOP, PlayerColor.BLACK), SquareColor.LIGHT), '♝', LIGHT_BG, BLACK_PIECE),
                 Arguments.of(new UiField(new Piece(PieceType.KNIGHT, PlayerColor.WHITE), SquareColor.LIGHT), '♞', LIGHT_BG, WHITE_PIECE),
-                Arguments.of(new UiField(new Piece(PieceType.PAWN, PlayerColor.BLACK), SquareColor.DARK), '♟', DARK_BG, BLACK_PIECE)
+                Arguments.of(new UiField(new Piece(PieceType.PAWN, PlayerColor.BLACK), SquareColor.DARK), '♙', DARK_BG, BLACK_PIECE)
         );
     }
 }
