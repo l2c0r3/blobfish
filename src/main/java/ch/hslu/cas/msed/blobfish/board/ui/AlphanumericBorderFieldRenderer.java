@@ -11,8 +11,8 @@ public class AlphanumericBorderFieldRenderer implements BorderFieldRenderer {
     public static final String PLACEHOLDER_COLOR = "\u001B[38;5;0m";
     public static final char PLACEHOLDER_CHARACTER = '0';
 
-    // the uneven spaces are the only way I could at least kind of align the letters to the fields
-    public static final String ROW_STRING_WHITE = " A   B  C   D   E   F  G   H ";
+    // this only works with monospace fonts
+    public static final String ROW_STRING_WHITE = " A  B  C  D  E  F  G  H ";
 
     @Override
     public String renderRow(PlayerColor perspective) {

@@ -30,6 +30,7 @@ class AnsiiFieldRenderer implements FieldRenderer {
     private static String renderEmptyField(SquareColor color) {
         var backgroundColor = getBackgroundColor(color);
         var placeholderCharacter = getCharacterOfPieceType(PieceType.PAWN);
+        // this is a trick for non-monospace fonts, to still align the board
         var invisiblePawn = switch (color) {
             case LIGHT -> INVISIBLE_LIGHT_PIECE;
             case DARK -> INVISIBLE_DARK_PIECE;
@@ -62,7 +63,7 @@ class AnsiiFieldRenderer implements FieldRenderer {
             case ROOK -> '♜';
             case BISHOP -> '♝';
             case KNIGHT -> '♞';
-            case PAWN -> '♟';
+            case PAWN -> '♙';
         };
     }
 }
