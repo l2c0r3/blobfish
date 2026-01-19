@@ -1,10 +1,11 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
@@ -12,6 +13,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -69,6 +71,7 @@ class PerformanceTest {
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
+    @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
         var maxDepth = 4;
         var numberOfMeasurements = 10;
