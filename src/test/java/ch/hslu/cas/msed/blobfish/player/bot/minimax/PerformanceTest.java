@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -145,7 +146,7 @@ class PerformanceTest {
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
                             .map(MeasurementUtil.MeasurementResult::duration)
-                            .map(d -> d.getNano() + " ns")
+                            .map(d -> d.toMillis() + " ms")
                             .forEach(m -> {
                                 try {
                                     printer.print(m);
