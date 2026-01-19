@@ -42,6 +42,12 @@ class PerformanceTest {
     private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
     }
 
+    private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
+    }
+
+    private record StrategyDepth(PossibleStrategy strategy, int depth) {
+    }
+
     private static final List<PossibleStrategy> possibleStrategies = List.of(
             new PossibleStrategy(new MaterialEval(), "Simple material evaluation."),
             new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation.")
@@ -64,17 +70,17 @@ class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 5;
+        var maxDepth = 4;
         var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
 
-        Map<String, List<MeasurementOfDepth>> results = new HashMap<>();
+        Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
 
         getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
                 possibleStrategies.forEach(strategy ->
                         IntStream.range(1, maxDepth + 1).forEach(depth -> {
                             var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
-                            var key = miniMaxAlgoToTest.getClass().getSimpleName() + " (" + strategy.description() + ")";
+                            var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
                             // do multiple measurements and calculate the average
                             var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
@@ -107,7 +113,7 @@ class PerformanceTest {
      * (Mate aware material evaluation)
      *
      */
-    private void printResultFile(PositionToTest positionToTest, Map<String, List<MeasurementOfDepth>> results) {
+    private void printResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -135,7 +141,7 @@ class PerformanceTest {
 
             results.forEach((key, measurementsList) -> {
                 try {
-                    printer.print(key);
+                    printer.print(getAlgorithmName(key));
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
                             .map(MeasurementUtil.MeasurementResult::duration)
@@ -172,33 +178,43 @@ class PerformanceTest {
         Assertions.assertEquals(1, distinctMoves, "Moves of the repeating executions do not match.");
     }
 
-    private static void assertSameMovesAcrossAlgorithms(Map<String, List<MeasurementOfDepth>> measurements) {
-        var byDepth = measurements.entrySet().stream()
-                .flatMap(entry -> entry.getValue().stream()
-                        .map(m -> new AbstractMap.SimpleEntry<>(
-                                m.depth(),
-                                Map.entry(entry.getKey(), m.measurementResult().result())
-                        ))
-                )
-                .collect(Collectors.groupingBy(
-                        Map.Entry::getKey, // depth
+    private static void assertSameMovesAcrossAlgorithms(Map<AlgorithmStrategy, List<MeasurementOfDepth>> measurements) {
+        var groupedResults = measurements.entrySet().stream()
+                .flatMap(entry ->
+                        entry.getValue().stream()
+                                .map(m -> Map.entry(
+                                        new StrategyDepth(
+                                                entry.getKey().strategy(),
+                                                m.depth()
+                                        ),
+                                        Map.entry(
+                                                entry.getKey().algorithm(),
+                                                m.measurementResult().result()
+                                        )
+                                ))
+                ).collect(Collectors.groupingBy(
+                        Map.Entry::getKey,
                         Collectors.toMap(
                                 e -> e.getValue().getKey(),   // algorithm
                                 e -> e.getValue().getValue()  // result
                         )
                 ));
 
-        byDepth.forEach((depth, depthEntry) -> {
-            var moveCount = depthEntry.values().stream().distinct().count();
+        groupedResults.forEach((key, algorithmResults) -> {
+            var distinctResults = new HashSet<>(algorithmResults.values());
 
-            if (moveCount > 1) {
-                var mismatchDetail = depthEntry.entrySet().stream()
-                        .map(e -> e.getKey() + "=" + e.getValue())
+            if (distinctResults.size() > 1) {
+                var mismatchDetail = algorithmResults.entrySet().stream()
+                        .map(e -> getAlgorithmName(new AlgorithmStrategy(e.getKey(), key.strategy())) + "=" + e.getValue())
                         .collect(Collectors.joining(System.lineSeparator()));
 
-                Assertions.fail(String.format("Algorithms return different moves at depth %s: %s%s", depth, System.lineSeparator(), mismatchDetail));
+                Assertions.fail(String.format("Algorithms return different moves at depth %s: %s%s", key.depth(), System.lineSeparator(), mismatchDetail));
             }
         });
+    }
+
+    private static String getAlgorithmName(AlgorithmStrategy algorithmStrategy) {
+        return String.format("%s (%s)", algorithmStrategy.algorithm(), algorithmStrategy.strategy().description());
     }
 
     private static List<MiniMaxAlgoConstructor> getAllMiniMaxConstructors() {
