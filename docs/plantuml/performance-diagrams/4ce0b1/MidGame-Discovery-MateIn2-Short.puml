@@ -1,4 +1,9 @@
 @startchart
+
+title
+FEN: Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15
+end title
+
 h-axis [Depth1, Depth2, Depth3, Depth4]
 v-axis "Performance [ms]" 0 --> 800 spacing 100
 
