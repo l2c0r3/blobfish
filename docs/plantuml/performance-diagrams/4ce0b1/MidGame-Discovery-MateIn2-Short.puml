@@ -1,0 +1,12 @@
+@startchart
+h-axis [Depth1, Depth2, Depth3, Depth4]
+v-axis "Performance [ms]" 0 --> 800 spacing 100
+
+bar "MiniMaxSequential (Simple material evaluation.)"    [0.5067,17.13977,372.11125,175.4471] #ff7f0e
+bar "MiniMaxSequential (Mate aware material evaluation.)"[0.56853,16.72488,440.62792,869.24897] #d62728
+bar "MiniMaxParallel (Simple material evaluation.)"      [1.18672,4.04952,86.7893,826.06211] #1f77b4
+bar "MiniMaxParallel (Mate aware material evaluation.)"  [0.80198,4.44328,110.73506,509.7145] #2ca02c
+
+legend right
+@endchart
+
