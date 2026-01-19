@@ -36,7 +36,8 @@ java -jar target/blobfish-1.0.0-SNAPSHOT.jar
 
 # Chessboard display
 The visualisation of the chessboard is optimized for monospace fonts, 
-so the application should be run in a terminal with a monospace font (e.g. Cascadia Mono)
+so the application should be run in a terminal with a monospace font (e.g. Cascadia Mono).
+The font also needs to support Unicode symbols.
 
 
 # Overview of the implementation
