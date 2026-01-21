@@ -95,8 +95,8 @@ class PerformanceTest {
     @MethodSource(value = "positionProvider")
     @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 2;
-        var numberOfMeasurements = 1;
+        var maxDepth = 4;
+        var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
 
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
