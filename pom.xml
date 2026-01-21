@@ -26,6 +26,7 @@
         <maven-exec.version>3.6.3</maven-exec.version>
         <maven-puml.version>0.2.14</maven-puml.version>
         <plantuml-gen.version>3.0.1</plantuml-gen.version>
+        <plantuml.version>1.2026.1</plantuml.version>
     </properties>
 
     <dependencyManagement>
@@ -91,6 +92,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- for generate svgs in performance tests -->
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml</artifactId>
+            <version>${plantuml.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

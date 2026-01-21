@@ -9,6 +9,7 @@ import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
+import net.sourceforge.plantuml.*;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
@@ -18,12 +19,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -95,8 +95,8 @@ class PerformanceTest {
     @MethodSource(value = "positionProvider")
     @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 4;
-        var numberOfMeasurements = 10;
+        var maxDepth = 2;
+        var numberOfMeasurements = 1;
         var chessboard = new ChessBoard(positionToTest.fen());
 
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
@@ -125,7 +125,8 @@ class PerformanceTest {
         assertSameMovesAcrossAlgorithms(results);
 
         printResultFile(positionToTest, results);
-        printPlantUml(positionToTest, results);
+        var plantuml = printPlantUml(positionToTest, results);
+        convertPlantUmlToSvg(plantuml);
     }
 
 
@@ -138,8 +139,10 @@ class PerformanceTest {
      * MiniMaxParallel(Simple material evaluation) MiniMaxParallel
      * (Mate aware material evaluation)
      *
+     * @return
+     *
      */
-    private void printResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File printResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -189,9 +192,11 @@ class PerformanceTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        return file;
     }
 
-    private void printPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File printPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         AtomicInteger colorIndex = new AtomicInteger(0);
         var barStrings = results.keySet().stream()
                 .sorted((a1, a2) -> {
@@ -238,13 +243,36 @@ class PerformanceTest {
         """.formatted(positionToTest.fen(), hAxis, barStrings);
 
         var fileName = getFileNameOfPosition(positionToTest);
-        try (FileWriter fw = new FileWriter(fileName + ".puml")) {
+        var file = new File(fileName + ".puml");
+        try (FileWriter fw = new FileWriter(file)) {
             fw.write(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return file;
 
     }
+
+    private void convertPlantUmlToSvg(File plantuml) {
+        var fileName = plantuml.getName().replace(".puml", ".svg");
+        try (var reader = new FileReader(plantuml);
+             var writer = new FileWriter(fileName)
+        ) {
+            var content = reader.readAllAsString();
+
+            var sourceFileReader = new SourceStringReader(content);
+
+            final ByteArrayOutputStream os = new ByteArrayOutputStream();
+            sourceFileReader.outputImage(os, new FileFormatOption(FileFormat.SVG));
+            os.close();
+
+            final String svg = os.toString(StandardCharsets.UTF_8);
+            writer.write(svg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private String getFileNameOfPosition(PositionToTest position) {
         return WordUtils.capitalizeFully(position.description()).replaceAll(" ", "");
