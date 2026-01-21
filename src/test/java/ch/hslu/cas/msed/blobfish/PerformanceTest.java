@@ -21,10 +21,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -69,6 +71,25 @@ class PerformanceTest {
         );
     }
 
+    private static final List<String> diagramColors = List.of(
+    "#1F77B4", // Blau
+            "#FF7F0E", //Orange
+            "#2CA02C", // Grün
+            "#D62728", // Rot
+            "#9467BD", // Lila
+            "#8C564B", // Braun
+            "#E377C2", // Pink
+            "#7F7F7F", // Grau
+            "#BCBD22", // Oliv
+            "#17BECF", // Türkis
+            "#AEC7E8", // Hellblau
+            "#FFBB78", // Hellorange
+            "#98DF8A", // Hellgrün
+            "#FF9896", // Hellrot
+            "#C5B0D5", // Helllila
+            "#9EDAE5" // Helltürkis
+    );
+
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
@@ -104,6 +125,7 @@ class PerformanceTest {
         assertSameMovesAcrossAlgorithms(results);
 
         printResultFile(positionToTest, results);
+        printPlantUml(positionToTest, results);
     }
 
 
@@ -167,6 +189,61 @@ class PerformanceTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void printPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+        AtomicInteger colorIndex = new AtomicInteger(0);
+        var barStrings = results.keySet().stream()
+                .sorted((a1, a2) -> {
+                    var nameA1 = getAlgorithmName(a1);
+                    var nameA2 = getAlgorithmName(a2);
+                    return String.CASE_INSENSITIVE_ORDER.reversed().compare(nameA1, nameA2);
+                })
+                .map(k -> {
+                    var algorithmName = getAlgorithmName(k);
+                    var messurements = results.get(k).stream()
+                            .map(m -> m.measurementResult().duration().toMillis() + "")
+                            .collect(Collectors.joining(","));
+                    var colorI = colorIndex.getAndIncrement();
+                    if (colorI > diagramColors.size()) {
+                        throw new RuntimeException("color out of bounds");
+                    }
+                    return "bar \"" + algorithmName + "\"" + "[ " +  messurements + " ] " + diagramColors.get(colorI) + "\n";
+                })
+                .collect(Collectors.joining());
+
+        var hAxis = "[";
+        for (int i = 1; i <= results.entrySet().iterator().next().getValue().size() ; i++) {
+            hAxis += "Depth" + i;
+            if (i != results.entrySet().iterator().next().getValue().size()) {
+                hAxis += ",";
+            }
+        }
+        hAxis += "]";
+
+        var content = """
+        @startchart
+        
+        title
+        FEN: %s
+        end title
+        
+        h-axis %s
+        v-axis "Performance [ms]" 0 --> 800 spacing 100
+        
+        %s
+        
+        legend right
+        @endchart
+        """.formatted(positionToTest.fen(), hAxis, barStrings);
+
+        var fileName = getFileNameOfPosition(positionToTest);
+        try (FileWriter fw = new FileWriter(fileName + ".puml")) {
+            fw.write(content);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private String getFileNameOfPosition(PositionToTest position) {
