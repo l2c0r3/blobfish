@@ -22,7 +22,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.*;
@@ -114,6 +113,9 @@ class PerformanceTest {
 
                             assertSameMovesAcrossMeasurements(measurements);
                             var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
+
+                            saveRawMeasurements(positionToTest, strategy, depth, durationList);
+
                             var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
                             var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
 
@@ -128,6 +130,25 @@ class PerformanceTest {
         printResultFile(positionToTest, results);
         var plantuml = printPlantUml(positionToTest, results);
         convertPlantUmlToSvg(plantuml);
+    }
+
+    private void saveRawMeasurements(PositionToTest positionToTest, PossibleStrategy strategy, int depth, List<Duration> durationList) {
+        var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
+        var stratCon = WordUtils.capitalizeFully(strategy.description()).replaceAll(" ", "");
+        var fileName = posCon + "_" + stratCon + "_depth_" + depth + ".csv";
+
+        try (FileWriter writer = new FileWriter(new File(fileName))) {
+            durationList.forEach(duration -> {
+                try {
+                    writer.write(duration.toMillis() + "\n");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
