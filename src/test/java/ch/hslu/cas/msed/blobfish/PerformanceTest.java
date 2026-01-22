@@ -94,8 +94,8 @@ class PerformanceTest {
     @MethodSource(value = "positionProvider")
     @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 4;
-        var numberOfMeasurements = 10;
+        var maxDepth = 3;
+        var numberOfMeasurements = 1;
         var chessboard = new ChessBoard(positionToTest.fen());
 
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
@@ -229,7 +229,15 @@ class PerformanceTest {
                 .map(k -> {
                     var algorithmName = getAlgorithmName(k);
                     var messurements = results.get(k).stream()
-                            .map(m -> m.measurementResult().duration().toMillis() + "")
+                            .map(m -> m.measurementResult().duration().toMillis())
+                            .map(m -> {
+                                if (m == 0) {
+                                    return 0.00001; // heigh = 0 in diagram is not possible in plantuml
+                                } else {
+                                    return m;
+                                }
+                            })
+                            .map(m -> m + "")
                             .collect(Collectors.joining(","));
                     var colorI = colorIndex.getAndIncrement();
                     if (colorI > diagramColors.size()) {
