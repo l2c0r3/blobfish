@@ -53,8 +53,8 @@ class PerformanceTest {
     }
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
-            new PossibleStrategy(new MaterialEval(), "Simple material evaluation."),
-            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation.")
+            new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
+            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation")
     );
 
     private static Stream<Arguments> positionProvider() {
