@@ -113,8 +113,9 @@ class PerformanceTest {
                             ).toList();
 
                             assertSameMovesAcrossMeasurements(measurements);
-                            var averageDuration = MeasurementUtil.calcAverageDuration(measurements);
-                            var measurementResult = new MeasurementUtil.MeasurementResult<>(averageDuration, measurements.getFirst().result());
+                            var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
+                            var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
+                            var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
 
                             results.putIfAbsent(key, new ArrayList<>());
                             results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
