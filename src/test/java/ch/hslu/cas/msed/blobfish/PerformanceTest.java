@@ -114,7 +114,7 @@ class PerformanceTest {
                             assertSameMovesAcrossMeasurements(measurements);
                             var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
 
-                            saveRawMeasurements(positionToTest, strategy, depth, durationList);
+                            saveRawMeasurements(positionToTest, key, depth, durationList);
 
                             var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
                             var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
@@ -132,12 +132,13 @@ class PerformanceTest {
         convertPlantUmlToSvg(plantuml);
     }
 
-    private void saveRawMeasurements(PositionToTest positionToTest, PossibleStrategy strategy, int depth, List<Duration> durationList) {
+    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList) {
         var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
-        var stratCon = WordUtils.capitalizeFully(strategy.description()).replaceAll(" ", "");
-        var fileName = posCon + "_" + stratCon + "_depth_" + depth + ".csv";
+        var algo = WordUtils.capitalizeFully(algorithmStrategy.algorithm()).replaceAll(" ", "");
+        var stratCon = WordUtils.capitalizeFully(algorithmStrategy.strategy().description()).replaceAll(" ", "");
+        var fileName = posCon + "_" + algo + "_" +stratCon + "_depth_" + depth + ".csv";
 
-        try (FileWriter writer = new FileWriter(new File(fileName))) {
+        try (FileWriter writer = new FileWriter(fileName)) {
             durationList.forEach(duration -> {
                 try {
                     writer.write(duration.toMillis() + "\n");
