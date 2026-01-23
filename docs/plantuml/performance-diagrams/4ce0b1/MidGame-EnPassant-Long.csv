@@ -1,5 +1,0 @@
-rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Depth 1;Depth 2;Depth 3;Depth 4
-MiniMaxParallel (Simple material evaluation.);1352790 ns;6274220 ns;195855540 ns;624179960 ns
-MiniMaxSequential (Simple material evaluation.);1003080 ns;21458910 ns;818808630 ns;124669260 ns
-MiniMaxParallel (Mate aware material evaluation.);1090490 ns;6395510 ns;250769100 ns;99269050 ns
-MiniMaxSequential (Mate aware material evaluation.);980200 ns;24912850 ns;969350300 ns;950597360 ns

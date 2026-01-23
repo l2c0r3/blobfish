@@ -1,0 +1,17 @@
+@startchart
+
+title
+FEN: 5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31
+end title
+
+h-axis [Depth1,Depth2,Depth3,Depth4]
+v-axis "Performance [ms]" 0 --> 800 spacing 100
+
+bar "MiniMaxSequential (Simple material evaluation)"[ 1.0E-5,11,376,13900 ] #1F77B4
+bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,13,458,16919 ] #FF7F0E
+bar "MiniMaxParallel (Simple material evaluation)"[ 1.0E-5,16,51,1828 ] #2CA02C
+bar "MiniMaxParallel (Mate aware material evaluation)"[ 1.0E-5,1,46,2121 ] #D62728
+
+
+legend right
+@endchart
