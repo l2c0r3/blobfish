@@ -8,7 +8,13 @@ Nachfolgend haben wir
 
 ## PC Setup
 
+Die Messungen wurden mit folgendem PC druchgeführt:
 
+- Betriebssystem: Microsoft Windows 11 Pro, Version 10.0.26200 (Build 26200)
+- CPU: Intel Core i7-13700KF (13th Gen), 3.40 GHz, 16 Kerne / 24 Threads
+- Mainboard: ASUS ROG STRIX Z790-F GAMING WIFI (ASUSTeK)
+- RAM: 32GB
+- GPU: AMD Radeon RX 9070
 
 
 ## Results
@@ -48,7 +54,11 @@ durchgeführt. Die Rohdaten von den Ergebnissen findet ihr hier: [measurements/7
 
 ![EndGame-Deflection-Short.png](measurements/71edae9/endGameDeflection/EndGame-Deflection-Short.png)
 
+**Vergleich aller Posistion mit einer tiefe von vier:**
+
+![depth4_allPos.png](measurements/71edae9/depth4_allPos.png)
+
 ## Execute the Performance Test with your own PC
 
-The P
-[PerformanceTest.java](../../../src/test/java/ch/hslu/cas/msed/blobfish/PerformanceTest.java)
+Der Performance Test ist in der Klasse [PerformanceTest.java](../../src/test/java/ch/hslu/cas/msed/blobfish/PerformanceTest.java)
+niedergeschrieben. 
