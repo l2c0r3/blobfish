@@ -265,7 +265,7 @@ class PerformanceTest {
         end title
         
         h-axis %s
-        v-axis "Performance [ms]" 0 --> 800 spacing 100
+        v-axis "Calculation time [ms]" 0 --> 800 spacing 100
         
         %s
         

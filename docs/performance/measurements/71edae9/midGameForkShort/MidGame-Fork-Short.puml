@@ -5,7 +5,7 @@ FEN: r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11
 end title
 
 h-axis [Depth1,Depth2,Depth3,Depth4]
-v-axis "Performance [ms]" 0 --> 800 spacing 100
+v-axis "Calculation time [ms]" 0 --> 42000 spacing 2000
 
 bar "MiniMaxSequential (Simple material evaluation)"[ 1.0E-5,19,910,35243 ] #1F77B4
 bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,23,1084,42137 ] #FF7F0E
