@@ -9,12 +9,14 @@ import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
-import net.sourceforge.plantuml.*;
+import net.sourceforge.plantuml.FileFormat;
+import net.sourceforge.plantuml.FileFormatOption;
+import net.sourceforge.plantuml.SourceStringReader;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -26,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,8 +36,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
+@Tag(value = "performance")
 class PerformanceTest {
 
     private final File rootFolderForMeasurements = createMeasurementFolder();
@@ -101,7 +101,6 @@ class PerformanceTest {
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
-    @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
         var maxDepth = 4;
         var numberOfMeasurements = 10;
