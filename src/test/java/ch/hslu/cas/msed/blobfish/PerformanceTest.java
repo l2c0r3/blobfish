@@ -23,14 +23,23 @@ import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
 class PerformanceTest {
+
+    private final File rootFolderForMeasurements = createMeasurementFolder();
 
     @FunctionalInterface
     private interface MiniMaxAlgoConstructor {
@@ -94,15 +103,19 @@ class PerformanceTest {
     @MethodSource(value = "positionProvider")
     @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 4;
-        var numberOfMeasurements = 10;
+        var maxDepth = 2;
+        var numberOfMeasurements = 3;
         var chessboard = new ChessBoard(positionToTest.fen());
+        var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
+        folderToSaveMeasurements.mkdirs();
 
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
 
         getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
                 possibleStrategies.forEach(strategy ->
                         IntStream.range(1, maxDepth + 1).forEach(depth -> {
+
+
                             var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
                             var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
@@ -114,7 +127,7 @@ class PerformanceTest {
                             assertSameMovesAcrossMeasurements(measurements);
                             var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
 
-                            saveRawMeasurements(positionToTest, key, depth, durationList);
+                            saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
 
                             var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
                             var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
@@ -127,18 +140,25 @@ class PerformanceTest {
 
         assertSameMovesAcrossAlgorithms(results);
 
-        printResultFile(positionToTest, results);
-        var plantuml = printPlantUml(positionToTest, results);
-        convertPlantUmlToSvg(plantuml);
+        var fileName = getFileNameOfPosition(positionToTest);
+        var resultFile = createResultFile(positionToTest, results);
+        var plantuml = createPlantUml(positionToTest, results);
+        var svg = convertPlantUmlToSvg(plantuml);
+        try {
+            Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(plantuml.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(svg.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList) {
+    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList, File folderToSave) {
         var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
         var algo = WordUtils.capitalizeFully(algorithmStrategy.algorithm()).replaceAll(" ", "");
         var stratCon = WordUtils.capitalizeFully(algorithmStrategy.strategy().description()).replaceAll(" ", "");
-        var fileName = posCon + "_" + algo + "_" +stratCon + "_depth_" + depth + ".csv";
-
-        try (FileWriter writer = new FileWriter(fileName)) {
+        var fileName = posCon + "_" + algo + "_" +stratCon + "_depth_" + depth + "_raw.txt";
+        try (FileWriter writer = new FileWriter(folderToSave + File.separator + fileName)) {
             durationList.forEach(duration -> {
                 try {
                     writer.write(duration.toMillis() + "\n");
@@ -165,7 +185,7 @@ class PerformanceTest {
      * @return
      *
      */
-    private File printResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -179,10 +199,8 @@ class PerformanceTest {
         var headers = new ArrayList<>(List.of(positionToTest.fen()));
         headers.addAll(depthHeaders);
 
-        var fileName = getFileNameOfPosition(positionToTest);
-        File file = new File(fileName + ".csv");
-
-        try (CSVPrinter printer = new CSVPrinter(new FileWriter(file), CSVFormat.DEFAULT.builder()
+        var resultFile = createTmpFile("resultFile", "csv");
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(resultFile), CSVFormat.DEFAULT.builder()
                 .setDelimiter(';')
                 .setTrailingDelimiter(false)
                 .setIgnoreSurroundingSpaces(true)
@@ -216,10 +234,10 @@ class PerformanceTest {
             throw new RuntimeException(e);
         }
 
-        return file;
+        return resultFile;
     }
 
-    private File printPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File createPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         AtomicInteger colorIndex = new AtomicInteger(0);
         var barStrings = results.keySet().stream()
                 .sorted((a1, a2) -> {
@@ -273,21 +291,20 @@ class PerformanceTest {
         @endchart
         """.formatted(positionToTest.fen(), hAxis, barStrings);
 
-        var fileName = getFileNameOfPosition(positionToTest);
-        var file = new File(fileName + ".puml");
-        try (FileWriter fw = new FileWriter(file)) {
+        var tmpFile = createTmpFile("resultFile", "csv");
+        try (FileWriter fw = new FileWriter(tmpFile)) {
             fw.write(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return file;
+        return tmpFile;
 
     }
 
-    private void convertPlantUmlToSvg(File plantuml) {
-        var fileName = plantuml.getName().replace(".puml", ".svg");
+    private File convertPlantUmlToSvg(File plantuml) {
+        var tmpFile = createTmpFile("plant2Svg", "svg");
         try (var reader = new FileReader(plantuml);
-             var writer = new FileWriter(fileName)
+             var writer = new FileWriter(tmpFile)
         ) {
             var content = reader.readAllAsString();
 
@@ -302,11 +319,36 @@ class PerformanceTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return tmpFile;
     }
 
 
     private String getFileNameOfPosition(PositionToTest position) {
         return WordUtils.capitalizeFully(position.description()).replaceAll(" ", "");
+    }
+
+    private File getFolderOfPosition(PositionToTest position, File rootFolder) {
+        var filename = getFileNameOfPosition(position)
+                .replaceAll("-", "");
+        filename = Character.toLowerCase(filename.charAt(0)) + filename.substring(1);
+        return rootFolder.toPath().resolve(filename).toFile();
+    }
+
+    private File createMeasurementFolder() {
+        var measurementFolder = "measurements";
+        var dateTimeFolder = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm").format(LocalDateTime.now());
+        var rootFolder = measurementFolder + File.separator + dateTimeFolder;
+        File folder = new File(rootFolder);
+        folder.mkdirs();
+        return folder;
+    }
+
+    private File createTmpFile(String prefix, String suffix) {
+        try {
+            return Files.createTempFile(prefix, suffix).toFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<String>> measurements) {
