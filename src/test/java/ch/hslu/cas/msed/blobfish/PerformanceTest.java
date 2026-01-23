@@ -103,8 +103,8 @@ class PerformanceTest {
     @MethodSource(value = "positionProvider")
     @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 2;
-        var numberOfMeasurements = 3;
+        var maxDepth = 4;
+        var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
@@ -119,7 +119,7 @@ class PerformanceTest {
                             var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
                             var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
-                            // do multiple measurements and calculate the average
+                            // do multiple measurements and calculate the median
                             var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
                                     MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
                             ).toList();
