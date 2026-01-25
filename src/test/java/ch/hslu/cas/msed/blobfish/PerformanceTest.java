@@ -139,7 +139,7 @@ public class PerformanceTest {
         try (FileWriter writer = new FileWriter(folderToSave + File.separator + fileName)) {
             durationList.forEach(duration -> {
                 try {
-                    writer.write(duration.toMillis() + "\n");
+                    writer.write(mapDurationToValue(duration) + "\n");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -193,7 +193,7 @@ public class PerformanceTest {
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
                             .map(MeasurementUtil.MeasurementResult::duration)
-                            .map(Duration::toMillis)
+                            .map(this::mapDurationToValue)
                             .forEach(m -> {
                                 try {
                                     printer.print(m);
@@ -224,7 +224,7 @@ public class PerformanceTest {
         var hAxisTitle = IntStream.range(1, maxAmountOfResults + 1)
                 .mapToObj(i -> "Depth " + i)
                 .toList();
-        var vAxisTitle = "Calculation time [ms]";
+        var vAxisTitle = "Calculation time [s]";
         var barResults = results.keySet().stream()
                 .sorted((a1, a2) -> {
                     var nameA1 = getAlgorithmName(a1);
@@ -234,8 +234,7 @@ public class PerformanceTest {
                 .map(strategy -> {
                     var barDescription = getAlgorithmName(strategy);
                     var measurements = results.get(strategy).stream()
-                            .map(v -> v.measurementResult().duration().toMillis())
-                            .mapToDouble(Long::doubleValue)
+                            .mapToDouble(this::mapMeasurementDepthToValue)
                             .boxed()
                             .toList();
                     return new PlantUmlUtil.ChartBar(barDescription, measurements);
@@ -349,5 +348,14 @@ public class PerformanceTest {
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Double mapMeasurementDepthToValue(MeasurementOfDepth measurementOfDepth) {
+        return mapDurationToValue(measurementOfDepth.measurementResult.duration());
+    }
+
+    private Double mapDurationToValue(Duration duration) {
+        double seconds = duration.toNanos() / 1_000_000_000.0;
+        return Math.round(seconds * 1000.0) / 1000.0;
     }
 }
