@@ -43,7 +43,7 @@ or for Windows:
 The following measurements were performed on this PC:
 
 - Operating system: Microsoft Windows 11 Pro
-- CPU: Intel Core i7-13700KF (13th Gen), 3.40 GHz, 16 Kerne / 24 Threads
+- CPU: Intel Core i7-13700KF (13th Gen), 3.40 GHz, 16 cores / 24 threads
 - Mainboard: ASUS ROG STRIX Z790-F GAMING WIFI (ASUSTeK)
 - RAM: 32GB
 - GPU: AMD Radeon RX 9070
