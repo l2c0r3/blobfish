@@ -75,14 +75,14 @@ public class PlantUmlUtil {
         %s
         end title
         
-        h-axis %s grid
-        v-axis "%s" 0 --> 800 spacing 100
+        h-axis %s
+        v-axis "%s" 0 --> %s spacing %s grid
         
         %s
         
         legend right
         @endchart
-        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, barStrings);
+        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, getMaxValueForChart(bars), getBarChartSpacing(bars), barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
@@ -114,7 +114,7 @@ public class PlantUmlUtil {
         return tmpFile;
     }
 
-    private Double getMaxValueForChart(List<ChartBar> bars) {
+    private static Double getMaxValueForChart(List<ChartBar> bars) {
         var maxResult = bars.stream()
                 .flatMap(b -> b.values().stream())
                 .max(Double::compare).orElse(0.0);
@@ -122,9 +122,11 @@ public class PlantUmlUtil {
 
     }
 
-    private
+    private static Double getBarChartSpacing(List<ChartBar> bars) {
+        return 100.0;
+    }
 
-    public Double roundForBarChart(Double d) {
-
+    public static Double roundForBarChart(Double d) {
+        return d;
     }
 }
