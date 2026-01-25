@@ -8,6 +8,7 @@ import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
+import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import net.sourceforge.plantuml.FileFormat;
@@ -38,7 +39,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Tag(value = "performance")
-class PerformanceTest {
+public class PerformanceTest {
 
     private final File rootFolderForMeasurements = createMeasurementFolder();
 
@@ -50,13 +51,13 @@ class PerformanceTest {
     private record PossibleStrategy(EvalStrategy strategy, String description) {
     }
 
-    private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
+    public record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
+    public record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
     }
 
-    private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
+    public record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
     }
 
     private record StrategyDepth(PossibleStrategy strategy, int depth) {
@@ -79,26 +80,6 @@ class PerformanceTest {
                 Arguments.of(new PositionToTest("Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15", PlayerColor.BLACK, "Mid game - discovery - mate in 2 - short"))
         );
     }
-
-    private static final List<String> diagramColors = List.of(
-    "#1F77B4", // Blau
-            "#FF7F0E", //Orange
-            "#2CA02C", // Grün
-            "#D62728", // Rot
-            "#9467BD", // Lila
-            "#8C564B", // Braun
-            "#E377C2", // Pink
-            "#7F7F7F", // Grau
-            "#BCBD22", // Oliv
-            "#17BECF", // Türkis
-            "#AEC7E8", // Hellblau
-            "#FFBB78", // Hellorange
-            "#98DF8A", // Hellgrün
-            "#FF9896", // Hellrot
-            "#C5B0D5", // Helllila
-            "#9EDAE5" // Helltürkis
-    );
-
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
@@ -142,8 +123,8 @@ class PerformanceTest {
 
         var fileName = getFileNameOfPosition(positionToTest);
         var resultFile = createResultFile(positionToTest, results);
-        var plantuml = createPlantUml(positionToTest, results);
-        var svg = convertPlantUmlToSvg(plantuml);
+        var plantuml = PlantUmlUtil.createPlantUml(positionToTest, results);
+        var svg = PlantUmlUtil.convertPlantUmlToSvg(plantuml);
         try {
             Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
             Files.move(plantuml.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
@@ -237,92 +218,6 @@ class PerformanceTest {
         return resultFile;
     }
 
-    private File createPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
-        AtomicInteger colorIndex = new AtomicInteger(0);
-        var barStrings = results.keySet().stream()
-                .sorted((a1, a2) -> {
-                    var nameA1 = getAlgorithmName(a1);
-                    var nameA2 = getAlgorithmName(a2);
-                    return String.CASE_INSENSITIVE_ORDER.reversed().compare(nameA1, nameA2);
-                })
-                .map(k -> {
-                    var algorithmName = getAlgorithmName(k);
-                    var messurements = results.get(k).stream()
-                            .map(m -> m.measurementResult().duration().toMillis())
-                            .map(m -> {
-                                if (m == 0) {
-                                    return 0.00001; // heigh = 0 in diagram is not possible in plantuml
-                                } else {
-                                    return m;
-                                }
-                            })
-                            .map(m -> m + "")
-                            .collect(Collectors.joining(","));
-                    var colorI = colorIndex.getAndIncrement();
-                    if (colorI > diagramColors.size()) {
-                        throw new RuntimeException("color out of bounds");
-                    }
-                    return "bar \"" + algorithmName + "\"" + "[ " +  messurements + " ] " + diagramColors.get(colorI) + "\n";
-                })
-                .collect(Collectors.joining());
-
-        var hAxis = "[";
-        for (int i = 1; i <= results.entrySet().iterator().next().getValue().size() ; i++) {
-            hAxis += "Depth" + i;
-            if (i != results.entrySet().iterator().next().getValue().size()) {
-                hAxis += ",";
-            }
-        }
-        hAxis += "]";
-
-        var content = """
-        @startchart
-        
-        title
-        FEN: %s
-        end title
-        
-        h-axis %s
-        v-axis "Calculation time [ms]" 0 --> 800 spacing 100
-        
-        %s
-        
-        legend right
-        @endchart
-        """.formatted(positionToTest.fen(), hAxis, barStrings);
-
-        var tmpFile = FileUtil.createTmpFile("resultFile", "csv");
-        try (FileWriter fw = new FileWriter(tmpFile)) {
-            fw.write(content);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return tmpFile;
-
-    }
-
-    private File convertPlantUmlToSvg(File plantuml) {
-        var tmpFile = FileUtil.createTmpFile("plant2Svg", "svg");
-        try (var reader = new FileReader(plantuml);
-             var writer = new FileWriter(tmpFile)
-        ) {
-            var content = reader.readAllAsString();
-
-            var sourceFileReader = new SourceStringReader(content);
-
-            final ByteArrayOutputStream os = new ByteArrayOutputStream();
-            sourceFileReader.outputImage(os, new FileFormatOption(FileFormat.SVG));
-            os.close();
-
-            final String svg = os.toString(StandardCharsets.UTF_8);
-            writer.write(svg);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return tmpFile;
-    }
-
-
     private String getFileNameOfPosition(PositionToTest position) {
         return WordUtils.capitalizeFully(position.description()).replaceAll(" ", "");
     }
@@ -388,7 +283,7 @@ class PerformanceTest {
         });
     }
 
-    private static String getAlgorithmName(AlgorithmStrategy algorithmStrategy) {
+    public static String getAlgorithmName(AlgorithmStrategy algorithmStrategy) {
         return String.format("%s (%s)", algorithmStrategy.algorithm(), algorithmStrategy.strategy().description());
     }
 
