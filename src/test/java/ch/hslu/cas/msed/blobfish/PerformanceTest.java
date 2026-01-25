@@ -6,6 +6,7 @@ import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
@@ -198,7 +199,7 @@ class PerformanceTest {
         var headers = new ArrayList<>(List.of(positionToTest.fen()));
         headers.addAll(depthHeaders);
 
-        var resultFile = createTmpFile("resultFile", "csv");
+        var resultFile = FileUtil.createTmpFile("resultFile", "csv");
         try (CSVPrinter printer = new CSVPrinter(new FileWriter(resultFile), CSVFormat.DEFAULT.builder()
                 .setDelimiter(';')
                 .setTrailingDelimiter(false)
@@ -290,7 +291,7 @@ class PerformanceTest {
         @endchart
         """.formatted(positionToTest.fen(), hAxis, barStrings);
 
-        var tmpFile = createTmpFile("resultFile", "csv");
+        var tmpFile = FileUtil.createTmpFile("resultFile", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
             fw.write(content);
         } catch (IOException e) {
@@ -301,7 +302,7 @@ class PerformanceTest {
     }
 
     private File convertPlantUmlToSvg(File plantuml) {
-        var tmpFile = createTmpFile("plant2Svg", "svg");
+        var tmpFile = FileUtil.createTmpFile("plant2Svg", "svg");
         try (var reader = new FileReader(plantuml);
              var writer = new FileWriter(tmpFile)
         ) {
@@ -342,13 +343,6 @@ class PerformanceTest {
         return folder;
     }
 
-    private File createTmpFile(String prefix, String suffix) {
-        try {
-            return Files.createTempFile(prefix, suffix).toFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<String>> measurements) {
         long distinctMoves = measurements.stream()
