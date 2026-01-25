@@ -68,6 +68,10 @@ public class PlantUmlUtil {
                 })
                 .collect(Collectors.joining("\n"));
 
+        var allValues = bars.stream().flatMap(b -> b.values().stream()).toList();
+        var maxValue = getMaxValueForChart(allValues);
+        var spacing = getBarChartSpacing(allValues);
+
         var content = """
         @startchart
         
@@ -82,7 +86,7 @@ public class PlantUmlUtil {
         
         legend right
         @endchart
-        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, getMaxValueForChart(bars), getBarChartSpacing(bars), barStrings);
+        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, maxValue, spacing, barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
@@ -114,19 +118,52 @@ public class PlantUmlUtil {
         return tmpFile;
     }
 
-    private static Double getMaxValueForChart(List<ChartBar> bars) {
-        var maxResult = bars.stream()
-                .flatMap(b -> b.values().stream())
-                .max(Double::compare).orElse(0.0);
-        return roundForBarChart(maxResult);
+    private static Double getMaxValueForChart(List<Double> measurements) {
+        double max = measurements == null ? 0.0 :
+                measurements.stream()
+                        .mapToDouble(Double::doubleValue)
+                        .max()
+                        .orElse(0.0);
 
+        if (max <= 0.0) {
+            return 1.0;
+        }
+
+        return niceCeil(max);
     }
 
-    private static Double getBarChartSpacing(List<ChartBar> bars) {
-        return 100.0;
+    private static Double getBarChartSpacing(List<Double> measurements) {
+        double maxAxis = getMaxValueForChart(measurements);
+        if (maxAxis <= 0.0) {
+            return 1.0;
+        }
+
+        int targetTicks = 8;
+        double rawStep = maxAxis / targetTicks;
+        double step = niceCeil(rawStep);
+
+        return Math.max(step, 0.00001);
     }
 
-    public static Double roundForBarChart(Double d) {
-        return d;
+    /**
+     * Round x up to 1, 2, 5 * 10^n
+     */
+    private static double niceCeil(double x) {
+        if (x <= 0) {
+            return 1.0;
+        }
+
+        double exp = Math.floor(Math.log10(x));
+        double base = Math.pow(10, exp);
+        double f = x / base; // 1..10
+
+        double nice;
+        if (f <= 1.0) nice = 1.0;
+        else if (f <= 2.0) nice = 2.0;
+        else if (f <= 5.0) nice = 5.0;
+        else nice = 10.0;
+
+        return nice * base;
     }
+
 }
