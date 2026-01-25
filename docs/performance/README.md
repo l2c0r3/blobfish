@@ -70,7 +70,7 @@ As expected, at the first look we can see:
 It gets more interesting when we focus on depth 4 and compare runtimes there:
 
 <div style="min-width:320px">
-<strong>Vergleich aller Positionen mit einer tiefe von vier:</strong><br/>
+<strong>Comparison of all positions at depth 4:</strong><br/>
 <img src="measurements/71edae9/depth4_allPos.png" style="width:100%;max-width:520px;height:auto" />
 </div>
 
