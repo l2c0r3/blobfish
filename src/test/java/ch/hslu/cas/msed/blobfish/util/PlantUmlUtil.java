@@ -75,7 +75,7 @@ public class PlantUmlUtil {
         %s
         end title
         
-        h-axis %s
+        h-axis %s grid
         v-axis "%s" 0 --> 800 spacing 100
         
         %s
@@ -112,5 +112,19 @@ public class PlantUmlUtil {
             throw new RuntimeException(e);
         }
         return tmpFile;
+    }
+
+    private Double getMaxValueForChart(List<ChartBar> bars) {
+        var maxResult = bars.stream()
+                .flatMap(b -> b.values().stream())
+                .max(Double::compare).orElse(0.0);
+        return roundForBarChart(maxResult);
+
+    }
+
+    private
+
+    public Double roundForBarChart(Double d) {
+
     }
 }
