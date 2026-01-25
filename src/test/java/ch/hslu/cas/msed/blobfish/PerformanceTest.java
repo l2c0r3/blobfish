@@ -30,8 +30,6 @@ import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -85,8 +83,6 @@ public class PerformanceTest {
     void measure_startPos(PositionToTest positionToTest) {
         var maxDepth = 4;
         var numberOfMeasurements = 10;
-        TemporalUnit targetUnit = ChronoUnit.SECONDS;
-
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
@@ -109,7 +105,7 @@ public class PerformanceTest {
                             assertSameMovesAcrossMeasurements(measurements);
                             var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
 
-                            saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements, targetUnit);
+                            saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
 
                             var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
                             var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
@@ -123,8 +119,8 @@ public class PerformanceTest {
         assertSameMovesAcrossAlgorithms(results);
 
         var fileName = getFileNameOfPosition(positionToTest);
-        var resultFile = createResultFile(positionToTest, results, targetUnit);
-        var plantuml = createPlantUml(positionToTest, results, targetUnit);
+        var resultFile = createResultFile(positionToTest, results);
+        var plantuml = createPlantUml(positionToTest, results);
         var svg = PlantUmlUtil.convertPlantUmlToSvg(plantuml);
         try {
             Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
@@ -135,7 +131,7 @@ public class PerformanceTest {
         }
     }
 
-    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList, File folderToSave, TemporalUnit targetTimeUnit) {
+    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList, File folderToSave) {
         var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
         var algo = WordUtils.capitalizeFully(algorithmStrategy.algorithm()).replaceAll(" ", "");
         var stratCon = WordUtils.capitalizeFully(algorithmStrategy.strategy().description()).replaceAll(" ", "");
@@ -143,7 +139,7 @@ public class PerformanceTest {
         try (FileWriter writer = new FileWriter(folderToSave + File.separator + fileName)) {
             durationList.forEach(duration -> {
                 try {
-                    writer.write(duration.get(targetTimeUnit) + "\n");
+                    writer.write(duration.toMillis() + "\n");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -167,7 +163,7 @@ public class PerformanceTest {
      * @return
      *
      */
-    private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, TemporalUnit targetUnit) {
+    private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -197,7 +193,7 @@ public class PerformanceTest {
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
                             .map(MeasurementUtil.MeasurementResult::duration)
-                            .map(d -> d.get(targetUnit))
+                            .map(Duration::toMillis)
                             .forEach(m -> {
                                 try {
                                     printer.print(m);
@@ -219,7 +215,7 @@ public class PerformanceTest {
         return resultFile;
     }
 
-    private File createPlantUml(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, TemporalUnit targetUnit) {
+    private File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<PerformanceTest.AlgorithmStrategy, List<PerformanceTest.MeasurementOfDepth>> results) {
 
         var chartTitle = "FEN: " + positionToTest.fen();
         var maxAmountOfResults = results.values().stream()
@@ -228,7 +224,7 @@ public class PerformanceTest {
         var hAxisTitle = IntStream.range(1, maxAmountOfResults + 1)
                 .mapToObj(i -> "Depth " + i)
                 .toList();
-        var vAxisTitle = "Calculation time ["+targetUnit.toString()+"]";
+        var vAxisTitle = "Calculation time [ms]";
         var barResults = results.keySet().stream()
                 .sorted((a1, a2) -> {
                     var nameA1 = getAlgorithmName(a1);
@@ -238,7 +234,7 @@ public class PerformanceTest {
                 .map(strategy -> {
                     var barDescription = getAlgorithmName(strategy);
                     var measurements = results.get(strategy).stream()
-                            .map(v -> v.measurementResult().duration().get(targetUnit))
+                            .map(v -> v.measurementResult().duration().toMillis())
                             .mapToDouble(Long::doubleValue)
                             .boxed()
                             .toList();
