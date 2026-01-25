@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import ch.hslu.cas.msed.blobfish.PerformanceTest;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
@@ -8,13 +7,12 @@ import net.sourceforge.plantuml.SourceStringReader;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static ch.hslu.cas.msed.blobfish.PerformanceTest.getAlgorithmName;
-
 public class PlantUmlUtil {
+
+    public record ChartBar(String barDescription, List<Double> values){}
 
     private static final List<String> diagramColors = List.of(
             "#1F77B4", // Blau
@@ -39,18 +37,20 @@ public class PlantUmlUtil {
         // util class
     }
 
-    public static File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<PerformanceTest.AlgorithmStrategy, List<PerformanceTest.MeasurementOfDepth>> results) {
+    public static File createBarChart(String barTitle, List<String> horizontalAxisTitles, String verticalAxisTitle,
+                                      List<ChartBar> bars) {
+
+        if (bars.size() > diagramColors.size()) {
+            throw new IllegalStateException("don't have enough diagram colors to create bar diagram");
+        }
+
+        var hAxisTitle = "[ " + String.join(",", horizontalAxisTitles) + " ]";
+
         AtomicInteger colorIndex = new AtomicInteger(0);
-        var barStrings = results.keySet().stream()
-                .sorted((a1, a2) -> {
-                    var nameA1 = getAlgorithmName(a1);
-                    var nameA2 = getAlgorithmName(a2);
-                    return String.CASE_INSENSITIVE_ORDER.reversed().compare(nameA1, nameA2);
-                })
-                .map(k -> {
-                    var algorithmName = getAlgorithmName(k);
-                    var messurements = results.get(k).stream()
-                            .map(m -> m.measurementResult().duration().toMillis())
+        var barStrings = bars.stream()
+                .map(chartBar -> {
+                    var barDescription = chartBar.barDescription();
+                    var measurements = chartBar.values().stream()
                             .map(m -> {
                                 if (m == 0) {
                                     return 0.00001; // heigh = 0 in diagram is not possible in plantuml
@@ -58,49 +58,39 @@ public class PlantUmlUtil {
                                     return m;
                                 }
                             })
-                            .map(m -> m + "")
+                            .map(Object::toString)
                             .collect(Collectors.joining(","));
                     var colorI = colorIndex.getAndIncrement();
                     if (colorI > diagramColors.size()) {
                         throw new RuntimeException("color out of bounds");
                     }
-                    return "bar \"" + algorithmName + "\"" + "[ " +  messurements + " ] " + diagramColors.get(colorI) + "\n";
+                    return "bar \"" + barDescription + "\"" + "[ " +  measurements + " ] " + diagramColors.get(colorI);
                 })
-                .collect(Collectors.joining());
-
-        var hAxis = "[";
-        for (int i = 1; i <= results.entrySet().iterator().next().getValue().size() ; i++) {
-            hAxis += "Depth" + i;
-            if (i != results.entrySet().iterator().next().getValue().size()) {
-                hAxis += ",";
-            }
-        }
-        hAxis += "]";
+                .collect(Collectors.joining("\n"));
 
         var content = """
         @startchart
         
         title
-        FEN: %s
+        %s
         end title
         
         h-axis %s
-        v-axis "Calculation time [ms]" 0 --> 800 spacing 100
+        v-axis "%s" 0 --> 800 spacing 100
         
         %s
         
         legend right
         @endchart
-        """.formatted(positionToTest.fen(), hAxis, barStrings);
+        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, barStrings);
 
-        var tmpFile = FileUtil.createTmpFile("resultFile", "csv");
+        var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
             fw.write(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return tmpFile;
-
     }
 
     public static File convertPlantUmlToSvg(File plantuml) {

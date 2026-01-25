@@ -11,9 +11,6 @@ import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
-import net.sourceforge.plantuml.FileFormat;
-import net.sourceforge.plantuml.FileFormatOption;
-import net.sourceforge.plantuml.SourceStringReader;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
@@ -23,17 +20,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -123,7 +120,7 @@ public class PerformanceTest {
 
         var fileName = getFileNameOfPosition(positionToTest);
         var resultFile = createResultFile(positionToTest, results);
-        var plantuml = PlantUmlUtil.createPlantUml(positionToTest, results);
+        var plantuml = createPlantUml(positionToTest, results);
         var svg = PlantUmlUtil.convertPlantUmlToSvg(plantuml);
         try {
             Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
@@ -216,6 +213,36 @@ public class PerformanceTest {
         }
 
         return resultFile;
+    }
+
+    private File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<PerformanceTest.AlgorithmStrategy, List<PerformanceTest.MeasurementOfDepth>> results) {
+
+        var chartTitle = "FEN: " + positionToTest.fen();
+        var maxAmountOfResults = results.values().stream()
+                .mapToInt(List::size)
+                .max().orElse(0);
+        var hAxisTitle = IntStream.range(1, maxAmountOfResults + 1)
+                .mapToObj(i -> "Depth " + i)
+                .toList();
+        var vAxisTitle = "Calculation time [ms]";
+        var barResults = results.keySet().stream()
+                .sorted((a1, a2) -> {
+                    var nameA1 = getAlgorithmName(a1);
+                    var nameA2 = getAlgorithmName(a2);
+                    return String.CASE_INSENSITIVE_ORDER.reversed().compare(nameA1, nameA2);
+                })
+                .map(strategy -> {
+                    var barDescription = getAlgorithmName(strategy);
+                    var measurements = results.get(strategy).stream()
+                            .map(v -> v.measurementResult().duration().toMillis())
+                            .mapToDouble(Long::doubleValue)
+                            .boxed()
+                            .toList();
+                    return new PlantUmlUtil.ChartBar(barDescription, measurements);
+                })
+                .toList();
+
+        return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults);
     }
 
     private String getFileNameOfPosition(PositionToTest position) {
