@@ -62,11 +62,56 @@ durchgeführt. Die Rohdaten von den Ergebnissen findet ihr hier: [measurements/7
 | **MidGame Discovery**<br/>FEN: `r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26`<br/><img src="measurements/71edae9/midGameDiscoveryShort/MidGame-Discovery-Short.png" width="100%">                              | **MidGame Discovery Mate in 2**<br/>FEN: `Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15`<br/><img src="measurements/71edae9/midGameDiscoveryMateIn2/MidGame-Discovery-MateIn2-Short.png" width="100%"> |
 | **MidGame Deflection**<br/>FEN: `5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31`<br/><img src="measurements/71edae9/midGameDeflection/MidGame-Deflection-Short.png" width="100%">                                   | **EndGame Deflection**<br/>FEN: `8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42`<br/><img src="measurements/71edae9/endGameDeflection/EndGame-Deflection-Short.png" width="100%">                              |
 
-Hier ist zu erkennen
+Wie zu erwarten sind auf dem ersten Blick folgendes zu erkennen:
+
+- Die Optiomierung mit Parallelisierung funktioniert
+- Die `Mate aware material evaluation` ([MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java)) hat eine negative Auswirkung auf die Berechnungszeit
+
+Spannend wird es nun, wenn wir den Fokus auf die Tiefe von 4 setzten und dort die Berechnungszeiten vergleichen:
 
 <div style="min-width:320px">
-<strong>Vergleich aller Posistion mit einer tiefe von vier:</strong><br/>
+<strong>Vergleich aller Positionen mit einer tiefe von vier:</strong><br/>
 <img src="measurements/71edae9/depth4_allPos.png" style="width:100%;max-width:520px;height:auto" />
 </div>
+
+Dort können wir nun folgendes herauslesen:
+
+Wenn wir V1 mit V3 vergleichen (Faktor um welcher die Parallelisierung schneller ist):
+- Complex Position with may Options: 8.2
+- Endgame Deflection: 7.8
+- Midgame Deflection: 7.6
+- Midgame Discovery M2: 7.6
+- Midgame Discovery Short: 7.73
+- Midgame en passant: 8.16
+- Midgame fork: 8.823
+- Midgame promotion: 8.22
+
+Dies macht einen Durchschnitt von **8.01**, um welcher die Parallelisierung geholfen hat.
+
+Und mit dem V2 und V4 dasselbe vergleichen:
+- Complex Position with may Options: 8.37
+- Endgame Deflection: 7.87
+- Midgame Deflection: 7.97
+- Midgame Discovery M2: 8.23
+- Midgame Discovery Short: 8.21
+- Midgame en passant: 8.45
+- Midgame fork: 8.85
+- Midgame promotion: 8.29
+
+Dies macht einen Durchschnitt von **8.29**, um welcher die Parallelisierung geholfen hat.
+
+
+Wenn wir nun V3 mit V4 vergleichen, kostet uns das Mate Aware: 
+- Complex Position with may Options: 0.84
+- Endgame Deflection: 0.82
+- Midgame Deflection: 0.86
+- Midgame Discovery M2: 0.87
+- Midgame Discovery Short: 0.85
+- Midgame en passant: 0.86
+- Midgame fork: 0.83
+- Midgame promotion: 0.85
+
+Was wiederum im Durchschnitt **0.8475** kostet, also dauert es 15% länger. 
+Dies zu behalten, mach jedoch sinn, da wir hierbei qualitativ bessere Züge erhalten.
 
 
