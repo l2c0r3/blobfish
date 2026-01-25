@@ -15,6 +15,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -38,7 +39,7 @@ import java.util.stream.Stream;
 @Tag(value = "performance")
 public class PerformanceTest {
 
-    private final File rootFolderForMeasurements = createMeasurementFolder();
+    private static File rootFolderForMeasurements = null;
 
     @FunctionalInterface
     private interface MiniMaxAlgoConstructor {
@@ -76,6 +77,13 @@ public class PerformanceTest {
                 Arguments.of(new PositionToTest("5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24", PlayerColor.WHITE, "Mid game - promotion - mate in 2 - short")),
                 Arguments.of(new PositionToTest("Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15", PlayerColor.BLACK, "Mid game - discovery - mate in 2 - short"))
         );
+    }
+
+    @BeforeAll
+    static void setup() {
+        if (rootFolderForMeasurements == null) {
+            rootFolderForMeasurements = createMeasurementFolder();
+        }
     }
 
     @ParameterizedTest
@@ -255,7 +263,7 @@ public class PerformanceTest {
         return rootFolder.toPath().resolve(filename).toFile();
     }
 
-    private File createMeasurementFolder() {
+    private static File createMeasurementFolder() {
         var measurementFolder = "measurements";
         var dateTimeFolder = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm").format(LocalDateTime.now());
         var rootFolder = measurementFolder + File.separator + dateTimeFolder;
