@@ -36,7 +36,7 @@ or for Windows:
 .\mvnw.cmd test -Pperformance
 ```
 
-## Messungen
+## Measurements
 
 ### PC Setup
 
@@ -48,7 +48,7 @@ The following measurements were performed on this PC:
 - RAM: 32GB
 - GPU: AMD Radeon RX 9070
 
-### Resultate
+### Results
 
 The following tests were executed based on
 commit [71edae9](https://github.com/l2c0r3/blobfish/tree/71edae902790b45f286157de8d5b40bc6b19ee62)
