@@ -64,8 +64,10 @@ durchgeführt. Die Rohdaten von den Ergebnissen findet ihr hier: [measurements/7
 
 Wie zu erwarten sind auf dem ersten Blick folgendes zu erkennen:
 
-- Die Optiomierung mit Parallelisierung funktioniert
-- Die `Mate aware material evaluation` ([MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java)) hat eine negative Auswirkung auf die Berechnungszeit
+- Die Optimierung mit Parallelisierung funktioniert
+- Die
+  `Mate aware material evaluation` ([MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java))
+  hat eine negative Auswirkung auf die Berechnungszeit
 
 Spannend wird es nun, wenn wir den Fokus auf die Tiefe von 4 setzten und dort die Berechnungszeiten vergleichen:
 
@@ -74,44 +76,41 @@ Spannend wird es nun, wenn wir den Fokus auf die Tiefe von 4 setzten und dort di
 <img src="measurements/71edae9/depth4_allPos.png" style="width:100%;max-width:520px;height:auto" />
 </div>
 
-Dort können wir nun folgendes herauslesen:
+Wenn wir nun anschauen möchten, wass wir durchschnittlich mit der Parallelisierung gewinnen, können wir folgende Tabelle
+aufstellen
 
-Wenn wir V1 mit V3 vergleichen (Faktor um welcher die Parallelisierung schneller ist):
-- Complex Position with may Options: 8.2
-- Endgame Deflection: 7.8
-- Midgame Deflection: 7.6
-- Midgame Discovery M2: 7.6
-- Midgame Discovery Short: 7.73
-- Midgame en passant: 8.16
-- Midgame fork: 8.823
-- Midgame promotion: 8.22
+| Position                           | V1 / V3 | V2 / V3 | 
+|------------------------------------|--------:|---------|
+| Complex Position with many Options |    8.20 | 8.37    |
+| Endgame Deflection                 |    7.80 | 7.87    |
+| Midgame Deflection                 |    7.60 | 7.97    |
+| Midgame Discovery M2               |    7.60 | 8.23    |
+| Midgame Discovery Short            |    7.73 | 8.21    |
+| Midgame en passant                 |    8.16 | 8.45    |
+| Midgame fork                       |    8.82 | 8.85    |
+| Midgame promotion                  |    8.22 | 8.29    |
+| Druchschnitt obrige Ergebnisse     |    8.01 | 8.29    |
 
-Dies macht einen Durchschnitt von **8.01**, um welcher die Parallelisierung geholfen hat.
+Dadurch erkennen wir, dass bei unseren Beispiel im Durchschnitt Faktor **8.01** bis **8.29** mittels Parallelisierung
+schneller sind.
 
-Und mit dem V2 und V4 dasselbe vergleichen:
-- Complex Position with may Options: 8.37
-- Endgame Deflection: 7.87
-- Midgame Deflection: 7.97
-- Midgame Discovery M2: 8.23
-- Midgame Discovery Short: 8.21
-- Midgame en passant: 8.45
-- Midgame fork: 8.85
-- Midgame promotion: 8.29
+Wenn wir nun sehen möchten, was und
+das [MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java)
+kostet, können wir folgende Tabelle aufstellen:
 
-Dies macht einen Durchschnitt von **8.29**, um welcher die Parallelisierung geholfen hat.
+| Position                           | V3/V4 |
+|------------------------------------|------:|
+| Complex Position with many Options |  0.84 |
+| Endgame Deflection                 |  0.82 |
+| Midgame Deflection                 |  0.86 |
+| Midgame Discovery M2               |  0.87 |
+| Midgame Discovery Short            |  0.85 |
+| Midgame en passant                 |  0.86 |
+| Midgame fork                       |  0.83 |
+| Midgame promotion                  |  0.85 |
+| Druchschnitt obrige Ergebnisse     |       |
 
+**Ø V3/V4:** **0.8475**
 
-Wenn wir nun V3 mit V4 vergleichen, kostet uns das Mate Aware: 
-- Complex Position with may Options: 0.84
-- Endgame Deflection: 0.82
-- Midgame Deflection: 0.86
-- Midgame Discovery M2: 0.87
-- Midgame Discovery Short: 0.85
-- Midgame en passant: 0.86
-- Midgame fork: 0.83
-- Midgame promotion: 0.85
-
-Was wiederum im Durchschnitt **0.8475** kostet, also dauert es 15% länger. 
-Dies zu behalten, mach jedoch sinn, da wir hierbei qualitativ bessere Züge erhalten.
-
-
+Davon können wir ableitet, dass es Schnitt `1 / 0.8475 ≈ 1.18`, ~18% mehr Laufzeit benötigt.  
+Dies zu behalten, mach jedoch Sinn, da wir hierbei qualitativ bessere Züge erhalten.
