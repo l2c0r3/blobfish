@@ -5,12 +5,12 @@ FEN: 5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31
 end title
 
 h-axis [Depth1,Depth2,Depth3,Depth4]
-v-axis "Calculation time [ms]" 0 --> 17000 spacing 2000
+v-axis "Calculation time [s]" 0 --> 18 spacing 2 grid
 
-bar "MiniMaxSequential (Simple material evaluation)"[ 1.0E-5,11,376,13900 ] #1F77B4
-bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,13,458,16919 ] #FF7F0E
-bar "MiniMaxParallel (Simple material evaluation)"[ 1.0E-5,16,51,1828 ] #2CA02C
-bar "MiniMaxParallel (Mate aware material evaluation)"[ 1.0E-5,1,46,2121 ] #D62728
+bar "MiniMaxSequential (Simple material evaluation)"[ 1.0E-5,0.011,0.376,13.900 ] #1F77B4
+bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,0.013,0.458,16.919 ] #FF7F0E
+bar "MiniMaxParallel (Simple material evaluation)"[ 1.0E-5,0.016,0.051,1.828 ] #2CA02C
+bar "MiniMaxParallel (Mate aware material evaluation)"[ 1.0E-5,0.001,0.046,2.121 ] #D62728
 
 
 legend right
