@@ -5,8 +5,6 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import com.github.bhlangonijr.chesslib.move.Move;
 
-import java.util.LinkedList;
-
 
 public class MiniMaxSequential extends MiniMaxAlgo {
     public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
@@ -15,15 +13,16 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     @Override
     public String getNextBestMove(ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), new LinkedList<>());
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
 
-        if (bestPath == null || bestPath.history().isEmpty()) {
+        if (bestPath == null || bestPath.history() == null) {
             return null;
         }
-        return bestPath.history().getFirst().toString();
+
+        return bestPath.firstMove();
     }
 
-    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
+    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard.getFen());
             return new MoveNode(eval, history);
@@ -35,14 +34,16 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
         for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
-            var newHistory = copyAndAddToHistory(history, move);
+            var newHistory = new MoveHistoryNode(move.toString(), history);
             var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory);
 
             boolean isBetter = hasToMaximizingEvalBar ?
                     nextNode.eval() > bestNextNode.eval() :
                     nextNode.eval() < bestNextNode.eval();
-            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() &&
-                    nextNode.history().size() < bestNextNode.history().size();
+
+            int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
+            int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
@@ -54,11 +55,5 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private static String getSanOfMove(Move move) {
         return move.toString();
-    }
-
-    private LinkedList<Move> copyAndAddToHistory(LinkedList<Move> history, Move move) {
-        LinkedList<Move> newHistory = new LinkedList<>(history);
-        newHistory.add(move);
-        return newHistory;
     }
 }
