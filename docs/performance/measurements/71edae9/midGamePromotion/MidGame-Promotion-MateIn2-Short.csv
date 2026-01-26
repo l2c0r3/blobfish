@@ -1,0 +1,5 @@
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Depth 1;Depth 2;Depth 3;Depth 4
+MiniMaxSequential (Simple material evaluation);0;9;391;10046
+MiniMaxSequential (Mate aware material evaluation);0;11;474;12087
+MiniMaxParallel (Simple material evaluation);0;1;38;1222
+MiniMaxParallel (Mate aware material evaluation);0;1;48;1435

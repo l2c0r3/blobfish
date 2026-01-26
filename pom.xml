@@ -26,6 +26,7 @@
         <maven-exec.version>3.6.3</maven-exec.version>
         <maven-puml.version>0.2.14</maven-puml.version>
         <plantuml-gen.version>3.0.1</plantuml-gen.version>
+        <plantuml.version>1.2026.1</plantuml.version>
     </properties>
 
     <dependencyManagement>
@@ -93,6 +94,13 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- for generate svgs in performance tests -->
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml</artifactId>
+            <version>${plantuml.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,6 +108,10 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
+                <configuration>
+                    <!-- don't execute performance test in default -->
+                    <excludedGroups>performance</excludedGroups>
+                </configuration>
             </plugin>
 
             <!-- class uml generation -->
@@ -296,4 +308,22 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>performance</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire.version}</version>
+                        <configuration combine.self="override">
+                            <!-- only execute performance tests -->
+                            <groups>performance</groups>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -6,14 +6,17 @@ import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
+import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -23,13 +26,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-class PerformanceTest {
+@Tag(value = "performance")
+public class PerformanceTest {
+
+    private static File rootFolderForMeasurements = null;
 
     @FunctionalInterface
     private interface MiniMaxAlgoConstructor {
@@ -52,8 +62,8 @@ class PerformanceTest {
     }
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
-            new PossibleStrategy(new MaterialEval(), "Simple material evaluation."),
-            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation.")
+            new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
+            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation")
     );
 
     private static Stream<Arguments> positionProvider() {
@@ -69,31 +79,44 @@ class PerformanceTest {
         );
     }
 
+    @BeforeAll
+    static void setup() {
+        if (rootFolderForMeasurements == null) {
+            rootFolderForMeasurements = createMeasurementFolder();
+        }
+    }
 
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
-    @Disabled("for local test")
     void measure_startPos(PositionToTest positionToTest) {
         var maxDepth = 4;
         var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
+        var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
+        folderToSaveMeasurements.mkdirs();
 
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
 
         getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
                 possibleStrategies.forEach(strategy ->
                         IntStream.range(1, maxDepth + 1).forEach(depth -> {
+
+
                             var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
                             var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
-                            // do multiple measurements and calculate the average
+                            // do multiple measurements and calculate the median
                             var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
                                     MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
                             ).toList();
 
                             assertSameMovesAcrossMeasurements(measurements);
-                            var averageDuration = MeasurementUtil.calcAverageDuration(measurements);
-                            var measurementResult = new MeasurementUtil.MeasurementResult<>(averageDuration, measurements.getFirst().result());
+                            var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
+
+                            saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
+
+                            var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
+                            var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
 
                             results.putIfAbsent(key, new ArrayList<>());
                             results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
@@ -103,7 +126,36 @@ class PerformanceTest {
 
         assertSameMovesAcrossAlgorithms(results);
 
-        printResultFile(positionToTest, results);
+        var fileName = getFileNameOfPosition(positionToTest);
+        var resultFile = createResultFile(positionToTest, results);
+        var plantuml = createPlantUml(positionToTest, results);
+        var svg = PlantUmlUtil.convertPlantUmlToSvg(plantuml);
+        try {
+            Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(plantuml.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(svg.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList, File folderToSave) {
+        var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
+        var algo = WordUtils.capitalizeFully(algorithmStrategy.algorithm()).replaceAll(" ", "");
+        var stratCon = WordUtils.capitalizeFully(algorithmStrategy.strategy().description()).replaceAll(" ", "");
+        var fileName = posCon + "_" + algo + "_" +stratCon + "_depth_" + depth + "_raw.txt";
+        try (FileWriter writer = new FileWriter(folderToSave + File.separator + fileName)) {
+            durationList.forEach(duration -> {
+                try {
+                    writer.write(mapDurationToValue(duration) + "\n");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
@@ -116,8 +168,10 @@ class PerformanceTest {
      * MiniMaxParallel(Simple material evaluation) MiniMaxParallel
      * (Mate aware material evaluation)
      *
+     * @return
+     *
      */
-    private void printResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -131,10 +185,8 @@ class PerformanceTest {
         var headers = new ArrayList<>(List.of(positionToTest.fen()));
         headers.addAll(depthHeaders);
 
-        var fileName = getFileNameOfPosition(positionToTest);
-        File file = new File(fileName + ".csv");
-
-        try (CSVPrinter printer = new CSVPrinter(new FileWriter(file), CSVFormat.DEFAULT.builder()
+        var resultFile = FileUtil.createTmpFile("resultFile", "csv");
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(resultFile), CSVFormat.DEFAULT.builder()
                 .setDelimiter(';')
                 .setTrailingDelimiter(false)
                 .setIgnoreSurroundingSpaces(true)
@@ -149,7 +201,7 @@ class PerformanceTest {
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
                             .map(MeasurementUtil.MeasurementResult::duration)
-                            .map(Duration::toMillis)
+                            .map(this::mapDurationToValue)
                             .forEach(m -> {
                                 try {
                                     printer.print(m);
@@ -167,11 +219,59 @@ class PerformanceTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        return resultFile;
+    }
+
+    private File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<PerformanceTest.AlgorithmStrategy, List<PerformanceTest.MeasurementOfDepth>> results) {
+
+        var chartTitle = "FEN: " + positionToTest.fen();
+        var maxAmountOfResults = results.values().stream()
+                .mapToInt(List::size)
+                .max().orElse(0);
+        var hAxisTitle = IntStream.range(1, maxAmountOfResults + 1)
+                .mapToObj(i -> "Depth " + i)
+                .toList();
+        var vAxisTitle = "Calculation time [s]";
+        var barResults = results.keySet().stream()
+                .sorted((a1, a2) -> {
+                    var nameA1 = getAlgorithmName(a1);
+                    var nameA2 = getAlgorithmName(a2);
+                    return String.CASE_INSENSITIVE_ORDER.reversed().compare(nameA1, nameA2);
+                })
+                .map(strategy -> {
+                    var barDescription = getAlgorithmName(strategy);
+                    var measurements = results.get(strategy).stream()
+                            .mapToDouble(this::mapMeasurementDepthToValue)
+                            .boxed()
+                            .toList();
+                    return new PlantUmlUtil.ChartBar(barDescription, measurements);
+                })
+                .toList();
+
+        return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults);
     }
 
     private String getFileNameOfPosition(PositionToTest position) {
         return WordUtils.capitalizeFully(position.description()).replaceAll(" ", "");
     }
+
+    private File getFolderOfPosition(PositionToTest position, File rootFolder) {
+        var filename = getFileNameOfPosition(position)
+                .replaceAll("-", "");
+        filename = Character.toLowerCase(filename.charAt(0)) + filename.substring(1);
+        return rootFolder.toPath().resolve(filename).toFile();
+    }
+
+    private static File createMeasurementFolder() {
+        var measurementFolder = "measurements";
+        var dateTimeFolder = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm").format(LocalDateTime.now());
+        var rootFolder = measurementFolder + File.separator + dateTimeFolder;
+        File folder = new File(rootFolder);
+        folder.mkdirs();
+        return folder;
+    }
+
 
     private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<String>> measurements) {
         long distinctMoves = measurements.stream()
@@ -256,5 +356,14 @@ class PerformanceTest {
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Double mapMeasurementDepthToValue(MeasurementOfDepth measurementOfDepth) {
+        return mapDurationToValue(measurementOfDepth.measurementResult.duration());
+    }
+
+    private Double mapDurationToValue(Duration duration) {
+        double seconds = duration.toNanos() / 1_000_000_000.0;
+        return Math.round(seconds * 1000.0) / 1000.0;
     }
 }
