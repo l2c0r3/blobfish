@@ -1,8 +1,14 @@
 package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
-import com.github.bhlangonijr.chesslib.move.Move;
+public record MoveNode(double eval, MoveHistoryNode history) {
+    public String firstMove() {
+        if (history == null) return null;
 
-import java.util.LinkedList;
+        MoveHistoryNode node = history;
+        while (node.parent() != null) {
+            node = node.parent();
+        }
 
-public record MoveNode(double eval, LinkedList<Move> history) {
+        return node.move();
+    }
 }

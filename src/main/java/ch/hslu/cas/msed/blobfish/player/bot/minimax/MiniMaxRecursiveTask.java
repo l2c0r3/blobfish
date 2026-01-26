@@ -3,11 +3,9 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
@@ -15,10 +13,10 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     private final ChessBoard chessBoard;
     private final int depth;
     private final PlayerColor playerAtTurn;
-    private final LinkedList<Move> history;
+    private final MoveHistoryNode history;
     private final EvalStrategy evalStrategy;
 
-    public MiniMaxRecursiveTask(EvalStrategy evalStrategy, ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, LinkedList<Move> history) {
+    public MiniMaxRecursiveTask(EvalStrategy evalStrategy, ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
         this.evalStrategy = evalStrategy;
@@ -51,7 +49,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
         if (hasToMax) evalComparator = evalComparator.reversed();
 
         // the history size always needs to be min
-        var historyComparator = Comparator.comparingInt((MoveNode n) -> n.history().size());
+        var historyComparator = Comparator.comparingInt((MoveNode n) -> n.history().depth());
         return evalComparator.thenComparing(historyComparator);
     }
 
@@ -61,14 +59,8 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
         return chessBoard.legalMoves().stream()
                 .map(move -> {
                     var newPosition = chessBoard.doMove(move.toString());
-                    var newHistory = copyAndAddToHistory(history, move);
+                    var newHistory = new MoveHistoryNode(move.toString(), history);
                     return new MiniMaxRecursiveTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory);
                 }).toList();
-    }
-
-    private LinkedList<Move> copyAndAddToHistory(LinkedList<Move> history, Move move) {
-        LinkedList<Move> newHistory = new LinkedList<>(history);
-        newHistory.add(move);
-        return newHistory;
     }
 }
