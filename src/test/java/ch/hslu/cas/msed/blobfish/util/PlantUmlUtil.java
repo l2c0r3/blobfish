@@ -61,9 +61,6 @@ public class PlantUmlUtil {
                             .map(Object::toString)
                             .collect(Collectors.joining(","));
                     var colorI = colorIndex.getAndIncrement();
-                    if (colorI > diagramColors.size()) {
-                        throw new RuntimeException("color out of bounds");
-                    }
                     return "bar \"" + barDescription + "\"" + "[ " +  measurements + " ] " + diagramColors.get(colorI);
                 })
                 .collect(Collectors.joining("\n"));
