@@ -64,8 +64,7 @@ You can find the raw results here: [measurements/71edae9](measurements/71edae9)
 As expected, at the first look we can see:
 
 - The parallelization optimization reduces the calculation time
-- The [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java) has an
-  negatively impact on the calculation time
+- The [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java) has a negative impact on the calculation time
 
 It gets more interesting when we focus on depth 4 and compare runtimes there:
 
