@@ -70,3 +70,6 @@ This implementation also uses a history for the same reasons as the sequential i
 <div align="center" style="display: flex; align-items: center; justify-content: center;">
     <img src="docs/generated-diagrams/forkjoin-minimax.svg" alt="fork-join minimax algorithm implementation" style="height: auto; width: 500px;"/>
 </div>
+
+# Performance tests
+The summary of the performance tests can be found under [docs/performance/README.md](docs/performance/README.md)
