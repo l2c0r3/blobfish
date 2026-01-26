@@ -20,6 +20,17 @@ For Linux or macOS use:
 ./mvnw clean package
 ```
 
+<details>
+<summary>Permission issues?</summary>
+
+Execute:
+
+```bash
+chmod a+x ./mvnw
+```
+
+</details>
+
 or for Windows use:
 
 ```powershell
