@@ -40,8 +40,10 @@ public class MiniMaxSequential extends MiniMaxAlgo {
             boolean isBetter = hasToMaximizingEvalBar ?
                     nextNode.eval() > bestNextNode.eval() :
                     nextNode.eval() < bestNextNode.eval();
-            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() &&
-                    nextNode.history().depth() < bestNextNode.history().depth();
+
+            int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
+            int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;

@@ -49,7 +49,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
         if (hasToMax) evalComparator = evalComparator.reversed();
 
         // the history size always needs to be min
-        var historyComparator = Comparator.comparingInt((MoveNode n) -> n.history().depth());
+        var historyComparator = Comparator.comparingInt((MoveNode n) -> n.history() == null ? Integer.MAX_VALUE : n.history().depth());
         return evalComparator.thenComparing(historyComparator);
     }
 
