@@ -21,7 +21,7 @@ For Linux or macOS use:
 ```
 
 <details>
-<summary>Problem with permissions?</summary>
+<summary>Permission issues?</summary>
 
 Execute:
 
