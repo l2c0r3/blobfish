@@ -49,13 +49,13 @@ public class PerformanceTest {
     private record PossibleStrategy(EvalStrategy strategy, String description) {
     }
 
-    public record PositionToTest(String fen, PlayerColor playerToMove, String description) {
+    private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    public record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
+    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
     }
 
-    public record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
+    private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
     }
 
     private record StrategyDepth(PossibleStrategy strategy, int depth) {
@@ -317,7 +317,7 @@ public class PerformanceTest {
         });
     }
 
-    public static String getAlgorithmName(AlgorithmStrategy algorithmStrategy) {
+    private static String getAlgorithmName(AlgorithmStrategy algorithmStrategy) {
         return String.format("%s (%s)", algorithmStrategy.algorithm(), algorithmStrategy.strategy().description());
     }
 
