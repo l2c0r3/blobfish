@@ -75,7 +75,7 @@ It gets more interesting when we focus on depth 4 and compare runtimes there:
 
 If we want to estimate the average gain from parallelization, we can create the following table:
 
-| Position                           | V1 / V3 | V2 / V3 | 
+| Position                           | V1 / V3 | V2 / V4 | 
 |------------------------------------|--------:|---------|
 | Complex Position with many Options |    8.20 | 8.37    |
 | Endgame Deflection                 |    7.80 | 7.87    |
