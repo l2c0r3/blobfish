@@ -37,12 +37,12 @@ or for Windows use:
 .\mvnw.cmd clean package
 ```
 
-It produces the `blobfish-1.0.0-SNAPSHOT.jar` file in the `target/` directory.
+It produces the `blobfish-x.jar` file in the `target/` directory.
 
 The application is now runnable using
 
 ```bash
-java -jar target/blobfish-1.0.0-SNAPSHOT.jar
+java -jar target/blobfish-x.jar
 ```
 
 # Chessboard display
