@@ -1,0 +1,16 @@
+@startchart
+
+title
+FEN: rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17
+end title
+
+h-axis [ Depth 1,Depth 2,Depth 3,Depth 4 ]
+v-axis "Calculation time [s]" 0 --> 20.0 spacing 5.0 grid
+
+bar "MiniMaxSequential (Simple material evaluation)"[ 1.0E-5,0.01,0.405,11.129 ] #1F77B4
+bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,0.012,0.504,13.725 ] #FF7F0E
+bar "MiniMaxParallel (Simple material evaluation)"[ 1.0E-5,0.002,0.058,1.564 ] #2CA02C
+bar "MiniMaxParallel (Mate aware material evaluation)"[ 1.0E-5,0.002,0.072,1.964 ] #D62728
+
+legend right
+@endchart
