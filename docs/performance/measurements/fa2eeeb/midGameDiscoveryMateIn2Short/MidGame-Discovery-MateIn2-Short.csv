@@ -1,0 +1,5 @@
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Depth 1;Depth 2;Depth 3;Depth 4
+MiniMaxParallel (Simple material evaluation);0.0;0.001;0.026;0.809
+MiniMaxParallel (Mate aware material evaluation);0.0;0.001;0.033;1.026
+MiniMaxSequential (Mate aware material evaluation);0.0;0.009;0.226;7.149
+MiniMaxSequential (Simple material evaluation);0.0;0.007;0.181;5.671
