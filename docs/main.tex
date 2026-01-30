@@ -1,0 +1,111 @@
+%Packages
+\documentclass[
+    a4paper, headsepline
+]{scrreprt}
+\usepackage[english, ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soulutf8}
+\usepackage{import}
+\usepackage{amsthm}
+\usepackage[printonlyused, withpage]{acronym}
+\usepackage{abstract}
+\usepackage{tabularx,ragged2e,multirow}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{pdfpages}
+\usepackage{titleref}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{glossaries}
+% compile with pdflatex deckball_bachelorarbeit.tex
+\usepackage[a4paper,bindingoffset=0.2in,%
+    top=3.75cm,bottom=2.88cm,%
+    footskip=.25in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,wrapfig,lipsum}
+\usepackage{subcaption}
+\usepackage[table]{xcolor}
+\usepackage{subfiles}
+\usepackage{longtable}
+\usepackage{amssymb}
+\usepackage{fancyvrb}
+\usepackage[absolute]{textpos}
+\captionsetup{compatibility=false}
+\usepackage{url}
+
+% Nice Table
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+%Ref with name and number
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: ``\nameref*{#1}``}}
+
+% Header
+% https://tex.stackexchange.com/questions/89287/how-to-put-both-chapter-and-section-name-in-the-header-of-the-page
+% https://tex.stackexchange.com/questions/225250/set-header-using-scrlayer-scrpage
+\usepackage[automark,autooneside=false]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\leftmark}
+\rofoot*{\pagemark}
+
+% Bib
+\usepackage[
+    backend=biber,
+    style=apa,
+    bibstyle=apa,
+    citestyle=apa,
+    sortlocale=de_DE
+]{biblatex}
+\addbibresource{main.bib}
+
+\makeglossaries
+
+%Glossareinträge
+\include{glossary}
+
+%Acronymeinträge
+\include{acronyms}
+
+% Remove space in enumaraten etc
+\setlist{
+    noitemsep
+}
+
+% global /noindent
+\setlength\parindent{0pt}
+\begin{document}
+
+    % Verhindert das Einfügen von Kapiteltitel kleiner als \chapter
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+    %TITELSEITE
+    \KOMAoption{headsepline}{false} %Remove pipes
+    \include{preamble/Titelblatt}
+    \include{preamble/Eidesstattliche_Erklaerung}
+
+    %Add Footer
+    \pagenumbering{arabic}
+    %add Header
+    \KOMAoption{headsepline}{true}
+
+    \tableofcontents
+    \newpage
+
+    % Content
+    \subfile{fragestellung/fragestellung.tex}
+
+    \newpage
+
+    %Abildungsverzeichnis, Tabellenverzeichnis, Glossar, Formelverzeichnis
+    \include{quellen}
+    \subfile{verzeichnisse.tex}
+
+
+    %Anhang
+    \appendix
+
+    \include{arbeitsjournal/arbeitsjournal}
+
+
+
+\end{document}

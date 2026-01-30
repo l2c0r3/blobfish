@@ -1,0 +1,14 @@
+% https://tex.stackexchange.com/questions/187943/no-page-break-for-listoffigures-with-scrreprt
+\let\LaTeXStandardClearpage\clearpage
+\let\clearpage\relax  % Do nothing when a \clearpage command appears 
+
+\chapter{Quellenverzeichnis}
+\label{ch:Quellen}
+
+\printbibliography[title={Literatur},type=book]
+
+\printbibliography[title={Webseiten},type=online]
+
+\newpage
+
+\let\clearpage\LaTeXStandardClearpage % Return to the old definition
