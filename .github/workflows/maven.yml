@@ -33,7 +33,7 @@ jobs:
           working_directory: docs
           root_file: main.tex
       - name: move jar and LaTeX to staging folder for upload
-        run: mkdir -p staging && cp target/*.jar staging && cp docs/main.pdf staging/documentation.pdf
+        run: mkdir -p staging && cp target/blobfish*.jar staging && cp docs/main.pdf staging/documentation.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: Package
