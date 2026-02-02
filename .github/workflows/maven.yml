@@ -24,8 +24,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y graphviz
           dot -V
-      - run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir -p staging/generated-diagrams && cp target/*.jar staging && cp -r target/generated-diagrams/* staging/generated-diagrams/
+      # todo: separate jar and diagram/document building
+      - name: build jar and generate diagrams
+        run: mvn --batch-mode --update-snapshots verify
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          working_directory: docs
+          root_file: main.tex
+      - name: move jar and LaTeX to staging folder for upload
+        run: mkdir -p staging && cp target/blobfish*.jar staging && cp docs/main.pdf staging/documentation.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: Package
