@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.stockfish;
 
+import java.io.IOException;
+
 public class StockFishService implements AutoCloseable {
 
     private final StockFishContainer stockFishContainer;
@@ -9,9 +11,11 @@ public class StockFishService implements AutoCloseable {
         stockFishContainer = new StockFishContainer();
         stockFishContainer.init();
 
-        uci = new UciClient(stockFishContainer.getHost(),  stockFishContainer.getPort());
-
-        uci.init();
+        try {
+            uci = new UciClient(stockFishContainer.getHost(),  stockFishContainer.getPort());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

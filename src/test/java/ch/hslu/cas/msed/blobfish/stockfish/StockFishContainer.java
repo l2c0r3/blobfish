@@ -22,14 +22,14 @@ class StockFishContainer implements AutoCloseable {
     public void init() {
         try {
             var docker = DockerClientFactory.instance().client();
-
             var containerIds = getRunningContainerWithLabel(docker, "stockfish");
             if (!containerIds.isEmpty()) {
                 System.out.println("Recognized already running stockfish");
                 this.host = DockerClientFactory.instance().dockerHostIpAddress();
                 this.port = 5555;
+            } else {
+                startContainer();
             }
-
         } catch (IOException e) {
             // then just run own container
             startContainer();
