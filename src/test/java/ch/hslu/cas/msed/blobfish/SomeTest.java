@@ -8,10 +8,11 @@ import java.io.IOException;
 class SomeTest {
 
     @Test
-    void blub() throws IOException {
+    void blub() throws Exception {
         StockFishService stockFishService = new StockFishService.StockFishServiceBuilder()
                 .withMultiPV(3)
                 .build();
+        stockFishService.close();
     }
 
 }

@@ -74,6 +74,7 @@ class UciClient implements AutoCloseable {
 
     @Override
     public void close() throws IOException {
+        System.out.println("Closes UciClient");
         this.out.close();
         this.in.close();
         this.socket.close();
