@@ -7,15 +7,9 @@ public class StockFishService implements AutoCloseable {
     private final StockFishContainer stockFishContainer;
     private final UciClient uci;
 
-    public StockFishService() {
-        stockFishContainer = new StockFishContainer();
-        stockFishContainer.init();
-
-        try {
-            uci = new UciClient(stockFishContainer.getHost(),  stockFishContainer.getPort());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    StockFishService(StockFishContainer stockFishContainer, UciClient uci) {
+        this.stockFishContainer = stockFishContainer;
+        this.uci = uci;
     }
 
 
@@ -23,5 +17,30 @@ public class StockFishService implements AutoCloseable {
     public void close() throws Exception {
         uci.close();
         stockFishContainer.close();
+    }
+
+
+    public static class StockFishServiceBuilder {
+
+        private int multiPV;
+
+        public StockFishServiceBuilder withMultiPV(int value) {
+            this.multiPV = value;
+            return this;
+        }
+
+        public StockFishService build() throws IOException {
+            var stockFishContainer = new StockFishContainer();
+            stockFishContainer.init();
+
+            UciClient uci = new UciClient(stockFishContainer.getHost(),  stockFishContainer.getPort());
+
+            // set options
+            if (multiPV != 0) {
+                uci.setMultiPV(multiPV);
+            }
+
+            return new StockFishService(stockFishContainer, uci);
+        }
     }
 }
