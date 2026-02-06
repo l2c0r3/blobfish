@@ -31,6 +31,7 @@ class UciClient implements AutoCloseable {
     public void setMultiPV(int value) {
         System.out.println("setMultiPV to " + value);
         send("setoption name MultiPV value " + value);
+        waitTillReceiveStartsWith("setoption name MultiPV", Duration.ofMillis(300));
     }
 
     private void waitTillReceive(String message, Duration duration) {
@@ -42,6 +43,20 @@ class UciClient implements AutoCloseable {
                             return false;
                         }
                         return message.equals(line);
+                    }
+                    return false;
+                });
+    }
+
+    private void waitTillReceiveStartsWith(String prefix, Duration duration) {
+        await().atMost(duration)
+                .until(() -> {
+                    if (in.ready()) {
+                        String line = in.readLine();
+                        if (line == null) {
+                            return false;
+                        }
+                        return line.startsWith(prefix);
                     }
                     return false;
                 });
