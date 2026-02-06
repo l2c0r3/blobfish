@@ -27,4 +27,6 @@ RUN apt-get update && apt-get install -y \
 COPY --from=build /stockfish/src/stockfish /usr/local/bin/stockfish
 
 EXPOSE 5555
+
+# starts tcp server and forward each incoming connection to a new Stockfish process (fork)
 CMD ["sh", "-lc", "socat TCP-LISTEN:5555,reuseaddr,fork EXEC:'/usr/local/bin/stockfish',pty,stderr"]
