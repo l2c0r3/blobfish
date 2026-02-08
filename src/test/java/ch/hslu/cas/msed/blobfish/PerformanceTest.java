@@ -94,7 +94,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 3;
+        var maxDepth = 4;
         var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
