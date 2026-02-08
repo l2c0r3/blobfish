@@ -1,0 +1,80 @@
+package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import com.github.bhlangonijr.chesslib.move.Move;
+
+import java.util.Comparator;
+
+
+public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
+    public MiniMaxAlphaBetaSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
+        super(calculationDepth, evalStrategy, ownPlayerColor);
+    }
+
+    @Override
+    public String getNextBestMove(final ChessBoard chessBoard) {
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+
+        if (bestPath == null || bestPath.history() == null) {
+            return null;
+        }
+
+        return bestPath.firstMove();
+    }
+
+    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final double alpha, final double beta) {
+        if (depth <= 0 || chessBoard.isGameOver()) {
+            var eval = getEvalStrategy().getEvaluation(chessBoard.getFen());
+            return new MoveNode(eval, history);
+        }
+
+        var currentAlpha = alpha;
+        var currentBeta = beta;
+
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Double.NEGATIVE_INFINITY, history) : new MoveNode(Double.POSITIVE_INFINITY, history);
+        var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
+        var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
+
+        // sorting the moves should make pruning more reliable
+        // this can be improved upon - the better the move ordering the better the alpha beta pruning is too
+        var moves = chessBoard.legalMoves();
+        moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
+
+        for (var move : chessBoard.legalMoves()) {
+            var newPosition = chessBoard.doMove(getSanOfMove(move));
+            var newHistory = new MoveHistoryNode(move.toString(), history);
+            var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory, currentAlpha, currentBeta);
+
+            boolean isBetter = hasToMaximizingEvalBar ?
+                    nextNode.eval() > bestNextNode.eval() :
+                    nextNode.eval() < bestNextNode.eval();
+
+            int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
+            int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
+
+            if (isBetter || isEqualButShorter) {
+                bestNextNode = nextNode;
+            }
+
+            // Update alpha / beta
+            if (hasToMaximizingEvalBar) {
+                currentAlpha = Math.max(currentAlpha, bestNextNode.eval());
+            } else {
+                currentBeta = Math.min(currentBeta, bestNextNode.eval());
+            }
+
+            if (currentBeta <= currentAlpha) {
+                break;
+            }
+        }
+
+        return bestNextNode;
+    }
+
+    private static String getSanOfMove(final Move move) {
+        return move.toString();
+    }
+}
