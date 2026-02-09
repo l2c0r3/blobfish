@@ -2,6 +2,7 @@ package ch.hslu.cas.msed.blobfish.stockfish;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.model.Container;
+import lombok.Getter;
 import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
@@ -14,9 +15,11 @@ class StockFishContainer implements AutoCloseable {
     private static final int UCI_PORT = 5555;
     private GenericContainer<?> stockFishContainer;
 
-
+    @Getter
     private String host;
+    @Getter
     private int port;
+
     private boolean startedOwnContainer = false;
 
     public void init() {
@@ -47,14 +50,6 @@ class StockFishContainer implements AutoCloseable {
         startedOwnContainer = true;
         this.host = stockFishContainer.getHost();
         this.port = stockFishContainer.getMappedPort(UCI_PORT);
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public int getPort() {
-        return port;
     }
 
     @Override
