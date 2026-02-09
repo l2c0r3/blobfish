@@ -24,6 +24,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx,wrapfig,lipsum}
 \usepackage{subcaption}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
 \usepackage[table]{xcolor}
 \usepackage{subfiles}
 \usepackage{longtable}
@@ -88,11 +91,18 @@
     %add Header
     \KOMAoption{headsepline}{true}
 
+    % Abstract
+    \subfile{abstract/abstract.tex}
+
+    \newpage
     \tableofcontents
     \newpage
 
     % Content
-    \subfile{fragestellung/fragestellung.tex}
+    \subfile{ausgangslage/ausgangslage.tex}
+    \subfile{stand/stand_der_technik.tex}
+    \subfile{testing/testing.tex}
+    \subfile{realisierung/realisierung.tex}
 
     \newpage
 
