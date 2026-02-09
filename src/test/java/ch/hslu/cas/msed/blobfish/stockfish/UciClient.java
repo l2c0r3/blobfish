@@ -63,7 +63,7 @@ class UciClient implements AutoCloseable {
 
     public List<String> go(int depth) {
         send("go depth " + depth);
-        in.lines().forEach(System.out::println);
+//        in.lines().forEach(System.out::println);
         return List.of("");
     }
 
