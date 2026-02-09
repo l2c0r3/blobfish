@@ -39,7 +39,7 @@ class UciClient implements AutoCloseable {
      * If the game was played from the start position the string startpos must be sent.
      */
     public void setPosition(String fen, String... moves) {
-        System.out.printf("set position with fen [%s] and moves %s \n", fen, Arrays.toString(moves));
+        System.out.printf("set position with fen [%s] and moves %s %n", fen, Arrays.toString(moves));
 
         StringBuilder commandBuilder = new StringBuilder();
 
