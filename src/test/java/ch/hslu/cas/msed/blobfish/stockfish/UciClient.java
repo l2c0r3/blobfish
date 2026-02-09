@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.Socket;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
@@ -58,6 +59,12 @@ class UciClient implements AutoCloseable {
 
         var command = commandBuilder.toString();
         sendAndWaitForAck(command);
+    }
+
+    public List<String> go(int depth) {
+        send("go depth " + depth);
+        in.lines().forEach(System.out::println);
+        return List.of("");
     }
 
     private void sendAndWaitForAck(String command) {
