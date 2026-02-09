@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.net.Socket;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,6 +16,7 @@ class UciClient implements AutoCloseable {
     private final Socket socket;
     private final BufferedReader in;
     private final BufferedWriter out;
+    private final UciResponseParser uciResponseParser = new UciResponseParser();
 
     public UciClient(String host, int port) throws IOException {
         if (StringUtils.isBlank(host)) {
@@ -62,9 +64,12 @@ class UciClient implements AutoCloseable {
     }
 
     public List<String> go(int depth) {
+        System.out.println("go depth " + depth);
         send("go depth " + depth);
-//        in.lines().forEach(System.out::println);
-        return List.of("");
+        var response = readTillReceivePrefix("bestmove", Duration.ofSeconds(10));
+        var result = uciResponseParser.parseBestMoves(response.toArray(new String[0]));
+        System.out.println("best moves: " + result);
+        return result;
     }
 
     private void sendAndWaitForAck(String command) {
@@ -72,12 +77,34 @@ class UciClient implements AutoCloseable {
         waitTillReceive(command, Duration.ofMillis(500));
     }
 
+    private List<String> readTillReceivePrefix(String message, Duration timeout) {
+        var response = new ArrayList<String>();
+        await().atMost(timeout)
+                .until(() -> {
+                    if (in.ready()) {
+                        String line = in.readLine();
+                        if (StringUtils.isBlank(line)) {
+                            return false;
+                        }
+                        else if (line.startsWith(message)) {
+                            response.add(line);
+                            return true;
+                        } else {
+                            response.add(line);
+                            return false;
+                        }
+                    }
+                    return false;
+                });
+        return response;
+    }
+
     private void waitTillReceive(String message, Duration duration) {
         await().atMost(duration)
                 .until(() -> {
                     if (in.ready()) {
                         String line = in.readLine();
-                        if (line == null) {
+                        if (StringUtils.isBlank(line)) {
                             return false;
                         }
                         return message.equals(line);
