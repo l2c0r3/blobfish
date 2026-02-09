@@ -12,6 +12,11 @@ class SomeTest {
         StockFishService stockFishService = new StockFishService.StockFishServiceBuilder()
                 .withMultiPV(3)
                 .build();
+
+
+        stockFishService.setPosition("1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1");
+
+
         stockFishService.close();
     }
 

@@ -12,6 +12,10 @@ public class StockFishService implements AutoCloseable {
         this.uci = uci;
     }
 
+    public void setPosition(String fen) {
+        uci.setPosition(fen);
+    }
+
 
     @Override
     public void close() throws IOException {

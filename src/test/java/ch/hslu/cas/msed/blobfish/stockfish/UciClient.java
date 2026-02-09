@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.net.Socket;
 import java.time.Duration;
+import java.util.Arrays;
 
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
@@ -30,8 +31,38 @@ class UciClient implements AutoCloseable {
 
     public void setMultiPV(int value) {
         System.out.println("setMultiPV to " + value);
-        send("setoption name MultiPV value " + value);
-        waitTillReceiveStartsWith("setoption name MultiPV", Duration.ofMillis(300));
+        sendAndWaitForAck("setoption name MultiPV value " + value);
+    }
+
+    /**
+     * Set up the position described in fenstring.
+     * If the game was played from the start position the string startpos must be sent.
+     */
+    public void setPosition(String fen, String... moves) {
+        System.out.printf("set position with fen [%s] and moves %s \n", fen, Arrays.toString(moves));
+
+        StringBuilder commandBuilder = new StringBuilder();
+
+        if ("startpos".equals(fen)) {
+            commandBuilder.append("position startpos");
+        } else {
+            commandBuilder.append("position fen ").append(fen);
+        }
+
+        if (moves != null && moves.length != 0) {
+            commandBuilder.append(" moves");
+            for (var mov : moves) {
+                commandBuilder.append(" ").append(mov);
+            }
+        }
+
+        var command = commandBuilder.toString();
+        sendAndWaitForAck(command);
+    }
+
+    private void sendAndWaitForAck(String command) {
+        send(command);
+        waitTillReceive(command, Duration.ofMillis(500));
     }
 
     private void waitTillReceive(String message, Duration duration) {
@@ -43,20 +74,6 @@ class UciClient implements AutoCloseable {
                             return false;
                         }
                         return message.equals(line);
-                    }
-                    return false;
-                });
-    }
-
-    private void waitTillReceiveStartsWith(String prefix, Duration duration) {
-        await().atMost(duration)
-                .until(() -> {
-                    if (in.ready()) {
-                        String line = in.readLine();
-                        if (line == null) {
-                            return false;
-                        }
-                        return line.startsWith(prefix);
                     }
                     return false;
                 });
