@@ -200,25 +200,20 @@
                 </executions>
             </plugin>
 
-            <!-- generate puml -->
+            <!-- generate puml svg and png -->
             <plugin>
                 <groupId>com.github.davidmoten</groupId>
                 <artifactId>plantuml-maven-plugin</artifactId>
                 <version>${maven-puml.version}</version>
                 <executions>
-                    <!-- puml to svg and png -->
                     <execution>
-                        <id>diagrams-docs-svg</id>
+                        <id>diagrams-docs</id>
                         <phase>process-classes</phase>
                         <goals><goal>generate</goal></goals>
                         <configuration>
                             <sources>
                                 <directory>${basedir}/docs/plantuml</directory>
                             </sources>
-                            <formats>
-                                <format>png</format>
-                                <format>svg</format>
-                            </formats>
                         </configuration>
                     </execution>
 
@@ -230,14 +225,15 @@
                             <sources>
                                 <directory>${project.build.directory}/generated-diagrams</directory>
                             </sources>
-                            <formats>
-                                <format>svg</format>
-                            </formats>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <outputDirectory>${project.build.directory}/generated-diagrams/</outputDirectory>
+                    <formats>
+                        <format>png</format>
+                        <format>svg</format>
+                    </formats>
                 </configuration>
             </plugin>
 
