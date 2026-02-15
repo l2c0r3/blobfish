@@ -123,6 +123,7 @@ public class PerformanceTest {
 
         getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
                 possibleStrategies.forEach(strategy -> {
+                            // instantiate algorithm, so we can extract the class for the config
                             var algoClass = miniMaxAlgoConstructor.create(0, strategy.strategy(), positionToTest.playerToMove()).getClass();
                             var config = executionConfig.get(new ExecutionConfigKey(algoClass, strategy.strategy().getClass()));
                             var maxDepth = config != null ? config.depth : DEFAULT_CALCULATION_DEPTH;
