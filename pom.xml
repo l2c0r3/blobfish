@@ -200,20 +200,40 @@
                 </executions>
             </plugin>
 
-            <!-- puml to svg -->
+            <!-- generate puml -->
             <plugin>
                 <groupId>com.github.davidmoten</groupId>
                 <artifactId>plantuml-maven-plugin</artifactId>
                 <version>${maven-puml.version}</version>
                 <executions>
+                    <!-- puml to latex -->
                     <execution>
-                        <id>diagrams-docs</id>
+                        <id>diagrams-docs-latex</id>
                         <phase>process-classes</phase>
                         <goals><goal>generate</goal></goals>
                         <configuration>
                             <sources>
                                 <directory>${basedir}/docs/plantuml</directory>
                             </sources>
+                            <formats>
+                                <format>latex</format>
+                                <additionalOptions>-nolatexdocument</additionalOptions>
+                            </formats>
+                        </configuration>
+                    </execution>
+
+                    <!-- puml to svg -->
+                    <execution>
+                        <id>diagrams-docs-svg</id>
+                        <phase>process-classes</phase>
+                        <goals><goal>generate</goal></goals>
+                        <configuration>
+                            <sources>
+                                <directory>${basedir}/docs/plantuml</directory>
+                            </sources>
+                            <formats>
+                                <format>svg</format>
+                            </formats>
                         </configuration>
                     </execution>
 
@@ -225,14 +245,14 @@
                             <sources>
                                 <directory>${project.build.directory}/generated-diagrams</directory>
                             </sources>
+                            <formats>
+                                <format>svg</format>
+                            </formats>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <outputDirectory>${project.build.directory}/generated-diagrams/</outputDirectory>
-                    <formats>
-                        <format>svg</format>
-                    </formats>
                 </configuration>
             </plugin>
 
