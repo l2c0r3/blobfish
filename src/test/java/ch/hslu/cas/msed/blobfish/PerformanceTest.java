@@ -7,7 +7,6 @@ import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
-import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
@@ -80,8 +79,6 @@ public class PerformanceTest {
 
     private static final int DEFAULT_CALCULATION_DEPTH = 4;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
-            new ExecutionConfigKey(MiniMaxParallel.class, MateAwareEval.class), new ExecutionConfig(5),
-            new ExecutionConfigKey(MiniMaxParallel.class, MaterialEval.class), new ExecutionConfig(5),
             new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MateAwareEval.class), new ExecutionConfig(7),
             new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MaterialEval.class), new ExecutionConfig(7)
     );
