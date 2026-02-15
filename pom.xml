@@ -206,23 +206,7 @@
                 <artifactId>plantuml-maven-plugin</artifactId>
                 <version>${maven-puml.version}</version>
                 <executions>
-                    <!-- puml to latex -->
-                    <execution>
-                        <id>diagrams-docs-latex</id>
-                        <phase>process-classes</phase>
-                        <goals><goal>generate</goal></goals>
-                        <configuration>
-                            <sources>
-                                <directory>${basedir}/docs/plantuml</directory>
-                            </sources>
-                            <formats>
-                                <format>latex</format>
-                                <additionalOptions>-nolatexdocument</additionalOptions>
-                            </formats>
-                        </configuration>
-                    </execution>
-
-                    <!-- puml to svg -->
+                    <!-- puml to svg and png -->
                     <execution>
                         <id>diagrams-docs-svg</id>
                         <phase>process-classes</phase>
@@ -232,6 +216,7 @@
                                 <directory>${basedir}/docs/plantuml</directory>
                             </sources>
                             <formats>
+                                <format>png</format>
                                 <format>svg</format>
                             </formats>
                         </configuration>
