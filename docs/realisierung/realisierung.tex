@@ -1,14 +1,84 @@
 \chapter{Realisierung}
 
+
 \section{Architektur}
 
-\section{Minimax}
 
-\begin{figure}[h]
+\section{Minimax}
+Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
+Dieser Algorithmus wird meisst für rundenbasierte Nullsummenspiele mit 2 Spieler verwendet.
+Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der name Minimax.
+Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch wenn der Gegner optimal spielt.
+
+Der Algorithmus hat in nicht-Nullsummenspielen auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
+In Nullsummenspielen sind diese zwei Logiken gleich, in nicht-Nullsummenspielen jedoch nicht.
+
+Da Schach ein rundenbasiertes Nullsummenspiel mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut um die besten Züge eines Spielers zu berechnen.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/general-minimax}
     \caption{Ablaufdiagramm für Minimax}
     \label{fig:minimax-flowchart}
 \end{figure}
 
-\section{Alpha Beta Pruning}
+Der Algorithmus kann zu Visualisierungszwecken als Baum mit einem Tiefensuchverfahren dargestellt werden.
+Ausgenommen der Tiefe 0 (Baumwurzel), stellt jede Tiefe alle Zustände des Spieles dar, welche ein Spieler erzeugen kann.
+Somit sind in der Tiefe 1 alle Zustände enthalten, die der Spieler 1 erzeugen kann.
+Die Tiefe 2 stellt alle Zustände dar, die Spieler 2 anschliessend erreichen kann.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-0}
+    \caption{Minimax Beispielbaum - Ausgangslage}
+    \label{fig:minimax-tree-0}
+\end{figure}
+
+Dieser Baum enthält 5 Endzustände (unterste Knoten).
+Beim Durchlaufen des Baums wird die Vergleichsfunktion immer zwischen min und max umgeschaltet.
+Der Baum wird zuerst zu einem Endzustand durchgelaufen, der Zustand wird gemerkt und danach zum übergeordneten Knoten (Entscheidungsknoten) zurückverfolgt.
+So werden alle Kinderknoten des vorherigen Entscheidungsknoten traversiert und die Zustände mit der entsprechenden Vergleichsfunktion (hier min) verglichen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-1}
+    \caption{Minimax Beispielbaum - Schritt 1}
+    \label{fig:minimax-tree-1}
+\end{figure}
+
+Als nächstes werden alle Entscheidungsknoten der gleichen Ebene auf die gleiche Art berechnet:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-2}
+    \caption{Minimax Beispielbaum - Schritt 2}
+    \label{fig:minimax-tree-2}
+\end{figure}
+
+Als letztes wird noch die oberste Ebene auf die gleiche Art berechnet, diesmal wird jedoch der Maximalwert berechnet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-3}
+    \caption{Minimax Beispielbaum - Schritt 3}
+    \label{fig:minimax-tree-3}
+\end{figure}
+
+Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example}
+    \caption{Minimax Beispielbaum - Zusammengefasst}
+    \label{fig:minimax-tree}
+\end{figure}
+
+
+
+
+\section{Alpha-Beta-Pruning}
+Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Ergebnis nicht beeinflussen, abgeschnitten werden.
+
+Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
+Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfäde komplett übersprungen werden.
+Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht ist sehr von der Reihenfolge der Auswertung abhängig.
+Falls der beste Zustand zuletzt ausgewertet wird, kann keine Optimierung auf diese Art gemacht werden, da alle Knoten traversiert werden müssen um diesen Zustand auszulesen.

@@ -1,0 +1,31 @@
+@startuml
+' Force top-down layout
+top to bottom direction
+
+package "Level 0 (max)" {
+    node "_" as L0
+}
+
+package "Level 1 (min)" {
+    node "_" as L1L
+    node "4" as L1R #lightblue
+}
+
+package "Level 2 (max)" {
+    node "2" as L2LL
+    node "5" as L2LR
+    node "4" as L2RL #salmon
+    node "12" as L2RM
+    node "8" as L2RR
+}
+
+' Connections
+L0 --> L1L
+L0 --> L1R
+L1L --> L2LL
+L1L --> L2LR
+L1R --> L2RL #blue
+L1R --> L2RM #blue
+L1R --> L2RR #blue
+
+@enduml
