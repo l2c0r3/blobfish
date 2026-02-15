@@ -6,9 +6,12 @@ import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
+import com.google.common.collect.ImmutableMap;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import org.apache.commons.csv.CSVFormat;
@@ -66,6 +69,23 @@ public class PerformanceTest {
             new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation")
     );
 
+    private record ExecutionConfigKey(
+            Class<? extends MiniMaxAlgo> algorithm,
+            Class<? extends EvalStrategy> strategy
+    ) {
+    }
+
+    private record ExecutionConfig(int depth) {
+    }
+
+    private static final int DEFAULT_CALCULATION_DEPTH = 4;
+    private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
+            new ExecutionConfigKey(MiniMaxParallel.class, MateAwareEval.class), new ExecutionConfig(5),
+            new ExecutionConfigKey(MiniMaxParallel.class, MaterialEval.class), new ExecutionConfig(5),
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MateAwareEval.class), new ExecutionConfig(7),
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MaterialEval.class), new ExecutionConfig(7)
+    );
+
     private static Stream<Arguments> positionProvider() {
         return Stream.of(
                 Arguments.of(new PositionToTest("1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1", PlayerColor.BLACK, "Complex position with many options")),
@@ -94,7 +114,6 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var maxDepth = 4;
         var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
@@ -103,29 +122,32 @@ public class PerformanceTest {
         Map<AlgorithmStrategy, List<MeasurementOfDepth>> results = new HashMap<>();
 
         getAllMiniMaxConstructors().forEach(miniMaxAlgoConstructor ->
-                possibleStrategies.forEach(strategy ->
-                        IntStream.range(1, maxDepth + 1).forEach(depth -> {
+                possibleStrategies.forEach(strategy -> {
+                            var algoClass = miniMaxAlgoConstructor.create(0, strategy.strategy(), positionToTest.playerToMove()).getClass();
+                            var config = executionConfig.get(new ExecutionConfigKey(algoClass, strategy.strategy().getClass()));
+                            var maxDepth = config != null ? config.depth : DEFAULT_CALCULATION_DEPTH;
 
+                            IntStream.range(1, maxDepth + 1).forEach(depth -> {
+                                var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove());
+                                var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
-                            var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove);
-                            var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
+                                // do multiple measurements and calculate the median
+                                var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
+                                        MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
+                                ).toList();
 
-                            // do multiple measurements and calculate the median
-                            var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
-                                    MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
-                            ).toList();
+                                assertSameMovesAcrossMeasurements(measurements);
+                                var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
 
-                            assertSameMovesAcrossMeasurements(measurements);
-                            var durationList = measurements.stream().map(MeasurementUtil.MeasurementResult::duration).toList();
+                                saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
 
-                            saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
+                                var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
+                                var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
 
-                            var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
-                            var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
-
-                            results.putIfAbsent(key, new ArrayList<>());
-                            results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
-                        })
+                                results.putIfAbsent(key, new ArrayList<>());
+                                results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
+                            });
+                        }
                 )
         );
 
@@ -148,7 +170,7 @@ public class PerformanceTest {
         var posCon = WordUtils.capitalizeFully(positionToTest.description()).replaceAll(" ", "");
         var algo = WordUtils.capitalizeFully(algorithmStrategy.algorithm()).replaceAll(" ", "");
         var stratCon = WordUtils.capitalizeFully(algorithmStrategy.strategy().description()).replaceAll(" ", "");
-        var fileName = posCon + "_" + algo + "_" +stratCon + "_depth_" + depth + "_raw.txt";
+        var fileName = posCon + "_" + algo + "_" + stratCon + "_depth_" + depth + "_raw.txt";
         try (FileWriter writer = new FileWriter(folderToSave + File.separator + fileName)) {
             durationList.forEach(duration -> {
                 try {
@@ -173,7 +195,7 @@ public class PerformanceTest {
      * MiniMaxParallel(Simple material evaluation) MiniMaxParallel
      * (Mate aware material evaluation)
      *
-     * @return
+     * @return the created file
      *
      */
     private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
