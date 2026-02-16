@@ -79,8 +79,8 @@ public class PerformanceTest {
 
     private static final int DEFAULT_CALCULATION_DEPTH = 4;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
-            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MateAwareEval.class), new ExecutionConfig(7),
-            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MaterialEval.class), new ExecutionConfig(7)
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MateAwareEval.class), new ExecutionConfig(6),
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MaterialEval.class), new ExecutionConfig(6)
     );
 
     private static Stream<Arguments> positionProvider() {
