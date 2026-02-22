@@ -1,22 +1,13 @@
-
-\begin{longtable}[h]{|p{0.15\linewidth}|p{0.13\linewidth}|p{0.7\linewidth}|}
+\begin{spreadtab}{{tabular}{|p{0.15\textwidth}|p{0.13\textwidth}|p{0.70\textwidth}|}}
     \hline
-    \rowcolor{lightgray} \textbf{Datum} & \textbf{Dauer} & \textbf{Tätigkeit} \\
+    \rowcolor{lightgray} @\textbf{Datum} & @\textbf{Dauer [h]} & @\textbf{Tätigkeit} \\
+    @02.02.2026 & 2 & @Kickoff Meeting\\
     \hline
-
-
-    % your content eg
-    02.02.2026 & 2h & Kickoff Meeting\\
+    @08.02.2026 & 2 & @Recherche Alpha Beta Pruning sequentiell + parallel\\
     \hline
-    08.02.2026 & 2h & Recherche Alpha Beta Pruning sequentiell + parallel\\
+    @08.02.2026 & 1 & @Implementierung + Testing Alpha Beta Pruning sequentiell\\
     \hline
-    08.02.2026 & 1h & Implementierung + Testing Alpha Beta Pruning sequentiell\\
-
-
-
+    @\cellcolor{lightgray}\textbf{Total} & \cellcolor{lightgray}\textbf{:={sum(b2:[0,-1])}h} & @ \\
     \hline
-    \cellcolor{lightgray}\textbf{Total}&\cellcolor{lightgray}\textbf{5.0h}& \\
-    \hline
-
-    \caption[Arbeitsjournal Dario Huzanic]{Arbeitsjournal Dario Huzanic\\ Quelle: Autor}
-\end{longtable}
+\end{spreadtab}
+\captionof{table}[Arbeitsjournal Dario Huzanic]{Arbeitsjournal Dario Huzanic\\ Quelle: Autor}
