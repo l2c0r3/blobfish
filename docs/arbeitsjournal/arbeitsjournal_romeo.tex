@@ -1,19 +1,12 @@
-\begin{longtable}[h]{|p{0.15\linewidth}|p{0.13\linewidth}|p{0.7\linewidth}|}
+\begin{spreadtab}{{tabular}{|p{0.15\textwidth}|p{0.13\textwidth}|p{0.70\textwidth}|}}
     \hline
-    \rowcolor{lightgray} \textbf{Datum} & \textbf{Dauer} & \textbf{Tätigkeit} \\
+    \rowcolor{lightgray} @\textbf{Datum} & @\textbf{Dauer [h]} & @\textbf{Tätigkeit} \\
     \hline
-
-
-    % your content eg
-    30.01.2026 & 4h & Initialisierung Dokumentation\\
+    @30.01.2026 & 4 & @Initialisierung Dokumentation \\
     \hline
-    02.02.2026 & 2h & Kickoff Meeting\\
-
-
-
+    @02.02.2026 & 2 & @Kickoff Meeting \\
     \hline
-    \cellcolor{lightgray}\textbf{Total}&\cellcolor{lightgray}\textbf{6.0h}& \\
+    @\cellcolor{lightgray}\textbf{Total} & \cellcolor{lightgray}\textbf{:={sum(b2:[0,-1])}h} & @ \\
     \hline
-
-    \caption[Arbeitsjournal Romeo Köppel]{Arbeitsjournal Romeo Köppel\\ Quelle: Autor}
-\end{longtable}
+\end{spreadtab}
+\captionof{table}[Arbeitsjournal Romeo Köppel]{Arbeitsjournal Romeo Köppel\\Quelle: Autor}
