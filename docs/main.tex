@@ -37,6 +37,7 @@
 \usepackage{spreadtab}
 \captionsetup{compatibility=false}
 \usepackage{url}
+\usepackage{newclude}
 
 % Nice Table
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
@@ -116,9 +117,9 @@
     %Anhang
     \appendix
 
-    \include{arbeitsjournal/arbeitsjournal}
-    \include{anhang/aufgabenstellung_programmierarbeit}
-    \include{anhang/themeneingabe_transferarbeit}
+    \include*{arbeitsjournal/arbeitsjournal}
+    \include*{anhang/aufgabenstellung_programmierarbeit}
+    \include*{anhang/themeneingabe_transferarbeit}
 
 
 
