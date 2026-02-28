@@ -2,16 +2,16 @@
 ' Force top-down layout
 top to bottom direction
 
-package "Level 0 (max)" {
+package "Stufe 0 (max)" {
     node "_" as L0
 }
 
-package "Level 1 (min)" {
+package "Stufe 1 (min)" {
     node "_" as L1L
     node "_" as L1R
 }
 
-package "Level 2 (max)" {
+package "Stufe 2 (max)" {
     node "2" as L2LL
     node "5" as L2LR
     node "4" as L2RL
