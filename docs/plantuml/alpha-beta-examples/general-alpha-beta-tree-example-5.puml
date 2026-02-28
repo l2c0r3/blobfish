@@ -27,8 +27,8 @@ package "Stufe 3 (min)" {
     node "5" as L3A
     node "1" as L3B
 
-    node "2" as L3C
-    node "7" as L3D
+    node "7" as L3C
+    node "2" as L3D
 
     node "8"  as L3E #lightgray
     node "3"  as L3F #lightgray
