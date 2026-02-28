@@ -75,11 +75,11 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
 Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Ergebnis nicht beeinflussen, abgeschnitten werden.
 
 Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
-Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfäde komplett übersprungen werden.
+Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfade komplett übersprungen werden.
 Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht ist sehr von der Reihenfolge der Auswertung abhängig.
-Je früher der beste Zustand ausgewertet wird, desto mehr Pfäde können übersprungen werden.
+Je früher der beste Zustand ausgewertet wird, desto mehr Pfade können übersprungen werden.
 
-In der Abbildung~\ref{fig:minimax-apha-beta-tree-0} ist die Ausgangslage für unseres nächstes Beispiel zu sehen.
+In der Abbildung~\ref{fig:minimax-apha-beta-tree-0} ist die Ausgangslage für das nächste Beispiel zu sehen.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-0}

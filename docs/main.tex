@@ -50,16 +50,17 @@
 \definecolor{ijLineNumber}{RGB}{160,160,160} % light gray line numbers
 
 \lstdefinelanguage{JavaIntelliJ}[]{Java}{%
-  morekeywords={
-    abstract, assert, break, case, catch, class, const, continue, default, do,
-    else, enum, extends, final, finally, for, goto, if, implements, import,
-    instanceof, interface, native, new, package, private, protected, public,
-    return, static, strictfp, super, switch, synchronized, this, throw,
-    throws, transient, try, void, volatile, while, var
-  },
-  morekeywords=[2]{String,Integer,Boolean,Double,Long,Float,Character,Object},
-  morekeywords=[3]{true,false,null},
-  morekeywords=[4]{@Override,@Deprecated,@SuppressWarnings,@FunctionalInterface}
+    alsoletter={@},
+    morekeywords={
+        abstract, assert, break, case, catch, class, const, continue, default, do,
+        else, enum, extends, final, finally, for, goto, if, implements, import,
+        instanceof, interface, native, new, package, private, protected, public,
+        return, static, strictfp, super, switch, synchronized, this, throw,
+        throws, transient, try, void, volatile, while, var
+    },
+    morekeywords=[2]{String,Integer,Boolean,Double,Long,Float,Character,Object},
+    morekeywords=[3]{true,false,null},
+    morekeywords=[4]{@Override,@Deprecated,@SuppressWarnings,@FunctionalInterface}
 }
 
 \lstset{
