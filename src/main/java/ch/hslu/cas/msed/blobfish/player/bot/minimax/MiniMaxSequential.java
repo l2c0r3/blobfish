@@ -3,6 +3,7 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 
@@ -12,14 +13,14 @@ public class MiniMaxSequential extends MiniMaxAlgo {
     }
 
     @Override
-    public String getNextBestMove(ChessBoard chessBoard) {
+    public MoveEvaluation getNextBestMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
 
         if (bestPath == null || bestPath.history() == null) {
             return null;
         }
 
-        return bestPath.firstMove();
+        return new MoveEvaluation(bestPath.firstMove(), bestPath.eval());
     }
 
     private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
