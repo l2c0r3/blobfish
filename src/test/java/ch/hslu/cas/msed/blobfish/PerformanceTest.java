@@ -5,6 +5,7 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
@@ -54,7 +55,7 @@ public class PerformanceTest {
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<String> measurementResult, int depth) {
+    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<MoveEvaluation> measurementResult, int depth) {
     }
 
     private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
@@ -149,7 +150,7 @@ public class PerformanceTest {
                 )
         );
 
-        assertSameMovesAcrossAlgorithms(results);
+        assertSameMoveEvaluationsAcrossAlgorithms(results);
 
         var fileName = getFileNameOfPosition(positionToTest);
         var resultFile = createResultFile(positionToTest, results);
@@ -298,7 +299,7 @@ public class PerformanceTest {
     }
 
 
-    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<String>> measurements) {
+    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<MoveEvaluation>> measurements) {
         long distinctMoves = measurements.stream()
                 .map(MeasurementUtil.MeasurementResult::result)
                 .distinct()
@@ -307,7 +308,7 @@ public class PerformanceTest {
         Assertions.assertEquals(1, distinctMoves, "Moves of the repeating executions do not match.");
     }
 
-    private static void assertSameMovesAcrossAlgorithms(Map<AlgorithmStrategy, List<MeasurementOfDepth>> measurements) {
+    private static void assertSameMoveEvaluationsAcrossAlgorithms(Map<AlgorithmStrategy, List<MeasurementOfDepth>> measurements) {
         var groupedResults = measurements.entrySet().stream()
                 .flatMap(entry ->
                         entry.getValue().stream()
@@ -318,7 +319,7 @@ public class PerformanceTest {
                                         ),
                                         Map.entry(
                                                 entry.getKey().algorithm(),
-                                                m.measurementResult().result()
+                                                m.measurementResult().result().eval()
                                         )
                                 ))
                 ).collect(Collectors.groupingBy(
