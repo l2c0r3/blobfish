@@ -44,7 +44,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
             int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
             int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
-            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
+            boolean isEqualButShorter = Double.compare(nextNode.eval(), bestNextNode.eval()) == 0 && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
