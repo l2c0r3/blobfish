@@ -36,6 +36,55 @@
 \usepackage{spreadtab}
 \captionsetup{compatibility=false}
 \usepackage{url}
+\usepackage{listings}
+
+% Code formatting
+% IntelliJ-like colors
+\definecolor{ijKeyword}{RGB}{204,120,50}      % orange
+\definecolor{ijType}{RGB}{0,102,204}         % blue
+\definecolor{ijAnnotation}{RGB}{100,100,255} % violet-ish
+\definecolor{ijString}{RGB}{42,0,255}        % green-ish
+\definecolor{ijComment}{RGB}{128,128,128}    % gray italic
+\definecolor{ijNumber}{RGB}{150,0,150}       % purple
+\definecolor{ijBackground}{RGB}{248,248,248} % light background
+\definecolor{ijLineNumber}{RGB}{160,160,160} % light gray line numbers
+
+\lstdefinelanguage{JavaIntelliJ}[]{Java}{%
+  morekeywords={
+    abstract, assert, break, case, catch, class, const, continue, default, do,
+    else, enum, extends, final, finally, for, goto, if, implements, import,
+    instanceof, interface, native, new, package, private, protected, public,
+    return, static, strictfp, super, switch, synchronized, this, throw,
+    throws, transient, try, void, volatile, while, var
+  },
+  morekeywords=[2]{String,Integer,Boolean,Double,Long,Float,Character,Object},
+  morekeywords=[3]{true,false,null},
+  morekeywords=[4]{@Override,@Deprecated,@SuppressWarnings,@FunctionalInterface}
+}
+
+\lstset{
+    language=JavaIntelliJ,
+    numbers=left,
+    firstnumber=auto,    % line numbers match original file
+    backgroundcolor=\color{ijBackground},
+    basicstyle=\ttfamily\small\color{black},
+    keywordstyle=\color{ijKeyword}\bfseries,
+    keywordstyle=[2]\color{ijType}\bfseries,       % types
+    keywordstyle=[3]\color{ijNumber}\bfseries,     % constants
+    keywordstyle=[4]\color{ijAnnotation}\bfseries, % annotations
+    stringstyle=\color{ijString},
+    commentstyle=\color{ijComment}\itshape,
+    numberstyle=\tiny\color{ijLineNumber},
+    numbersep=10pt,
+    stepnumber=1,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{black},
+    tabsize=4,
+    captionpos=b,
+    emphstyle=\color{ijKeyword}\bfseries
+}
 
 % Nice Table
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
