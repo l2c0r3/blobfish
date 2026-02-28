@@ -42,7 +42,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
         var moves = chessBoard.legalMoves();
         moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
 
-        for (var move : chessBoard.legalMoves()) {
+        for (var move : moves) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
             var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory, currentAlpha, currentBeta);
