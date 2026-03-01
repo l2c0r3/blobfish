@@ -25,7 +25,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = getEvalStrategy().getEvaluation(chessBoard.getFen());
+            var eval = getEvalStrategy().getEvaluation(chessBoard);
             return new MoveNode(eval, history);
         }
 

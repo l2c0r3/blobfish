@@ -5,12 +5,13 @@ import lombok.Getter;
 @Getter
 public enum PieceType {
 
-    KING(99, 'k'),
-    QUEEN(9, 'q'),
-    ROOK(5, 'r'),
-    BISHOP(3, 'b'),
-    KNIGHT(3, 'n'),
-    PAWN(1, 'p');
+    // values are multiplied by 100, to allow positional fine-tuning
+    KING(9000, 'k'),
+    QUEEN(900, 'q'),
+    ROOK(500, 'r'),
+    BISHOP(300, 'b'),
+    KNIGHT(300, 'n'),
+    PAWN(100, 'p');
 
     private final int points;
     private final char fen;

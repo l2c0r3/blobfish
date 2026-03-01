@@ -5,6 +5,7 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.eval.PieceSquareMaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
@@ -66,7 +67,9 @@ public class PerformanceTest {
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
             new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
-            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation")
+            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation"),
+            new PossibleStrategy(new PieceSquareMaterialEval(), "Piece square material evaluation"),
+            new PossibleStrategy(new MateAwareEval(new PieceSquareMaterialEval()), "Mate aware piece square material evaluation")
     );
 
     private record ExecutionConfigKey(

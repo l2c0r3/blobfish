@@ -8,7 +8,7 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
  */
 public class MateAwareEval implements EvalStrategy {
 
-    private static final double MAX_NUMBER = 1_000;
+    private static final int MAX_NUMBER = 1_000_000;
     private final EvalStrategy evalStrategy;
 
     public MateAwareEval(EvalStrategy evalStrategy) {
@@ -16,14 +16,12 @@ public class MateAwareEval implements EvalStrategy {
     }
 
     @Override
-    public double getEvaluation(String positionFen) {
-        var board = new ChessBoard(positionFen);
-
+    public int getEvaluation(ChessBoard board) {
         if (board.isMated()) {
             return PlayerColor.WHITE.equals(board.getSideToMove()) ? -MAX_NUMBER : MAX_NUMBER;
         }
 
-        return evalStrategy.getEvaluation(positionFen);
+        return evalStrategy.getEvaluation(board);
     }
 
 }
