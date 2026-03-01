@@ -19,6 +19,6 @@ public abstract class BotAlgorithm {
         this.ownPlayerColor = ownPlayerColor;
     }
 
-    public abstract String getNextBestMove(ChessBoard chessBoard);
+    public abstract MoveEvaluation getNextBestMove(ChessBoard chessBoard);
 
 }

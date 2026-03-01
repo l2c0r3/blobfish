@@ -3,6 +3,7 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 
 import java.util.concurrent.ForkJoinPool;
 
@@ -12,7 +13,7 @@ public class MiniMaxParallel extends MiniMaxAlgo {
     }
 
     @Override
-    public String getNextBestMove(ChessBoard chessBoard) {
+    public MoveEvaluation getNextBestMove(ChessBoard chessBoard) {
         var task = new MiniMaxRecursiveTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
 
         @SuppressWarnings("resource")
@@ -22,7 +23,7 @@ public class MiniMaxParallel extends MiniMaxAlgo {
         if (resultNode == null || resultNode.history() == null) {
             return null;
         } else {
-            return resultNode.firstMove();
+            return new MoveEvaluation(resultNode.firstMove(), resultNode.eval());
         }
     }
 }

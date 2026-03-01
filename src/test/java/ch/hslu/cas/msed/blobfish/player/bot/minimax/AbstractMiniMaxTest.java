@@ -29,7 +29,7 @@ public abstract class AbstractMiniMaxTest {
         var testee = getTestee(PlayerColor.WHITE);
 
         // Act
-        String result = testee.getNextBestMove(board);
+        String result = testee.getNextBestMove(board).move();
 
         // Assert
         assertEquals(expectedNextMove, result);
@@ -51,7 +51,7 @@ public abstract class AbstractMiniMaxTest {
         var testee = getTestee(PlayerColor.BLACK);
 
         // Act
-        String result = testee.getNextBestMove(board);
+        String result = testee.getNextBestMove(board).move();
 
         // Assert
         assertEquals(expectedNextMove, result);

@@ -1,15 +1,15 @@
 ### base
-![base](base.svg)
+![base](base.png)
 
 ### board
-![board](board.svg)
+![board](board.png)
 
 ### game
-![game](game.svg)
+![game](game.png)
 
 ### overview
-![overview](overview.svg)
+![overview](overview.png)
 
 ### player
-![player](player.svg)
+![player](player.png)
 
