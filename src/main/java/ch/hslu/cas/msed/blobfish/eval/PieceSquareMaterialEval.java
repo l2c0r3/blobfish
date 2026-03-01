@@ -24,7 +24,8 @@ public class PieceSquareMaterialEval implements EvalStrategy {
 
     private int getPieceValue(int posIndex, Piece piece, boolean isEndgame) {
         var pst = getPstForPiece(piece, isEndgame);
-        var index = piece.color() == PlayerColor.BLACK ? posIndex : 63 - posIndex;
+        // flip the board along the vertical axis
+        var index = piece.color() == PlayerColor.BLACK ? posIndex : posIndex ^ 56;
 
         var posValue = pst[index];
         var sideBasedPosValue = piece.color() == PlayerColor.BLACK ? -posValue : posValue;
