@@ -81,7 +81,7 @@ public class ChessBoard {
     public Piece[] boardToArray() {
         var boardArray = board.boardToArray();
         // for some reason the original array has a length of 65 and the last piece is always empty, so we remove the superficial entry.
-        var newBoardArray = Arrays.copyOf(boardArray, boardArray.length - 1);
+        var newBoardArray = Arrays.copyOf(boardArray, 64);
         return Arrays.stream(newBoardArray)
                 .map(com.github.bhlangonijr.chesslib.Piece::getFenSymbol)
                 .flatMapToInt(String::chars)
