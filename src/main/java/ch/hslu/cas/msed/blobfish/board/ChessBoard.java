@@ -73,7 +73,7 @@ public class ChessBoard {
 
     /**
      * Retrieves the current position on the board as an array.
-     * The first 8 entries are the squares A1-A8, the second 8 are the squares B1-B8 and so on.
+     * The first 8 entries are the squares A1-H1, the second 8 are the squares A2-H2 and so on.
      * On squares where there are no pieces, the values are null.
      *
      * @return an array containing the pieces
