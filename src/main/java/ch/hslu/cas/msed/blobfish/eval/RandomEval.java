@@ -8,6 +8,6 @@ public class RandomEval implements EvalStrategy {
 
     @Override
     public int getEvaluation(ChessBoard board) {
-        return ThreadLocalRandom.current().nextInt(-10, 10);
+        return ThreadLocalRandom.current().nextInt(-10, 11);
     }
 }
