@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum PieceType {
 
     // values are multiplied by 100, to allow positional fine-tuning
-    KING(9000, 'k'),
+    KING(9900, 'k'),
     QUEEN(900, 'q'),
     ROOK(500, 'r'),
     BISHOP(300, 'b'),
