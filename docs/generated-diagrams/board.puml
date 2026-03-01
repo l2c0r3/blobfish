@@ -3,9 +3,11 @@
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
+	{method} +boardToArray () : [Lch.hslu.cas.msed.blobfish.base.Piece;
 	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
 	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
+	{method} +isEndGame () : boolean
 	{method} +isCapture ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : boolean
 	{method} +isGameOver () : boolean
 	{method} +isMated () : boolean

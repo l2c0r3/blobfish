@@ -46,9 +46,11 @@ enum ch.hslu.cas.msed.blobfish.base.PlayerColor {
 class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
+	{method} +boardToArray () : [Lch.hslu.cas.msed.blobfish.base.Piece;
 	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
 	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
+	{method} +isEndGame () : boolean
 	{method} +isCapture ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : boolean
 	{method} +isGameOver () : boolean
 	{method} +isMated () : boolean
@@ -100,25 +102,39 @@ enum ch.hslu.cas.msed.blobfish.board.ui.SquareColor {
 
 
 interface ch.hslu.cas.msed.blobfish.eval.EvalStrategy {
-	{method}  {abstract} +getEvaluation ( paramString1 : String ) : double
+	{method}  {abstract} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : int
 }
 
 
 class ch.hslu.cas.msed.blobfish.eval.MateAwareEval {
-	{field} {static} -MAX_NUMBER : double
-	{method} +getEvaluation ( paramString1 : String ) : double
+	{field} {static} -MAX_NUMBER : int
+	{method} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : int
 }
 
 
 class ch.hslu.cas.msed.blobfish.eval.MaterialEval {
-	{method} +getEvaluation ( paramString1 : String ) : double
+	{method} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : int
 	{method} -parseFen ( paramString1 : String ) : java.util.List
 	{method} -removeEmptyFieldsFromPosition ( paramString1 : String ) : String
 }
 
 
+class ch.hslu.cas.msed.blobfish.eval.PieceSquareMaterialEval {
+	{field} -BISHOP_PST : [I
+	{field} -KING_END_PST : [I
+	{field} -KING_OPENING_PST : [I
+	{field} -KNIGHT_PST : [I
+	{field} -PAWN_PST : [I
+	{field} -QUEEN_PST : [I
+	{field} -ROOK_PST : [I
+	{method} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : int
+	{method} -getPieceValue ( paramint1 : int , paramPiece2 : ch.hslu.cas.msed.blobfish.base.Piece , paramboolean3 : boolean ) : int
+	{method} -getPstForPiece ( paramPiece1 : ch.hslu.cas.msed.blobfish.base.Piece , paramboolean2 : boolean ) : [I
+}
+
+
 class ch.hslu.cas.msed.blobfish.eval.RandomEval {
-	{method} +getEvaluation ( paramString1 : String ) : double
+	{method} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : int
 }
 
 
@@ -331,6 +347,7 @@ ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer *--  ch.hslu.cas.msed.blob
 ch.hslu.cas.msed.blobfish.eval.MateAwareEval *--  ch.hslu.cas.msed.blobfish.eval.EvalStrategy : evalStrategy
 ch.hslu.cas.msed.blobfish.eval.MateAwareEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.eval.MaterialEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
+ch.hslu.cas.msed.blobfish.eval.PieceSquareMaterialEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.eval.RandomEval ..|>  ch.hslu.cas.msed.blobfish.eval.EvalStrategy
 ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider : ALGORITHMS
 ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider : BOT_PLAYERS
