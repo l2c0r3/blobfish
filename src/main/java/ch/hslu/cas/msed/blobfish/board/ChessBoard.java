@@ -3,7 +3,6 @@ package ch.hslu.cas.msed.blobfish.board;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import com.github.bhlangonijr.chesslib.Board;
-import com.github.bhlangonijr.chesslib.Piece;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveList;
 
@@ -115,7 +114,7 @@ public class ChessBoard {
     }
 
     public boolean isCapture(final Move move) {
-        return board.getPiece(move.getTo()) != Piece.NONE;
+        return board.getPiece(move.getTo()) != com.github.bhlangonijr.chesslib.Piece.NONE;
     }
 
     public boolean isGameOver() {
