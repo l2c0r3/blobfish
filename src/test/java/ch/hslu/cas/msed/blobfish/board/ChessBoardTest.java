@@ -14,7 +14,6 @@ class ChessBoardTest {
 
     private static Stream<Object[]> boardArrayProvider() {
         return Stream.of(
-                // position, endgame
                 new Object[]{new ChessBoard("8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42"), new char[]{
                         '.', '.', '.', 'R', '.', '.', '.', 'K', // A1-8
                         'P', '.', '.', '.', '.', '.', 'P', '.', // B1-8
