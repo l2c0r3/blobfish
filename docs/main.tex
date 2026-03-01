@@ -4,7 +4,7 @@
 ]{scrreprt}
 \usepackage[english, ngerman]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{color,soulutf8}
+\usepackage{color,soul}
 \usepackage{import}
 \usepackage{amsthm}
 \usepackage[printonlyused, withpage]{acronym}
@@ -25,6 +25,7 @@
 \usepackage{graphicx,wrapfig,lipsum}
 \usepackage{subcaption}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepackage{pgfplotstable}
 \usepackage{booktabs}
 \usepackage[table]{xcolor}
@@ -37,6 +38,8 @@
 \captionsetup{compatibility=false}
 \usepackage{url}
 \usepackage{listings}
+\usepackage{csquotes}
+
 
 % Code formatting
 % IntelliJ-like colors
@@ -115,10 +118,10 @@
 \makeglossaries
 
 %Glossareinträge
-\include{glossary}
+\input{glossary}
 
 %Acronymeinträge
-\include{acronyms}
+\input{acronyms}
 
 % Remove space in enumaraten etc
 \setlist{
