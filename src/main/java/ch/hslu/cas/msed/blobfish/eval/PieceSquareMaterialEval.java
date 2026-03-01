@@ -1,5 +1,6 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
+import ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
@@ -25,7 +26,7 @@ public class PieceSquareMaterialEval implements EvalStrategy {
     private int getPieceValue(int posIndex, Piece piece, boolean isEndgame) {
         var pst = getPstForPiece(piece, isEndgame);
         // flip the board along the vertical axis
-        var index = piece.color() == PlayerColor.BLACK ? posIndex : posIndex ^ 56;
+        var index = piece.color() == PlayerColor.BLACK ? posIndex : BoardTransformationUtil.flipRankIndex(posIndex);
 
         var posValue = pst[index];
         var sideBasedPosValue = piece.color() == PlayerColor.BLACK ? -posValue : posValue;
