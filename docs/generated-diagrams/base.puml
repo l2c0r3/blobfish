@@ -1,7 +1,9 @@
 @startuml
 
 class ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil {
+	{method}  {static} +flipFileIndex ( paramint1 : int ) : int
 	{method}  {static} +flipRankIndex ( paramint1 : int ) : int
+	{method}  {static} +rotateBoardIndex ( paramint1 : int ) : int
 }
 
 

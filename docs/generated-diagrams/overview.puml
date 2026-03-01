@@ -11,7 +11,9 @@ class ch.hslu.cas.msed.blobfish.ThreadLocalUtils {
 
 
 class ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil {
+	{method}  {static} +flipFileIndex ( paramint1 : int ) : int
 	{method}  {static} +flipRankIndex ( paramint1 : int ) : int
+	{method}  {static} +rotateBoardIndex ( paramint1 : int ) : int
 }
 
 
@@ -55,8 +57,8 @@ class ch.hslu.cas.msed.blobfish.board.ChessBoard {
 	{method} +doMove ( paramString1 : String ) : ch.hslu.cas.msed.blobfish.board.ChessBoard
 	{method} +getFen () : String
 	{method} +getSideToMove () : ch.hslu.cas.msed.blobfish.base.PlayerColor
-	{method} +isEndGame () : boolean
 	{method} +isCapture ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : boolean
+	{method} +isEndGame () : boolean
 	{method} +isGameOver () : boolean
 	{method} +isMated () : boolean
 	{method} +isMoveLegal ( paramString1 : String ) : boolean
