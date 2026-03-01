@@ -42,7 +42,7 @@ class PieceTypeTest {
 
     @Test
     void points_areCorrect() {
-        assertEquals(9000, PieceType.KING.getPoints());
+        assertEquals(9900, PieceType.KING.getPoints());
         assertEquals(900, PieceType.QUEEN.getPoints());
         assertEquals(500, PieceType.ROOK.getPoints());
         assertEquals(300, PieceType.BISHOP.getPoints());
