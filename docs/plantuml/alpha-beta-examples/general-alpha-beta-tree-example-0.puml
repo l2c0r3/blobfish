@@ -1,0 +1,85 @@
+@startuml
+top to bottom direction
+
+package "Stufe 0 (max)" {
+    node "_" as L0
+}
+
+package "Stufe 1 (min)" {
+    node "_" as L1L
+    node "_"  as L1M
+    node "_"  as L1R
+}
+
+package "Stufe 2 (max)" {
+    node "_" as L2LL
+    node "_" as L2LM
+
+    node "_"  as L2ML
+    node "_"  as L2MM
+    node "_" as L2MR
+
+    node "_"  as L2RL
+    node "_"  as L2RM
+}
+
+package "Stufe 3 (min)" {
+    node "2" as L3A
+    node "7" as L3B
+
+    node "5" as L3C
+    node "1" as L3D
+
+    node "8"  as L3E
+    node "3"  as L3F
+
+    node "4"  as L3H
+
+    node "-6" as L3I
+    node "2" as L3J
+
+    node "-4"  as L3K
+    node "6"  as L3L
+
+    node "8"  as L3M
+    node "5"  as L3N
+}
+
+' Stufe 0 -> Stufe 1
+L0 --> L1R
+L0 --> L1M
+L0 --> L1L
+
+' Stufe 1 -> Stufe 2
+L1L --> L2LM
+L1L --> L2LL
+
+L1M --> L2MR
+L1M --> L2MM
+L1M --> L2ML
+
+L1R --> L2RM
+L1R --> L2RL
+
+' Stufe 2 -> Stufe 3
+L2LL --> L3B
+L2LL --> L3A
+
+L2LM --> L3D
+L2LM --> L3C
+
+L2ML --> L3F
+L2ML --> L3E
+
+L2MM --> L3H
+
+L2MR --> L3J
+L2MR --> L3I
+
+L2RL --> L3L
+L2RL --> L3K
+
+L2RM --> L3N
+L2RM --> L3M
+
+@enduml
