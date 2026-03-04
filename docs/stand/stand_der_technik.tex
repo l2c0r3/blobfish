@@ -1,57 +1,31 @@
 \chapter{Stand der Technik}
 
 \section{Schachcomputer}
-Ein erster Meilenstein wurde hier mit Deep Blue, einem Schachcomputer von IBM geschaffen. Ziel des Team war es, der beste
-Schachspieler der Welt zu schlagen. Der erste Versuch scheitetere im Februar 1996 in Philadelphia gegen Garry Kasparov mit 4-2.
+Ein erster Meilenstein in der Welt der Schachcomputer mit Deep Blue, einem Schachcomputer von IBM geschaffen. Ziel des Team war es, der beste
+Schachspieler der Welt zu schlagen. Der erste Versuch scheiterte im Februar 1996 in Philadelphia gegen Garry Kasparov mit 4-2.
 Im Mai 1997 kam es zu einem berühmten Rematch, welches im Equitable Center in New York ausgetragen wurde.
 Hier schlagte Deep Blue Kasparov 3.5-2.5 (\cite{deepBlueIbm}).
 
 Dies war eine grosse Sensation, denn Garry Kasparov war 1985 bis 2000 Classical World Champion (\cite{worldChessChampion})
 und gilt nach \href{chess.com}{chess.com}, wegen seinen Erfolgen als bester Schachspieler aller Zeiten (\cite{bestChessPlayerOfAllTime}).
 
-\subsection{ELO}
-Mittlerweile hat sich der Abstand zwischen Mensch und Maschine deutlich erhöht. Dies ist dies beispielsweise anhand des \gls{glos:elo}'s zu sehen.
-
-Die offizielle Weltrangliste für die menschliche Spieler ist die von der \gls{glos:fide}. Ebenfalls wird hier die \gls{glos:elo}
-von allen Schachspielern verfolgt. Magnus Carlsen hält im Classical Chess aktuell (Stand März 2026) die höchste \gls{glos:elo} mit 2840.
-Ebenfalls ist er die Person mit der jemals höchst gemessenen \gls{glos:elo} im Mai 2014 mit 2882 (\cite{magnusFide}).
-
-Auf der anderer Seite gibt es mehrere Ranglisten für Schachcomputer. Die bekanntensten sind hier \gls{glos:ccrl} sowie \gls{glos:cegt}. \\
-Da die \gls
-
-
-
-In ihrer Statistik vom 28 Februar 2026, haben Sie die Elo mittels
-
-
 \subsection{Schachtuniere für Computer}
-Die Schachcomputer haben sich seither weiterentwickelt und es hat unterschiedliche Gruppierungen gebildet, die Schachcomputer messen
-und gegeneinander antreten lassen. Bekannte Organisationen sind hier \gls{glos:ccrl}, \gls{glos:cegt} sowie \gls{glos:tcec}.
+Seither haben sich unterschiedliche Gruppierungen gebildet, die Schachcomputer messen und gegeneinander antreten lassen.
 
-Auffällig ist es, dass \gls{glos:stockfish} Stand März 2026 in vielen unterschiedlichen Formaten und Tunieren
-die Nase vorne hat und vielfach die höchste \gls{glos:elo} erreicht hat: \cite{ccrlRating} \cite{cegtRating} .
+Bekannte Organisationen für \gls{glos:elo} Rankings sind hier \gls{glos:ccrl}, \gls{glos:cegt}. In beiden hat,
+Stand März 2026, \gls{glos:stockfish} die Nase vorn (\cite{ccrlRating,cegtRating}).
 
-Wichtig ist jedoch, dass die daraus erstellte \gls{glos:elo} lassen sich nicht untereinander vergleichen lässt. Hier werden
-je nach Organisation unterschiedliche Berechnungen verwendet. \\
-Ebenfalls lässt sich die \gls{glos:elo} nicht mit einer menschlichen, wie der der offizielle Weltrangliste für die
-menschliche Spieler ist die von der \gls{glos:fide} vergleichen. \\
-Dist
+Ein bekanntes Schachcomputertunier ist \gls{glos:tcec}. Das Tunier wird in Season aufgeteilt, welche ungerfähr 3-4 Monate
+dauern. Die letzten 5 ausgetragenen Seasons (Season 18 bis Season 23) hat ebenfalls \gls{glos:stockfish} gewonnen (\cite{tcecWebseite}).
 
+Wichtig ist jedoch, dass die daraus erstellte \gls{glos:elo}'s sich nicht untereinander vergleichen lassen. Hier werden
+je nach Organisation unterschiedliche Berechnungen verwendet: So verwendet beispielsweise \gls{glos:ccrl} das
+\href{https://www.remi-coulom.fr/Bayesian-Elo/}{Bayesian-Rating} und \gls{glos:cegt} \href{https://github.com/michiguel/Ordo}{Ordo}.
 
-
-- Bayesian-Elo
-- Ordo v1.0.9 cget
-
-
-- der beste schach computer, vergleich elo von besten schachspieler
-
-
-es existieren eigene schachtuniere für computer, sodass sie sich untereinander messen können
-
-
-\subsection{Stockfish}
-stockfish ist opensource einer der bekanntesten
-
+Ebenfalls lassen sich diese \gls{glos:elo}'s nicht mit einer menschlichen, wie zum Beispiel der, der \gls{glos:fide} vergleichen.
+Eine \gls{glos:elo} ist nämlich ein Vergleich innerhalb eines Pools aus Kandidaten, die unter gleichen Umständen spielen.
+So existiert im \gls{glos:fide} auch unterschiedlichen \gls{glos:elo}'s für die unterschiedlichen Schachvarianten wie
+Standard, Rapid etc. (\cite{comparableElo}).
 
 \section{Algorithmen}
 \subsection{Minimax}
