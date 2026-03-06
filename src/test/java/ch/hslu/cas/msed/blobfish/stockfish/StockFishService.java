@@ -33,8 +33,24 @@ public class StockFishService implements AutoCloseable {
 
     @Override
     public void close() throws IOException {
-        uci.close();
-        stockFishContainer.close();
+        IOException failure = null;
+        try {
+            uci.close();
+        } catch (IOException e) {
+            failure = e;
+        }
+        try {
+            stockFishContainer.close();
+        } catch (RuntimeException closeEx) {
+            if (failure != null) {
+                failure.addSuppressed(closeEx);
+            } else {
+                throw closeEx;
+            }
+        }
+        if (failure != null) {
+            throw failure;
+        }
     }
 
 
