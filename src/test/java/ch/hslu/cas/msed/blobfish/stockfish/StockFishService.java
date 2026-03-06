@@ -31,6 +31,7 @@ public class StockFishService implements AutoCloseable {
         return uci.go(depth);
     }
 
+    // Always close both
     @Override
     public void close() throws IOException {
         IOException failure = null;
