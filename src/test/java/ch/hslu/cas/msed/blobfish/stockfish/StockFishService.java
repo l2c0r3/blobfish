@@ -19,6 +19,10 @@ public class StockFishService implements AutoCloseable {
         uci.setPosition(fen);
     }
 
+    public void setMultiPV(int multiPV) {
+        uci.setMultiPV(multiPV);
+    }
+
     public void setDefaultCalculationDepth(int calulationDepth) {
         StockFishService.calculationDepth = calulationDepth;
     }
