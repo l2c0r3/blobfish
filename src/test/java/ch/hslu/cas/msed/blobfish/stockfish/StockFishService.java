@@ -8,7 +8,7 @@ public class StockFishService implements AutoCloseable {
     private final StockFishContainer stockFishContainer;
     private final UciClient uci;
 
-    private static int calculationDepth = 245;
+    private int calculationDepth = 245;
 
     StockFishService(StockFishContainer stockFishContainer, UciClient uci) {
         this.stockFishContainer = stockFishContainer;
@@ -16,11 +16,11 @@ public class StockFishService implements AutoCloseable {
     }
 
     public void setPosition(String fen) {
-        uci.setPosition(fen);
+        this.uci.setPosition(fen);
     }
 
     public void setDefaultCalculationDepth(int calulationDepth) {
-        StockFishService.calculationDepth = calulationDepth;
+        this.calculationDepth = calulationDepth;
     }
 
     public List<String> go() {
@@ -55,22 +55,36 @@ public class StockFishService implements AutoCloseable {
 
         public StockFishService build() throws IOException {
             var stockFishContainer = new StockFishContainer();
-            stockFishContainer.init();
+            UciClient uci = null;
+            try {
+                stockFishContainer.init();
+                uci = new UciClient(stockFishContainer.getHost(), stockFishContainer.getPort());
 
-            UciClient uci = new UciClient(stockFishContainer.getHost(),  stockFishContainer.getPort());
+                if (multiPV != 0) {
+                    uci.setMultiPV(multiPV);
+                }
 
-            // set options
-            if (multiPV != 0) {
-                uci.setMultiPV(multiPV);
+                var service = new StockFishService(stockFishContainer, uci);
+                if (defaultCalucationDepth != 0) {
+                    service.setDefaultCalculationDepth(defaultCalucationDepth);
+                }
+                return service;
+            } catch (IOException | RuntimeException e) {
+                // close when container fails to start or something
+                if (uci != null) {
+                    try {
+                        uci.close();
+                    } catch (IOException closeEx) {
+                        e.addSuppressed(closeEx);
+                    }
+                }
+                try {
+                    stockFishContainer.close();
+                } catch (Exception closeEx) {
+                    e.addSuppressed(closeEx);
+                }
+                throw e;
             }
-
-            var service = new StockFishService(stockFishContainer, uci);
-
-            if (defaultCalucationDepth != 0) {
-                service.setDefaultCalculationDepth(defaultCalucationDepth);
-            }
-
-            return service;
         }
     }
 }
