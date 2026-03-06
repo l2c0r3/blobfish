@@ -3,25 +3,26 @@
 \section{Basis}
 
 \subsection{Stockfish}
-Gerne möchten wir uns mittels Stockfish vergleichen. Nicht, weil wir denken, dass unsere Engine mitthalten kann, sondern
-vielmehr um davon zu lernen und einen Referenzpunkt zu haben.
+Wir möchten unsere Engine mit Stockfish vergleichen. Nicht, weil wir davon ausgehen, dass unsere Engine mitthalten kann,
+sondern vielmehr, um daraus zu lernen und einen Referenzpunkt zu haben.
 
-Die Grundliegende Idee dabei ist, \gls{glos:JUnit}-Test's zu schreiben, welche irgendeine Interaktion mit Stockfish durchführen.
-Dafür muss jedoch Stockfish von der Maschine aus, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird, erreichbar sein.
+Die grundlegende Idee besteht darin, \gls{glos:JUnit}-Tests zu schreiben, welche mit Stockfish interagieren. Dafür muss
+Stockfish von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird.
 
-Hier ist uns \href{https://testcontainers.com/}{Testcontainers} in den Sinn gekommen. Dies ermöglicht uns, während der
-Testausführung beliebige Dockercontainer starten und wenn der Test durchgeführt ist, den Container wider stoppen zu können.
+Hierfür haben wir \href{https://testcontainers.com/}{Testcontainers} verwendet. Damit ist es möglich, während der
+Testausführung beliebige Docker-Container zu starten und diese nach Abschluss der Tests wieder zu stoppen.
 
-Leider hat Stockfish selber nicht ein Docker Images oder ein Dockerfile selber veröffentlicht. So haben wir mit Hilfe von
-(\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) uns selber ein Dockerfile gebaut, aus welchem wir dann einen
-Container bauen und starten können.
+Da Stockfish selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht, haben wir mithilfe von
+(\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt. Daraus können wir
+ein Image bauen und einen Container starten.
 
-Um nun während dem Test mit Stockfish kommunizieren zu können, benötigen wir einen Client. Ein sehr verbreitetes
-Kommunikationsprotokoll, welches von vielen Schachcomputer und auch Stockfish verwendet wird, ist das \href{https://backscattering.de/chess/uci/}{UCI Protokoll}.
-Mit diesem kann Stockfish beispielweise die Position mitteilt werden und der nächste Zug berechnet werden. Die von Stockfish
-unterstützten UCI-Befehle sind \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html}{hier} aufgeführt.
+Um während der Tests mit Stockfish kommunizieren zu können, benötigen wir einen Client. Ein weit verbreitetes
+Kommunikationsprotokoll, das von vielen Schachengines und auch von Stockfish verwendet wird, ist das
+\href{https://backscattering.de/chess/uci/}{UCI-Protokoll}. Damit kann Stockfish beispielsweise eine Position übermittelt
+und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befehle sind
+\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html}{hier} aufgeführt.
 
-Sämtliche Klassen und Dateien, welche entwickelt wurden, um Stockfish während dem Test auszuführen befinden sich unter
+Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
 \textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
 
 
