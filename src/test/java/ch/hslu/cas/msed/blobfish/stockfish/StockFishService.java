@@ -8,7 +8,7 @@ public class StockFishService implements AutoCloseable {
     private final StockFishContainer stockFishContainer;
     private final UciClient uci;
 
-    private int calculationDepth = 245;
+    private int calculationDepth = 50;
 
     StockFishService(StockFishContainer stockFishContainer, UciClient uci) {
         this.stockFishContainer = stockFishContainer;
