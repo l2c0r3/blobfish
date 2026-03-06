@@ -1,12 +1,13 @@
 package ch.hslu.cas.msed.blobfish.stockfish.junit;
 
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
+ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
 import java.lang.reflect.Field;
 
-public class StockfishExtension implements TestInstancePostProcessor {
+public class StockfishExtension implements TestInstancePostProcessor, BeforeEachCallback {
 
     /**
      * Implements field injection for @InjectStockfish
@@ -25,5 +26,14 @@ public class StockfishExtension implements TestInstancePostProcessor {
             }
             type = type.getSuperclass();
         }
+    }
+
+    /**
+     * Resets stockfish after each method
+     */
+    @Override
+    public void beforeEach(ExtensionContext context) throws Exception {
+        var stockfishService = StockFishSingleton.get();
+        stockfishService.newGame();
     }
 }

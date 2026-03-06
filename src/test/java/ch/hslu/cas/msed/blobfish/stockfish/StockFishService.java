@@ -31,6 +31,10 @@ public class StockFishService implements AutoCloseable {
         return uci.go(depth);
     }
 
+    public void newGame() {
+        uci.newGame();
+    }
+
     @Override
     public void close() throws IOException {
         uci.close();

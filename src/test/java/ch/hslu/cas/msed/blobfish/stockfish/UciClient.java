@@ -72,6 +72,13 @@ class UciClient implements AutoCloseable {
         return result;
     }
 
+    public void newGame() {
+        System.out.println("starts new game");
+        send("ucinewgame");
+        send("isready");
+        waitTillReceive("readyok", Duration.ofSeconds(10));
+    }
+
     private void sendAndWaitForAck(String command) {
         send(command);
         waitTillReceive(command, Duration.ofMillis(500));
