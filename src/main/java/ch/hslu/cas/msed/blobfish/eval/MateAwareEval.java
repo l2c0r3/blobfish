@@ -3,9 +3,7 @@ package ch.hslu.cas.msed.blobfish.eval;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 
-/**
- * Wrapper Class
- */
+
 public class MateAwareEval implements EvalStrategy {
 
     private static final int MAX_NUMBER = 1_000_000;
