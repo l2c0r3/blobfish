@@ -8,7 +8,7 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 
 import java.util.stream.IntStream;
 
-public class PieceSquareMaterialEval implements EvalStrategy {
+public class PieceSquareEval implements EvalStrategy {
 
     @Override
     public int getEvaluation(ChessBoard board) {
@@ -27,10 +27,7 @@ public class PieceSquareMaterialEval implements EvalStrategy {
         var pst = getPstForPiece(piece, isEndgame);
         var index = piece.color() == PlayerColor.BLACK ? BoardTransformationUtil.flipFileIndex(posIndex) : BoardTransformationUtil.flipRankIndex(posIndex);
 
-        var sideBasedPosValue = piece.color() == PlayerColor.BLACK ? -pst[index] : pst[index];
-        var pieceValue = piece.color() == PlayerColor.BLACK ? -piece.materialPoints() : piece.materialPoints();
-
-        return pieceValue + sideBasedPosValue;
+        return piece.color() == PlayerColor.BLACK ? -pst[index] : pst[index];
     }
 
     private int[] getPstForPiece(Piece piece, boolean isEndgame) {

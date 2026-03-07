@@ -2,10 +2,7 @@ package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
-import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
-import ch.hslu.cas.msed.blobfish.eval.PieceSquareMaterialEval;
+import ch.hslu.cas.msed.blobfish.eval.*;
 import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
@@ -24,6 +21,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -66,9 +64,11 @@ public class PerformanceTest {
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
             new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
-            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation"),
-            new PossibleStrategy(new PieceSquareMaterialEval(), "Piece square material evaluation"),
-            new PossibleStrategy(new MateAwareEval(new PieceSquareMaterialEval()), "Mate aware piece square material evaluation")
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).build(), "Mate aware material evaluation"),
+            new PossibleStrategy(new PieceSquareEval(), "Simple piece square evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new PieceSquareEval()).build(), "Mate aware piece square evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MaterialEval()).add(new PieceSquareEval()).build(), "Piece square material evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).add(new PieceSquareEval()).build(), "Mate aware piece square material evaluation")
     );
 
     private record ExecutionConfigKey(

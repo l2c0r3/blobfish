@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.eval.CompositeEvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
@@ -32,7 +33,8 @@ public class HomeScreen {
         var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
 
         var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
-        var botPlayer = getBotPlayer(CALC_DEPTH, new MateAwareEval(new MaterialEval()), botPlayerColor);
+        var botPlayerEvalStrategy = CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).build();
+        var botPlayer = getBotPlayer(CALC_DEPTH, botPlayerEvalStrategy, botPlayerColor);
 
         return switch (humanPlayerColor) {
             case WHITE -> new MatchConfig(humanPlayer, botPlayer);
