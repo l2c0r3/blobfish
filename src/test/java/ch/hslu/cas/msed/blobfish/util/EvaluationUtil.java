@@ -1,49 +1,62 @@
 package ch.hslu.cas.msed.blobfish.util;
 
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvalWrapper;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EvaluationUtil {
 
-    public record EvalConfig(EvalStrategy strategy, String description){}
+    public record EvalConfig(EvalWrapper wrapper, String description){}
 
-    public static List<EvalConfig> getAllEvalStrategies() {
-        Class<?> base = EvalStrategy.class;
-
+    public static List<EvalConfig> getAllEvalStrategiesCombinations() {
         try (ScanResult scan = new ClassGraph()
                 .enableClassInfo()
                 .acceptPackages("ch.hslu.cas.msed.blobfish")
                 .scan()) {
 
-            var evalStrategies =  scan.getSubclasses(base.getName()).loadClasses().stream()
-                    .filter(c -> c.getName().contains("wrapper"))
-                    .map(EvaluationUtil::mapToConstructor)
-                    .map(EvaluationUtil::initClass);
+            var instances = scan
+                    .getClassesImplementing(EvalStrategy.class)
+                    .stream()
+                    .filter(e -> !e.getName().contains("Wrapper"))
+                    .filter(e -> !e.getName().contains("Random"))
+                    .filter(classInfo -> !classInfo.isInterface())
+                    .map(classInfo -> {
+                        try {
+                            Class<? extends EvalStrategy> clazz = classInfo.loadClass(EvalStrategy.class);
+                            return clazz.getDeclaredConstructor().newInstance();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .toArray();
 
-            var a = "aa";
-        }
+            var configs = new ArrayList<EvalConfig>();
 
-        return List.of();
-    }
+            var instanceList = new ArrayList<EvalStrategy>();
+            StringBuilder configDescription;
 
-    private static Object initClass(Constructor<?> c) {
-        try {
-            return c.newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-    }
+            for (int i = 0; i < instances.length; i++) {
+                var instance = instances[i];
 
-    private static Constructor<?> mapToConstructor(Class<?> c) {
-        try {
-            return c.getConstructor();
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
+                instanceList = new ArrayList<>();
+                instanceList.add((EvalStrategy) instance);
+                configDescription = new StringBuilder(instance.getClass().getSimpleName());
+                configs.add(new EvalConfig(new EvalWrapper(instanceList), configDescription.toString()));
+
+                for (int j = i + 1; j < instances.length; j++) {
+
+                    var nextInstances = instances[j];
+                    instanceList.add((EvalStrategy) instance);
+                    configDescription.append(" & ").append(nextInstances.getClass().getSimpleName());
+                    configs.add(new EvalConfig(new EvalWrapper(instanceList), configDescription.toString()));
+                }
+            }
+
+            return configs;
         }
     }
 }
