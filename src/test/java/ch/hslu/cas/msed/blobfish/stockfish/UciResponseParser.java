@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class UciResponseParser {
 
-    private static final Pattern infoRegex = Pattern.compile("info depth (\\d+) seldepth (\\d+) multipv (\\d+) score cp (\\d+) nodes (\\d+) nps (\\d+) hashfull (\\d+) tbhits (\\d+) time (\\d+) pv (.+)");
+    private static final Pattern infoRegex = Pattern.compile("^info depth (\\d+)\\b.*\\bmultipv (\\d+)\\b.*\\bscore (?:cp|mate) -?\\d+\\b.*\\bpv\\s+(.+)$");
 
     public List<String> parseBestMoves(String... response) {
         if (response == null || response.length == 0) {
@@ -19,19 +19,20 @@ public class UciResponseParser {
                 .toList();
 
         var maxCalculatedDepth = resultLines.stream()
-                        .map(infoRegex::matcher)
-                        .filter(Matcher::find)
-                        .mapToInt(m -> Integer.parseInt(m.group(1)))
-                        .max()
-                        .orElseThrow(() -> new IllegalArgumentException("Invalid depth"));
+                .map(infoRegex::matcher)
+                .filter(Matcher::matches)
+                .mapToInt(m -> Integer.parseInt(m.group(1)))
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid depth"));
 
         return resultLines.stream()
-                        .filter(l -> l.startsWith("info depth " + maxCalculatedDepth))
-                        .map(infoRegex::matcher)
-                        .filter(Matcher::find)
-                        .map(m -> m.group(10))
-                        .map(String::trim)
-                        .map(m -> m.split(" ")[0])
-                        .toList();
+                .map(infoRegex::matcher)
+                .filter(Matcher::matches)
+                .filter(m -> Integer.parseInt(m.group(1)) == maxCalculatedDepth)
+                .sorted(java.util.Comparator.comparingInt(m -> Integer.parseInt(m.group(2))))
+                .map(m -> m.group(3))
+                .map(String::trim)
+                .map(m -> m.split("\\s+")[0])
+                .toList();
     }
 }
