@@ -1,0 +1,152 @@
+\section{Heuristiken}
+
+\subsection{Piece Square Tabellen}
+Wie vorher schon erwähnt, bestehen mehrere Wertdefinitionen für Schachfiguren (\cite{evaluationofpieces}).
+Genau so existieren auch mehrere \gls{glos:psqt}s.
+Zunächst sollten die Stockfish \gls{glos:psqt}s verwendet werden (\cite{piecesquaretablelichessstockfish}), jedoch wurde festgestellt, dass Stockfish nicht die gleichen Basiswerte der Figuren verwendet (\cite{piecevalueslichessstockfish}).
+Die von Stockfish verwendeten Basiswerte der Figuren erschienen unlogisch und hängen wahrscheinlich mit mehreren anderen Faktoren zusammen.
+
+Schlussendlich wurden die \gls{glos:psqt}s von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
+Dementsprechend wurden für den König zwei \gls{glos:psqt}s erstellt.
+Eine für Eröffnung und das Mittelspiel und eine für das Endspiel.
+Die unterscheidung zwischen dem Mittelspiel und dem Endspiel ist auch nicht standardisiert und hat mehrere Interpretationen\ \cite{chessendgame}.
+Es wurde die gleiche Logik wie bei \href{https://lichess.org}{Lichess}~verwendet, nämlich befindet sich die Partie im Endspiel, sobald nicht mehr als 6 Figuren im Spiel sind.
+Die Bauern und Könige sind hier ausgeschlossen.
+
+\lstinputlisting[
+    firstline=105,
+    lastline=114,
+    firstnumber=105,
+    caption={Code - Endspiel berechnung},
+    label={lst:endspiel-berechnug}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/board/ChessBoard.java}
+
+Die Implementation der \gls{glos:psqt} Evaluation ist ziemlich einfach.
+\lstinputlisting[
+    firstline=14,
+    lastline=42,
+    firstnumber=14,
+    caption={Code - Piece Square Evaluation},
+    label={lst:piece-square-evaluation}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
+
+Es wird zuerst ein Array der aktuellen Position generiert.
+Die Abbildung~\ref{fig:index-felder-tabelle} stellt das genaue Index-Schachfeld mapping dar.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{>{\centering\arraybackslash}m{0.2cm}|*{8}{>{\centering\arraybackslash}m{0.4cm}|}}
+        \hhline{~|--------}
+        8                    & \cellcolor{white} 56   & \cellcolor{gray!30} 57 & \cellcolor{white} 58   & \cellcolor{gray!30} 59 & \cellcolor{white} 60 & \cellcolor{gray!30} 61 & \cellcolor{white} 62 & \cellcolor{gray!30} 63 \\ \hhline{~|--------}
+        7                    & \cellcolor{gray!30} 48 & \cellcolor{white} 49   & \cellcolor{gray!30} 50 & \cellcolor{white} 51 & \cellcolor{gray!30} 52 & \cellcolor{white} 53 & \cellcolor{gray!30} 54 & \cellcolor{white} 55\\ \hhline{~|--------}
+        6                    & \cellcolor{white} 40   & \cellcolor{gray!30} 41 & \cellcolor{white} 42   & \cellcolor{gray!30} 43 & \cellcolor{white} 44 & \cellcolor{gray!30} 45 & \cellcolor{white} 46 & \cellcolor{gray!30} 47 \\ \hhline{~|--------}
+        5                    & \cellcolor{gray!30} 32 & \cellcolor{white} 33   & \cellcolor{gray!30} 34 & \cellcolor{white} 35 & \cellcolor{gray!30} 36 & \cellcolor{white} 37 & \cellcolor{gray!30} 38 & \cellcolor{white} 39 \\ \hhline{~|--------}
+        4                    & \cellcolor{white} 24   & \cellcolor{gray!30} 25 & \cellcolor{white} 26   & \cellcolor{gray!30} 27 & \cellcolor{white} 28 & \cellcolor{gray!30} 29 & \cellcolor{white} 30 & \cellcolor{gray!30} 31 \\ \hhline{~|--------}
+        3                    & \cellcolor{gray!30} 16 & \cellcolor{white} 17   & \cellcolor{gray!30} 18 & \cellcolor{white} 19 & \cellcolor{gray!30} 20 & \cellcolor{white} 21 & \cellcolor{gray!30} 22 & \cellcolor{white} 23\\ \hhline{~|--------}
+        2                    & \cellcolor{white} 8    & \cellcolor{gray!30} 9  & \cellcolor{white} 10   & \cellcolor{gray!30} 11 & \cellcolor{white} 12 & \cellcolor{gray!30} 13 & \cellcolor{white} 14 & \cellcolor{gray!30} 15 \\ \hhline{~|--------}
+        1                    & \cellcolor{gray!30} 0  & \cellcolor{white} 1    & \cellcolor{gray!30} 2  & \cellcolor{white} 3 & \cellcolor{gray!30} 4 & \cellcolor{white} 5 & \cellcolor{gray!30} 6 & \cellcolor{white} 7 \\ \hhline{~|--------}
+        % Last row with no borders
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{A}  & \multicolumn{1}{c}{B}  & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{G} & \multicolumn{1}{c}{H} \\
+    \end{tabular}
+    \caption{Indexwerte für die Schachfelder}
+    \label{fig:index-felder-tabelle}
+\end{figure}
+
+Für jedes Feld, wo sich eine Figur befindet, ist im entsprechenden Index ein `Piece` Objekt enthalten.
+Alle leeren Felder enthalten `null`.
+
+\lstinputlisting[
+    firstline=3,
+    lastline=3,
+    firstnumber=3,
+    caption={Code - Piece record},
+    label={lst:piece-record}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/base/Piece.java}
+
+Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird dessen Wert aus der entsprechenden \gls{glos:psqt} ausgelesen.
+Wie mit den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
+Alle Werte werden am Schluss aufsummiert.
+
+Die Arrays für die \gls{glos:psqt}s wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
+Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für den schwarzen Spieler das Feld h1.
+
+\lstinputlisting[
+    firstline=81,
+    lastline=90,
+    firstnumber=81,
+    caption={Code - PSQT für den Turm},
+    label={lst:psqt-fuer-turm}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
+
+Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays.
+Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \gls{glos:reihe}n und für den schwarzen Spieler die \gls{glos:linie}n gespiegelt werden.
+
+\lstinputlisting[
+    firstline=9,
+    lastline=17,
+    firstnumber=9,
+    caption={Code - Schachbrett Spiegelung},
+    label={lst:schachbrett-spiegelung}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/base/BoardTransformationUtil.java}
+
+Die Resultate der Transformationen auf die Indexe vom ursprünglichem Array aus Abbildung~\ref{fig:index-felder-tabelle} sind in der Abbildung~\ref{fig:index-felder-tabelle-spiegelung} ersichtlich.
+In dieser Abbildung stellt das Schachbrett den Aufbau der \gls{glos:psqt}s dar.
+Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den Wert aus einer \gls{glos:psqt} für das entsprechende Feld zu holen.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        ~~Indexwerte für den weissen Spieler
+
+        \setlength{\tabcolsep}{0pt}
+        \renewcommand{\arraystretch}{1}
+
+        \begin{tabular}{>{\centering\arraybackslash}m{0.4cm}|*{8}{>{\centering\arraybackslash}m{0.8cm}|}}
+            \hhline{~|--------}
+            8                    & \cellcolor{white}    0    & \cellcolor{gray!30}  1   & \cellcolor{white}    2    & \cellcolor{gray!30}  3 & \cellcolor{white}  4& \cellcolor{gray!30} 5& \cellcolor{white} 6& \cellcolor{gray!30} 7\\ \hhline{~|--------}
+            7                    & \cellcolor{gray!30}  8  & \cellcolor{white}    9     & \cellcolor{gray!30}   10 & \cellcolor{white}    11 & \cellcolor{gray!30} 12& \cellcolor{white}13 & \cellcolor{gray!30} 14& \cellcolor{white} 15\\ \hhline{~|--------}
+            6                    & \cellcolor{white}    16   & \cellcolor{gray!30}  17  & \cellcolor{white}   18   & \cellcolor{gray!30}  19 & \cellcolor{white} 20 & \cellcolor{gray!30} 21 & \cellcolor{white} 22 & \cellcolor{gray!30} 23\\ \hhline{~|--------}
+            5                    & \cellcolor{gray!30}  24 & \cellcolor{white}     25    & \cellcolor{gray!30}   26 & \cellcolor{white}     27& \cellcolor{gray!30}28 & \cellcolor{white} 29& \cellcolor{gray!30}30 & \cellcolor{white} 31\\ \hhline{~|--------}
+            4                    & \cellcolor{white}    32   & \cellcolor{gray!30} 33 & \cellcolor{white}    34   & \cellcolor{gray!30}  35 & \cellcolor{white}36 & \cellcolor{gray!30} 37& \cellcolor{white}38 & \cellcolor{gray!30}39\\ \hhline{~|--------}
+            3                    & \cellcolor{gray!30}  40 & \cellcolor{white}    41    & \cellcolor{gray!30}  42 & \cellcolor{white}    43 & \cellcolor{gray!30} 44 & \cellcolor{white}  45& \cellcolor{gray!30}46 & \cellcolor{white} 47\\ \hhline{~|--------}
+            2                    & \cellcolor{white}    48   & \cellcolor{gray!30}  49  & \cellcolor{white}    50   & \cellcolor{gray!30}  51 & \cellcolor{white} 52 & \cellcolor{gray!30} 53 & \cellcolor{white} 54 & \cellcolor{gray!30} 55\\ \hhline{~|--------}
+            1                    & \cellcolor{gray!30}  56 & \cellcolor{white}     57    & \cellcolor{gray!30}  58 & \cellcolor{white}    59 & \cellcolor{gray!30} 60& \cellcolor{white} 61& \cellcolor{gray!30} 62& \cellcolor{white} 63\\ \hhline{~|--------}
+            % Last row with no borders
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B}  & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{G} & \multicolumn{1}{c}{H} \\
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        ~~Indexwerte für den schwarzen Spieler
+
+        \setlength{\tabcolsep}{0pt}
+        \renewcommand{\arraystretch}{1}
+
+        \begin{tabular}{>{\centering\arraybackslash}m{0.4cm}|*{8}{>{\centering\arraybackslash}m{0.8cm}|}}
+            \hhline{~|--------}
+            1                    & \cellcolor{white} 63   & \cellcolor{gray!30} 62 & \cellcolor{white} 61   & \cellcolor{gray!30} 60 & \cellcolor{white} 59 & \cellcolor{gray!30} 58 & \cellcolor{white} 57 & \cellcolor{gray!30} 56\\ \hhline{~|--------}
+            2                    & \cellcolor{gray!30} 55 & \cellcolor{white} 54   & \cellcolor{gray!30} 53 & \cellcolor{white} 52 & \cellcolor{gray!30} 51 & \cellcolor{white} 50 & \cellcolor{gray!30} 49 & \cellcolor{white} 48\\ \hhline{~|--------}
+            3                    & \cellcolor{white} 47   & \cellcolor{gray!30} 46 & \cellcolor{white} 45   & \cellcolor{gray!30} 44 & \cellcolor{white} 43 & \cellcolor{gray!30} 42 & \cellcolor{white} 41 & \cellcolor{gray!30} 40\\ \hhline{~|--------}
+            4                    & \cellcolor{gray!30} 39 & \cellcolor{white} 38   & \cellcolor{gray!30} 37 & \cellcolor{white} 36 & \cellcolor{gray!30} 35 & \cellcolor{white} 34 & \cellcolor{gray!30} 33 & \cellcolor{white} 32\\ \hhline{~|--------}
+            5                    & \cellcolor{white} 31   & \cellcolor{gray!30} 30 & \cellcolor{white} 29   & \cellcolor{gray!30} 28 & \cellcolor{white} 27 & \cellcolor{gray!30} 26 & \cellcolor{white} 25 & \cellcolor{gray!30} 24\\ \hhline{~|--------}
+            6                    & \cellcolor{gray!30} 23 & \cellcolor{white} 22   & \cellcolor{gray!30} 21 & \cellcolor{white} 20 & \cellcolor{gray!30} 19 & \cellcolor{white} 18 & \cellcolor{gray!30} 17 & \cellcolor{white} 16\\ \hhline{~|--------}
+            7                    & \cellcolor{white} 15   & \cellcolor{gray!30} 14 & \cellcolor{white} 13   & \cellcolor{gray!30} 12 & \cellcolor{white} 11 & \cellcolor{gray!30} 10 & \cellcolor{white} 9 & \cellcolor{gray!30} 8\\ \hhline{~|--------}
+            8                    & \cellcolor{gray!30} 7  & \cellcolor{white} 6    & \cellcolor{gray!30} 5  & \cellcolor{white} 4 & \cellcolor{gray!30} 3 & \cellcolor{white} 2 & \cellcolor{gray!30} 1 & \cellcolor{white} 0\\ \hhline{~|--------}
+            % Last row with no borders
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{H}  & \multicolumn{1}{c}{G}  & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{A} \\
+        \end{tabular}
+
+    \end{minipage}
+    \caption{Indexwerte-Spiegelung für die Schachfelder}
+    \label{fig:index-felder-tabelle-spiegelung}
+\end{figure}
+
+Ein konkretes Beispiel: \\
+Ein weisser Turm befindet sich auf dem Schachfeld b2.
+Gemäss Abbildung~\ref{fig:index-felder-tabelle} beträgt der ursprüngliche Index für dieses \gls{glos:feld} 9.
+Der benötigte Index um den korrekten Wert aus der \gls{glos:psqt} auszulesen ist 49.
+Die entsprechende \gls{glos:psqt} liefert gemäss Code-Ausschnitt~\ref{lst:psqt-fuer-turm} den Wert 0.
+Ein schwarzer Turm auf dem gleichen Schachfeld liefert den Wert 10.
