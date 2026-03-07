@@ -8,6 +8,8 @@ import io.github.classgraph.ScanResult;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// TODO: Review pic
 public class EvaluationUtil {
 
     public record EvalConfig(EvalWrapper wrapper, String description){}
