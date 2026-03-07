@@ -9,11 +9,6 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 public class MateAwareEval implements EvalStrategy {
 
     private static final double MAX_NUMBER = 1_000;
-    private final EvalStrategy evalStrategy;
-
-    public MateAwareEval(EvalStrategy evalStrategy) {
-        this.evalStrategy = evalStrategy;
-    }
 
     @Override
     public double getEvaluation(String positionFen) {
@@ -23,7 +18,7 @@ public class MateAwareEval implements EvalStrategy {
             return PlayerColor.WHITE.equals(board.getSideToMove()) ? -MAX_NUMBER : MAX_NUMBER;
         }
 
-        return evalStrategy.getEvaluation(positionFen);
+        return 0;
     }
 
 }

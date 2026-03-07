@@ -3,6 +3,7 @@ package ch.hslu.cas.msed.blobfish;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvalWrapper;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
 import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
@@ -66,7 +67,7 @@ public class PerformanceTest {
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
             new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
-            new PossibleStrategy(new MateAwareEval(new MaterialEval()), "Mate aware material evaluation")
+            new PossibleStrategy(new EvalWrapper(List.of(new MateAwareEval(), new MateAwareEval())), "Mate aware material evaluation")
     );
 
     private record ExecutionConfigKey(
@@ -112,7 +113,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var numberOfMeasurements = 10;
+        var numberOfMeasurements = 2;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
