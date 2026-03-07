@@ -180,13 +180,13 @@ Je nachdem, wo sich eine Schachfigur befindet, kann sie einen höheren oder nied
 Somit hat ein Bauer auf der 7. \gls{glos:reihe} einen höheren Wert, als einer auf der Startposition, bzw.\ auf der 2.\ Reihe.
 Schachfiguren haben grundsätzlich den grössten Wert in Positionen, wo sie die meisten \gls{glos:feld}er überwachen können.
 
-Eine Möglichkeit, diese Logik in einer Schach-Engine zu implementieren, ist die Verwendung von Piece Square Tabellen (deu.\ Figurenfeldtabellen), abgekürzt \gls{glos:psqt}.
+Eine Möglichkeit, diese Logik in einer Schach-Engine zu implementieren, ist die Verwendung von Piece Square Tabellen (deu.\ Figurenfeldtabellen), abgekürzt \gls{glos:pst}.
 Pro Schachfigur wird mindestens eine solche Tabelle erstellt.
 Die Tabelle enthält Werte für jedes Feld auf dem Schachbrett, für die dazugehörige Figur.
 Diese Werte werden zum Basiswert jener Figur hinzugefügt, bzw.\ vom Basiswert subtrahiert (\cite{piecesquaretable}).
 
 Komplexere Schachengines können pro Figur mehrere Tabellen enthalten - für jede \gls{glos:partiephase} eine andere Tabelle.
-Beispielsweise weist ein König in der Eröffnung und im Mittelspiel drastisch andere PSQT-Werte auf als im Endspiel.
+Beispielsweise weist ein König in der Eröffnung und im Mittelspiel drastisch andere \gls{glos:pst}-Werte auf als im Endspiel.
 In der Eröffnung und im Mittelspiel sollte der König so gut wie möglich versteckt werden, damit er schwer anzugreifen ist.
 Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
 
@@ -195,7 +195,7 @@ Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
 
     \begin{minipage}{0.45\textwidth}
         \centering
-        ~~König Mittelspiel PSQT
+        ~~König Mittelspiel PST
 
         \setlength{\tabcolsep}{0pt}
         \renewcommand{\arraystretch}{1}
@@ -217,7 +217,7 @@ Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
     \hfill
     \begin{minipage}{0.45\textwidth}
         \centering
-        ~~König Endspiel PSQT
+        ~~König Endspiel PST
 
         \setlength{\tabcolsep}{0pt}
         \renewcommand{\arraystretch}{1}
@@ -237,11 +237,11 @@ Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
         \end{tabular}
 
     \end{minipage}
-    \caption{Beispiel PSQT für den König, je nach Partiephase}
-    \label{fig:king-psqt-example}
+    \caption{Beispiel PST für den König, je nach Partiephase}
+    \label{fig:king-pst-example}
 \end{figure}
 
-Die Werte in der Abbildung~\ref{fig:king-psqt-example} sind Prozentsätze eines Punktes.
+Die Werte in der Abbildung~\ref{fig:king-pst-example} sind Prozentsätze eines Punktes.
 Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
 
 

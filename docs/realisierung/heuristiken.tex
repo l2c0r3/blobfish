@@ -2,12 +2,12 @@
 
 \subsection{Piece Square Tabellen}
 Wie vorher schon erwähnt, bestehen mehrere Wertdefinitionen für Schachfiguren (\cite{evaluationofpieces}).
-Genau so existieren auch mehrere \gls{glos:psqt}s.
-Zunächst sollten die Stockfish \gls{glos:psqt}s verwendet werden (\cite{piecesquaretablelichessstockfish}), jedoch wurde festgestellt, dass Stockfish nicht die gleichen Basiswerte der Figuren verwendet (\cite{piecevalueslichessstockfish}).
+Genau so existieren auch mehrere \gls{glos:pst}s.
+Zunächst sollten die Stockfish \gls{glos:pst}s verwendet werden (\cite{piecesquaretablelichessstockfish}), jedoch wurde festgestellt, dass Stockfish nicht die gleichen Basiswerte der Figuren verwendet (\cite{piecevalueslichessstockfish}).
 Die von Stockfish verwendeten Basiswerte der Figuren erschienen unlogisch und hängen wahrscheinlich mit mehreren anderen Faktoren zusammen.
 
-Schlussendlich wurden die \gls{glos:psqt}s von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
-Dementsprechend wurden für den König zwei \gls{glos:psqt}s erstellt.
+Schlussendlich wurden die \gls{glos:pst}s von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
+Dementsprechend wurden für den König zwei \gls{glos:pst}s erstellt.
 Eine für Eröffnung und das Mittelspiel und eine für das Endspiel.
 Die unterscheidung zwischen dem Mittelspiel und dem Endspiel ist auch nicht standardisiert und hat mehrere Interpretationen\ \cite{chessendgame}.
 Es wurde die gleiche Logik wie bei \href{https://lichess.org}{Lichess}~verwendet, nämlich befindet sich die Partie im Endspiel, sobald nicht mehr als 6 Figuren im Spiel sind.
@@ -21,7 +21,7 @@ Die Bauern und Könige sind hier ausgeschlossen.
     label={lst:endspiel-berechnug}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/board/ChessBoard.java}
 
-Die Implementation der \gls{glos:psqt} Evaluation ist ziemlich einfach.
+Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
 \lstinputlisting[
     firstline=14,
     lastline=42,
@@ -63,19 +63,19 @@ Alle leeren Felder enthalten `null`.
     label={lst:piece-record}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/Piece.java}
 
-Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird dessen Wert aus der entsprechenden \gls{glos:psqt} ausgelesen.
+Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird dessen Wert aus der entsprechenden \gls{glos:pst} ausgelesen.
 Wie mit den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
 Alle Werte werden am Schluss aufsummiert.
 
-Die Arrays für die \gls{glos:psqt}s wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
+Die Arrays für die \gls{glos:pst}s wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
 Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für den schwarzen Spieler das Feld h1.
 
 \lstinputlisting[
     firstline=81,
     lastline=90,
     firstnumber=81,
-    caption={Code - PSQT für den Turm},
-    label={lst:psqt-fuer-turm}
+    caption={Code - PST für den Turm},
+    label={lst:pst-fuer-turm}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
 
 Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays.
@@ -90,8 +90,8 @@ Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \gls{glos
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/BoardTransformationUtil.java}
 
 Die Resultate der Transformationen auf die Indexe vom ursprünglichem Array aus Abbildung~\ref{fig:index-felder-tabelle} sind in der Abbildung~\ref{fig:index-felder-tabelle-spiegelung} ersichtlich.
-In dieser Abbildung stellt das Schachbrett den Aufbau der \gls{glos:psqt}s dar.
-Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den Wert aus einer \gls{glos:psqt} für das entsprechende Feld zu holen.
+In dieser Abbildung stellt das Schachbrett den Aufbau der \gls{glos:pst}s dar.
+Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den Wert aus einer \gls{glos:pst} für das entsprechende Feld zu holen.
 
 \begin{figure}[H]
     \centering
@@ -147,6 +147,6 @@ Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den We
 Ein konkretes Beispiel: \\
 Ein weisser Turm befindet sich auf dem Schachfeld b2.
 Gemäss Abbildung~\ref{fig:index-felder-tabelle} beträgt der ursprüngliche Index für dieses \gls{glos:feld} 9.
-Der benötigte Index um den korrekten Wert aus der \gls{glos:psqt} auszulesen ist 49.
-Die entsprechende \gls{glos:psqt} liefert gemäss Code-Ausschnitt~\ref{lst:psqt-fuer-turm} den Wert 0.
+Der benötigte Index um den korrekten Wert aus der \gls{glos:pst} auszulesen ist 49.
+Die entsprechende \gls{glos:pst} liefert gemäss Code-Ausschnitt~\ref{lst:pst-fuer-turm} den Wert 0.
 Ein schwarzer Turm auf dem gleichen Schachfeld liefert den Wert 10.
