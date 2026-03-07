@@ -79,9 +79,12 @@ class QualityTest {
 
     private final int[] pointDistribution = {5, 3, 2, 1};
 
+
+    // Category, Position, Answer Stockfish, Answer A, Answer B,
+
     @Test
     @Disabled
     void blub() throws Exception {
-        EvaluationUtil.getAllEvalStrategies();
+        EvaluationUtil.getAllEvalStrategiesCombinations();
     }
 }
