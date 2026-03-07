@@ -6,6 +6,7 @@ import lombok.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CompositeEvalStrategy implements EvalStrategy {
 
@@ -17,6 +18,10 @@ public class CompositeEvalStrategy implements EvalStrategy {
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public List<Class<? extends EvalStrategy>> getStrategies() {
+        return strategies.stream().map(EvalStrategy::getClass).collect(Collectors.toUnmodifiableList());
     }
 
     @Override

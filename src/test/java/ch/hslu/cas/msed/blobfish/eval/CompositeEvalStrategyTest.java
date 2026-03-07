@@ -64,4 +64,26 @@ class CompositeEvalStrategyTest {
         // Assert
         assertEquals(expectedEvaluation, evaluation);
     }
+
+    @Test
+    void getStrategies() {
+        // Arrange
+        EvalStrategy s1 = _ -> 100;
+        EvalStrategy s2 = _ -> 250;
+        EvalStrategy s3 = _ -> 310;
+
+        var expectedStrategies = List.of(s1.getClass(), s2.getClass(), s3.getClass());
+
+        // Act
+        var composite = CompositeEvalStrategy.builder()
+                .add(s1)
+                .add(s2)
+                .add(s3)
+                .build();
+
+        var actualStrategies = composite.getStrategies();
+
+        // Assert
+        assertEquals(expectedStrategies, actualStrategies);
+    }
 }
