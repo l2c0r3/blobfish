@@ -12,8 +12,8 @@ import java.util.List;
 public class MaterialEval implements EvalStrategy {
 
     /**
-     * A positive number (e.g., +1.0) means White has an advantage equal of a pawn;
-     * a negative number (e.g., -2.0) means Black has the edge.
+     * A positive number (e.g., +100) means White has an advantage equal of a pawn;
+     * a negative number (e.g., -200) means Black has the edge.
      */
     @Override
     public int getEvaluation(ChessBoard board) {
