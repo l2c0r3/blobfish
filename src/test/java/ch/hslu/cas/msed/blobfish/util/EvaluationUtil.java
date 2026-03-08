@@ -24,7 +24,6 @@ public class EvaluationUtil {
                     .getClassesImplementing(EvalStrategy.class)
                     .stream()
                     .filter(e -> !e.getName().contains("Wrapper"))
-                    .filter(e -> !e.getName().contains("Random"))
                     .filter(classInfo -> !classInfo.isInterface())
                     .map(classInfo -> {
                         try {
