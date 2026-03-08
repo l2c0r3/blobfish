@@ -14,7 +14,7 @@ class PowerSetUtilTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    void getPermutation_sizeIsCorrect(int n) {
+    void getPowerset_sizeIsCorrect(int n) {
         // Arrange
         var testList = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
@@ -22,37 +22,38 @@ class PowerSetUtilTest {
         }
 
         // Act
-        var result = PowerSetUtil.getPermutation(testList.toArray());
+        var result = PowerSetUtil.getPowerSet(testList);
 
         // Act
-        var expected = Math.pow(2, n) - 1; // without empty list
+        var expected = Math.pow(2, n); // without empty list
         assertEquals(expected, result.size());
     }
 
     @Test
-    void getPermutation_contentIsCorrect_2() {
+    void getPowerset_contentIsCorrect_2() {
         // Arrange
         var testList = List.of("a", "b");
 
         // Act
-        var result = PowerSetUtil.getPermutation(testList.toArray());
+        var result = PowerSetUtil.getPowerSet(testList);
 
         // Assert
+        assertTrue(result.contains(List.of()));
         assertTrue(result.contains(List.of("a")));
         assertTrue(result.contains(List.of("a", "b")));
         assertTrue(result.contains(List.of("b")));
     }
 
     @Test
-    void getPermutation_contentIsCorrect_3() {
+    void getPowerset_contentIsCorrect_3() {
         // Arrange
         var testList = List.of("a", "b", "c");
 
         // Act
-        var result = PowerSetUtil.getPermutation(testList.toArray());
+        var result = PowerSetUtil.getPowerSet(testList);
 
         // Assert
-        assertEquals(6, result.size());
+        assertTrue(result.contains(List.of()));
         assertTrue(result.contains(List.of("a")));
         assertTrue(result.contains(List.of("a", "b")));
         assertTrue(result.contains(List.of("a", "b", "c")));
@@ -63,14 +64,15 @@ class PowerSetUtilTest {
     }
 
     @Test
-    void getPermutation_contentIsCorrect_5() {
+    void getPowerset_contentIsCorrect_5() {
         // Arrange
         var testList = List.of("a", "b", "c", "d", "e");
 
         // Act
-        var result = PowerSetUtil.getPermutation(testList.toArray());
+        var result = PowerSetUtil.getPowerSet(testList);
 
         // Assert
+        assertTrue(result.contains(List.of()));
         assertTrue(result.contains(List.of("a")));
         assertTrue(result.contains(List.of("a", "b")));
         assertTrue(result.contains(List.of("a", "b", "c")));
