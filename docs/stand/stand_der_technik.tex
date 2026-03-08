@@ -36,7 +36,7 @@ Standard, Rapid etc. (\cite{comparableElo}).
 
 \subsection{Minimax}
 Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
-Dieser Algorithmus wird meist für rundenbasierte \glspl{glos:nummsummenspiel} mit 2 Spieler verwendet.
+Dieser Algorithmus wird meist für rundenbasierte \glspl{glos:nummsummenspiel} mit 2 Spielern verwendet.
 Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der name Minimax.
 Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch wenn der Gegner optimal spielt.
 
@@ -195,7 +195,7 @@ Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
 \section{Performance Verbesserungen}
 
 \subsection{Parallelisierung}
-Die Performance Optimierung, welche in der Programmierarbeit schon implementiert wurde, ist die parallelisierung des Minimax-Algorithmus.
+Die Performance Optimierung, welche in der Programmierarbeit schon implementiert wurde, ist die Parallelisierung des Minimax-Algorithmus.
 Für diese Implementierung wurde keine Recherche betrieben, sondern nur das Wissen aus dem \gls{glos:cas} \gls{glos:msed} angewandt.
 Da die Suche nach dem besten Zug als ein ständig verzweigender Baum dargestellt werden kann, wurde festgestellt, dass die Verzweigungen parallel ausgeführt werden können, um Zeit zu sparen.
 Im \gls{glos:cas} wurde das ForkJoin Prinzip vorgestellt, dass sich sehr gut für diesen Fall eignet.
@@ -262,7 +262,7 @@ Falls hier die Zustände in einer anderen Reihenfolge wären, z.B., wie in der A
 \end{figure}
 
 Das Ergebnis des Minimax-Algorithmus mit Alpha-Beta-Pruning ist in der Abbildung~\ref{fig:minimax-alpha-beta-tree-end} dargestellt.
-Der Pfad des optimalen Zustands ist blau und die übersprungen Pfäde/Zustände sind grau markiert.
+Der Pfad des optimalen Zustands ist blau und die übersprungen Pfade/Zustände sind grau markiert.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-end}
