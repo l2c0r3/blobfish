@@ -113,6 +113,8 @@ public class LatexUtil {
 
             if (i != rowCount - 1) {
                 sb.append("\\cline{3-5}\n");
+            } else {
+                sb.append("\\hline\n");
             }
         }
 

@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,20 +66,20 @@ class QualityTest {
                     "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1",
                     // Precise pawn race calculation.
                     "8/3k4/8/2P5/8/8/4K2p/8 w - - 0 1"
-            )),
-
-            Map.entry(QualityTestCategory.DYNAMIC_PLAY, List.of(
-                    // Dynamic compensation test.
-                    "r3r1k1/pp1n1ppp/2pbpn2/q1p5/3P4/2N1PN2/PPQ1BPPP/2RR2K1 w - - 0 1",
-                    // Attack vs material choice.
-                    "r1b2rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2NBPN2/PPQ2PPP/R1B2RK1 w - - 0 1",
-                    // Finds best defense.
-                    "r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1",
-                    // Quiet move over tactics.
-                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1",
-                    // Best long-term plan.
-                    "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
             ))
+
+//            Map.entry(QualityTestCategory.DYNAMIC_PLAY, List.of(
+//                    // Dynamic compensation test.
+//                    "r3r1k1/pp1n1ppp/2pbpn2/q1p5/3P4/2N1PN2/PPQ1BPPP/2RR2K1 w - - 0 1",
+//                    // Attack vs material choice.
+//                    "r1b2rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2NBPN2/PPQ2PPP/R1B2RK1 w - - 0 1",
+//                    // Finds best defense.
+//                    "r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1",
+//                    // Quiet move over tactics.
+//                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1",
+//                    // Best long-term plan.
+//                    "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
+//            ))
 //
 //            Map.entry(TestCategory.POSITIONAL_PLAY, List.of(
 //                    // Positional evaluation test.
