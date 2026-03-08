@@ -40,6 +40,7 @@
 \usepackage{newclude}
 \usepackage{listings}
 \usepackage{csquotes}
+\usepackage{hhline}
 
 
 % Code formatting
@@ -155,7 +156,7 @@
     % Content
     \subfile{einleitung/einleitung.tex}
     \subfile{stand/stand_der_technik.tex}
-    \subfile{realisierung/realisierung.tex}
+    \include*{realisierung/realisierung}
     \subfile{evaluation/evaluation.tex}
 
     \newpage
@@ -171,7 +172,6 @@
     \include*{arbeitsjournal/arbeitsjournal}
     \include*{anhang/aufgabenstellung_programmierarbeit}
     \include*{anhang/themeneingabe_transferarbeit}
-
 
 
 \end{document}

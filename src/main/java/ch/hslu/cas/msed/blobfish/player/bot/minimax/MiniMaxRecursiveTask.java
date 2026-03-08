@@ -29,7 +29,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     @Override
     protected MoveNode compute() {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = evalStrategy.getEvaluation(chessBoard.getFen());
+            var eval = evalStrategy.getEvaluation(chessBoard);
             return new MoveNode(eval, history);
         }
 

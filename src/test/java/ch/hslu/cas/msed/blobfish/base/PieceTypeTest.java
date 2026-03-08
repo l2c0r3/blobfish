@@ -6,7 +6,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PieceTypeTest {
     static Stream<Object[]> fenToPiece() {
@@ -41,11 +42,11 @@ class PieceTypeTest {
 
     @Test
     void points_areCorrect() {
-        assertEquals(99, PieceType.KING.getPoints());
-        assertEquals(9, PieceType.QUEEN.getPoints());
-        assertEquals(5, PieceType.ROOK.getPoints());
-        assertEquals(3, PieceType.BISHOP.getPoints());
-        assertEquals(3, PieceType.KNIGHT.getPoints());
-        assertEquals(1, PieceType.PAWN.getPoints());
+        assertEquals(9900, PieceType.KING.getPoints());
+        assertEquals(900, PieceType.QUEEN.getPoints());
+        assertEquals(500, PieceType.ROOK.getPoints());
+        assertEquals(300, PieceType.BISHOP.getPoints());
+        assertEquals(300, PieceType.KNIGHT.getPoints());
+        assertEquals(100, PieceType.PAWN.getPoints());
     }
 }

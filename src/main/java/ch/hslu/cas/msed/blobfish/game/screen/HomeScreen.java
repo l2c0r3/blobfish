@@ -1,18 +1,13 @@
 package ch.hslu.cas.msed.blobfish.game.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.EvalWrapper;
-import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
-import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.eval.*;
 import ch.hslu.cas.msed.blobfish.game.BotPlayerFactory;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
 import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
-
-import java.util.List;
 
 public class HomeScreen {
     private final OutputWriter writer;
@@ -35,8 +30,8 @@ public class HomeScreen {
         var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
 
         var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
-        var strat = new EvalWrapper(List.of(new MateAwareEval(), new MateAwareEval()));
-        var botPlayer = getBotPlayer(CALC_DEPTH, strat, botPlayerColor);
+        var botPlayerEvalStrategy = CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).add(new PieceSquareEval()).build();
+        var botPlayer = getBotPlayer(CALC_DEPTH, botPlayerEvalStrategy, botPlayerColor);
 
         return switch (humanPlayerColor) {
             case WHITE -> new MatchConfig(humanPlayer, botPlayer);

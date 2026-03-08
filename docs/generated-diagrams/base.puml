@@ -1,5 +1,12 @@
 @startuml
 
+class ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil {
+	{method}  {static} +flipFileIndex ( paramint1 : int ) : int
+	{method}  {static} +flipRankIndex ( paramint1 : int ) : int
+	{method}  {static} +rotateBoardIndex ( paramint1 : int ) : int
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.FenUtil {
 	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
 	{method}  {static} +validateFenString ( paramString1 : String ) : void

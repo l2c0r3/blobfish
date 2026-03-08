@@ -2,10 +2,7 @@ package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.EvalWrapper;
-import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
-import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.eval.*;
 import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
@@ -50,7 +47,7 @@ public class PerformanceTest {
         MiniMaxAlgo create(int depth, EvalStrategy strategy, PlayerColor playerToMove);
     }
 
-    private record PossibleStrategy(EvalStrategy strategy, String description) {
+    private record PossibleStrategy(CompositeEvalStrategy strategy, String description) {
     }
 
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
@@ -66,13 +63,17 @@ public class PerformanceTest {
     }
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
-            new PossibleStrategy(new MaterialEval(), "Simple material evaluation"),
-            new PossibleStrategy(new EvalWrapper(List.of(new MateAwareEval(), new MateAwareEval())), "Mate aware material evaluation")
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MaterialEval()).build(), "Simple material evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).build(), "Mate aware material evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new PieceSquareEval()).build(), "Simple piece square evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new PieceSquareEval()).build(), "Mate aware piece square evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MaterialEval()).add(new PieceSquareEval()).build(), "Piece square material evaluation"),
+            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).add(new PieceSquareEval()).build(), "Mate aware piece square material evaluation")
     );
 
     private record ExecutionConfigKey(
             Class<? extends MiniMaxAlgo> algorithm,
-            Class<? extends EvalStrategy> strategy
+            List<Class<? extends EvalStrategy>> strategies
     ) {
     }
 
@@ -81,8 +82,7 @@ public class PerformanceTest {
 
     private static final int DEFAULT_CALCULATION_DEPTH = 4;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
-            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MateAwareEval.class), new ExecutionConfig(6),
-            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, MaterialEval.class), new ExecutionConfig(6)
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6)
     );
 
     private static Stream<Arguments> positionProvider() {
@@ -113,7 +113,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var numberOfMeasurements = 2;
+        var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
@@ -124,7 +124,10 @@ public class PerformanceTest {
                 possibleStrategies.forEach(strategy -> {
                             // instantiate algorithm, so we can extract the class for the config
                             var algoClass = miniMaxAlgoConstructor.create(0, strategy.strategy(), positionToTest.playerToMove()).getClass();
-                            var config = executionConfig.get(new ExecutionConfigKey(algoClass, strategy.strategy().getClass()));
+                            var config = executionConfig.entrySet().stream().filter(entry ->
+                                    entry.getKey().algorithm() == algoClass &&
+                                            (entry.getKey().strategies().isEmpty() || entry.getKey().strategies().equals(strategy.strategy().getStrategies()))
+                            ).map(Map.Entry::getValue).findFirst().orElse(null);
                             var maxDepth = config != null ? config.depth : DEFAULT_CALCULATION_DEPTH;
 
                             IntStream.range(1, maxDepth + 1).forEach(depth -> {
