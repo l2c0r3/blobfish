@@ -8,67 +8,77 @@ import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil.EvalConfig;
+import ch.hslu.cas.msed.blobfish.util.LatexUtil;
 import lombok.Getter;
+import org.apache.commons.text.WordUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 
 @ExtendWith(StockfishExtension.class)
-// TODO: introduce Tag
+public// TODO: introduce Tag
 class QualityTest {
 
     @InjectStockfish
     StockFishService stockFishService;
 
-    @Getter
-    private enum TestCategory {
+    private static File rootFolderForQualityFiles = null;
 
+    @BeforeAll
+    static void setup() {
+        if (rootFolderForQualityFiles == null) {
+            rootFolderForQualityFiles = createQualityFolder();
+        }
+    }
+
+    @Getter
+    public enum QualityTestCategory {
         TACTICS("TACTICS"),
         DYNAMIC_PLAY("Dynamic play / initiative / sacrifices"),
         POSITIONAL_PLAY("Positional play / prophylaxis"),
         ENDGAMES_TECHNIQUE("Endgames / technique / zugzwang / fortress");
-
-
         private final String description;
 
-        TestCategory(String description) {
+        QualityTestCategory(String description) {
             this.description = description;
         }
-
     }
 
-    private final Map<TestCategory, List<String>> positionsToTest = Map.ofEntries(
-            Map.entry(TestCategory.TACTICS, List.of(
+    private final Map<QualityTestCategory, List<String>> positionsToTest = Map.ofEntries(
+            Map.entry(QualityTestCategory.TACTICS, List.of(
                     // Direct mate attack.
-                    "6k1/5ppp/5r2/8/8/5Q2/5PPP/6K1 w - - 0 1"
+                    "6k1/5ppp/5r2/8/8/5Q2/5PPP/6K1 w - - 0 1",
                     // Tests tactical sequencing.
-//                    "r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1",
-//                    // Kingside attack motifs.
-//                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
-//                    // Converts a won tactic.
-//                    "6k1/5ppp/8/8/8/5q2/5PPP/6K1 b - - 0 1",
-//                    // Tests underpromotion ideas.
-//                    "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1",
-//                    // Precise pawn race calculation.
-//                    "8/3k4/8/2P5/8/8/4K2p/8 w - - 0 1"
-            ))
+                    "r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1",
+                    // Kingside attack motifs.
+                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
+                    // Converts a won tactic.
+                    "6k1/5ppp/8/8/8/5q2/5PPP/6K1 b - - 0 1",
+                    // Tests underpromotion ideas.
+                    "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1",
+                    // Precise pawn race calculation.
+                    "8/3k4/8/2P5/8/8/4K2p/8 w - - 0 1"
+            )),
 
-//            Map.entry(TestCategory.DYNAMIC_PLAY, List.of(
-//                    // Dynamic compensation test.
-//                    "r3r1k1/pp1n1ppp/2pbpn2/q1p5/3P4/2N1PN2/PPQ1BPPP/2RR2K1 w - - 0 1",
-//                    // Attack vs material choice.
-//                    "r1b2rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2NBPN2/PPQ2PPP/R1B2RK1 w - - 0 1",
-//                    // Finds best defense.
-//                    "r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1",
-//                    // Quiet move over tactics.
-//                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1",
-//                    // Best long-term plan.
-//                    "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
-//            )),
+            Map.entry(QualityTestCategory.DYNAMIC_PLAY, List.of(
+                    // Dynamic compensation test.
+                    "r3r1k1/pp1n1ppp/2pbpn2/q1p5/3P4/2N1PN2/PPQ1BPPP/2RR2K1 w - - 0 1",
+                    // Attack vs material choice.
+                    "r1b2rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2NBPN2/PPQ2PPP/R1B2RK1 w - - 0 1",
+                    // Finds best defense.
+                    "r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1",
+                    // Quiet move over tactics.
+                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1",
+                    // Best long-term plan.
+                    "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
+            ))
 //
 //            Map.entry(TestCategory.POSITIONAL_PLAY, List.of(
 //                    // Positional evaluation test.
@@ -100,39 +110,48 @@ class QualityTest {
     private final int[] pointDistribution = {5, 3, 2, 1};
     private final int DEPTH_TO_CALC = 5;
 
-    private record EvalResult(EvalConfig strategy, String move, int pointWon){}
-    private record TestResult(TestCategory testCategory, String fen, List<String> stockfishMove, List<EvalResult> evalResult){}
+    public record EvalQualityResult(EvalConfig strategy, String move, int pointWon){}
+    public record QualityTestResult(QualityTestCategory qualityTestCategory, String fen, List<String> stockfishMove, List<EvalQualityResult> evalQualityResult){}
 
     @Test
     void compareEvals() {
         // Arrange
         var evalStrategies = EvaluationUtil.getAllEvalStrategiesCombinations();
-        List<TestResult> testResults = new ArrayList<>();
+        List<QualityTestResult> qualityTestResults = new ArrayList<>();
         stockFishService.setMultiPV(pointDistribution.length);
 
         // Act - calculate moves and poitns
-        positionsToTest.forEach((TestCategory testCategory, List<String> positions) -> {
+        positionsToTest.forEach((QualityTestCategory qualityTestCategory, List<String> positions) -> {
             positions.forEach(position -> {
 
                 stockFishService.newGame();
                 stockFishService.setPosition(position);
                 var stockFishResult = stockFishService.go(DEPTH_TO_CALC);
 
-                List<EvalResult> evalResults = new ArrayList<>();
+                List<EvalQualityResult> evalQualityResults = new ArrayList<>();
                 for (var evalStrategy : evalStrategies) {
                     var bot = new MiniMaxAlphaBetaSequential(DEPTH_TO_CALC, evalStrategy.strategy(), PlayerColor.WHITE);
                     var botResult = bot.getNextBestMove(new ChessBoard(position)).move();
                     var botPoints = this.calcPoints(stockFishResult, botResult);
-                    var evalResult = new EvalResult(evalStrategy, botResult, botPoints);
-                    evalResults.add(evalResult);
+                    var evalResult = new EvalQualityResult(evalStrategy, botResult, botPoints);
+                    evalQualityResults.add(evalResult);
                 }
 
-                var testResult = new TestResult(testCategory, position, stockFishResult, evalResults);
-                testResults.add(testResult);
+                var testResult = new QualityTestResult(qualityTestCategory, position, stockFishResult, evalQualityResults);
+                qualityTestResults.add(testResult);
             });
         });
 
         // Act
+        for (QualityTestCategory qualityTestCategory : QualityTestCategory.values()) {
+            var resultFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
+            var fileName = getFileNameOutOfCategory(qualityTestCategory);
+            try {
+                Files.move(resultFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         System.out.println("blub");
     }
@@ -144,5 +163,18 @@ class QualityTest {
 
         var idx = stockfishMoves.indexOf(evalMove);
         return pointDistribution[idx];
+    }
+
+    private String getFileNameOutOfCategory(QualityTestCategory category) {
+        var desc = category.getDescription().replaceAll("/", "");
+        return WordUtils.capitalizeFully(desc).replaceAll(" ", "");
+    }
+
+    private static File createQualityFolder() {
+        var measurementFolder = "quality";
+        var rootFolder = measurementFolder + File.separator;
+        File folder = new File(rootFolder);
+        folder.mkdirs();
+        return folder;
     }
 }
