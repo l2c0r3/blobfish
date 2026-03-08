@@ -1,8 +1,5 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.EvalWrapper;
-
 import java.util.ArrayList;
 import java.util.List;
 
