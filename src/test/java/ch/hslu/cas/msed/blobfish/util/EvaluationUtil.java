@@ -18,7 +18,7 @@ public class EvaluationUtil {
             RandomEval.class
     );
 
-    public record EvalConfig(EvalStrategy wrapper, String description) {
+    public record EvalConfig(EvalStrategy strategy, String description) {
     }
 
     @SuppressWarnings("unchecked")
