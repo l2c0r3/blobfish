@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 
 public class PlantUmlUtil {
 
-    public record ChartBar(String barDescription, List<Double> values){}
+    public record ChartBar(String barDescription, List<Double> values) {
+    }
 
     private static final List<String> diagramColors = List.of(
             "#1F77B4", // Blau
@@ -30,7 +31,19 @@ public class PlantUmlUtil {
             "#98DF8A", // Hellgrün
             "#FF9896", // Hellrot
             "#C5B0D5", // Helllila
-            "#9EDAE5" // Helltürkis
+            "#9EDAE5", // Helltürkis
+            "#393B79", // Dunkelblau
+            "#637939", // Dunkelgrün
+            "#8C6D31", // Dunkelbraun
+            "#843C39", // Dunkelrot
+            "#7B4173", // Dunkellila
+            "#5254A3", // Indigo
+            "#D6616B", // Koralle
+            "#9C9EAC", // Silbergrau
+            "#E7BA52", // Goldgelb
+            "#6B6ECF", // Lavendelblau
+            "#FF6E54", // Feuerorange
+            "#B5CF6B"  // Limettengrün
     );
 
     private PlantUmlUtil() {
@@ -61,7 +74,7 @@ public class PlantUmlUtil {
                             .map(Object::toString)
                             .collect(Collectors.joining(","));
                     var colorI = colorIndex.getAndIncrement();
-                    return "bar \"" + barDescription + "\"" + "[ " +  measurements + " ] " + diagramColors.get(colorI);
+                    return "bar \"" + barDescription + "\"" + "[ " + measurements + " ] " + diagramColors.get(colorI);
                 })
                 .collect(Collectors.joining("\n"));
 
@@ -70,20 +83,20 @@ public class PlantUmlUtil {
         var spacing = getBarChartSpacing(allValues);
 
         var content = """
-        @startchart
-        
-        title
-        %s
-        end title
-        
-        h-axis %s
-        v-axis "%s" 0 --> %s spacing %s grid
-        
-        %s
-        
-        legend right
-        @endchart
-        """.formatted(barTitle, hAxisTitle, verticalAxisTitle, maxValue, spacing, barStrings);
+                @startchart
+                
+                title
+                %s
+                end title
+                
+                h-axis %s
+                v-axis "%s" 0 --> %s spacing %s grid
+                
+                %s
+                
+                legend right
+                @endchart
+                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, maxValue, spacing, barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {

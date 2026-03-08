@@ -1,5 +1,6 @@
 \chapter{Stand der Technik}
 
+
 \section{Schachcomputer}
 Ein erster Meilenstein in der Welt der Schachcomputer wurde mit Deep Blue, einem Schachcomputer von IBM, geschaffen. Ziel des Team war es, der beste
 Schachspieler der Welt zu schlagen. Der erste Versuch scheiterte im Februar 1996 in Philadelphia gegen Garry Kasparov mit 4-2.
@@ -30,7 +31,9 @@ Eine \gls{glos:elo} ist nämlich ein Vergleich innerhalb eines Pools von Kandida
 So existieren bei der \gls{glos:fide} auch unterschiedliche \gls{glos:elo}-Werte für die verschiedenen Schachvarianten wie
 Standard, Rapid etc. (\cite{comparableElo}).
 
+
 \section{Algorithmen}
+
 \subsection{Minimax}
 Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
 Dieser Algorithmus wird meist für rundenbasierte Nullsummenspiele mit 2 Spieler verwendet.
@@ -168,6 +171,78 @@ Der Pfad des optimalen Zustands ist blau und die übersprungen Pfäde/Zustände 
     \label{fig:minimax-alpha-beta-tree-end}
 \end{figure}
 
+
 \section{Heuristiken}
+
+\subsection{Piece Square Tabellen}
+Die genauen Werte der Schachfiguren sind nicht standardisiert und hängen von vielen Faktoren ab, wie z.B.\ der Position der Figuren und der \gls{glos:partiephase}\ (\cite{chesspiecerelativevalue}).
+Je nachdem, wo sich eine Schachfigur befindet, kann sie einen höheren oder niedrigeren Wert als ihren Basiswert haben.
+Somit hat ein Bauer auf der 7. \gls{glos:reihe} einen höheren Wert, als einer auf der Startposition, bzw.\ auf der 2.\ Reihe.
+Schachfiguren haben grundsätzlich den grössten Wert in Positionen, wo sie die meisten \gls{glos:feld}er überwachen können.
+
+Eine Möglichkeit, diese Logik in einer Schach-Engine zu implementieren, ist die Verwendung von Piece Square Tabellen (deu.\ Figurenfeldtabellen), abgekürzt \gls{glos:pst}.
+Pro Schachfigur wird mindestens eine solche Tabelle erstellt.
+Die Tabelle enthält Werte für jedes Feld auf dem Schachbrett, für die dazugehörige Figur.
+Diese Werte werden zum Basiswert jener Figur hinzugefügt, bzw.\ vom Basiswert subtrahiert (\cite{piecesquaretable}).
+
+Komplexere Schachengines können pro Figur mehrere Tabellen enthalten - für jede \gls{glos:partiephase} eine andere Tabelle.
+Beispielsweise weist ein König in der Eröffnung und im Mittelspiel drastisch andere \gls{glos:pst}-Werte auf als im Endspiel.
+In der Eröffnung und im Mittelspiel sollte der König so gut wie möglich versteckt werden, damit er schwer anzugreifen ist.
+Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        ~~König Mittelspiel PST
+
+        \setlength{\tabcolsep}{0pt}
+        \renewcommand{\arraystretch}{1}
+
+        \begin{tabular}{>{\centering\arraybackslash}m{0.4cm}|*{8}{>{\centering\arraybackslash}m{0.8cm}|}}
+            \hhline{~|--------}
+            8                    & \cellcolor{red!60} -30  & \cellcolor{red!75} -40  & \cellcolor{red!75} -40  & \cellcolor{red!100} -50 & \cellcolor{red!100} -50 & \cellcolor{red!75} -40 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            7                    & \cellcolor{red!60} -30  & \cellcolor{red!75} -40  & \cellcolor{red!75} -40  & \cellcolor{red!100} -50 & \cellcolor{red!100} -50 & \cellcolor{red!75} -40 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            6                    & \cellcolor{red!60} -30  & \cellcolor{red!75} -40  & \cellcolor{red!75} -40  & \cellcolor{red!100} -50 & \cellcolor{red!100} -50 & \cellcolor{red!75} -40 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            5                    & \cellcolor{red!60} -30  & \cellcolor{red!75} -40  & \cellcolor{red!75} -40  & \cellcolor{red!100} -50 & \cellcolor{red!100} -50 & \cellcolor{red!75} -40 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            4                    & \cellcolor{red!40} -20  & \cellcolor{red!60} -30  & \cellcolor{red!60} -30  & \cellcolor{red!75} -40 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30 & \cellcolor{red!60} -30 & \cellcolor{red!40} -20 \\ \hhline{~|--------}
+            3                    & \cellcolor{red!20} -10  & \cellcolor{red!40} -20  & \cellcolor{red!40} -20  & \cellcolor{red!40} -20 & \cellcolor{red!40} -20 & \cellcolor{red!40} -20 & \cellcolor{red!40} -20 & \cellcolor{red!20} -10 \\ \hhline{~|--------}
+            2                    & \cellcolor{green!40} 20 & \cellcolor{green!40} 20 & \cellcolor{white} 0     & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{green!40} 20 & \cellcolor{green!40} 20 \\ \hhline{~|--------}
+            1                    & \cellcolor{green!40} 20 & \cellcolor{green!60} 30 & \cellcolor{green!20} 10 & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{green!20} 10 & \cellcolor{green!60} 30 & \cellcolor{green!40} 20 \\ \hhline{~|--------}
+            % Last row with no borders
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{A}   & \multicolumn{1}{c}{B}   & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{G} & \multicolumn{1}{c}{H} \\
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        ~~König Endspiel PST
+
+        \setlength{\tabcolsep}{0pt}
+        \renewcommand{\arraystretch}{1}
+
+        \begin{tabular}{>{\centering\arraybackslash}m{0.4cm}|*{8}{>{\centering\arraybackslash}m{0.8cm}|}}
+            \hhline{~|--------}
+            8                    & \cellcolor{red!100} -50 & \cellcolor{red!75} -40 & \cellcolor{red!60} -30  & \cellcolor{red!40} -20 & \cellcolor{red!40} -20 & \cellcolor{red!60} -30 & \cellcolor{red!75} -40 & \cellcolor{red!100} -50 \\ \hhline{~|--------}
+            7                    & \cellcolor{red!60} -30  & \cellcolor{red!40} -20 & \cellcolor{red!20} -10  & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{red!20} -10 & \cellcolor{red!40} -20 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            6                    & \cellcolor{red!60} -30  & \cellcolor{red!20} -10 & \cellcolor{green!40} 20 & \cellcolor{green!60} 30 & \cellcolor{green!60} 30 & \cellcolor{green!40} 20 & \cellcolor{red!20} -10 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            5                    & \cellcolor{red!60} -30  & \cellcolor{red!20} -10 & \cellcolor{green!60} 30 & \cellcolor{green!80} 40 & \cellcolor{green!80} 40 & \cellcolor{green!60} 30 & \cellcolor{red!20} -10 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            4                    & \cellcolor{red!60} -30  & \cellcolor{red!20} -10 & \cellcolor{green!60} 30 & \cellcolor{green!80} 40 & \cellcolor{green!80} 40 & \cellcolor{green!60} 30 & \cellcolor{red!20} -10 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            3                    & \cellcolor{red!60} -30  & \cellcolor{red!20} -10 & \cellcolor{green!40} 20 & \cellcolor{green!60} 30 & \cellcolor{green!60} 30 & \cellcolor{green!40} 20 & \cellcolor{red!20} -10 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            2                    & \cellcolor{red!60} -30  & \cellcolor{red!60} -30 & \cellcolor{white} 0     & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{white} 0 & \cellcolor{red!60} -30 & \cellcolor{red!60} -30 \\ \hhline{~|--------}
+            1                    & \cellcolor{red!100} -50 & \cellcolor{red!60} -30 & \cellcolor{red!60} -30  & \cellcolor{red!60} -30 & \cellcolor{red!60} -30 & \cellcolor{red!60} -30 & \cellcolor{red!60} -30 & \cellcolor{red!100} -50 \\ \hhline{~|--------}
+            % Last row with no borders
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{A}   & \multicolumn{1}{c}{B}  & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{G} & \multicolumn{1}{c}{H} \\
+        \end{tabular}
+
+    \end{minipage}
+    \caption{Schematisches Beispiel einer PST für den König, je nach Partiephase}
+    \label{fig:king-pst-example}
+\end{figure}
+
+Die Werte in der Abbildung~\ref{fig:king-pst-example} sind ein illustratives Beispiel und sind als Prozentsätze eines Punktes zu verstehen.
+Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
+
 
 \section{Performance Verbesserungen}

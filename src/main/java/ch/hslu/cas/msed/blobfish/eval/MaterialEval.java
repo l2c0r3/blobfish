@@ -3,6 +3,7 @@ package ch.hslu.cas.msed.blobfish.eval;
 import ch.hslu.cas.msed.blobfish.base.FenUtil;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -11,12 +12,12 @@ import java.util.List;
 public class MaterialEval implements EvalStrategy {
 
     /**
-     * A positive number (e.g., +1.0) means White has an advantage equal of a pawn;
-     * a negative number (e.g., -2.0) means Black has the edge.
+     * A positive number (e.g., +100) means White has an advantage equal of a pawn;
+     * a negative number (e.g., -200) means Black has the edge.
      */
     @Override
-    public double getEvaluation(String positionFen) {
-        return parseFen(positionFen).stream()
+    public int getEvaluation(ChessBoard board) {
+        return parseFen(board.getFen()).stream()
                 .mapToInt(p -> PlayerColor.WHITE.equals(p.color()) ? p.materialPoints() : -p.materialPoints())
                 .sum();
     }
@@ -35,6 +36,6 @@ public class MaterialEval implements EvalStrategy {
     }
 
     private String removeEmptyFieldsFromPosition(String fenBlock) {
-        return  fenBlock.replaceAll("\\d", "");
+        return fenBlock.replaceAll("\\d", "");
     }
 }

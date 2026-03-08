@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
+import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.game.providers.TestBotOneProvider;
 import org.junit.jupiter.api.Assertions;
@@ -53,7 +54,7 @@ class BotPlayerFactoryTest {
     private static class TestEvalStrategy implements EvalStrategy {
 
         @Override
-        public double getEvaluation(String positionFen) {
+        public int getEvaluation(ChessBoard board) {
             return 0;
         }
     }
