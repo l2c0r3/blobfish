@@ -1,0 +1,29 @@
+\section{Performance Verbesserungen}
+
+\subsection{Alpha-Beta-Pruning}
+Zunächst war vorgesehen, sämtliche Optimierungen sowohl für die sequenzielle als auch für die parallele Implementierung des Minimax-Algorithmus umzusetzen.
+Nach einer Recherche in Alpha-Beta-Pruning ergab sich, dass diese Optimierung für sequentielle Implementierungen vorgesehen ist.
+
+Es bestehen auch Ansätze für parallele Implementierungen, wie Young Brothers Wait Concept.
+Die Idee ist, dass der Zug mit der höchsten Wahrscheinlichkeit, der beste zu sein, zuerst evaluiert wird - danach werden alle anderen Züge in parallel evaluiert.
+Somit können die restlichen Züge mit dem ersten verglichen werden\ \cite{alphabetaybwc}.
+
+Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgewinn sehr variabel und unerheblich.
+Aus diesen Gründen wurde die Alpha-Beta-Pruning Optimierung nur für die sequenzielle Implementierung umgesetzt.
+
+Die ursprüngliche Implementierung des Minimax-Algorithmus musste nur minim angepasst werden, um diese Optimierung einzubauen.
+Es wurden 2 neue Parameter zur Funktion hinzugefügt: alpha und beta.
+Diese merken sich die relevanten Werte der vorherigen Evaluationen und anhand dessen wird entschieden, ob die Suche vorzeitig abgebrochen werden kann (\cite{alphabetachessprogramming}).
+Die relevanten Zeilen sind die Zeilen 64--72.
+\lstinputlisting[
+    firstline=28,
+    lastline=76,
+    firstnumber=28,
+    caption={Code - Minimax sequenziell mit Alpha-Beta-Pruning},
+    label={lst:minimax-sequenziell-alpha-beta}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxAlphaBetaSequential.java}
+
+Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig.
+Darum werden sie auf den Zeilen 43--44 sortiert.
+Die Sortierung ist erstmals sehr primitiv - es werden Züge, die eine Figur fangen, zuerst ausgewertet, da diese eine grössere Chance haben bessere Werte zu liefern.
+Mit dem Einbau weiterer Heuristiken wird auch diese Sortierung erweitert.
