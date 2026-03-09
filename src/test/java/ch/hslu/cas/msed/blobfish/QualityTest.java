@@ -107,6 +107,8 @@ class QualityTest {
     );
 
     private final int[] pointDistribution = {5, 3, 2, 1};
+
+    //TODO Take higher depth
     private final int DEPTH_TO_CALC = 5;
 
     public record EvalQualityResult(EvalConfig strategy, String move, int pointWon){}
@@ -129,7 +131,8 @@ class QualityTest {
 
                 List<EvalQualityResult> evalQualityResults = new ArrayList<>();
                 for (var evalStrategy : evalStrategies) {
-                    var bot = new MiniMaxAlphaBetaSequential(DEPTH_TO_CALC, evalStrategy.strategy(), PlayerColor.WHITE);
+                    var playerColor = new ChessBoard(position).getSideToMove();
+                    var bot = new MiniMaxAlphaBetaSequential(DEPTH_TO_CALC, evalStrategy.strategy(), playerColor);
                     var botResult = bot.getNextBestMove(new ChessBoard(position)).move();
                     var botPoints = this.calcPoints(stockFishResult, botResult);
                     var evalResult = new EvalQualityResult(evalStrategy, botResult, botPoints);
