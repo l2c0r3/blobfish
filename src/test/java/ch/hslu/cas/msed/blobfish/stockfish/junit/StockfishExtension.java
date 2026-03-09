@@ -45,4 +45,6 @@ public class StockfishExtension implements BeforeAllCallback, TestInstancePostPr
         var stockfishService = StockFishSingleton.get();
         stockfishService.newGame();
     }
+
+    // TODO: implement AfterAll
 }

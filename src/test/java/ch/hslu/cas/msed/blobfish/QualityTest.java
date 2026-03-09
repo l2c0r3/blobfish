@@ -52,6 +52,7 @@ class QualityTest {
         }
     }
 
+    // TODO: review pos
     private final Map<QualityTestCategory, List<String>> positionsToTest = Map.ofEntries(
             Map.entry(QualityTestCategory.TACTICS, List.of(
                     // Direct mate attack.

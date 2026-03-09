@@ -85,6 +85,7 @@ public class LatexUtil {
 
         int rowCount = testResult.evalQualityResult().size();
 
+        // TODO: Check if higher chunk size possible
         var fenCutted = String.join("\\\\", splitFenForLatex(testResult.fen(), 9));
         sb.append("""
                 \\multirow{%d}{*}{
@@ -94,6 +95,7 @@ public class LatexUtil {
                 }
                 """.formatted(rowCount, fenCutted));
 
+        // TODO: nummerierte liste
         var stockFishMoves = testResult.stockfishMove().stream()
                 .map(s -> "- " + escapeLatex(s))
                 .collect(Collectors.joining("\\\\"));
