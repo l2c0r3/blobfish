@@ -71,6 +71,8 @@ public class LatexUtil {
                 \\end{document}
                 """);
 
+        // TODO: Add sum
+
         var tmpFile = FileUtil.createTmpFile("qualityMoves", "tex");
         try (FileWriter fw = new FileWriter(tmpFile)) {
             fw.write(sb.toString());
