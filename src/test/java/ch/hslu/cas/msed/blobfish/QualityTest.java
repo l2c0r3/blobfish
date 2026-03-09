@@ -148,6 +148,7 @@ class QualityTest {
         for (QualityTestCategory qualityTestCategory : QualityTestCategory.values()) {
             var resultFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
             var fileName = getFileNameOutOfCategory(qualityTestCategory);
+            // TODO: implement diagram generation
             try {
                 Files.move(resultFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
