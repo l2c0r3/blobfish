@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-// TODO: Review pic
 public class EvaluationUtil {
 
     private static final List<Class> EVAL_CLASSES_TO_IGNORE = List.of(
