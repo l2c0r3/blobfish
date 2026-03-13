@@ -8,12 +8,10 @@ public class MoveNodeMapper {
         if (moveNode == null || moveNode.history() == null) {
             return null;
         } else {
-
             MoveHistoryNode node = moveNode.history();
             while (node.parent() != null) {
                 node = node.parent();
             }
-
             return new FirstMoveEvaluation(node.move(), moveNode.eval());
         }
     }
