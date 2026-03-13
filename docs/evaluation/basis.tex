@@ -23,3 +23,33 @@ und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befe
 Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
 \textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
 
+\subsection{\gls{glos:JUnit}-Extension}
+
+Um möglichst einfach innherhalb einer Testmethode mit Stockfish kommunizieren zu können, haben wir uns entschieden,
+eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglich uns beispielsweise über Callbacks, Code vor oder nach einer
+Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
+Testklasse injected werden (\cite{junitExtensionRegistration}).
+
+So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche eigene Extension verwendet:
+
+\lstinputlisting[
+    firstline=32,
+    lastline=39,
+    firstnumber=1,
+    caption={QualityTest},
+    label={lst:qualitTestHead}
+]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
+
+Mittels der Annotation \textit{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
+dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal eine Dockercontainer von Stockfish bereits
+gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
+Als nächstes, wird eine der StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Diese Objekt
+wird dann mittels PostProcessing in das Feld auf Zeile 3 injected.
+
+Annschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
+Variable mit Stockfish kommuniziert werden, und so beispielsweise Positionen berechnet werden.
+Sicherheitshalber wird die Extension zwischen den Testmethoden der Befehl \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame}
+an Stockfish übermittelt, um Stockfish zu resetten.
+
+Nachdem alle Testmethoden ausgeführt sind und ein Dockercontainer für die Testausführung gestartet wurde, stoppt dieser
+die Extension.
