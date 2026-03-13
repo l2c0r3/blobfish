@@ -92,6 +92,10 @@
     emphstyle=\color{ijKeyword}\bfseries
 }
 
+% Code-Verzueichnisse
+\renewcommand{\lstlistlistingname}{Code-Verzeichnis}
+\renewcommand{\lstlistingname}{Code-Ausschnitt}
+
 % Nice Table
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
 \newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
@@ -133,8 +137,8 @@
 \setlength\parindent{0pt}
 \begin{document}
 
-    % Verhindert das Einfügen von Kapiteltitel kleiner als \chapter
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+    % Verhindert das Einfügen von Kapiteltitel kleiner als \subsection
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 
     %TITELSEITE
     \KOMAoption{headsepline}{false} %Remove pipes
