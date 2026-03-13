@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -124,11 +127,13 @@ public class QualityTest {
     @Test
     void compareEvals() {
         // Arrange
-        var evalStrategies = EvaluationUtil.getAllEvalStrategiesCombinations();
+        var evalStrategies = EvaluationUtil.getAllEvalStrategiesCombinations().stream()
+                .filter(e -> !MateAwareEval.class.equals(e.strategy().getClass()))
+                .toList();
         List<QualityTestResult> qualityTestResults = new ArrayList<>();
         stockFishService.setMultiPV(pointDistribution.length);
 
-        // Act - calculate moves and poitns
+        // Act - calculate moves and points
         positionsToTest.forEach((QualityTestCategory qualityTestCategory, List<String> positions) -> {
             positions.forEach(position -> {
 
@@ -151,7 +156,7 @@ public class QualityTest {
             });
         });
 
-        // Act
+        // Act - generate data tables and diagrams
         for (QualityTestCategory qualityTestCategory : positionsToTest.keySet()) {
             var fileName = getFileNameOutOfCategory(qualityTestCategory);
 
@@ -166,8 +171,6 @@ public class QualityTest {
                 throw new RuntimeException(e);
             }
         }
-
-        System.out.println("blub");
     }
 
     private int calcPoints(List<String> stockfishMoves, String evalMove) {
@@ -210,7 +213,8 @@ public class QualityTest {
 
     private static File createQualityFolder() {
         var measurementFolder = "quality";
-        var rootFolder = measurementFolder + File.separator;
+        var dateTimeFolder = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm").format(LocalDateTime.now());
+        var rootFolder = measurementFolder + File.separator + dateTimeFolder;
         File folder = new File(rootFolder);
         folder.mkdirs();
         return folder;
