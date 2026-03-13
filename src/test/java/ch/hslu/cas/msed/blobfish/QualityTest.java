@@ -12,6 +12,7 @@ import ch.hslu.cas.msed.blobfish.util.LatexUtil;
 import lombok.Getter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -24,8 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 @ExtendWith(StockfishExtension.class)
-public// TODO: introduce Tag
-class QualityTest {
+@Tag(value = "quality")
+public class QualityTest {
 
     @InjectStockfish
     StockFishService stockFishService;

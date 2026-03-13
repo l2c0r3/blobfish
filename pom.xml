@@ -134,8 +134,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
-                    <!-- don't execute performance test in default -->
-                    <excludedGroups>performance</excludedGroups>
+                    <!-- don't execute specific tests in default -->
+                    <excludedGroups>performance,quality</excludedGroups>
                 </configuration>
             </plugin>
 
@@ -346,6 +346,21 @@
                         <configuration combine.self="override">
                             <!-- only execute performance tests -->
                             <groups>performance</groups>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>quality</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire.version}</version>
+                        <configuration combine.self="override">
+                            <!-- only execute quality tests -->
+                            <groups>quality</groups>
                         </configuration>
                     </plugin>
                 </plugins>
