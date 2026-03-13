@@ -1,6 +1,5 @@
 package ch.hslu.cas.msed.blobfish;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
@@ -9,6 +8,7 @@ import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil.EvalConfig;
 import ch.hslu.cas.msed.blobfish.util.LatexUtil;
+import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
 import lombok.Getter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,8 +21,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @ExtendWith(StockfishExtension.class)
 @Tag(value = "quality")
@@ -110,10 +112,14 @@ public class QualityTest {
     private final int[] pointDistribution = {5, 3, 2, 1};
 
     //TODO Take higher depth
-    private final int DEPTH_TO_CALC = 5;
+    private final int DEPTH_TO_CALC = 3;
 
-    public record EvalQualityResult(EvalConfig strategy, String move, int pointWon){}
-    public record QualityTestResult(QualityTestCategory qualityTestCategory, String fen, List<String> stockfishMove, List<EvalQualityResult> evalQualityResult){}
+    public record EvalQualityResult(EvalConfig strategy, String move, int pointWon) {
+    }
+
+    public record QualityTestResult(QualityTestCategory qualityTestCategory, String fen, List<String> stockfishMove,
+                                    List<EvalQualityResult> evalQualityResult) {
+    }
 
     @Test
     void compareEvals() {
@@ -146,12 +152,16 @@ public class QualityTest {
         });
 
         // Act
-        for (QualityTestCategory qualityTestCategory : QualityTestCategory.values()) {
-            var resultFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
+        for (QualityTestCategory qualityTestCategory : positionsToTest.keySet()) {
             var fileName = getFileNameOutOfCategory(qualityTestCategory);
-            // TODO: implement diagram generation
+
+            var tableFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
+            var sumDiagram = createPlantUml(qualityTestResults, qualityTestCategory);
+            var svg = PlantUmlUtil.convertPlantUmlToSvg(sumDiagram);
             try {
-                Files.move(resultFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
+                Files.move(tableFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
+                Files.move(sumDiagram.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+                Files.move(svg.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -172,6 +182,30 @@ public class QualityTest {
     private String getFileNameOutOfCategory(QualityTestCategory category) {
         var desc = category.getDescription().replaceAll("/", "");
         return WordUtils.capitalizeFully(desc).replaceAll(" ", "");
+    }
+
+    private File createPlantUml(List<QualityTestResult> results, QualityTest.QualityTestCategory tacticTableToGenerate) {
+        var description = tacticTableToGenerate.getDescription();
+        List<String> horizontalAxisTitles = List.of("Evaluations");
+        String verticalAxisTitle = "Won Points";
+
+        Map<EvalConfig,List<EvalQualityResult>> resultGroupByStrategy = results.stream()
+                .filter(r -> tacticTableToGenerate.equals(r.qualityTestCategory()))
+                .flatMap(r -> r.evalQualityResult().stream())
+                .collect(Collectors.groupingBy(EvalQualityResult::strategy));
+
+        List<PlantUmlUtil.ChartBar> bars = new ArrayList<>();
+
+        resultGroupByStrategy.keySet().stream()
+                .sorted(Comparator.comparing(EvalConfig::description))
+                .forEach(config -> {
+                    var pointsWon = resultGroupByStrategy.get(config).stream()
+                            .mapToDouble(EvalQualityResult::pointWon)
+                            .sum();
+                    bars.add(new PlantUmlUtil.ChartBar(config.description(), List.of(pointsWon)));
+                });
+
+        return PlantUmlUtil.createBarChart(description, horizontalAxisTitles, verticalAxisTitle, bars);
     }
 
     private static File createQualityFolder() {
