@@ -4,7 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
-import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
+import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 
 public class TestAlgoTwoProvider implements BotAlgorithmProvider {
     private static final String ALGORITHM_NAME = "test-algo-two";
@@ -25,7 +25,7 @@ public class TestAlgoTwoProvider implements BotAlgorithmProvider {
         }
 
         @Override
-        public MoveEvaluation getNextBestMove(ChessBoard chessBoard) {
+        public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
             return null;
         }
     }
