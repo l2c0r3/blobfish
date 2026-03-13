@@ -21,4 +21,6 @@ public abstract class BotAlgorithm {
 
     public abstract FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard);
 
+    public abstract PathEvaluation getBestPath(ChessBoard chessBoard);
+
 }

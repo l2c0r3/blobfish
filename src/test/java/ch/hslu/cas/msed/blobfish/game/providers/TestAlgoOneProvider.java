@@ -5,6 +5,7 @@ import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
 import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
+import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 
 public class TestAlgoOneProvider implements BotAlgorithmProvider {
     private static final String ALGORITHM_NAME = "test-algo-one";
@@ -26,6 +27,11 @@ public class TestAlgoOneProvider implements BotAlgorithmProvider {
 
         @Override
         public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
+            return null;
+        }
+
+        @Override
+        public PathEvaluation getBestPath(ChessBoard chessBoard) {
             return null;
         }
     }
