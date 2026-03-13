@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 
 public class StockfishExtension implements BeforeAllCallback, TestInstancePostProcessor, BeforeEachCallback, AfterAllCallback {
 
-    private static volatile StockFishService stockfishService;
+    private StockFishService stockfishService;
 
     /**
      * Starts container if needed
