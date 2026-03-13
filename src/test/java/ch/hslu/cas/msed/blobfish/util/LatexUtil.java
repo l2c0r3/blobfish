@@ -37,20 +37,20 @@ public class LatexUtil {
                 \\setlength{\\LTright}{0pt}
                 
                 \\begin{longtable}{|
-                        >{\\raggedright\\arraybackslash}p{0.33\\textwidth}|
-                        >{\\centering\\arraybackslash}p{0.12\\textwidth}|
-                        >{\\raggedright\\arraybackslash}p{0.27\\textwidth}|
-                        >{\\centering\\arraybackslash}p{0.12\\textwidth}|
+                        >{\\raggedright\\arraybackslash}p{0.15\\textwidth}|
+                        >{\\centering\\arraybackslash}p{0.15\\textwidth}|
+                        >{\\raggedright\\arraybackslash}p{0.20\\textwidth}|
+                        >{\\centering\\arraybackslash}p{0.30\\textwidth}|
                         >{\\centering\\arraybackslash}p{0.08\\textwidth}|}
                 \\caption{%s} \\\\
                 \\hline
                 \\multicolumn{5}{|c|}{\\textbf{%s}} \\\\ \\hline
-                \\textbf{FEN} & \\textbf{Stockfish move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
+                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
                 \\endfirsthead
                 
                 \\hline
                 \\multicolumn{5}{|c|}{\\textbf{%s} -- Fortsetzung} \\\\ \\hline
-                \\textbf{FEN} & \\textbf{Stockfish move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
+                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
                 \\endhead
                 
                 \\hline
@@ -71,8 +71,6 @@ public class LatexUtil {
                 \\end{document}
                 """);
 
-        // TODO: Add sum
-
         var tmpFile = FileUtil.createTmpFile("qualityMoves", "tex");
         try (FileWriter fw = new FileWriter(tmpFile)) {
             fw.write(sb.toString());
@@ -87,7 +85,7 @@ public class LatexUtil {
 
         int rowCount = testResult.evalQualityResult().size();
 
-        // TODO: Check if higher chunk size possible
+        // Add fen
         var fenCutted = String.join("\\\\", splitFenForLatex(testResult.fen(), 9));
         sb.append("""
                 \\multirow{%d}{*}{
@@ -97,10 +95,15 @@ public class LatexUtil {
                 }
                 """.formatted(rowCount, fenCutted));
 
-        // TODO: nummerierte liste
-        var stockFishMoves = testResult.stockfishMove().stream()
-                .map(s -> "- " + escapeLatex(s))
-                .collect(Collectors.joining("\\\\"));
+        // Add stockfish moves
+        StringBuilder stockFishRanglist = new StringBuilder();
+        for (int i = 0; i < testResult.stockfishMove().size(); i++) {
+            stockFishRanglist.append(i + 1).append(".) ")
+                    .append(testResult.stockfishMove().get(i));
+            if (i != testResult.stockfishMove().size() - 1) {
+                stockFishRanglist.append("\\\\");
+            }
+        }
         sb.append("""
                 &
                 \\multirow{%d}{*}{
@@ -108,12 +111,14 @@ public class LatexUtil {
                         %s
                     \\end{tabular}
                 }
-                """.formatted(rowCount, stockFishMoves));
+                """.formatted(rowCount, escapeLatex(stockFishRanglist.toString())));
 
+        // ensure always same order
         var sortedEvalQualityResult = testResult.evalQualityResult().stream()
                 .sorted(Comparator.comparing((QualityTest.EvalQualityResult r) -> r.strategy().description()))
                 .toList();
 
+        // add evalname + moves
         for (int i = 0; i < rowCount; i++) {
             var result = sortedEvalQualityResult.get(i);
             if (i != 0) {
@@ -154,13 +159,8 @@ public class LatexUtil {
 
     private static String escapeLatex(String s) {
         if (s == null) return "";
-        return s.replace("\\", "\\textbackslash{}")
+        return s
                 .replace("&", "\\&")
-                .replace("%", "\\%")
-                .replace("$", "\\$")
-                .replace("#", "\\#")
-                .replace("_", "\\_")
-                .replace("{", "\\{")
-                .replace("}", "\\}");
+                .replace("%", "\\%");
     }
 }
