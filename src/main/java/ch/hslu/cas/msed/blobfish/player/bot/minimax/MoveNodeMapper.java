@@ -23,11 +23,9 @@ public class MoveNodeMapper {
         if (moveNode == null || moveNode.history() == null) {
             return null;
         } else {
-
             var path = new ArrayList<String>();
 
             var historyNode = moveNode.history();
-
             do {
                 path.add(historyNode.move());
                 historyNode = historyNode.parent();
