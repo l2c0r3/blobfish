@@ -1,21 +1,24 @@
 package ch.hslu.cas.msed.blobfish.stockfish.junit;
 
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestInstancePostProcessor;
+import org.junit.jupiter.api.extension.*;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
-public class StockfishExtension implements BeforeAllCallback, TestInstancePostProcessor, BeforeEachCallback {
+public class StockfishExtension implements BeforeAllCallback, TestInstancePostProcessor, BeforeEachCallback, AfterAllCallback {
+
+    private static volatile StockFishService stockfishService;
 
     /**
      * Starts container if needed
      */
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
-        StockFishSingleton.getOrStart();
+        stockfishService = new StockFishService.StockFishServiceBuilder()
+                .withMultiPV(3)
+                .withDefaultCalculationDepth(5)
+                .build();
     }
 
     /**
@@ -30,7 +33,7 @@ public class StockfishExtension implements BeforeAllCallback, TestInstancePostPr
                 if (field.isAnnotationPresent(InjectStockfish.class)
                         && field.getType().equals(StockFishService.class)) {
                     field.setAccessible(true);
-                    field.set(testInstance, StockFishSingleton.get());
+                    field.set(testInstance, stockfishService);
                 }
             }
             type = type.getSuperclass();
@@ -42,9 +45,14 @@ public class StockfishExtension implements BeforeAllCallback, TestInstancePostPr
      */
     @Override
     public void beforeEach(ExtensionContext context) {
-        var stockfishService = StockFishSingleton.get();
         stockfishService.newGame();
     }
 
-    // TODO: implement AfterAll
+    /**
+     * Stops stockfish at the end of tests
+     */
+    @Override
+    public void afterAll(ExtensionContext context) throws IOException {
+        stockfishService.close();
+    }
 }
