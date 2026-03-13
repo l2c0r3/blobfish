@@ -113,7 +113,7 @@ public class QualityTest {
 
     private final int[] pointDistribution = {8, 5, 3, 2, 1};
 
-    private final int DEPTH_TO_CALC = 6;
+    private final int DEPTH_TO_CALC = 10;
 
     public record EvalQualityResult(EvalConfig strategy, String move, int pointWon) {
     }
@@ -140,14 +140,15 @@ public class QualityTest {
                 var stockFishResult = stockFishService.go(DEPTH_TO_CALC);
 
                 List<EvalQualityResult> evalQualityResults = new ArrayList<>();
-                for (var evalStrategy : evalStrategies) {
+
+                evalStrategies.stream().parallel().forEach(evalStrategy -> {
                     var playerColor = new ChessBoard(position).getSideToMove();
                     var bot = new MiniMaxAlphaBetaSequential(DEPTH_TO_CALC, evalStrategy.strategy(), playerColor);
                     var botResult = bot.getNextBestMove(new ChessBoard(position)).move();
                     var botPoints = this.calcPoints(stockFishResult, botResult);
                     var evalResult = new EvalQualityResult(evalStrategy, botResult, botPoints);
                     evalQualityResults.add(evalResult);
-                }
+                });
 
                 var testResult = new QualityTestResult(qualityTestCategory, position, stockFishResult, evalQualityResults);
                 qualityTestResults.add(testResult);
