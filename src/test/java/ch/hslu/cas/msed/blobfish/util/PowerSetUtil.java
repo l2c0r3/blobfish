@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- * <a href="https://www.baeldung.com/java-power-set-of-a-set">Copied of</a>
+ * Based on <a href="https://www.baeldung.com/java-power-set-of-a-set">baeldung-Code</a>
  */
 public class PowerSetUtil {
 
