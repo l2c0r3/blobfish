@@ -58,7 +58,6 @@ public class QualityTest {
         }
     }
 
-    // TODO: review pos
     private final Map<QualityTestCategory, List<String>> positionsToTest = Map.ofEntries(
             Map.entry(QualityTestCategory.TACTICS, List.of(
                     // Direct mate attack.
@@ -112,10 +111,9 @@ public class QualityTest {
             ))
     );
 
-    private final int[] pointDistribution = {5, 3, 2, 1};
+    private final int[] pointDistribution = {8, 5, 3, 2, 1};
 
-    //TODO Take higher depth
-    private final int DEPTH_TO_CALC = 3;
+    private final int DEPTH_TO_CALC = 6;
 
     public record EvalQualityResult(EvalConfig strategy, String move, int pointWon) {
     }
