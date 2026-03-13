@@ -36,14 +36,14 @@ Standard, Rapid etc. (\cite{comparableElo}).
 
 \subsection{Minimax}
 Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
-Dieser Algorithmus wird meist für rundenbasierte Nullsummenspiele mit 2 Spieler verwendet.
+Dieser Algorithmus wird meist für rundenbasierte \glspl{glos:nullsummenspiel} mit 2 Spielern verwendet.
 Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der name Minimax.
 Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch wenn der Gegner optimal spielt.
 
-Der Algorithmus hat in nicht-Nullsummenspielen auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
-In Nullsummenspielen sind diese zwei Logiken gleich, in nicht-Nullsummenspielen jedoch nicht.
+Der Algorithmus hat in nicht-\glspl{glos:nullsummenspiel}n auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
+In \glspl{glos:nullsummenspiel}n sind diese zwei Logiken gleich, in nicht-\glspl{glos:nullsummenspiel}n jedoch nicht (\cite{minimaxwiki}).
 
-Da Schach ein rundenbasiertes Nullsummenspiel mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut um die besten Züge eines Spielers zu berechnen.
+Da Schach ein rundenbasiertes \gls{glos:nullsummenspiel} mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut um die besten Züge eines Spielers zu berechnen.
 
 \begin{figure}[H]
     \centering
@@ -55,7 +55,7 @@ Da Schach ein rundenbasiertes Nullsummenspiel mit 2 Spielern ist, eignet sich di
 Der Algorithmus kann zu Visualisierungszwecken als Baum mit einem Tiefensuchverfahren dargestellt werden.
 Ausgenommen der Tiefe 0 (Baumwurzel), stellt jede Tiefe alle Zustände des Spieles dar, welche ein Spieler erzeugen kann.
 Somit sind in der Tiefe 1 alle Zustände enthalten, die der Spieler 1 erzeugen kann.
-Die Tiefe 2 stellt alle Zustände dar, die Spieler 2 anschliessend erreichen kann.
+Die Tiefe 2 stellt alle Zustände dar, die Spieler 2 anschliessend erreichen kann (\cite{minimaxchessprogramming}).
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-0}
@@ -102,83 +102,30 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
     \label{fig:minimax-tree}
 \end{figure}
 
-\subsection{Alpha-Beta-Pruning}
-Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Ergebnis nicht beeinflussen, abgeschnitten werden.
-
-Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
-Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfade komplett übersprungen werden.
-Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht ist sehr von der Reihenfolge der Auswertung abhängig.
-Je früher der beste Zustand ausgewertet wird, desto mehr Pfade können übersprungen werden.
-
-In der Abbildung~\ref{fig:minimax-alpha-beta-tree-0} ist die Ausgangslage für das nächste Beispiel zu sehen.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-0}
-    \caption{Minimax Alpha-Beta Beispielbaum - Ausgangslage}
-    \label{fig:minimax-alpha-beta-tree-0}
-\end{figure}
-
-Hier muss die komplette linke Seite des Baumes durchgelaufen werden, ohne dass eine Alpha-Beta Pruning Optimierung gemacht werden kann.
-Im linken Teil des mittleren Teil-Baumes wird Stufe 2 auf die gleiche Art bestimmt.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-1}
-    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 1}
-    \label{fig:minimax-alpha-beta-tree-1}
-\end{figure}
-
-Da Stufe 2 hier den Wert 2 liefert, und die übergeordnete Stufe einen Minimalwert sucht, kann hier provisorisch festgestellt werden, dass die Stufe 1 hier einen Wert liefern wird, der kleiner oder gleich 2 ist.
-Die Stufe 0 hingegen sucht einen Maximalwert.
-Zwischen 6 und einem Wert der kleiner oder gleich 2 ist, wird der Wert 6 genommen.
-Somit kann festgestellt werden, dass es keine Rolle spielt welche Werte in den Stufen 2 und 3 sich im restlichen Teil des mittleren Teil-Baumes befinden, da diese Werte sowieso nicht genommen werden.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-2}
-    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 2}
-    \label{fig:minimax-alpha-beta-tree-2}
-\end{figure}
-
-Die gleiche Logik wird auch an die rechte Seite des Baumes angewandt.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-3}
-    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 3}
-    \label{fig:minimax-alpha-beta-tree-3}
-\end{figure}
-
-Auf dieser Seite ergibt sich die gleiche Optimierungsmöglichkeit.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-4}
-    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 4}
-    \label{fig:minimax-alpha-beta-tree-4}
-\end{figure}
-
-Falls hier die Zustände in einer anderen Reihenfolge wären, z.B., wie in der Abbildung~\ref{fig:minimax-alpha-beta-tree-5}, müsste die ganze Seite traversiert werden und es könnte keine Optimierung stattfinden.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-5}
-    \caption{Minimax Alpha-Beta Beispielbaum - Alternative Reihenfolge}
-    \label{fig:minimax-alpha-beta-tree-5}
-\end{figure}
-
-Das Ergebnis des Minimax-Algorithmus mit Alpha-Beta-Pruning ist in der Abbildung~\ref{fig:minimax-alpha-beta-tree-end} dargestellt.
-Der Pfad des optimalen Zustands ist blau und die übersprungen Pfäde/Zustände sind grau markiert.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-end}
-    \caption{Minimax Alpha-Beta Beispielbaum - Zusammengefasst}
-    \label{fig:minimax-alpha-beta-tree-end}
-\end{figure}
-
-
 \section{Heuristiken}
 
+\subsection{Materialistische Evaluation}
+Die auf den ersten Blick wahrscheinlich einfachste Heuristik, die jeder Schachspieler kennt, ist die materialistische Evaluation der Schachfiguren.
+Die meisten Personen, die Schach anfangen zu spielen, lernen ziemlich schnell, dass die Schachfiguren die folgenden Werte haben:
+\begin{itemize}
+    \item Bauer - 1
+    \item Springer - 3
+    \item Läufer - 3
+    \item Turm - 5
+    \item Dame - 9
+\end{itemize}
+Diese Figurenwerte werden von nun an als Basiswerte bezeichnet.
+Durch weitere Recherche kann festgestellt werden, dass die Basiswerte unterschiedliche Variationen haben (\cite{chesspiecerelativevalue}).
+Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufer einen grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springer.
+
+Zudem hängt der genaue Wert der Schachfiguren von zusätzlichen Faktoren ab, wie der Position der Figuren, sowie der aktuellen \gls{glos:partiephase}.
+Läufer haben einen grösseren Wert in \glspl{glos:offene-position}, während Springer einen grösseren Wert in \glspl{glos:geschlossene-position} haben (\cite{openclosedpositions}).
+Je weniger Figuren sich am Schachbrett befinden, desto stärker ist ein Turm, somit hat er in den späteren \glspl{glos:partiephase} einen grösseren Wert.
+
 \subsection{Piece Square Tabellen}
-Die genauen Werte der Schachfiguren sind nicht standardisiert und hängen von vielen Faktoren ab, wie z.B.\ der Position der Figuren und der \gls{glos:partiephase}\ (\cite{chesspiecerelativevalue}).
 Je nachdem, wo sich eine Schachfigur befindet, kann sie einen höheren oder niedrigeren Wert als ihren Basiswert haben.
 Somit hat ein Bauer auf der 7. \gls{glos:reihe} einen höheren Wert, als einer auf der Startposition, bzw.\ auf der 2.\ Reihe.
-Schachfiguren haben grundsätzlich den grössten Wert in Positionen, wo sie die meisten \gls{glos:feld}er überwachen können.
+Schachfiguren haben grundsätzlich den grössten Wert in Positionen, wo sie die meisten \glspl{glos:feld} überwachen können.
 
 Eine Möglichkeit, diese Logik in einer Schach-Engine zu implementieren, ist die Verwendung von Piece Square Tabellen (deu.\ Figurenfeldtabellen), abgekürzt \gls{glos:pst}.
 Pro Schachfigur wird mindestens eine solche Tabelle erstellt.
@@ -246,3 +193,79 @@ Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
 
 
 \section{Performance Verbesserungen}
+
+\subsection{Parallelisierung}
+Die Performance Optimierung, welche in der Programmierarbeit schon implementiert wurde, ist die Parallelisierung des Minimax-Algorithmus.
+Für diese Implementierung wurde keine Recherche betrieben, sondern nur das Wissen aus dem \gls{glos:cas} \gls{glos:msed} angewandt.
+Da die Suche nach dem besten Zug als ein ständig verzweigender Baum dargestellt werden kann, wurde festgestellt, dass die Verzweigungen parallel ausgeführt werden können, um Zeit zu sparen.
+Im \gls{glos:cas} wurde das ForkJoin Prinzip vorgestellt, dass sich sehr gut für diesen Fall eignet.
+Mehr Informationen zur konkreten Umsetzung sind im Unterkapitel~\ref{subsec:real-minimax-parallel} zu finden.
+
+\subsection{Alpha-Beta-Pruning}
+Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Ergebnis nicht beeinflussen, abgeschnitten werden.
+
+Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
+Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfade komplett übersprungen werden (\cite{alphabetagreatlearning}).
+Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht ist sehr von der Reihenfolge der Auswertung abhängig (\cite{moveordering}).
+Je früher der beste Zustand ausgewertet wird, desto mehr Pfade können übersprungen werden.
+
+In der Abbildung~\ref{fig:minimax-alpha-beta-tree-0} ist die Ausgangslage für das nächste Beispiel zu sehen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-0}
+    \caption{Minimax Alpha-Beta Beispielbaum - Ausgangslage}
+    \label{fig:minimax-alpha-beta-tree-0}
+\end{figure}
+
+Hier muss die komplette linke Seite des Baumes durchgelaufen werden, ohne dass eine Alpha-Beta Pruning Optimierung gemacht werden kann.
+Im linken Teil des mittleren Teil-Baumes wird Stufe 2 auf die gleiche Art bestimmt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-1}
+    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 1}
+    \label{fig:minimax-alpha-beta-tree-1}
+\end{figure}
+
+Da Stufe 2 hier den Wert 2 liefert, und die übergeordnete Stufe einen Minimalwert sucht, kann hier provisorisch festgestellt werden, dass die Stufe 1 hier einen Wert liefern wird, der kleiner oder gleich 2 ist.
+Die Stufe 0 hingegen sucht einen Maximalwert.
+Zwischen 6 und einem Wert der kleiner oder gleich 2 ist, wird der Wert 6 genommen.
+Somit kann festgestellt werden, dass es keine Rolle spielt welche Werte in den Stufen 2 und 3 sich im restlichen Teil des mittleren Teil-Baumes befinden, da diese Werte sowieso nicht genommen werden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-2}
+    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 2}
+    \label{fig:minimax-alpha-beta-tree-2}
+\end{figure}
+
+Die gleiche Logik wird auch an die rechte Seite des Baumes angewandt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-3}
+    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 3}
+    \label{fig:minimax-alpha-beta-tree-3}
+\end{figure}
+
+Auf dieser Seite ergibt sich die gleiche Optimierungsmöglichkeit.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-4}
+    \caption{Minimax Alpha-Beta Beispielbaum - Schritt 4}
+    \label{fig:minimax-alpha-beta-tree-4}
+\end{figure}
+
+Falls hier die Zustände in einer anderen Reihenfolge wären, z.B., wie in der Abbildung~\ref{fig:minimax-alpha-beta-tree-5}, müsste die ganze Seite traversiert werden und es könnte keine Optimierung stattfinden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-5}
+    \caption{Minimax Alpha-Beta Beispielbaum - Alternative Reihenfolge}
+    \label{fig:minimax-alpha-beta-tree-5}
+\end{figure}
+
+Das Ergebnis des Minimax-Algorithmus mit Alpha-Beta-Pruning ist in der Abbildung~\ref{fig:minimax-alpha-beta-tree-end} dargestellt.
+Der Pfad des optimalen Zustands ist blau und die übersprungen Pfade/Zustände sind grau markiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-end}
+    \caption{Minimax Alpha-Beta Beispielbaum - Zusammengefasst}
+    \label{fig:minimax-alpha-beta-tree-end}
+\end{figure}

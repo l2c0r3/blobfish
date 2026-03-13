@@ -1,0 +1,63 @@
+\section{Algorithmen}
+In der Programmierarbeit wurden mit Java schon zwei Versionen des Minimax-Algorithmus implementiert.
+Eine sequentielle (Normalfall) und eine parallele (mittels ForkJoin) Lösung.
+Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier kurz Dokumentiert.
+
+\subsection{Minimax sequenziell}
+Die sequenzielle Implementierung des Minimax-Algorithmus ist ziemlich unkompliziert.
+Es besteht eine rekursive Funktion, die für jeden legalen Schachzug, bis zu einer bestimmten Tiefe, ausgeführt wird (\cite{minimaxgeeks}).
+Die Funktion implementiert die Minimax-Logik mit einer Abweichung vom Standard-Minimax-Algorithmus - sie protokolliert die Zugverläufe für jede Zugkombination.
+Dies aus zwei Gründen:
+\begin{enumerate}
+    \item Erleichtertes Debugging
+    \item Bei Zügen mit dem gleichen Ergebnis wird der Zug mit der geringeren Tiefe, bzw.\ kürzeren Historie genommen
+\end{enumerate}
+
+Zusätzlich besteht eine vorzeitige Rückgabe bei Zug-Pfaden, welche zum Schluss vom Spiel führen (z.B.\ Schachmatt).
+Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer Zugkombination nach 3 Zügen Schachmatt erzeugt - somit rechnet die Funktion nur bis zur Tiefe 3.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/sequential-minimax}
+    \caption{Ablaufdiagramm - Minimax sequenziell}
+    \label{fig:minimax-sequential}
+\end{figure}
+
+\lstinputlisting[
+    firstline=26,
+    lastline=55,
+    firstnumber=26,
+    caption={Minimax sequenziell},
+    label={lst:minimax-sequenziell}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxSequential.java}
+
+\subsection{Minimax parallel}
+\label{subsec:real-minimax-parallel}
+Die parallele Implementierung enthält die gleiche Basislogik, jedoch wird anstelle einer iteration für alle legale Züge das ForkJoin Prinzip verwendet.
+Für jeden legalen Zug wird ein Task erstellt.
+Alle erstellten Tasks werden zur Ausführung zum ForkJoin Pool hinzugefügt.
+Dies passiert rekursiv für jede Tiefe.
+Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind und die Resultate der Ergebnisse werden durch die Minimax-Logik überprüft.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/forkjoin-minimax}
+    \caption{Ablaufdiagramm - Minimax parallel}
+    \label{fig:minimax-parallel}
+\end{figure}
+
+\lstinputlisting[
+    firstline=12,
+    lastline=66,
+    firstnumber=12,
+    caption={Minimax ForkJoin Task},
+    label={lst:minimax-forkjoin-task}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxRecursiveTask.java}
+
+\lstinputlisting[
+    firstline=15,
+    lastline=28,
+    firstnumber=15,
+    caption={Minimax parallel Task-Aufruf},
+    label={lst:minimax-parallel}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxParallel.java}

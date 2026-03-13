@@ -1,23 +1,53 @@
 \section{Heuristiken}
 
+\subsection{Materialistische Evaluation}
+Für die materialistische Evaluation wurde die Standardvariation der Basiswerte verwendet, jedoch mit 100 multipliziert, um weitere Verfeinerungen leichter berechnen zu können.
+Somit haben die Schachfiguren folgende Basiswerte:
+\begin{itemize}
+    \item Bauer - 100
+    \item Springer - 300
+    \item Läufer - 300
+    \item Turm - 500
+    \item Dame - 900
+\end{itemize}
+Da der König nicht genommen werden kann, aber trotzdem ein Angriffsziel bleiben soll, wurde für diese Figur ein grosser Basiswert definiert - 99, multipliziert durch 100, ergibt 9900.
+\lstinputlisting[
+    firstline=8,
+    lastline=14,
+    firstnumber=8,
+    caption={Basiswerte der Schachfiguren},
+    label={lst:figuren-basiswerte}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/base/PieceType.java}
+
+Für die Berechnung des Materialwertes einer Position werden die Basiswerte aller Figuren aufsummiert.
+Die Basiswerte der schwarzen Figuren werden negiert.
+Bei einer positiven Endsumme hat der Spieler mit den weissen Figuren den Vorteil, bei einer negativen Summe hat der Spieler mit den schwarzen Figuren den Vorteil, und bei einem Ergebnis von 0 ist die Position in Bezug auf das Material ausgeglichen.
+\lstinputlisting[
+    firstline=18,
+    lastline=40,
+    firstnumber=18,
+    caption={Materialistische Evaluation},
+    label={lst:material-evaluation}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/MaterialEval.java}
+
 \subsection{Piece Square Tabellen}
 Wie vorher schon erwähnt, bestehen mehrere Wertdefinitionen für Schachfiguren (\cite{evaluationofpieces}).
-Genau so existieren auch mehrere \gls{glos:pst}s.
-Zunächst sollten die Stockfish \gls{glos:pst}s verwendet werden (\cite{piecesquaretablelichessstockfish}), jedoch wurde festgestellt, dass Stockfish nicht die gleichen Basiswerte der Figuren verwendet (\cite{piecevalueslichessstockfish}).
+Genau so existieren auch mehrere \glspl{glos:pst}.
+Zunächst sollten die Stockfish \glspl{glos:pst} verwendet werden (\cite{piecesquaretablelichessstockfish}), jedoch wurde festgestellt, dass Stockfish nicht die gleichen Basiswerte der Figuren verwendet (\cite{piecevalueslichessstockfish}).
 Die von Stockfish verwendeten Basiswerte der Figuren erschienen unlogisch und hängen wahrscheinlich mit mehreren anderen Faktoren zusammen.
 
-Schlussendlich wurden die \gls{glos:pst}s von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
-Dementsprechend wurden für den König zwei \gls{glos:pst}s erstellt.
+Schlussendlich wurden die \glspl{glos:pst} von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
+Dementsprechend wurden für den König zwei \glspl{glos:pst} erstellt.
 Eine für Eröffnung und das Mittelspiel und eine für das Endspiel.
-Die Unterscheidung zwischen dem Mittelspiel und dem Endspiel ist auch nicht standardisiert und hat mehrere Interpretationen\ \cite{chessendgame}.
-Es wurde die gleiche Logik wie bei \href{https://lichess.org}{Lichess}~verwendet, nämlich befindet sich die Partie im Endspiel, sobald nicht mehr als 6 Figuren im Spiel sind.
+Die Unterscheidung zwischen dem Mittelspiel und dem Endspiel ist auch nicht standardisiert und hat mehrere Interpretationen (\cite{chessendgame}).
+Es wurde die gleiche Logik wie bei \gls{glos:lichess} verwendet, nämlich befindet sich die Partie im Endspiel, sobald nicht mehr als 6 Schachfiguren im Spiel sind.
 Die Bauern und Könige sind hier ausgeschlossen.
 
 \lstinputlisting[
     firstline=107,
     lastline=116,
     firstnumber=107,
-    caption={Code - Endspiel berechnung},
+    caption={Endspiel berechnung},
     label={lst:endspiel-berechnung}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/board/ChessBoard.java}
 
@@ -26,7 +56,7 @@ Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
     firstline=14,
     lastline=42,
     firstnumber=14,
-    caption={Code - Piece Square Evaluation},
+    caption={Piece Square Evaluation},
     label={lst:piece-square-evaluation}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
 
@@ -59,7 +89,7 @@ Alle leeren Felder enthalten `null`.
     firstline=3,
     lastline=3,
     firstnumber=3,
-    caption={Code - Piece record},
+    caption={Piece record},
     label={lst:piece-record}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/Piece.java}
 
@@ -67,30 +97,30 @@ Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur bef
 Wie mit den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
 Alle Werte werden am Schluss aufsummiert.
 
-Die Arrays für die \gls{glos:pst}s wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
+Die Arrays für die \glspl{glos:pst} wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
 Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für den schwarzen Spieler das Feld h1.
 
 \lstinputlisting[
     firstline=81,
     lastline=90,
     firstnumber=81,
-    caption={Code - PST für den Turm},
+    caption={PST für den Turm},
     label={lst:pst-fuer-turm}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
 
 Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays.
-Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \gls{glos:reihe}n und für den schwarzen Spieler die \gls{glos:linie}n gespiegelt werden.
+Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \glspl{glos:reihe} und für den schwarzen Spieler die \glspl{glos:linie} gespiegelt werden.
 
 \lstinputlisting[
     firstline=9,
     lastline=17,
     firstnumber=9,
-    caption={Code - Schachbrett Spiegelung},
+    caption={Schachbrett Spiegelung},
     label={lst:schachbrett-spiegelung}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/BoardTransformationUtil.java}
 
 Die Resultate der Transformationen auf die Indexe vom ursprünglichem Array aus Abbildung~\ref{fig:index-felder-tabelle} sind in der Abbildung~\ref{fig:index-felder-tabelle-spiegelung} ersichtlich.
-In dieser Abbildung stellt das Schachbrett den Aufbau der \gls{glos:pst}s dar.
+In dieser Abbildung stellt das Schachbrett den Aufbau der \glspl{glos:pst} dar.
 Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den Wert aus einer \gls{glos:pst} für das entsprechende Feld zu holen.
 
 \begin{figure}[H]
