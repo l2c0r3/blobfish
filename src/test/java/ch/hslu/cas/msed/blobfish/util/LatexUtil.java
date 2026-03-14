@@ -125,11 +125,11 @@ public class LatexUtil {
             }
 
             var strategyDescription = escapeLatex(result.strategy().description());
-            var move = escapeLatex(result.move());
+            var moves = String.join(", ", result.pathEvaluation().move());
 
             sb.append("""
                     & %s & %s & %s \\\\
-                    """.formatted(strategyDescription, move, result.pointWon()));
+                    """.formatted(strategyDescription, escapeLatex(moves), result.pointWon()));
 
             if (i != rowCount - 1) {
                 sb.append("\\cline{3-5}\n");

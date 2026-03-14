@@ -2,6 +2,7 @@ package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
+import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
@@ -115,7 +116,7 @@ public class QualityTest {
 
     private final int DEPTH_TO_CALC = 8;
 
-    public record EvalQualityResult(EvalConfig strategy, String move, int pointWon) {
+    public record EvalQualityResult(EvalConfig strategy, PathEvaluation pathEvaluation, int pointWon) {
     }
 
     public record QualityTestResult(QualityTestCategory qualityTestCategory, String fen, List<String> stockfishMove,
@@ -141,9 +142,9 @@ public class QualityTest {
                 List<EvalQualityResult> evalQualityResults = new ArrayList<>();
 
                 evalStrategies.stream().parallel().forEach(evalStrategy -> {
-                    var strategyNextMove = getNextBestMoveWithEvalStrategy(chessboard, evalStrategy, DEPTH_TO_CALC);
-                    var strategyPoints = this.calcPoints(stockFishResult, strategyNextMove);
-                    var evalResult = new EvalQualityResult(evalStrategy, strategyNextMove, strategyPoints);
+                    var strategyBestPath = getBestPathWithEvalStrategy(chessboard, evalStrategy, DEPTH_TO_CALC);
+                    var strategyPoints = this.calcPoints(stockFishResult, strategyBestPath.move().getFirst());
+                    var evalResult = new EvalQualityResult(evalStrategy, strategyBestPath, strategyPoints);
                     evalQualityResults.add(evalResult);
                 });
 
@@ -169,10 +170,10 @@ public class QualityTest {
         }
     }
 
-    private String getNextBestMoveWithEvalStrategy(ChessBoard chessBoard, EvalConfig evalConfig, int depthToCalc) {
+    private PathEvaluation getBestPathWithEvalStrategy(ChessBoard chessBoard, EvalConfig evalConfig, int depthToCalc) {
         var playerColor = chessBoard.getSideToMove();
         var bot = new MiniMaxAlphaBetaSequential(depthToCalc, evalConfig.strategy(), playerColor);
-        return bot.getNextBestMove(chessBoard).move();
+        return bot.getBestPath(chessBoard);
     }
 
     private List<String> getStockFishResult(ChessBoard chessBoard, int depthToCalc) {
