@@ -25,12 +25,12 @@ Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der
 
 \subsection{\gls{glos:JUnit}-Extension}
 
-Um möglichst einfach innherhalb einer Testmethode mit Stockfish kommunizieren zu können, haben wir uns entschieden,
-eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglich uns beispielsweise über Callbacks, Code vor oder nach einer
-Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
+Um möglichst einfach innherhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, haben wir
+uns entschieden, eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglich uns beispielsweise über Callbacks, Code
+vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
 Testklasse injected werden (\cite{junitExtensionRegistration}).
 
-So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche eigene Extension verwendet:
+So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche unsere entwickelte Extension verwendet:
 
 \lstinputlisting[
     firstline=32,
@@ -43,36 +43,36 @@ So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, w
 Mittels der Annotation \textit{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
 dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal eine Docker-Container von Stockfish bereits
 gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
-Als nächstes, wird eine der StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Diese Objekt
-wird dann mittels PostProcessing in das Feld auf Zeile 3 injected.
+Als nächstes, wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Diese Objekt
+wird dann mittels PostProcessing in das Feld auf Zeile 6 injected.
 
 Annschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
 Variable mit Stockfish kommuniziert werden, und so beispielsweise Positionen berechnet werden.
-Sicherheitshalber wird die Extension zwischen den Testmethoden der Befehl \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame}
-an Stockfish übermittelt, um Stockfish zu resetten.
+Zwischen den Testmethoden übermittelt die Extension den Befehl
+\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame} an Stockfish,
+um die Engine zurückzusetzen.
 
 Nachdem alle Testmethoden ausgeführt sind und ein Docker-Container für die Testausführung gestartet wurde, stoppt dieser
 die Extension.
 
 \subsection{Evaluationen lokalisieren}
 
-In den nachfolgenden Tests werden immer wieder Evaluationen sowie deren möglichen Kombinationen miteinander verglichen.
+In den nachfolgenden Tests werden immer wieder Evaluationen, sowie deren möglichen Kombinationen, miteinander verglichen.
 Die Kombinationen von den Evaluationen ist interessant, da so potenziell eine noch bessere Evaluation der Position zu
 erreicht werden kann.
 
-Um dies möglichst einfach zu gestalten, wurden die Klassen \textit{EvaluationUtil} sowie \textit{PowerSetUtil} entworfen.
 
-\textit{EvaluationUtil} enthält eine Methode, welche alle mögliche Evaluationmöglichkeiten zurückgeben soll. \\
-Dafür wird zuerst mittels \href{https://github.com/classgraph/classgraph}{classgraph}, eine Java-Bibliothek alle Klassen, welche
-Interface \textit{EvalStrategy} implementieren, gescannt und ein Objekt davon initialisiert.
+\textit{EvaluationUtil} enthält eine Methode, welche alle mögliche Evaluationmöglichkeiten zurückgibt. \\
+Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwendet. Diese Java-Bibliothek ermöglicht es
+unteranderem packages zu Scannen. In unserem Fall haben wir es dafür genutzt, um alle Klassen herauszufinden, welche
+das Interface \textit{EvalStrategy} implementieren. Anschliessend haben wir jeweils ein Objekt davon initialisiert.
 
-Nun, da wir die einzelnen Evaluationsmöglichkeiten haben, möchten wir diese auch miteinander kombinieren. Hierfür wurde die
-Klasse \textit{CompositeEvalStrategy} geschrieben wurde.\\
 Somit wird noch eine Funktion benötigt, die eine Liste von Kombinationen von unseren Evaluationobjekten zurückgibt.
 Genauer genommen wird die \href{https://de.wikipedia.org/wiki/Potenzmenge}{Potenzmenge} benötigt.
-Die Potenzmenge enthält nämlich alle Teilmengen einer Menge - also alle Kombinationen in aller möglichen Grössen sowie die einzelnen Evaluationsklassen (\cite{potenzmenge}):
+Die Potenzmenge enthält nämlich alle Teilmengen einer Menge - also alle Kombinationen in aller möglichen Grössen, sowie
+die einzelnen Evaluationsklassen (\cite{potenzmenge}):
 
-So wird aus einer List von $\{\texttt{a}, \texttt{b}, \texttt{c}\}$ folgendes zurückgegeben:
+So ist die Potenzmenge von $\{\texttt{a}, \texttt{b}, \texttt{c}\}$ folgende:
 
 \begin{itemize}[noitemsep,topsep=0pt]
     \item $\emptyset$
@@ -85,5 +85,5 @@ So wird aus einer List von $\{\texttt{a}, \texttt{b}, \texttt{c}\}$ folgendes zu
     \item $\{\texttt{c}\}$
 \end{itemize}
 
-Die Funktionalität, die Pozenzmenge einer Liste von Objekte zu ermitteln, wurde in die Klasse \textit{PowerSetUtil} ausgelagert.
+Die Funktionalität, die Potenzmenge einer Liste von Objekte zu ermitteln, wurde in die Klasse \textit{PowerSetUtil} ausgelagert.
 
