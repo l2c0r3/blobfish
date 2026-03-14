@@ -44,12 +44,12 @@ public class LatexUtil {
                 \\caption{%s} \\\\
                 \\hline
                 \\multicolumn{5}{|c|}{\\textbf{%s}} \\\\ \\hline
-                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
+                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt.} \\\\ \\hline
                 \\endfirsthead
                 
                 \\hline
                 \\multicolumn{5}{|c|}{\\textbf{%s} -- Fortsetzung} \\\\ \\hline
-                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt} \\\\ \\hline
+                \\textbf{FEN} & \\textbf{Stockfish best next move} & \\textbf{Evaluation} & \\textbf{Move} & \\textbf{Pkt.} \\\\ \\hline
                 \\endhead
                 
                 \\hline
