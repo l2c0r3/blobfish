@@ -3,7 +3,7 @@ package ch.hslu.cas.msed.blobfish;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.*;
-import ch.hslu.cas.msed.blobfish.player.bot.MoveEvaluation;
+import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
@@ -53,7 +53,7 @@ public class PerformanceTest {
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<MoveEvaluation> measurementResult, int depth) {
+    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<FirstMoveEvaluation> measurementResult, int depth) {
     }
 
     private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
@@ -303,7 +303,7 @@ public class PerformanceTest {
     }
 
 
-    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<MoveEvaluation>> measurements) {
+    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<FirstMoveEvaluation>> measurements) {
         long distinctMoves = measurements.stream()
                 .map(MeasurementUtil.MeasurementResult::result)
                 .distinct()
