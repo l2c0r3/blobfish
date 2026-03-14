@@ -111,7 +111,7 @@ public class QualityTest {
             ))
     );
 
-    private final int[] pointDistribution = {8, 5, 3, 2, 1};
+    private final int[] pointDistribution = {15, 11, 8, 6, 4, 2, 1};
 
     private final int DEPTH_TO_CALC = 8;
 

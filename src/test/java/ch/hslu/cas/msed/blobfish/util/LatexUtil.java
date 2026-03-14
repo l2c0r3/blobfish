@@ -36,11 +36,11 @@ public class LatexUtil {
                 \\setlength{\\LTright}{0pt}
                 
                 \\begin{longtable}{|
-                        >{\\raggedright\\arraybackslash}p{0.15\\textwidth}|
-                        >{\\centering\\arraybackslash}p{0.15\\textwidth}|
-                        >{\\raggedright\\arraybackslash}p{0.20\\textwidth}|
+                        >{\\raggedright\\arraybackslash}p{0.18\\textwidth}|
+                        >{\\centering\\arraybackslash}p{0.14\\textwidth}|
+                        >{\\raggedright\\arraybackslash}p{0.22\\textwidth}|
                         >{\\centering\\arraybackslash}p{0.30\\textwidth}|
-                        >{\\centering\\arraybackslash}p{0.08\\textwidth}|}
+                        >{\\centering\\arraybackslash}p{0.05\\textwidth}|}
                 \\caption{%s} \\\\
                 \\hline
                 \\multicolumn{5}{|c|}{\\textbf{%s}} \\\\ \\hline
@@ -97,7 +97,7 @@ public class LatexUtil {
         // Add stockfish moves
         StringBuilder stockFishRanglist = new StringBuilder();
         for (int i = 0; i < testResult.stockfishMove().size(); i++) {
-            stockFishRanglist.append(i + 1).append(".) ")
+            stockFishRanglist.append(i + 1).append(". ")
                     .append(testResult.stockfishMove().get(i));
             if (i != testResult.stockfishMove().size() - 1) {
                 stockFishRanglist.append("\\\\");
