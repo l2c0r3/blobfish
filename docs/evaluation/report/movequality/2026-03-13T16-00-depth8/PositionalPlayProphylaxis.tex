@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\begin{document}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+
+\begin{longtable}{|
+        >{\raggedright\arraybackslash}p{0.15\textwidth}|
+        >{\centering\arraybackslash}p{0.15\textwidth}|
+        >{\raggedright\arraybackslash}p{0.20\textwidth}|
+        >{\centering\arraybackslash}p{0.30\textwidth}|
+        >{\centering\arraybackslash}p{0.08\textwidth}|}
+\caption{Quality Test von Positional play / prophylaxis} \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Positional play / prophylaxis}} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt} \\ \hline
+\endfirsthead
+
+\hline
+\multicolumn{5}{|c|}{\textbf{Positional play / prophylaxis} -- Fortsetzung} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt} \\ \hline
+\endhead
+
+\hline
+\multicolumn{5}{|r|}{Fortsetzung auf der nächsten Seite} \\
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+\multirow{6}{*}{
+    \begin{tabular}{l}
+        2r3k1/5pp\\1/p3p2p/1\\p1pP3/3P1\\P2/1P3N1P\\/P5P1/2R3\\K1 w - - \\0 1
+    \end{tabular}
+}
+&
+\multirow{6}{*}{
+    \begin{tabular}{c}
+        1.) c1c8\\2.) c1c5\\3.) c1d1\\4.) c1e1\\5.) c1f1
+    \end{tabular}
+}
+& MateAwareEval \& MaterialEval & c1c8 & 8 \\
+\cline{3-5}
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & c1c8 & 8 \\
+\cline{3-5}
+&& MateAwareEval \& PieceSquareEval & g1f2 & 0 \\
+\cline{3-5}
+&& MaterialEval & c1c8 & 8 \\
+\cline{3-5}
+&& MaterialEval \& PieceSquareEval & c1c8 & 8 \\
+\cline{3-5}
+&& PieceSquareEval & g1f2 & 0 \\
+\hline
+\multirow{6}{*}{
+    \begin{tabular}{l}
+        2r2rk1/1b\\q1bppp/p2\\ppn2/1pn5\\/4P3/1NN1\\BP2/PPQ2P\\BP/2RR2K1\\ w - - 0 \\1
+    \end{tabular}
+}
+&
+\multirow{6}{*}{
+    \begin{tabular}{c}
+        1.) c3e2\\2.) a2a3\\3.) c2d2\\4.) e4e5\\5.) h2h3
+    \end{tabular}
+}
+& MateAwareEval \& MaterialEval & b3c5 & 0 \\
+\cline{3-5}
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & c3e2 & 8 \\
+\cline{3-5}
+&& MateAwareEval \& PieceSquareEval & f3f4 & 0 \\
+\cline{3-5}
+&& MaterialEval & b3c5 & 0 \\
+\cline{3-5}
+&& MaterialEval \& PieceSquareEval & c3e2 & 8 \\
+\cline{3-5}
+&& PieceSquareEval & f3f4 & 0 \\
+\hline
+\multirow{6}{*}{
+    \begin{tabular}{l}
+        r2q1rk1/p\\p2bppp/2n\\pbn2/2p1p\\3/2P1P3/2\\NP1N2/PP2\\BPPP/R1BQ\\1RK1 w - \\- 0 1
+    \end{tabular}
+}
+&
+\multirow{6}{*}{
+    \begin{tabular}{c}
+        1.) c3d5\\2.) a1b1\\3.) a2a3\\4.) c1d2\\5.) h2h3
+    \end{tabular}
+}
+& MateAwareEval \& MaterialEval & a2a3 & 3 \\
+\cline{3-5}
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & c3d5 & 8 \\
+\cline{3-5}
+&& MateAwareEval \& PieceSquareEval & c1f4 & 0 \\
+\cline{3-5}
+&& MaterialEval & a2a3 & 3 \\
+\cline{3-5}
+&& MaterialEval \& PieceSquareEval & c3d5 & 8 \\
+\cline{3-5}
+&& PieceSquareEval & c1f4 & 0 \\
+\hline
+\end{longtable}
+\end{document}

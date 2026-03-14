@@ -1,0 +1,18 @@
+@startchart
+
+title
+TACTICS
+end title
+
+h-axis [ Evaluations ]
+v-axis "Won Points" 0 --> 50.0 spacing 10.0 grid
+
+bar "MateAwareEval & MaterialEval"[ 25.0 ] #1F77B4
+bar "MateAwareEval & MaterialEval & PieceSquareEval"[ 29.0 ] #FF7F0E
+bar "MateAwareEval & PieceSquareEval"[ 18.0 ] #2CA02C
+bar "MaterialEval"[ 25.0 ] #D62728
+bar "MaterialEval & PieceSquareEval"[ 13.0 ] #9467BD
+bar "PieceSquareEval"[ 2.0 ] #8C564B
+
+legend right
+@endchart
