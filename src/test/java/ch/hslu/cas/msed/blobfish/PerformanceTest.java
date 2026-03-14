@@ -35,6 +35,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -43,6 +44,10 @@ import java.util.stream.Stream;
 public class PerformanceTest {
 
     private static File rootFolderForMeasurements = null;
+
+    private enum DURATION_RESULT_TYPE {
+        MEDIAN, DEVIATION
+    }
 
     @FunctionalInterface
     private interface MiniMaxAlgoConstructor {
@@ -55,7 +60,8 @@ public class PerformanceTest {
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<PathEvaluation> measurementResult, int depth) {
+    private record MeasurementOfDepth(MeasurementUtil.MeasurementWithDeviationResult<PathEvaluation> measurementResult,
+                                      int depth) {
     }
 
     private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
@@ -137,7 +143,7 @@ public class PerformanceTest {
                                 var miniMaxAlgoToTest = miniMaxAlgoConstructor.create(depth, strategy.strategy(), positionToTest.playerToMove());
                                 var key = new AlgorithmStrategy(miniMaxAlgoToTest.getClass().getSimpleName(), strategy);
 
-                                // do multiple measurements and calculate the median
+                                // do multiple measurements and calculate the duration
                                 var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
                                         MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getBestPath(chessboard))
                                 ).toList();
@@ -148,7 +154,8 @@ public class PerformanceTest {
                                 saveRawMeasurements(positionToTest, key, depth, durationList, folderToSaveMeasurements);
 
                                 var medianDuration = MeasurementUtil.calcMedianDuration(durationList);
-                                var measurementResult = new MeasurementUtil.MeasurementResult<>(medianDuration, measurements.getFirst().result());
+                                var medianDeviation = MeasurementUtil.calcMedianOfAbsoluteDeviationsDuration(durationList);
+                                var measurementResult = new MeasurementUtil.MeasurementWithDeviationResult<>(medianDuration, medianDeviation, measurements.getFirst().result());
 
                                 results.putIfAbsent(key, new ArrayList<>());
                                 results.get(key).add(new MeasurementOfDepth(measurementResult, depth));
@@ -160,13 +167,21 @@ public class PerformanceTest {
         assertSameMoveEvaluationsAcrossAlgorithms(results);
 
         var fileName = getFileNameOfPosition(positionToTest);
-        var resultFile = createResultFile(positionToTest, results);
-        var plantuml = createPlantUml(positionToTest, results);
-        var svg = PlantUmlUtil.convertPlantUmlToSvg(plantuml);
+
+        var medianCsv = createCsvFile(positionToTest, results, DURATION_RESULT_TYPE.MEDIAN);
+        var medianPuml = createPlantUml(positionToTest, results, DURATION_RESULT_TYPE.MEDIAN);
+        var medianPng = PlantUmlUtil.convertPlantUmlToPng(medianPuml);
+
+        var medianDeviationCsv = createCsvFile(positionToTest, results, DURATION_RESULT_TYPE.DEVIATION);
+        var medianDeviationTable = createTexTable(positionToTest, results, DURATION_RESULT_TYPE.DEVIATION);
+
         try {
-            Files.move(resultFile.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
-            Files.move(plantuml.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
-            Files.move(svg.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(medianCsv.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(medianPuml.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(medianPng.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);
+
+            Files.move(medianDeviationCsv.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + "-deviation.csv"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(medianDeviationTable.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + "-deviation.tex"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -204,7 +219,7 @@ public class PerformanceTest {
      * @return the created file
      *
      */
-    private File createResultFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results) {
+    private File createCsvFile(PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, DURATION_RESULT_TYPE resultType) {
         // get header depths dynamically
         List<String> depthHeaders = results.values()
                 .stream()
@@ -233,7 +248,10 @@ public class PerformanceTest {
                     printer.print(getAlgorithmName(key));
                     measurementsList.stream()
                             .map(MeasurementOfDepth::measurementResult)
-                            .map(MeasurementUtil.MeasurementResult::duration)
+                            .map(r -> switch (resultType) {
+                                case MEDIAN -> r.median();
+                                case DEVIATION -> r.deviation();
+                            })
                             .map(this::mapDurationToValue)
                             .forEach(m -> {
                                 try {
@@ -256,7 +274,7 @@ public class PerformanceTest {
         return resultFile;
     }
 
-    private File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<PerformanceTest.AlgorithmStrategy, List<PerformanceTest.MeasurementOfDepth>> results) {
+    private File createPlantUml(PerformanceTest.PositionToTest positionToTest, Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, DURATION_RESULT_TYPE resultType) {
 
         var chartTitle = "FEN: " + positionToTest.fen();
         var maxAmountOfResults = results.values().stream()
@@ -265,7 +283,7 @@ public class PerformanceTest {
         var hAxisTitle = IntStream.range(1, maxAmountOfResults + 1)
                 .mapToObj(i -> "Depth " + i)
                 .toList();
-        var vAxisTitle = "Calculation time [s]";
+        var vAxisTitle = "Calculation time [ms]";
         var barResults = results.keySet().stream()
                 .sorted((a1, a2) -> {
                     var nameA1 = getAlgorithmName(a1);
@@ -275,7 +293,7 @@ public class PerformanceTest {
                 .map(strategy -> {
                     var barDescription = getAlgorithmName(strategy);
                     var measurements = results.get(strategy).stream()
-                            .mapToDouble(this::mapMeasurementDepthToValue)
+                            .mapToDouble(m -> mapMeasurementDepthToValue(m, resultType, true))
                             .boxed()
                             .toList();
                     return new PlantUmlUtil.ChartBar(barDescription, measurements);
@@ -283,6 +301,88 @@ public class PerformanceTest {
                 .toList();
 
         return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults);
+    }
+
+    private String createTableRow(final String title, final List<Double> values, final boolean isEven) {
+        var color = isEven ? "FFFFFF" : "EFEFEF";
+
+        var rowContent = values.stream()
+                .map(v -> v == null ? "" : String.format("%.2f", v))
+                .collect(Collectors.joining(" & "));
+
+        return """
+                \\rowcolor[HTML]{%s}
+                \\textbf{%s}               & %s \\\\
+                """.formatted(color, title, rowContent);
+    }
+
+    private File createTexTable(final PerformanceTest.PositionToTest positionToTest, final Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, final DURATION_RESULT_TYPE resultType) {
+        var tableTitle = switch (resultType) {
+            case MEDIAN -> "Median [ms]";
+            case DEVIATION -> "Median of absolute deviation (MAD) [ms]";
+        };
+
+        var positionTitle = positionToTest.fen();
+
+        int maxDepth = results.values().stream()
+                .flatMap(List::stream)
+                .mapToInt(MeasurementOfDepth::depth)
+                .max()
+                .orElse(0);
+
+        // get header depths dynamically
+        var depthHeaders = IntStream.range(1, maxDepth + 1)
+                .mapToObj(d -> "Depth " + d)
+                .map("\\multicolumn{1}{r|}{\\textbf{%s}}"::formatted)
+                .collect(Collectors.joining(" & "));
+
+        var rowCounter = new AtomicInteger(0);
+        var tableRows = results.entrySet()
+                .stream()
+                .map(entry -> {
+                    var isEven = rowCounter.incrementAndGet() % 2 == 0;
+                    var values = new ArrayList<>(entry.getValue()
+                            .stream()
+                            .sorted(Comparator.comparingInt(MeasurementOfDepth::depth))
+                            .map(e -> mapMeasurementDepthToValue(e, resultType, false))
+                            .toList());
+                    // for entries which have a lower depth calculation
+                    values.addAll(Collections.nCopies(maxDepth - values.size(), null));
+
+                    return createTableRow(getAlgorithmName(entry.getKey()), values, isEven);
+                })
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        var tableCaption = "%s: %s".formatted(resultType.name(), positionTitle);
+        var tableLabel = "%s-%s".formatted(positionTitle.replaceAll(" ", "-"), resultType.name()).toLowerCase();
+
+        var tableContent = """
+                \\begin{table}[H]
+                    \\centering
+                    \\resizebox{\\textwidth}{!}{%%
+                        \\begin{tabular}{|p{8cm}|*{%d}{r|}}
+                            \\hline
+                            & \\multicolumn{%d}{c|}{\\textbf{%s}} \\\\
+                            \\cline{2-%d}
+                            \\multirow{-2}{*}{\\textbf{%s}} & %s \\\\
+                            \\hline
+                            %s
+                            \\hline
+                        \\end{tabular}%%
+                    }
+                    \\caption{%s}
+                    \\label{tab:%s}
+                \\end{table}
+                """.formatted(maxDepth, maxDepth, tableTitle, maxDepth + 1, positionTitle, depthHeaders, tableRows, tableCaption, tableLabel);
+
+        var resultFile = FileUtil.createTmpFile(resultType.name() + "-table", "tex");
+        try (var fileWriter = new FileWriter(resultFile)) {
+            fileWriter.write(tableContent);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return resultFile;
     }
 
     private String getFileNameOfPosition(PositionToTest position) {
@@ -393,12 +493,23 @@ public class PerformanceTest {
         }
     }
 
-    private Double mapMeasurementDepthToValue(MeasurementOfDepth measurementOfDepth) {
-        return mapDurationToValue(measurementOfDepth.measurementResult.duration());
+    private Double mapMeasurementDepthToValue(MeasurementOfDepth measurementOfDepth, DURATION_RESULT_TYPE resultType, boolean logarithmicValue) {
+        var valueToFormat = switch (resultType) {
+            case MEDIAN -> measurementOfDepth.measurementResult.median();
+            case DEVIATION -> measurementOfDepth.measurementResult.deviation();
+        };
+
+        return logarithmicValue ? mapDurationToLogValue(valueToFormat) : mapDurationToValue(valueToFormat);
+    }
+
+    private Double mapDurationToLogValue(Duration duration) {
+        double millis = duration.toMillis();
+        if (millis == 0) return 0.0;
+        return Math.round(Math.log10(millis) * 1_000.0) / 1_000.0;
     }
 
     private Double mapDurationToValue(Duration duration) {
-        double seconds = duration.toNanos() / 1_000_000_000.0;
-        return Math.round(seconds * 1000.0) / 1000.0;
+        double micros = duration.toNanos() / 1_000.0;
+        return Math.round(micros) / 1_000.0;
     }
 }

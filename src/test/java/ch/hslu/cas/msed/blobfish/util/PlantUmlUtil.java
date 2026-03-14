@@ -1,11 +1,11 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import net.sourceforge.plantuml.FileFormat;
-import net.sourceforge.plantuml.FileFormatOption;
-import net.sourceforge.plantuml.SourceStringReader;
+import net.sourceforge.plantuml.GeneratedImage;
+import net.sourceforge.plantuml.SourceFileReader;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -74,7 +74,7 @@ public class PlantUmlUtil {
                     var measurements = chartBar.values().stream()
                             .map(m -> {
                                 if (m == 0) {
-                                    return 0.00001; // heigh = 0 in diagram is not possible in plantuml
+                                    return 0.00001; // height = 0 in diagram is not possible in plantuml
                                 } else {
                                     return m;
                                 }
@@ -86,10 +86,6 @@ public class PlantUmlUtil {
                 })
                 .collect(Collectors.joining("\n"));
 
-        var allValues = bars.stream().flatMap(b -> b.values().stream()).toList();
-        var maxValue = getMaxValueForChart(allValues);
-        var spacing = getBarChartSpacing(allValues);
-
         var content = """
                 @startchart
                 
@@ -98,13 +94,30 @@ public class PlantUmlUtil {
                 end title
                 
                 h-axis %s
-                v-axis "%s" 0 --> %s spacing %s grid
+                v-axis "%s" 0 --> 6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
                 
                 %s
                 
-                legend right
+                legend left
+                
+                <style>
+                chartDiagram {
+                    bar {
+                        LineThickness 1.2
+                    }
+                    axis {
+                        LineColor #34495e
+                        LineThickness 1.5
+                        FontSize 11
+                    }
+                    grid {
+                        LineColor #dddddd
+                        LineThickness 1
+                    }
+                }
+                </style>
                 @endchart
-                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, maxValue, spacing, barStrings);
+                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
@@ -115,25 +128,14 @@ public class PlantUmlUtil {
         return tmpFile;
     }
 
-    public static File convertPlantUmlToSvg(File plantuml) {
-        var tmpFile = FileUtil.createTmpFile("plant2Svg", "svg");
-        try (var reader = new FileReader(plantuml);
-             var writer = new FileWriter(tmpFile)
-        ) {
-            var content = reader.readAllAsString();
-
-            var sourceFileReader = new SourceStringReader(content);
-
-            final ByteArrayOutputStream os = new ByteArrayOutputStream();
-            sourceFileReader.outputImage(os, new FileFormatOption(FileFormat.SVG));
-            os.close();
-
-            final String svg = os.toString(StandardCharsets.UTF_8);
-            writer.write(svg);
+    public static File convertPlantUmlToPng(File plantuml) {
+        try {
+            var reader = new SourceFileReader(false, plantuml);
+            List<GeneratedImage> list = reader.getGeneratedImages();
+            return list.getFirst().getPngFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return tmpFile;
     }
 
     public static File convertPlantUmlToPng(File plantuml) {

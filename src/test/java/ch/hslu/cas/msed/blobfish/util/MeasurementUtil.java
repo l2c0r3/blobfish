@@ -11,7 +11,11 @@ public class MeasurementUtil {
         // util class
     }
 
-    public record MeasurementResult<ResultType>(Duration duration, ResultType result) {}
+    public record MeasurementResult<ResultType>(Duration duration, ResultType result) {
+    }
+
+    public record MeasurementWithDeviationResult<ResultType>(Duration median, Duration deviation, ResultType result) {
+    }
 
     public static <ResultType> MeasurementResult<ResultType> measureOperation(Callable<ResultType> operation) {
         var startTime = System.nanoTime();
@@ -49,5 +53,15 @@ public class MeasurementUtil {
         } else {
             return sortedMeasurements.get(sortedMeasurements.size() / 2);
         }
+    }
+
+    public static Duration calcMedianOfAbsoluteDeviationsDuration(List<Duration> measurements) {
+        if (measurements.isEmpty()) {
+            return Duration.ZERO;
+        }
+
+        var median = calcMedianDuration(measurements);
+        var absoluteDeviations = measurements.stream().map(m -> m.minus(median).abs()).toList();
+        return calcMedianDuration(absoluteDeviations);
     }
 }
