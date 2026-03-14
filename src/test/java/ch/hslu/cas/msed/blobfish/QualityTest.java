@@ -135,18 +135,15 @@ public class QualityTest {
         positionsToTest.forEach((QualityTestCategory qualityTestCategory, List<String> positions) -> {
             positions.forEach(position -> {
 
-                stockFishService.newGame();
-                stockFishService.setPosition(position);
-                var stockFishResult = stockFishService.go(DEPTH_TO_CALC);
+                var chessboard = new ChessBoard(position);
+                var stockFishResult = getStockFishResult(chessboard, DEPTH_TO_CALC);
 
                 List<EvalQualityResult> evalQualityResults = new ArrayList<>();
 
                 evalStrategies.stream().parallel().forEach(evalStrategy -> {
-                    var playerColor = new ChessBoard(position).getSideToMove();
-                    var bot = new MiniMaxAlphaBetaSequential(DEPTH_TO_CALC, evalStrategy.strategy(), playerColor);
-                    var botResult = bot.getNextBestMove(new ChessBoard(position)).move();
-                    var botPoints = this.calcPoints(stockFishResult, botResult);
-                    var evalResult = new EvalQualityResult(evalStrategy, botResult, botPoints);
+                    var strategyNextMove = getNextBestMoveWithEvalStrategy(chessboard, evalStrategy, DEPTH_TO_CALC);
+                    var strategyPoints = this.calcPoints(stockFishResult, strategyNextMove);
+                    var evalResult = new EvalQualityResult(evalStrategy, strategyNextMove, strategyPoints);
                     evalQualityResults.add(evalResult);
                 });
 
@@ -170,6 +167,18 @@ public class QualityTest {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private String getNextBestMoveWithEvalStrategy(ChessBoard chessBoard, EvalConfig evalConfig, int depthToCalc) {
+        var playerColor = chessBoard.getSideToMove();
+        var bot = new MiniMaxAlphaBetaSequential(depthToCalc, evalConfig.strategy(), playerColor);
+        return bot.getNextBestMove(chessBoard).move();
+    }
+
+    private List<String> getStockFishResult(ChessBoard chessBoard, int depthToCalc) {
+        stockFishService.newGame();
+        stockFishService.setPosition(chessBoard.getFen());
+        return stockFishService.go(depthToCalc);
     }
 
     private int calcPoints(List<String> stockfishMoves, String evalMove) {
