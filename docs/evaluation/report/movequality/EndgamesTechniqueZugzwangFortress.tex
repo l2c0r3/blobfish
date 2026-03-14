@@ -11,20 +11,20 @@
 \setlength{\LTright}{0pt}
 
 \begin{longtable}{|
-        >{\raggedright\arraybackslash}p{0.15\textwidth}|
-        >{\centering\arraybackslash}p{0.15\textwidth}|
-        >{\raggedright\arraybackslash}p{0.20\textwidth}|
+        >{\raggedright\arraybackslash}p{0.18\textwidth}|
+        >{\centering\arraybackslash}p{0.14\textwidth}|
+        >{\raggedright\arraybackslash}p{0.22\textwidth}|
         >{\centering\arraybackslash}p{0.30\textwidth}|
-        >{\centering\arraybackslash}p{0.08\textwidth}|}
+        >{\centering\arraybackslash}p{0.05\textwidth}|}
 \caption{Quality Test von Endgames / technique / zugzwang / fortress} \\
 \hline
 \multicolumn{5}{|c|}{\textbf{Endgames / technique / zugzwang / fortress}} \\ \hline
-\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
 \endfirsthead
 
 \hline
 \multicolumn{5}{|c|}{\textbf{Endgames / technique / zugzwang / fortress} -- Fortsetzung} \\ \hline
-\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
 \endhead
 
 \hline
@@ -42,20 +42,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) e3f4\\2.) e3f3\\3.) e3d3\\4.) e3d2\\5.) e3f2
+        1. e3f4\\2. e3f3\\3. e3d3\\4. e3d2\\5. e3f2
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & e3d2 & 2 \\
+& MateAwareEval \& MaterialEval & e3d2, d5c4, e2e3, c4b3, e3e4, b3a2, e4e5, a2a1 & 6 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & e3d3 & 3 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & e3d3, d5c5, e2e4, c5c6, d3d4, c6d6, e4e5, d6e6 & 8 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & e3d3 & 3 \\
+&& MateAwareEval \& PieceSquareEval & e3d3, d5c5, e2e4, c5c6, d3d4, c6d6, e4e5, d6e6 & 8 \\
 \cline{3-5}
-&& MaterialEval & e3d2 & 2 \\
+&& MaterialEval & e3d2, d5c4, e2e3, c4b3, e3e4, b3a2, e4e5, a2a1 & 6 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & e3d3 & 3 \\
+&& MaterialEval \& PieceSquareEval & e3d3, d5c5, e2e4, c5c6, d3d4, c6d6, e4e5, d6e6 & 8 \\
 \cline{3-5}
-&& PieceSquareEval & e3d3 & 3 \\
+&& PieceSquareEval & e3d3, d5c5, e2e4, c5c6, d3d4, c6d6, e4e5, d6e6 & 8 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -65,20 +65,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) f3g2\\2.) f3f2\\3.) f3e3\\4.) f3e4\\5.) f3g3
+        1. f3g2\\2. f3f2\\3. f3e2\\4. f3e3\\5. f3f4\\6. f3g3\\7. c5c6
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & f3g2 & 8 \\
+& MateAwareEval \& MaterialEval & f3g2, c7c6, g2f1, c6c5, f1e1, c5b4, e1d1, b4a3 & 15 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & f3g2 & 8 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & f3g2, c7c6, g2f3, c6c5, f3e4, c5c4, e4e5, c4d3 & 15 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & f3g2 & 8 \\
+&& MateAwareEval \& PieceSquareEval & f3g2, c7c6, g2f3, c6c5, f3e4, c5c4, e4e5, c4d3 & 15 \\
 \cline{3-5}
-&& MaterialEval & f3g2 & 8 \\
+&& MaterialEval & f3g2, c7c6, g2f1, c6c5, f1e1, c5b4, e1d1, b4a3 & 15 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & f3g2 & 8 \\
+&& MaterialEval \& PieceSquareEval & f3g2, c7c6, g2f3, c6c5, f3e4, c5c4, e4e5, c4d3 & 15 \\
 \cline{3-5}
-&& PieceSquareEval & f3g2 & 8 \\
+&& PieceSquareEval & f3g2, c7c6, g2f3, c6c5, f3e4, c5c4, e4e5, c4d3 & 15 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -88,20 +88,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) f2f3\\2.) g3g4\\3.) h2h4\\4.) d4d1\\5.) d4d2
+        1. d4a4\\2. d4d2\\3. g3g4\\4. d4d1\\5. d4d7\\6. d4d6\\7. g1g2
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & f2f3 & 8 \\
+& MateAwareEval \& MaterialEval & f2f3, g6g5, h2h3, f7f5, f3f4, g5f4, g3f4, g7f6 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & d4d6 & 0 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & d4d6, g7h6, h2h4, h6h5, d6f6, g6g5, f6f7, g5h4 & 2 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & d4d6 & 0 \\
+&& MateAwareEval \& PieceSquareEval & d4d6, g6g5, g1f1, g7f8, d6e6, f7e6, f1e2, f8e7 & 2 \\
 \cline{3-5}
-&& MaterialEval & f2f3 & 8 \\
+&& MaterialEval & f2f3, g6g5, h2h3, f7f5, f3f4, g5f4, g3f4, g7f6 & 0 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & d4d6 & 0 \\
+&& MaterialEval \& PieceSquareEval & d4d6, g7h6, h2h4, h6h5, d6f6, g6g5, f6f7, g5h4 & 2 \\
 \cline{3-5}
-&& PieceSquareEval & d4d6 & 0 \\
+&& PieceSquareEval & d4d6, g6g5, g1f1, g7f8, d6e6, f7e6, f1e2, f8e7 & 2 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -111,20 +111,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) d3e3\\2.) d3c3
+        1. d3e3\\2. d3c3
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & d3c3 & 5 \\
+& MateAwareEval \& MaterialEval & d3c3, d1e2, c3b2, e2d2, b2a1, d2c3, a1b1, c3d4 & 11 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & d3e3 & 8 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & d3e3, d1c2, e3e2, c2c3, e2e3, c3c4, e3f4, c4d4 & 15 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & d3e3 & 8 \\
+&& MateAwareEval \& PieceSquareEval & d3e3, d1c2, e3e2, c2c3, e2e3, c3c4, e3f4, c4d4 & 15 \\
 \cline{3-5}
-&& MaterialEval & d3c3 & 5 \\
+&& MaterialEval & d3c3, d1e2, c3b2, e2d2, b2a1, d2c3, a1b1, c3d4 & 11 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & d3e3 & 8 \\
+&& MaterialEval \& PieceSquareEval & d3e3, d1c2, e3e2, c2c3, e2e3, c3c4, e3f4, c4d4 & 15 \\
 \cline{3-5}
-&& PieceSquareEval & d3e3 & 8 \\
+&& PieceSquareEval & d3e3, d1c2, e3e2, c2c3, e2e3, c3c4, e3f4, c4d4 & 15 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -134,20 +134,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) d2e3\\2.) d2e2\\3.) d2c1\\4.) d2c2\\5.) d2d1
+        1. d2e2\\2. d2c2\\3. d2e3\\4. d2c1\\5. d2d1\\6. d2e1
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & d2c1 & 3 \\
+& MateAwareEval \& MaterialEval & d2c1, c5b5, c1b1, b5a4, b1c1, a4a3, c1b1, a3b3 & 6 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & d2e3 & 8 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & d2e3, c5d5, e3f4, d5c5, f4e4, c5c6, e4d4, c6d6 & 8 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & d2e3 & 8 \\
+&& MateAwareEval \& PieceSquareEval & d2e3, c5d5, e3f4, d5c5, f4e4, c5c6, e4d4, c6d6 & 8 \\
 \cline{3-5}
-&& MaterialEval & d2c1 & 3 \\
+&& MaterialEval & d2c1, c5b5, c1b1, b5a4, b1c1, a4a3, c1b1, a3b3 & 6 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & d2e3 & 8 \\
+&& MaterialEval \& PieceSquareEval & d2e3, c5d5, e3f4, d5c5, f4e4, c5c6, e4d4, c6d6 & 8 \\
 \cline{3-5}
-&& PieceSquareEval & d2e3 & 8 \\
+&& PieceSquareEval & d2e3, c5d5, e3f4, d5c5, f4e4, c5c6, e4d4, c6d6 & 8 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -157,20 +157,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) f2g1\\2.) f2f6\\3.) f2f3\\4.) f2f4\\5.) f2b2
+        1. f2g1\\2. f2f6\\3. f2f3\\4. f2c2\\5. f2f4\\6. f2e2\\7. f2d4
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & f2g1 & 8 \\
+& MateAwareEval \& MaterialEval & f2g1, c6b5, c3b2, b5a4, g1c5 & 15 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & f2g1 & 8 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & f2g1, c6d5, g1e3, d5c6, e3e6, c6c5, c3d3, c5b4 & 15 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & f2g1 & 8 \\
+&& MateAwareEval \& PieceSquareEval & f2g1, c6d5, g1e3, d5c6, e3e6, c6c5, c3d3, c5b4 & 15 \\
 \cline{3-5}
-&& MaterialEval & f2g1 & 8 \\
+&& MaterialEval & f2g1, c6b5, g1b1, b5a4, b1b4 & 15 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & f2g1 & 8 \\
+&& MaterialEval \& PieceSquareEval & f2g1, c6d5, g1e3, d5c6, e3e6, c6c5, c3d3, c5b4 & 15 \\
 \cline{3-5}
-&& PieceSquareEval & f2g1 & 8 \\
+&& PieceSquareEval & f2g1, c6d5, g1e3, d5c6, e3e6, c6c5, c3d3, c5b4 & 15 \\
 \hline
 \multirow{6}{*}{
     \begin{tabular}{l}
@@ -180,20 +180,20 @@
 &
 \multirow{6}{*}{
     \begin{tabular}{c}
-        1.) f2e2\\2.) d4c3\\3.) f2e3\\4.) f2f3\\5.) d4e3
+        1. f2e3\\2. d4c3\\3. d4b2\\4. d4a1\\5. f2f3\\6. f2e2\\7. d4c5
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & g3g4 & 0 \\
+& MateAwareEval \& MaterialEval & g3g4, f5g4, f2g3, f7e6, g3g4, e6d5, d4a1, g6g5 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & f2e2 & 8 \\
+&& MateAwareEval \& MaterialEval \& PieceSquareEval & f2e2, f7e6, e2d3, e6d6, d3c4, d6e6, d4c3, g6g5 & 2 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & f2e3 & 3 \\
+&& MateAwareEval \& PieceSquareEval & f2e3, g6g5, f4g5, f7e6, g5g6, f5f4, g3f4, e6d5 & 15 \\
 \cline{3-5}
-&& MaterialEval & g3g4 & 0 \\
+&& MaterialEval & g3g4, f5g4, f2g3, f7e6, g3g4, e6d5, d4a1, g6g5 & 0 \\
 \cline{3-5}
-&& MaterialEval \& PieceSquareEval & f2e2 & 8 \\
+&& MaterialEval \& PieceSquareEval & f2e2, f7e6, e2d3, e6d6, d3c4, d6e6, d4c3, g6g5 & 2 \\
 \cline{3-5}
-&& PieceSquareEval & f2e3 & 3 \\
+&& PieceSquareEval & f2e3, g6g5, f4g5, f7e6, g5g6, f5f4, g3f4, e6d5 & 15 \\
 \hline
 \end{longtable}
 \end{document}

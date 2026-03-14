@@ -5,14 +5,14 @@ Endgames / technique / zugzwang / fortress
 end title
 
 h-axis [ Evaluations ]
-v-axis "Won Points" 0 --> 50.0 spacing 10.0 grid
+v-axis "Won Points" 0 --> 100.0 spacing 20.0 grid
 
-bar "MateAwareEval & MaterialEval"[ 34.0 ] #1F77B4
-bar "MateAwareEval & MaterialEval & PieceSquareEval"[ 43.0 ] #FF7F0E
-bar "MateAwareEval & PieceSquareEval"[ 38.0 ] #2CA02C
-bar "MaterialEval"[ 34.0 ] #D62728
-bar "MaterialEval & PieceSquareEval"[ 43.0 ] #9467BD
-bar "PieceSquareEval"[ 38.0 ] #8C564B
+bar "MateAwareEval & MaterialEval"[ 53.0 ] #1F77B4
+bar "MateAwareEval & MaterialEval & PieceSquareEval"[ 65.0 ] #FF7F0E
+bar "MateAwareEval & PieceSquareEval"[ 78.0 ] #2CA02C
+bar "MaterialEval"[ 53.0 ] #D62728
+bar "MaterialEval & PieceSquareEval"[ 65.0 ] #9467BD
+bar "PieceSquareEval"[ 78.0 ] #8C564B
 
 legend right
 @endchart
