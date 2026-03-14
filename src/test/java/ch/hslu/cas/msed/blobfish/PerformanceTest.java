@@ -1,22 +1,29 @@
 package ch.hslu.cas.msed.blobfish;
 
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.*;
-import ch.hslu.cas.msed.blobfish.base.PathEvaluation;
-import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.MateAwareEvaluation;
+import ch.hslu.cas.msed.blobfish.eval.MaterialEvaluation;
+import ch.hslu.cas.msed.blobfish.eval.PieceSquareEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.MiniMaxAlphaBetaSequential;
+import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
+import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxAlphaBetaSequentialWithCache;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
+import ch.hslu.cas.msed.blobfish.util.TexTableUtil;
 import com.google.common.collect.ImmutableMap;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.WordUtils;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -24,13 +31,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -44,6 +50,7 @@ import java.util.stream.Stream;
 public class PerformanceTest {
 
     private static File rootFolderForMeasurements = null;
+    private static File globalMeasurementsFile = null;
 
     private enum DURATION_RESULT_TYPE {
         MEDIAN, DEVIATION
@@ -117,6 +124,14 @@ public class PerformanceTest {
         if (rootFolderForMeasurements == null) {
             rootFolderForMeasurements = createMeasurementFolder();
         }
+        if (globalMeasurementsFile == null) {
+            globalMeasurementsFile = createGlobalMeasurementFile(rootFolderForMeasurements);
+        }
+    }
+
+    @AfterAll
+    static void afterAll() {
+        TexTableUtil.generateMeasurementPerformanceGainTable(MiniMaxSequential.class.getSimpleName(), readGlobalMeasurementEntries(), rootFolderForMeasurements);
     }
 
     @ParameterizedTest
@@ -173,7 +188,7 @@ public class PerformanceTest {
         var medianPng = PlantUmlUtil.convertPlantUmlToPng(medianPuml);
 
         var medianDeviationCsv = createCsvFile(positionToTest, results, DURATION_RESULT_TYPE.DEVIATION);
-        var medianDeviationTable = createTexTable(positionToTest, results, DURATION_RESULT_TYPE.DEVIATION);
+        var medianDeviationTable = writeTexTableToFile(positionToTest, results, DURATION_RESULT_TYPE.DEVIATION);
 
         try {
             Files.move(medianCsv.toPath(), folderToSaveMeasurements.toPath().resolve(fileName + ".csv"), StandardCopyOption.REPLACE_EXISTING);
@@ -185,6 +200,8 @@ public class PerformanceTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        addGlobalMeasurementEntry(positionToTest, results);
     }
 
     private void saveRawMeasurements(PositionToTest positionToTest, AlgorithmStrategy algorithmStrategy, int depth, List<Duration> durationList, File folderToSave) {
@@ -234,13 +251,7 @@ public class PerformanceTest {
         headers.addAll(depthHeaders);
 
         var resultFile = FileUtil.createTmpFile("resultFile", "csv");
-        try (CSVPrinter printer = new CSVPrinter(new FileWriter(resultFile), CSVFormat.DEFAULT.builder()
-                .setDelimiter(';')
-                .setTrailingDelimiter(false)
-                .setIgnoreSurroundingSpaces(true)
-                .setNullString("")
-                .setHeader(headers.toArray(new String[0]))
-                .get())) {
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(resultFile), getCSVFormat(headers.toArray(new String[0])))) {
 
 
             results.forEach((key, measurementsList) -> {
@@ -303,26 +314,13 @@ public class PerformanceTest {
         return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults);
     }
 
-    private String createTableRow(final String title, final List<Double> values, final boolean isEven) {
-        var color = isEven ? "FFFFFF" : "EFEFEF";
-
-        var rowContent = values.stream()
-                .map(v -> v == null ? "" : String.format("%.2f", v))
-                .collect(Collectors.joining(" & "));
-
-        return """
-                \\rowcolor[HTML]{%s}
-                \\textbf{%s}               & %s \\\\
-                """.formatted(color, title, rowContent);
-    }
-
-    private File createTexTable(final PerformanceTest.PositionToTest positionToTest, final Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, final DURATION_RESULT_TYPE resultType) {
+    private File writeTexTableToFile(final PerformanceTest.PositionToTest positionToTest, final Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, final DURATION_RESULT_TYPE resultType) {
         var tableTitle = switch (resultType) {
             case MEDIAN -> "Median [ms]";
             case DEVIATION -> "Median of absolute deviation (MAD) [ms]";
         };
 
-        var positionTitle = positionToTest.fen();
+        var positionTitle = positionToTest.description();
 
         int maxDepth = results.values().stream()
                 .flatMap(List::stream)
@@ -349,31 +347,14 @@ public class PerformanceTest {
                     // for entries which have a lower depth calculation
                     values.addAll(Collections.nCopies(maxDepth - values.size(), null));
 
-                    return createTableRow(getAlgorithmName(entry.getKey()), values, isEven);
+                    return TexTableUtil.createTableRow(getAlgorithmName(entry.getKey()), values, isEven);
                 })
                 .collect(Collectors.joining(System.lineSeparator()));
 
-        var tableCaption = "%s: %s".formatted(resultType.name(), positionTitle);
+        var tableCaption = "%s: %s".formatted(resultType.name(), positionToTest.fen());
         var tableLabel = "%s-%s".formatted(positionTitle.replaceAll(" ", "-"), resultType.name()).toLowerCase();
 
-        var tableContent = """
-                \\begin{table}[H]
-                    \\centering
-                    \\resizebox{\\textwidth}{!}{%%
-                        \\begin{tabular}{|p{8cm}|*{%d}{r|}}
-                            \\hline
-                            & \\multicolumn{%d}{c|}{\\textbf{%s}} \\\\
-                            \\cline{2-%d}
-                            \\multirow{-2}{*}{\\textbf{%s}} & %s \\\\
-                            \\hline
-                            %s
-                            \\hline
-                        \\end{tabular}%%
-                    }
-                    \\caption{%s}
-                    \\label{tab:%s}
-                \\end{table}
-                """.formatted(maxDepth, maxDepth, tableTitle, maxDepth + 1, positionTitle, depthHeaders, tableRows, tableCaption, tableLabel);
+        var tableContent = TexTableUtil.createTexTable(maxDepth, positionTitle, tableTitle, depthHeaders, tableRows, tableCaption, tableLabel);
 
         var resultFile = FileUtil.createTmpFile(resultType.name() + "-table", "tex");
         try (var fileWriter = new FileWriter(resultFile)) {
@@ -511,5 +492,71 @@ public class PerformanceTest {
     private Double mapDurationToValue(Duration duration) {
         double micros = duration.toNanos() / 1_000.0;
         return Math.round(micros) / 1_000.0;
+    }
+
+    private static File createGlobalMeasurementFile(File rootfile) {
+        var file = new File(rootfile, "performance-gains.csv");
+        try {
+            Files.write(file.toPath(), new byte[0], StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return file;
+    }
+
+    private void addGlobalMeasurementEntry(final PositionToTest position, final Map<AlgorithmStrategy, List<MeasurementOfDepth>> measurements) {
+        var shouldWriteHeaders = globalMeasurementsFile.length() <= 0;
+
+        var headers = shouldWriteHeaders ? List.of(
+                "Position FEN",
+                "Position description",
+                "Algorithm",
+                "Strategy",
+                "Depth",
+                "Duration [ms]"
+        ).toArray(new String[0]) : null;
+
+
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(globalMeasurementsFile, true), getCSVFormat(headers))) {
+            measurements.forEach((key, value) -> value
+                    .forEach(measurement -> {
+                        try {
+                            printer.print(position.fen());
+                            printer.print(position.description());
+                            printer.print(key.algorithm());
+                            printer.print(key.strategy().description());
+                            printer.print(measurement.depth());
+                            printer.print(measurement.measurementResult.median().toString());
+
+                            printer.println();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private static List<TexTableUtil.GlobalMeasurementEntry> readGlobalMeasurementEntries() {
+        try (Reader reader = new FileReader(globalMeasurementsFile);
+             CSVParser parser = CSVParser.builder().setReader(reader).setFormat(getCSVFormat()).get()) {
+
+            return parser.stream().map(TexTableUtil.GlobalMeasurementEntry::new).toList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static CSVFormat getCSVFormat(final String... header) {
+        return CSVFormat.DEFAULT.builder()
+                .setDelimiter(';')
+                .setTrailingDelimiter(false)
+                .setIgnoreSurroundingSpaces(true)
+                .setNullString("")
+                .setHeader(header)
+                .get();
     }
 }
