@@ -48,7 +48,7 @@ public class QualityTest {
 
     @Getter
     public enum QualityTestCategory {
-        TACTICS("TACTICS"),
+        TACTICS("Tactics"),
         DYNAMIC_PLAY("Dynamic play / initiative / sacrifices"),
         POSITIONAL_PLAY("Positional play / prophylaxis"),
         ENDGAMES_TECHNIQUE("Endgames / technique / zugzwang / fortress");
