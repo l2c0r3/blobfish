@@ -330,7 +330,8 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel {
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxRecursiveTask {
 	{field} -depth : int
 	{method} #compute () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
-	{method} -createSubTasks () : java.util.Collection
+	{method} -createSubTasks () : java.util.List
+	{method} -getEvaluation () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} -getMoveNodeComparator () : java.util.Comparator
 }
 
@@ -356,9 +357,9 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode {
 
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode {
-	{field} -eval : double
+	{field} -eval : int
 	{method} +equals ( paramObject1 : Object ) : boolean
-	{method} +eval () : double
+	{method} +eval () : int
 	{method} +hashCode () : int
 	{method} +history () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode
 	{method} +toString () : String
