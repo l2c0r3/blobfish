@@ -1,53 +1,50 @@
 \section{Zugqualität}
 Mit der Zugqualität möchten wir herausfinden, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
-Um \enquote{das Beste} zu definieren, verwenden wir Stockfish 18 als Referenzengine. Stockfish 18 ist aktuell die neuste Version von Stockfish (Stand: März 2026). \\
+Um \enquote{das Beste} zu definieren, verwenden wir Stockfish 18 als Referenzengine. Stockfish 18 ist die neuste Version von Stockfish (Stand: März 2026). \\
 Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe \ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
 
-Zunächst wurde mithilfe einer KI Kategorien und Positionen erstellt. Diese wurden anschliessend überprüft und
-kritisch hinterfragt. Daraus ergaben sich 21 Positionen, die in die folgenden Kategorien unterteilt wurden:
+Zunächst wurde mit einer KI Kategorien und Positionen generiert. Diese wurden anschliessend überprüft und
+kritisch hinterfragt. Daraus ergaben sich 20 Positionen, die in 4 Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
-Innerhalb des Tests wird jede Position von jeder möglichen Evaluationsfunktion (bis auf MateAwareEval alleine - Erklärung folgt später)
-auf den nächstbesten Zug berechnet. \\
-Dasselbe gilt für Stockfsisch. Dieser berechnet jedoch  
-sowie Stockfish mit der Tiefe von \textbf{8} auf den nächstbesten Zug berechnet. \\
-Die
+wird für jede Position mit jeder möglichen Evaluationsfunktion bzw. Evaluationsfunktionskombination (mit Ausnahme von
+MateAwareEval allein) der beste Zug mit einer Tiefe von 8 berechnet.
+Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch 5 bestmöglichen Züge. Dies kann mit dem Befehl \textit{MultiPV}
+erreicht werden (\cite{stockfishMultiPv}).
 
-Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Hier wurde herausgefunden, dass eine gerade Zahl als Tiefe
-gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls berücksichtigt werden muss,
-da sonst viele \enquote{unsinnige} Züge vorgeschlagen wurden. Ebenfalls wurde eine noch höhere Zahl gewählt, in
-der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
-
-MateAwareEval alleine wurde ebenfalls nicht mehr berücksichtig, was als learning von einer vorherigen Testsausführung ist:
-Die Funktion MateAwareEval stellt alleine sicher, dass Züge, welche zum Schachmatt führen, gewinnen. Falls jedoch dies
-nicht direkt ausgeführt werden kann, bringt diese Evaluation nicht und unsere Schachengine führt den ersten berechneten
-Schachzug aus, was je nach konstellation ein guter oder schlechter sein kann. Um diese Zufälligkeit aus unsere Analyse
-zu entfernen haben wir uns entschieden die Funktion alleinig nicht mehr zu beurteilen.
-
-
+Anschliessend wird verglichen, ob eine unserer Evaluationsfunktionen den besten, zweitbesten oder allgemein einen der
+von Stockfish ermittelten Top-Züge findet. Auf Grundlage eines Punktesystems werden dafür unterschiedlich viele Punkte
+vergeben: Für den besten Zug werden 8 Punkte vergeben, für den zweitbesten 6 usw.:
 
 \lstinputlisting[
-    firstline=114,
-    lastline=114,
+    firstline=113,
+    lastline=113,
     firstnumber=1,
     caption={QualityTest - Verteilung der möglichen Punkte},
     label={lst:qualitTestHeadPointDistro}
 ]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
 
-\lstinputlisting[
-    firstline=134,
-    lastline=153,
-    firstnumber=1,
-    caption={QualityTest - Berechnung des nächsten Zuges},
-    label={lst:qualitTestPosCalcuation}
-]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
+Anhand der erreichten Punktzahl und der gewählten Züge können die Evaluationsfunktionen nun miteinander verglichen werden.
 
+\subsubsection{Learnings aus einer vorherigen Ausführung}
+
+Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Bei der Analyse der Testresultate wurde bemerkt, dass eine
+gerade Zahl als Tiefe gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls
+berücksichtigt wird. Ansonsten werden werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
+eine noch höhere Zahl gewählt, in der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
+
+MateAwareEval alleine wurde ebenfalls nicht mehr berücksichtig, was als learning von einer vorherigen Testsausführung ist:
+Die Funktion MateAwareEval stellt nur sicher, dass Züge, welche zum Schachmatt führen, gewinnen. Falls jedoch dies
+nicht direkt ausgeführt werden kann, bringt diese Evaluation nichts und unsere es wird der ersten berechneten
+Schachzug vorgeschlagen, was zufälligerweise ein guter oder schlechter Zug sein kann. Um diese Zufälligkeit aus unsere Analyse
+zu entfernen, haben wir uns entschieden, diese Evaluation alleinstehend nicht mehr zu beurteilen.
 
 \subsection{Testresultate}
 
-2h berechnen
+Nachfolgend werden pro Kategorie die Testresultate dargestellt und interpretiert. In den nachfolgenden Diagrammen sind
+jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind im Anhang unter \ref{zugqualit_tabel} zu finden.
 
 \begin{figure}[H]
     \centering
