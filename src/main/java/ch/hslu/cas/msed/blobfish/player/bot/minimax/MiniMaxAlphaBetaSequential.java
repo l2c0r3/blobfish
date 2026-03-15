@@ -25,7 +25,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
     }
 
     @Override
-    public PathEvaluation getBestPath(ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }

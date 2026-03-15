@@ -9,7 +9,7 @@ public abstract class AbstractPlayer {
 
     private final PlayerColor playerColor;
 
-    public AbstractPlayer(PlayerColor playerColor) {
+    public AbstractPlayer(final PlayerColor playerColor) {
         this.playerColor = playerColor;
     }
 
@@ -21,6 +21,6 @@ public abstract class AbstractPlayer {
      * @param board The chessboard
      * @return returns next move in SAN annotation
      */
-    public abstract String getNextMove(ChessBoard board) throws MatchAbortedException, GameAbortedException;
+    public abstract String getNextMove(final ChessBoard board) throws MatchAbortedException, GameAbortedException;
 
 }

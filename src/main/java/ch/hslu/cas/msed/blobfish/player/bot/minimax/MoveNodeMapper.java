@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MoveNodeMapper {
 
-    public FirstMoveEvaluation mapToFirstMoveEvaluation(MoveNode moveNode) {
+    public FirstMoveEvaluation mapToFirstMoveEvaluation(final MoveNode moveNode) {
         if (moveNode == null || moveNode.history() == null) {
             return null;
         } else {
@@ -19,7 +19,7 @@ public class MoveNodeMapper {
         }
     }
 
-    public PathEvaluation mapToPathEvaluation(MoveNode moveNode) {
+    public PathEvaluation mapToPathEvaluation(final MoveNode moveNode) {
         if (moveNode == null || moveNode.history() == null) {
             return null;
         } else {

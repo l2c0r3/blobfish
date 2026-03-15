@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class PieceSquareEval implements EvalStrategy {
 
     @Override
-    public int getEvaluation(ChessBoard board) {
+    public int getEvaluation(final ChessBoard board) {
         var boardAsArray = board.boardToArray();
         var isEndgame = board.isEndGame();
 
@@ -23,14 +23,14 @@ public class PieceSquareEval implements EvalStrategy {
         }).sum();
     }
 
-    private int getPieceValue(int posIndex, Piece piece, boolean isEndgame) {
+    private int getPieceValue(final int posIndex, final Piece piece, final boolean isEndgame) {
         var pst = getPstForPiece(piece, isEndgame);
         var index = piece.color() == PlayerColor.BLACK ? BoardTransformationUtil.flipFileIndex(posIndex) : BoardTransformationUtil.flipRankIndex(posIndex);
 
         return piece.color() == PlayerColor.BLACK ? -pst[index] : pst[index];
     }
 
-    private int[] getPstForPiece(Piece piece, boolean isEndgame) {
+    private int[] getPstForPiece(final Piece piece, final boolean isEndgame) {
         return switch (piece.type()) {
             case PieceType.PAWN -> PAWN_PST;
             case PieceType.KNIGHT -> KNIGHT_PST;

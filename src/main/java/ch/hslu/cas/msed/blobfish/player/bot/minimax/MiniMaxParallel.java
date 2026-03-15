@@ -13,21 +13,21 @@ public class MiniMaxParallel extends MiniMaxAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxParallel(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
+    public MiniMaxParallel(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     @Override
-    public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
+    public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
         return calculate(chessBoard, moveNodeMapper::mapToFirstMoveEvaluation);
     }
 
     @Override
-    public PathEvaluation getBestPath(ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
         return calculate(chessBoard, moveNodeMapper::mapToPathEvaluation);
     }
 
-    private <T> T calculate(ChessBoard chessBoard, Function<MoveNode, T> mapper) {
+    private <T> T calculate(final ChessBoard chessBoard, final Function<MoveNode, T> mapper) {
         var task = new MiniMaxRecursiveTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
 
         @SuppressWarnings("resource")

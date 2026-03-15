@@ -16,7 +16,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     private final MoveHistoryNode history;
     private final EvalStrategy evalStrategy;
 
-    public MiniMaxRecursiveTask(EvalStrategy evalStrategy, ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
+    public MiniMaxRecursiveTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
         this.evalStrategy = evalStrategy;
