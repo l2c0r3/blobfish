@@ -198,8 +198,8 @@ public class QualityTest {
 
     private File createPlantUml(List<QualityTestResult> results, QualityTest.QualityTestCategory tacticTableToGenerate) {
         var description = tacticTableToGenerate.getDescription();
-        List<String> horizontalAxisTitles = List.of("Evaluationsfunktion");
-        String verticalAxisTitle = "Won Points";
+        List<String> horizontalAxisTitles = List.of("Evaluation functions");
+        String verticalAxisTitle = "Points won";
 
         Map<EvalConfig,List<EvalQualityResult>> resultGroupByStrategy = results.stream()
                 .filter(r -> tacticTableToGenerate.equals(r.qualityTestCategory()))
