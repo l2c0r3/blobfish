@@ -88,6 +88,8 @@ public class PlantUmlUtil {
 
         var content = """
                 @startchart
+                skinparam dpi 300
+                scale 1.5
                 
                 title
                 %s

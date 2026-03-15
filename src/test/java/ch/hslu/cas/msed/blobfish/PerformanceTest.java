@@ -42,6 +42,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -121,6 +122,8 @@ public class PerformanceTest {
 
     @BeforeAll
     static void setup() {
+        // allow for bigger pumls
+        System.setProperty("PLANTUML_LIMIT_SIZE", "12288");
         if (rootFolderForMeasurements == null) {
             rootFolderForMeasurements = createMeasurementFolder();
         }
@@ -131,7 +134,9 @@ public class PerformanceTest {
 
     @AfterAll
     static void afterAll() {
-        TexTableUtil.generateMeasurementPerformanceGainTable(MiniMaxSequential.class.getSimpleName(), readGlobalMeasurementEntries(), rootFolderForMeasurements);
+        var measurements = readGlobalMeasurementEntries();
+        TexTableUtil.generateMeasurementPerformanceGainTable(MiniMaxSequential.class.getSimpleName(), measurements, rootFolderForMeasurements);
+        createMeasurementsAtCommonMaxDepthPuml(measurements, rootFolderForMeasurements);
     }
 
     @ParameterizedTest
@@ -263,7 +268,7 @@ public class PerformanceTest {
                                 case MEDIAN -> r.median();
                                 case DEVIATION -> r.deviation();
                             })
-                            .map(this::mapDurationToValue)
+                            .map(PerformanceTest::mapDurationToValue)
                             .forEach(m -> {
                                 try {
                                     printer.print(m);
@@ -483,13 +488,13 @@ public class PerformanceTest {
         return logarithmicValue ? mapDurationToLogValue(valueToFormat) : mapDurationToValue(valueToFormat);
     }
 
-    private Double mapDurationToLogValue(Duration duration) {
+    private static Double mapDurationToLogValue(Duration duration) {
         double millis = duration.toMillis();
         if (millis == 0) return 0.0;
         return Math.round(Math.log10(millis) * 1_000.0) / 1_000.0;
     }
 
-    private Double mapDurationToValue(Duration duration) {
+    private static Double mapDurationToValue(Duration duration) {
         double micros = duration.toNanos() / 1_000.0;
         return Math.round(micros) / 1_000.0;
     }
@@ -545,6 +550,68 @@ public class PerformanceTest {
              CSVParser parser = CSVParser.builder().setReader(reader).setFormat(getCSVFormat()).get()) {
 
             return parser.stream().map(TexTableUtil.GlobalMeasurementEntry::new).toList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void createMeasurementsAtCommonMaxDepthPuml(final List<TexTableUtil.GlobalMeasurementEntry> measurements, final File rootFolderForMeasurements) {
+        int commonMaxDepth = measurements.stream()
+                .collect(Collectors.toMap(
+                        TexTableUtil.GlobalMeasurementEntry::algorithm,
+                        TexTableUtil.GlobalMeasurementEntry::depth,
+                        BinaryOperator.maxBy(Integer::compare))
+                )
+                .values().stream()
+                .min(Integer::compare)
+                .orElse(0);
+
+        var algorithms = measurements.stream()
+                .map(TexTableUtil.GlobalMeasurementEntry::algorithm)
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .toList();
+
+        var rowValues = measurements.stream()
+                .filter(e -> e.depth() == commonMaxDepth)
+                .collect(Collectors.groupingBy(TexTableUtil.GlobalMeasurementEntry::strategy))
+                .entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        strategyEntry -> algorithms.stream()
+                                .map(algo ->
+                                        MeasurementUtil.calcMedianDuration(
+                                                strategyEntry.getValue().stream()
+                                                        .filter(e -> e.algorithm().equals(algo))
+                                                        .map(TexTableUtil.GlobalMeasurementEntry::duration)
+                                                        .toList()
+                                        )
+                                )
+                                .toList()
+                ));
+
+        var barResults = rowValues.entrySet()
+                .stream()
+                .map(e -> {
+                    var values = e.getValue()
+                            .stream()
+                            .map(PerformanceTest::mapDurationToLogValue)
+                            .toList();
+
+                    return new PlantUmlUtil.ChartBar(e.getKey(), values);
+                })
+                .toList();
+
+        var chartTitle = "Median calculation time across positions at depth %s".formatted(commonMaxDepth);
+        var vAxisTitle = "Calculation time [ms]";
+
+        var fileName = "performance-at-depth-%d".formatted(commonMaxDepth);
+        var pumlFile = PlantUmlUtil.createBarChart(chartTitle, algorithms, vAxisTitle, barResults);
+        var pngFile = PlantUmlUtil.convertPlantUmlToPng(pumlFile);
+
+        try {
+            Files.move(pumlFile.toPath(), rootFolderForMeasurements.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(pngFile.toPath(), rootFolderForMeasurements.toPath().resolve(fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
