@@ -9,7 +9,7 @@ import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil.EvalConfig;
-import ch.hslu.cas.msed.blobfish.util.LatexUtil;
+import ch.hslu.cas.msed.blobfish.util.QualityTestLatexUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
 import lombok.Getter;
 import org.apache.commons.text.WordUtils;
@@ -154,13 +154,16 @@ public class QualityTest {
         // Act - generate data tables and diagrams
         for (QualityTestCategory qualityTestCategory : positionsToTest.keySet()) {
             var fileName = getFileNameOutOfCategory(qualityTestCategory);
+            var maxPoints = positionsToTest.values().stream().mapToInt(List::size).sum() * pointDistribution[0];
 
-            var tableFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
+            var tableFile = QualityTestLatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
+            var sumFile = QualityTestLatexUtil.generateOverallSum(qualityTestResults, maxPoints);
             var sumDiagram = createPlantUml(qualityTestResults, qualityTestCategory);
             var svg = PlantUmlUtil.convertPlantUmlToSvg(sumDiagram);
             var png = PlantUmlUtil.convertPlantUmlToPng(sumDiagram);
             try {
                 Files.move(tableFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
+                Files.move(sumFile.toPath(), rootFolderForQualityFiles.toPath().resolve("Overall.tex"), StandardCopyOption.REPLACE_EXISTING);
                 Files.move(sumDiagram.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
                 Files.move(svg.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
                 Files.move(png.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);

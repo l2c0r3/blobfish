@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\begin{document}
+    \begin{longtable}{|
+            >{\centering\arraybackslash}p{0.10\textwidth}|
+            >{\raggedright\arraybackslash}p{0.70\textwidth}|
+            >{\centering\arraybackslash}p{0.20\textwidth}|}
+        \caption{Quality Test Rangliste} \\
+\hline
+    \textbf{Rang} & \textbf{Evaluation} & \textbf{Gewonnene Punkte von 40} \\ \hline
+\endfirsthead
+\hline
+    \textbf{Rang} & \textbf{Evaluation} & \textbf{Gewonnene Punkte von 40} \\ \hline
+\endhead
+
+\hline
+\multicolumn{3}{|r|}{Fortsetzung auf der nächsten Seite} \\
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+1 & MateAwareEval \& MaterialEval \& PieceSquareEval & 19 \\ \hline
+2 & MateAwareEval \& MaterialEval & 19 \\ \hline
+3 & MateAwareEval \& PieceSquareEval & 15 \\ \hline
+4 & MaterialEval \& PieceSquareEval & 12 \\ \hline
+5 & MaterialEval & 12 \\ \hline
+6 & PieceSquareEval & 7 \\ \hline    \end{longtable}
+\end{document}
+
+
+
+

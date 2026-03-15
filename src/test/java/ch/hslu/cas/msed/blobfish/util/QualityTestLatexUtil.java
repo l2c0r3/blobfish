@@ -7,11 +7,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class LatexUtil {
+public class QualityTestLatexUtil {
 
-    private LatexUtil() {
+    private QualityTestLatexUtil() {
         // util class
     }
 
@@ -63,23 +67,17 @@ public class LatexUtil {
 
         results.stream()
                 .filter(testResult -> tacticTableToGenerate.equals(testResult.qualityTestCategory()))
-                .forEach(result -> sb.append(generateTableRow(result)));
+                .forEach(result -> sb.append(generateTableRowQualityMoves(result)));
 
         sb.append("""
                 \\end{longtable}
                 \\end{document}
                 """);
 
-        var tmpFile = FileUtil.createTmpFile("qualityMoves", "tex");
-        try (FileWriter fw = new FileWriter(tmpFile)) {
-            fw.write(sb.toString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return tmpFile;
+        return generateFile("qualityMoves", sb);
     }
 
-    private static String generateTableRow(QualityTestResult testResult) {
+    private static String generateTableRowQualityMoves(QualityTestResult testResult) {
         StringBuilder sb = new StringBuilder();
 
         int rowCount = testResult.evalQualityResult().size();
@@ -156,10 +154,89 @@ public class LatexUtil {
         return result;
     }
 
+    public static File generateOverallSum(List<QualityTestResult> results, int maxPoints) {
+        StringBuilder sb = new StringBuilder();
+
+        var header = String.format("\\textbf{Rang} & \\textbf{Evaluation} & \\textbf{Gewonnene Punkte von %d} \\\\ \\hline", maxPoints);
+        sb.append("""
+                \\documentclass{article}
+                
+                \\usepackage[a4paper,margin=2cm]{geometry}
+                \\usepackage{array}
+                \\usepackage{multirow}
+                \\usepackage{longtable}
+                
+                \\begin{document}
+                    \\begin{longtable}{|
+                            >{\\centering\\arraybackslash}p{0.10\\textwidth}|
+                            >{\\raggedright\\arraybackslash}p{0.70\\textwidth}|
+                            >{\\centering\\arraybackslash}p{0.20\\textwidth}|}
+                        \\caption{Quality Test Rangliste} \\\\
+                """);
+        sb.append("""
+                \\hline
+                    %s
+                \\endfirsthead
+                \\hline
+                    %s
+                \\endhead
+                
+                \\hline
+                \\multicolumn{3}{|r|}{Fortsetzung auf der nächsten Seite} \\\\
+                \\hline
+                \\endfoot
+                
+                \\hline
+                \\endlastfoot
+                """.formatted(header, header));
+
+        var sortedEntries = results.stream()
+                .flatMap(r -> r.evalQualityResult().stream())
+                .collect(Collectors.groupingBy(
+                        QualityTest.EvalQualityResult::strategy,
+                        Collectors.summingInt(QualityTest.EvalQualityResult::pointWon)
+                ))
+                .entrySet().stream()
+                .sorted(
+                        Map.Entry.<EvaluationUtil.EvalConfig, Integer>comparingByValue()
+                                .reversed()
+                )
+                .toList();
+
+        String rangliste = IntStream.range(0, sortedEntries.size())
+                .mapToObj(i -> {
+                    var entry = sortedEntries.get(i);
+                    return (i + 1) + " & " + escapeLatex(entry.getKey().description()) + " & " + entry.getValue() + " \\\\ \\hline";
+                })
+                .collect(Collectors.joining("\n"));
+        sb.append(rangliste);
+
+        sb.append("""
+                    \\end{longtable}
+                \\end{document}
+                
+                """);
+
+        return generateFile("overall", sb);
+    }
+
     private static String escapeLatex(String s) {
         if (s == null) return "";
         return s
                 .replace("&", "\\&")
                 .replace("%", "\\%");
     }
+
+
+    private static File generateFile(String filename, StringBuilder sb) {
+        var tmpFile = FileUtil.createTmpFile(filename, "tex");
+        try (FileWriter fw = new FileWriter(tmpFile)) {
+            fw.write(sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return tmpFile;
+    }
+
+
 }
