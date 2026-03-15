@@ -321,7 +321,11 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxBotPlayer {
 
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel {
+	{field} {static} -DEPTH_THRESHOLD_PERCENTAGE : int
+	{field} {static} -MIN_DEPTH_THRESHOLD : int
+	{field} {static} -MOVE_THRESHOLD : int
 	{method} -calculate ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramFunction2 : java.util.function.Function ) : Object
+	{method} -calculateDepthThreshold () : int
 	{method} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation
 	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation
 }
@@ -329,6 +333,8 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel {
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxRecursiveTask {
 	{field} -depth : int
+	{field} -depthThreshold : int
+	{field} -moveThreshold : int
 	{method} #compute () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} -createSubTasks () : java.util.List
 	{method} -getEvaluation () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
