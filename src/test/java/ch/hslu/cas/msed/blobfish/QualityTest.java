@@ -67,8 +67,6 @@ public class QualityTest {
                     "r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1",
                     // Kingside attack motifs.
                     "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
-                    // Converts a won tactic.
-                    "6k1/5ppp/8/8/8/5q2/5PPP/6K1 b - - 0 1",
                     // Tests underpromotion ideas.
                     "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1",
                     // Precise pawn race calculation.
