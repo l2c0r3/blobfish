@@ -9,7 +9,7 @@ Zunächst wurde mit einer KI Kategorien und Positionen generiert. Diese wurden a
 kritisch hinterfragt. Daraus ergaben sich 20 Positionen, die in 4 Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
-wird für jede Position mit jeder möglichen Evaluationsfunktion bzw. Evaluationsfunktionskombination (mit Ausnahme von
+Beim Test wird für jede Position mit jeder möglichen Evaluationsfunktion bzw. Evaluationsfunktionskombination (mit Ausnahme von
 MateAwareEval allein) der beste Zug mit einer Tiefe von 8 berechnet.
 Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch 5 bestmöglichen Züge. Dies kann mit dem Befehl \textit{MultiPV}
 erreicht werden (\cite{stockfishMultiPv}).
@@ -43,7 +43,7 @@ zu entfernen, haben wir uns entschieden, diese Evaluation alleinstehend nicht me
 
 \subsection{Testresultate}
 
-Nachfolgend werden pro Kategorie die Testresultate dargestellt und interpretiert. In den nachfolgenden Diagrammen sind
+Nachfolgend werden pro Kategorie die Testresultate dargestellt. In den Diagrammen sind
 jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind im Anhang unter \ref{zugqualit_tabel} zu finden.
 
 \begin{figure}[H]
@@ -75,4 +75,12 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
     \caption{Testresultat Zugqualität - Tactics}
     \label{fig:resultatZugQualityTactics}
 \end{figure}
+
+*Hier hinzufügen wie die overall rechnung ist*
+
+\subsection{Intepretation}
+
+Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. Hierfür spricht, dass es eine gute
+Balance zwischen den Evaluationen gibt und die richtige gewinnt. \\
+Spannend ist, wie
 
