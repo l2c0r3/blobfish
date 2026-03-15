@@ -6,6 +6,7 @@ import ch.hslu.cas.msed.blobfish.eval.*;
 import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequentialWithCache;
 import ch.hslu.cas.msed.blobfish.util.FileUtil;
 import ch.hslu.cas.msed.blobfish.util.MeasurementUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
@@ -82,7 +83,8 @@ public class PerformanceTest {
 
     private static final int DEFAULT_CALCULATION_DEPTH = 4;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
-            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6)
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6),
+            new ExecutionConfigKey(MiniMaxAlphaBetaSequentialWithCache.class, Collections.emptyList()), new ExecutionConfig(6)
     );
 
     private static Stream<Arguments> positionProvider() {
@@ -360,7 +362,9 @@ public class PerformanceTest {
                 .scan()) {
 
             return scan.getSubclasses(base.getName()).loadClasses()
-                    .stream().map(clazz -> {
+                    .stream()
+                    .filter(clazz -> !java.lang.reflect.Modifier.isAbstract(clazz.getModifiers()))
+                    .map(clazz -> {
                         try {
                             var constructor = clazz.getDeclaredConstructor(int.class, EvalStrategy.class, PlayerColor.class);
                             return (MiniMaxAlgoConstructor) (
