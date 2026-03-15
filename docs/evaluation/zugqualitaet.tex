@@ -1,11 +1,27 @@
 \section{Zugqualität}
-
-Gerne möchten wir mit der Zugqualität herausfinden, wieviel inpact eine Stategie hat und auch wie wie sich die Kombinationen
-
+Mit der Zugqualität möchten wir herausfinden, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
+Um \enquote{das Beste} zu definieren, verwenden wir Stockfish 18 als Referenzengine. Stockfish 18 ist aktuell die neuste Version von Stockfish (Stand: März 2026). \\
+Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe \ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
 
+Zunächst haben wir mithilfe einer KI Kategorien und Positionen erstellen lassen. Diese wurden anschliessend überprüft und
+kritisch hinterfragt. Daraus ergaben sich 21 Positionen, die in die folgenden Kategorien unterteilt wurden:
+Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
+Jede Position wird dabei von jeder möglichen Evaluationsfunktion (bis auf MateAwareEval alleine - Erklärung folgt später) sowie Stockfish berechnet.
+Die Tiefe wurde hier \textbf{8} gewählt.
+
+Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Hier wurde herausgefunden, dass eine gerade Zahl als Tiefe
+gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls berücksichtigt werden muss,
+da sonst viele \enquote{unsinnige} Züge vorgeschlagen wurden. Ebenfalls wurde eine noch höhere Zahl gewählt, in
+der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
+
+MateAwareEval alleine wurde ebenfalls nicht mehr berücksichtig, was als learning von einer vorherigen Testsausführung ist:
+Die Funktion MateAwareEval stellt alleine sicher, dass Züge, welche zum Schachmatt führen, gewinnen. Falls jedoch dies
+nicht direkt ausgeführt werden kann, bringt diese Evaluation nicht und unsere Schachengine führt den ersten berechneten
+Schachzug aus, was je nach konstellation ein guter oder schlechter sein kann. Um diese Zufälligkeit aus unsere Analyse
+zu entfernen haben wir uns entschieden die Funktion alleinig nicht mehr zu beurteilen.
 
 
 \lstinputlisting[
@@ -27,4 +43,35 @@ Gerne möchten wir mit der Zugqualität herausfinden, wieviel inpact eine Stateg
 
 \subsection{Testresultate}
 
+2h berechnen
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/movequality/DynamicPlayInitiativeSacrifices}
+    \caption{Testresultat Zugqualität - Dynamic play / initiative / sacrifices}
+    \label{fig:resultatZugQualityDynamicPlay}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/movequality/EndgamesTechniqueZugzwangFortress}
+    \caption{Testresultat Zugqualität - Endgames / technique / zugzwang / fortress}
+    \label{fig:resultatZugEndgame}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/movequality/PositionalPlayProphylaxis}
+    \caption{Testresultat Zugqualität - Positional play / prophylaxis}
+    \label{fig:resultatZugQualityPositonalPlay}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/movequality/Tactics}
+    \caption{Testresultat Zugqualität - Tactics}
+    \label{fig:resultatZugQualityTactics}
+\end{figure}
 
