@@ -159,10 +159,12 @@ public class QualityTest {
 
             var tableFile = LatexUtil.generateTableQualityMoves(qualityTestResults, qualityTestCategory);
             var sumDiagram = createPlantUml(qualityTestResults, qualityTestCategory);
+            var svg = PlantUmlUtil.convertPlantUmlToSvg(sumDiagram);
             var png = PlantUmlUtil.convertPlantUmlToPng(sumDiagram);
             try {
                 Files.move(tableFile.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".tex"), StandardCopyOption.REPLACE_EXISTING);
                 Files.move(sumDiagram.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".puml"), StandardCopyOption.REPLACE_EXISTING);
+                Files.move(svg.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".svg"), StandardCopyOption.REPLACE_EXISTING);
                 Files.move(png.toPath(), rootFolderForQualityFiles.toPath().resolve(fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 throw new RuntimeException(e);
