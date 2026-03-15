@@ -39,7 +39,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
         var currentAlpha = alpha;
         var currentBeta = beta;
 
-        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Double.NEGATIVE_INFINITY, history) : new MoveNode(Double.POSITIVE_INFINITY, history);
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Integer.MIN_VALUE, history) : new MoveNode(Integer.MAX_VALUE, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
