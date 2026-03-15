@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TexTableUtil {
 
@@ -74,8 +75,7 @@ public class TexTableUtil {
                                                 .map(GlobalMeasurementEntry::duration)
                                                 .toList());
 
-                                        var gain = (double) referenceMedian.toNanos() / median.toNanos();
-                                        return Math.round(gain * 1_000.0) / 1_000.0;
+                                        return (double) referenceMedian.toNanos() / median.toNanos();
                                     })
                                     .toList();
                         }
@@ -86,10 +86,34 @@ public class TexTableUtil {
                 .stream()
                 .map(e -> {
                     var isEven = rowCounter.incrementAndGet() % 2 == 0;
+                    var values = e.getValue().stream()
+                            .map(v -> Math.round(v * 1_000.0) / 1_000.0)
+                            .toList();
 
-                    return createTableRow(e.getKey(), e.getValue(), isEven);
+                    return createTableRow(e.getKey(), values, isEven);
                 })
                 .collect(Collectors.joining(System.lineSeparator()));
+
+
+        var footerRowValues = IntStream.range(0, performanceGains.values().iterator().next().size())
+                .mapToObj(col -> {
+                    var median = MeasurementUtil.calcMedian(
+                            performanceGains.values().stream()
+                                    .map(r -> r.get(col))
+                                    .toList()
+                    );
+
+                    return Math.round(median * 100.0) / 100.0;
+                })
+                .map("\\textbf{%s}"::formatted)
+                .collect(Collectors.joining(" & "));
+
+        var footerRow = """
+                \\hline
+                \\hline
+                \\rowcolor[HTML]{FFFFFF}
+                \\textbf{Median}               & %s \\\\
+                """.formatted(footerRowValues);
 
         var colCount = algorithms.size();
 
@@ -98,11 +122,11 @@ public class TexTableUtil {
                 .collect(Collectors.joining(" & "));
 
         var rowTitle = "Strategy";
-        var headerTitle = "Median performance gain across positions";
+        var headerTitle = "Median performance gain multiplier across positions";
         var tableCaption = "Median performance difference from %s at depth %d".formatted(referenceAlgorithm, referenceDepth);
         var tableLabel = tableCaption.toLowerCase().replaceAll(" ", "-");
 
-        var content = createTexTable(colCount, rowTitle, headerTitle, headers, rows, tableCaption, tableLabel);
+        var content = createTexTable(colCount, rowTitle, headerTitle, headers, rows + footerRow, tableCaption, tableLabel);
 
         var fileName = "performance-gains-%s.tex".formatted(referenceAlgorithm.toLowerCase().replaceAll(" ", "-"));
         var file = new File(rootFolderForMeasurements, fileName);
