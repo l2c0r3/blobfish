@@ -15,8 +15,10 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     private final PlayerColor playerAtTurn;
     private final MoveHistoryNode history;
     private final EvalStrategy evalStrategy;
+    private final int depthThreshold;
+    private final int moveThreshold;
 
-    public MiniMaxRecursiveTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history) {
+    public MiniMaxRecursiveTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
         this.evalStrategy = evalStrategy;
@@ -24,6 +26,8 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
         this.depth = depth;
         this.playerAtTurn = playerAtTurn;
         this.history = history;
+        this.depthThreshold = depthThreshold;
+        this.moveThreshold = moveThreshold;
     }
 
     @Override
@@ -34,15 +38,18 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
 
         var tasks = createSubTasks();
 
-        return switch (tasks.size()) {
-            case 0 -> getEvaluation();
-            case 1 -> tasks.getFirst().compute();
-            default -> ForkJoinTask.invokeAll(tasks)
+        if (depth <= depthThreshold || tasks.size() <= moveThreshold) {
+            return tasks.stream()
+                    .map(MiniMaxRecursiveTask::compute)
+                    .min(getMoveNodeComparator())
+                    .orElseGet(this::getEvaluation);
+        } else {
+            return ForkJoinTask.invokeAll(tasks)
                     .stream()
                     .map(ForkJoinTask::join)
                     .min(getMoveNodeComparator())
                     .orElse(null);
-        };
+        }
     }
 
     private MoveNode getEvaluation() {
@@ -68,7 +75,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
                 .map(move -> {
                     var newPosition = chessBoard.doMove(move.toString());
                     var newHistory = new MoveHistoryNode(move.toString(), history);
-                    return new MiniMaxRecursiveTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory);
+                    return new MiniMaxRecursiveTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold);
                 }).toList();
     }
 }
