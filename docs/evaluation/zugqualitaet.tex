@@ -5,12 +5,15 @@ Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen 
 
 \subsection{Testaufbau}
 
-Zunächst haben wir mithilfe einer KI Kategorien und Positionen erstellen lassen. Diese wurden anschliessend überprüft und
+Zunächst wurde mithilfe einer KI Kategorien und Positionen erstellt. Diese wurden anschliessend überprüft und
 kritisch hinterfragt. Daraus ergaben sich 21 Positionen, die in die folgenden Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
-Jede Position wird dabei von jeder möglichen Evaluationsfunktion (bis auf MateAwareEval alleine - Erklärung folgt später) sowie Stockfish berechnet.
-Die Tiefe wurde hier \textbf{8} gewählt.
+Innerhalb des Tests wird jede Position von jeder möglichen Evaluationsfunktion (bis auf MateAwareEval alleine - Erklärung folgt später)
+auf den nächstbesten Zug berechnet. \\
+Dasselbe gilt für Stockfsisch. Dieser berechnet jedoch  
+sowie Stockfish mit der Tiefe von \textbf{8} auf den nächstbesten Zug berechnet. \\
+Die
 
 Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Hier wurde herausgefunden, dass eine gerade Zahl als Tiefe
 gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls berücksichtigt werden muss,
@@ -22,6 +25,7 @@ Die Funktion MateAwareEval stellt alleine sicher, dass Züge, welche zum Schachm
 nicht direkt ausgeführt werden kann, bringt diese Evaluation nicht und unsere Schachengine führt den ersten berechneten
 Schachzug aus, was je nach konstellation ein guter oder schlechter sein kann. Um diese Zufälligkeit aus unsere Analyse
 zu entfernen haben wir uns entschieden die Funktion alleinig nicht mehr zu beurteilen.
+
 
 
 \lstinputlisting[
