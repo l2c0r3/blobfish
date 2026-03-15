@@ -4,8 +4,8 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 
-import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
@@ -29,17 +29,25 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     @Override
     protected MoveNode compute() {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = evalStrategy.getEvaluation(chessBoard);
-            return new MoveNode(eval, history);
+            return getEvaluation();
         }
 
-        var nodeComparator = getMoveNodeComparator();
+        var tasks = createSubTasks();
 
-        return ForkJoinTask.invokeAll(createSubTasks())
-                .stream()
-                .map(ForkJoinTask::join)
-                .min(nodeComparator)
-                .orElse(null);
+        return switch (tasks.size()) {
+            case 0 -> getEvaluation();
+            case 1 -> tasks.getFirst().compute();
+            default -> ForkJoinTask.invokeAll(tasks)
+                    .stream()
+                    .map(ForkJoinTask::join)
+                    .min(getMoveNodeComparator())
+                    .orElse(null);
+        };
+    }
+
+    private MoveNode getEvaluation() {
+        var eval = evalStrategy.getEvaluation(chessBoard);
+        return new MoveNode(eval, history);
     }
 
     private Comparator<MoveNode> getMoveNodeComparator() {
@@ -53,7 +61,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
         return evalComparator.thenComparing(historyComparator);
     }
 
-    private Collection<MiniMaxRecursiveTask> createSubTasks() {
+    private List<MiniMaxRecursiveTask> createSubTasks() {
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
         return chessBoard.legalMoves().stream()
