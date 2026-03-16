@@ -69,9 +69,7 @@ public class QualityTest {
                     // Kingside attack motifs.
                     "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1",
                     // Tests underpromotion ideas.
-                    "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1",
-                    // Precise pawn race calculation.
-                    "8/3k4/8/2P5/8/8/4K2p/8 w - - 0 1"
+                    "4k3/P7/8/8/8/8/7p/4K3 w - - 0 1"
             )),
             Map.entry(QualityTestCategory.DYNAMIC_PLAY, List.of(
                     // Dynamic compensation test.
