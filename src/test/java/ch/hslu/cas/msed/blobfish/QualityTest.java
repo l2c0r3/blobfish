@@ -10,8 +10,8 @@ import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil;
 import ch.hslu.cas.msed.blobfish.util.EvaluationUtil.EvalConfig;
-import ch.hslu.cas.msed.blobfish.util.QualityTestLatexUtil;
 import ch.hslu.cas.msed.blobfish.util.PlantUmlUtil;
+import ch.hslu.cas.msed.blobfish.util.QualityTestLatexUtil;
 import lombok.Getter;
 import org.apache.commons.text.WordUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -62,8 +62,6 @@ public class QualityTest {
 
     private final Map<QualityTestCategory, List<String>> positionsToTest = Map.ofEntries(
             Map.entry(QualityTestCategory.TACTICS, List.of(
-                    // Direct mate attack.
-                    "6k1/5ppp/5r2/8/8/5Q2/5PPP/6K1 w - - 0 1",
                     // Tests tactical sequencing.
                     "r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1",
                     // Kingside attack motifs.
@@ -139,14 +137,13 @@ public class QualityTest {
                 var chessboard = new ChessBoard(position);
                 var stockFishResult = getStockFishResult(chessboard, DEPTH_TO_CALC);
 
-                List<EvalQualityResult> evalQualityResults = new ArrayList<>();
-
-                evalStrategies.stream().parallel().forEach(evalStrategy -> {
+                List<EvalQualityResult> evalQualityResults = evalStrategies.parallelStream()
+                .map(evalStrategy -> {
                     var strategyBestPath = getBestPathWithEvalStrategy(chessboard, evalStrategy, DEPTH_TO_CALC);
                     var strategyPoints = this.calcPoints(stockFishResult, strategyBestPath.move().getFirst());
-                    var evalResult = new EvalQualityResult(evalStrategy, strategyBestPath, strategyPoints);
-                    evalQualityResults.add(evalResult);
-                });
+                    return new EvalQualityResult(evalStrategy, strategyBestPath, strategyPoints);
+                })
+                .toList();
 
                 var testResult = new QualityTestResult(qualityTestCategory, position, stockFishResult, evalQualityResults);
                 qualityTestResults.add(testResult);

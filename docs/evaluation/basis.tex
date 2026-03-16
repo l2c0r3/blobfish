@@ -18,15 +18,15 @@ Um während der Tests mit Stockfish kommunizieren zu können, benötigen wir ein
 Kommunikationsprotokoll, das von vielen Schachengines und auch von Stockfish verwendet wird, ist das
 \href{https://backscattering.de/chess/uci/}{UCI-Protokoll}. Damit kann Stockfish beispielsweise eine Position übermittelt
 und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befehle sind
-\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html}{hier} aufgeführt.
+\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html}{hier} aufgeführt.
 
 Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
 \textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
 
 \subsection{\gls{glos:JUnit}-Extension}
 
-Um möglichst einfach innherhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, haben wir
-uns entschieden, eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglich uns beispielsweise über Callbacks, Code
+Um möglichst einfach innerhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, haben wir
+uns entschieden, eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglicht uns beispielsweise über Callbacks, Code
 vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
 Testklasse injected werden (\cite{junitExtensionRegistration}).
 
@@ -41,12 +41,12 @@ So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, w
 ]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
 
 Mittels der Annotation \textit{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
-dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal eine Docker-Container von Stockfish bereits
+dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal ein Docker-Container von Stockfish bereits
 gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
-Als nächstes, wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Diese Objekt
+Als nächstes, wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
 wird dann mittels PostProcessing in das Feld auf Zeile 6 injected.
 
-Annschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
+Anschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
 Variable mit Stockfish kommuniziert werden, und so beispielsweise Positionen berechnet werden.
 Zwischen den Testmethoden übermittelt die Extension den Befehl
 \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame} an Stockfish,
