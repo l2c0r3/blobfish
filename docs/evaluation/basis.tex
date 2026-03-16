@@ -43,7 +43,7 @@ So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, w
 Mittels der Annotation \textit{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
 dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal ein Docker-Container von Stockfish bereits
 gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
-Als nächstes, wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
+Als Nächstes wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
 wird dann mittels PostProcessing in das Feld auf Zeile 6 injected.
 
 Anschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
@@ -86,5 +86,5 @@ So ist die Potenzmenge von $\{\texttt{a}, \texttt{b}, \texttt{c}\}$ folgende:
     \item $\{\texttt{c}\}$
 \end{itemize}
 
-Die Funktionalität, die Potenzmenge einer Liste von Objekte zu ermitteln, wurde in die Klasse \textit{PowerSetUtil} ausgelagert.
+Die Funktionalität, die Potenzmenge einer Liste von Objekten zu ermitteln, wurde in die Klasse \textit{PowerSetUtil} ausgelagert.
 
