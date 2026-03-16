@@ -1,3 +1,3 @@
 package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
-public record MoveNode(double eval, MoveHistoryNode history) { }
+public record MoveNode(int eval, MoveHistoryNode history) { }

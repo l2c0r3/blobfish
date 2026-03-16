@@ -9,13 +9,13 @@ public class HumanPlayer extends AbstractPlayer {
 
     private final InputReader reader;
 
-    public HumanPlayer(PlayerColor playerColor, InputReader reader) {
+    public HumanPlayer(final PlayerColor playerColor, final InputReader reader) {
         super(playerColor);
         this.reader = reader;
     }
 
     @Override
-    public String getNextMove(ChessBoard board) throws InvalidMoveException {
+    public String getNextMove(final ChessBoard board) throws InvalidMoveException {
         var potentialMove = reader.readLine("Your move:");
 
         if (board.isMoveLegal(potentialMove)) {

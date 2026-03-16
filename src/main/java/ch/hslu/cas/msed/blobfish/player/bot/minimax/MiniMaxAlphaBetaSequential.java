@@ -25,7 +25,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
     }
 
     @Override
-    public PathEvaluation getBestPath(ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
@@ -39,7 +39,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
         var currentAlpha = alpha;
         var currentBeta = beta;
 
-        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Double.NEGATIVE_INFINITY, history) : new MoveNode(Double.POSITIVE_INFINITY, history);
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Integer.MIN_VALUE, history) : new MoveNode(Integer.MAX_VALUE, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 

@@ -12,29 +12,29 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxSequential(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
+    public MiniMaxSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     @Override
-    public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
+    public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
-    public PathEvaluation getBestPath(ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
-    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
+    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
             return new MoveNode(eval, history);
         }
 
-        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Double.NEGATIVE_INFINITY, history) : new MoveNode(Double.POSITIVE_INFINITY, history);
+        var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Integer.MIN_VALUE, history) : new MoveNode(Integer.MAX_VALUE, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
@@ -59,7 +59,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
         return bestNextNode;
     }
 
-    private static String getSanOfMove(Move move) {
+    private static String getSanOfMove(final Move move) {
         return move.toString();
     }
 }

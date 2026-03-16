@@ -7,12 +7,12 @@ import ch.hslu.cas.msed.blobfish.player.exceptions.InvalidMoveException;
 
 public class MiniMaxBotPlayer extends BotPlayer {
 
-    public MiniMaxBotPlayer(PlayerColor playerColor, MiniMaxAlgo botAlgorithm) {
+    public MiniMaxBotPlayer(final PlayerColor playerColor, final MiniMaxAlgo botAlgorithm) {
         super(playerColor, botAlgorithm);
     }
 
     @Override
-    public String getNextMove(ChessBoard board) throws InvalidMoveException {
+    public String getNextMove(final ChessBoard board) throws InvalidMoveException {
         var result = botAlgorithm.getNextBestMove(board);
         return result != null ? result.move() : null;
     }

@@ -17,7 +17,7 @@ public final class ThreadLocalUtils {
      * @param fieldName The name of the ThreadLocal field.
      * @throws ReflectiveOperationException If reflection fails.
      */
-    public static void resetStaticThreadLocal(@NonNull Class<?> clazz, @NonNull String fieldName)
+    public static void resetStaticThreadLocal(@NonNull final Class<?> clazz, @NonNull final String fieldName)
             throws ReflectiveOperationException {
 
         // Get the declared field (private/protected/public)
