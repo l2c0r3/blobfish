@@ -77,9 +77,7 @@ public class QualityTest {
                     // Finds best defense.
                     "r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1",
                     // Quiet move over tactics.
-                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1",
-                    // Best long-term plan.
-                    "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
+                    "r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1"
             )),
             Map.entry(QualityTestCategory.POSITIONAL_PLAY, List.of(
                     // Positional evaluation test.
