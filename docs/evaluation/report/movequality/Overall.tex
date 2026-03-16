@@ -2,34 +2,26 @@
 
 \usepackage[a4paper,margin=2cm]{geometry}
 \usepackage{array}
-\usepackage{multirow}
-\usepackage{longtable}
 
 \begin{document}
-    \begin{longtable}{|
-            >{\centering\arraybackslash}p{0.10\textwidth}|
-            >{\raggedright\arraybackslash}p{0.70\textwidth}|
-            >{\centering\arraybackslash}p{0.20\textwidth}|}
-        \caption{Quality Test Rangliste} \\
-\hline
-    \textbf{Rang} & \textbf{Evaluation} & \textbf{Gewonnene Punkte von 160} \\ \hline
-\endfirsthead
-\hline
-    \textbf{Rang} & \textbf{Evaluation} & \textbf{Gewonnene Punkte von 160} \\ \hline
-\endhead
 
-\hline
-\multicolumn{3}{|r|}{Fortsetzung auf der nächsten Seite} \\
-\hline
-\endfoot
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|
+                >{\centering\arraybackslash}p{0.10\textwidth}|
+                >{\raggedright\arraybackslash}p{0.70\textwidth}|
+                >{\centering\arraybackslash}p{0.20\textwidth}|}
+            \hline
+            \textbf{Rang} & \textbf{Evaluation} & \textbf{Gewonnene Punkte von 160} \\ \hline
+            1 & MateAwareEval \& MaterialEval \& PieceSquareEval & 112 \\ \hline
+            2 & MaterialEval \& PieceSquareEval & 104 \\ \hline
+            3 & MaterialEval & 85 \\ \hline
+            4 & MateAwareEval \& MaterialEval & 85 \\ \hline
+            5 & MateAwareEval \& PieceSquareEval & 58 \\ \hline
+            6 & PieceSquareEval & 50 \\ \hline
+        \end{tabular}
+        \caption{Quality Test Rangliste}
 
-\hline
-\endlastfoot
-1 & MateAwareEval \& MaterialEval \& PieceSquareEval & 112 \\ \hline
-2 & MaterialEval \& PieceSquareEval & 104 \\ \hline
-3 & MaterialEval & 85 \\ \hline
-4 & MateAwareEval \& MaterialEval & 85 \\ \hline
-5 & MateAwareEval \& PieceSquareEval & 58 \\ \hline
-6 & PieceSquareEval & 50 \\ \hline    \end{longtable}
+    \end{table}
+
 \end{document}
-

@@ -163,32 +163,17 @@ public class QualityTestLatexUtil {
                 
                 \\usepackage[a4paper,margin=2cm]{geometry}
                 \\usepackage{array}
-                \\usepackage{multirow}
-                \\usepackage{longtable}
                 
                 \\begin{document}
-                    \\begin{longtable}{|
-                            >{\\centering\\arraybackslash}p{0.10\\textwidth}|
-                            >{\\raggedright\\arraybackslash}p{0.70\\textwidth}|
-                            >{\\centering\\arraybackslash}p{0.20\\textwidth}|}
-                        \\caption{Quality Test Rangliste} \\\\
-                """);
-        sb.append("""
-                \\hline
-                    %s
-                \\endfirsthead
-                \\hline
-                    %s
-                \\endhead
-                
-                \\hline
-                \\multicolumn{3}{|r|}{Fortsetzung auf der nächsten Seite} \\\\
-                \\hline
-                \\endfoot
-                
-                \\hline
-                \\endlastfoot
-                """.formatted(header, header));
+                    \\begin{table}[ht]
+                                     \\centering
+                                     \\begin{tabular}{|
+                                             >{\\centering\\arraybackslash}p{0.10\\textwidth}|
+                                             >{\\raggedright\\arraybackslash}p{0.70\\textwidth}|
+                                             >{\\centering\\arraybackslash}p{0.20\\textwidth}|}
+                                         \\hline
+                                         %s
+                """.formatted(header));
 
         var sortedEntries = results.stream()
                 .flatMap(r -> r.evalQualityResult().stream())
@@ -212,10 +197,10 @@ public class QualityTestLatexUtil {
         sb.append(rangliste);
 
         sb.append("""
-                    \\end{longtable}
-                \\end{document}
-                
-                """);
+                        \\end{tabular}
+                    \\caption{Quality Test Rangliste}
+               \\end{table}
+            \\end{document}""");
 
         return generateFile("overall", sb);
     }
