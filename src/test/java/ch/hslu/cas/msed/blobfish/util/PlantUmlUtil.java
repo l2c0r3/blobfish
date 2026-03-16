@@ -18,7 +18,6 @@ public class PlantUmlUtil {
     private static final List<String> diagramColors = List.of(
             "#1F77B4", // Blau
             "#FF7F0E", // Orange
-            "#FF7F0E", // Orange
             "#2CA02C", // Grün
             "#D62728", // Rot
             "#9467BD", // Lila
