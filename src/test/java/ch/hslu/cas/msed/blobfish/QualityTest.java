@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.CompositeEvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
@@ -125,7 +126,8 @@ public class QualityTest {
     void compareEvals() {
         // Arrange
         var evalStrategies = EvaluationUtil.getAllEvalStrategiesCombinations().stream()
-                .filter(e -> !MateAwareEval.class.equals(e.strategy().getClass()))
+                .filter(e -> CompositeEvalStrategy.class.equals(e.strategy().getClass()))
+                .filter(e -> ((CompositeEvalStrategy) e.strategy()).getStrategies().contains(MateAwareEval.class))
                 .toList();
         List<QualityTestResult> qualityTestResults = new ArrayList<>();
         stockFishService.setMultiPV(pointDistribution.length);
