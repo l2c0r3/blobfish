@@ -94,6 +94,8 @@ public class QualityTest {
                     "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
             )),
             Map.entry(QualityTestCategory.ENDGAMES_TECHNIQUE, List.of(
+                    // Direct mate attack.
+                    "6k1/5ppp/5r2/8/8/5Q2/5PPP/6K1 w - - 0 1",
                     // Basic opposition endgame.
                     "8/8/8/3k4/8/4K3/4P3/8 w - - 0 1",
                     // Distant passed pawn race.
