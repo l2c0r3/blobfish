@@ -56,6 +56,7 @@ Nachdem alle Testmethoden ausgeführt sind und ein Docker-Container für die Tes
 die Extension.
 
 \subsection{Evaluationen lokalisieren}
+\label{subsec:evalpotenzmenge}
 
 In den nachfolgenden Tests werden immer wieder Evaluationen, sowie deren möglichen Kombinationen, miteinander verglichen.
 Die Kombinationen von den Evaluationen ist interessant, da so potenziell eine noch bessere Evaluation der Position zu
@@ -67,8 +68,8 @@ Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwend
 unteranderem packages zu Scannen. In unserem Fall haben wir es dafür genutzt, um alle Klassen herauszufinden, welche
 das Interface \textit{EvalStrategy} implementieren. Anschliessend haben wir jeweils ein Objekt davon initialisiert.
 
-Somit wird noch eine Funktion benötigt, die eine Liste von Kombinationen von unseren Evaluationobjekten zurückgibt.
-Genauer genommen wird die \href{https://de.wikipedia.org/wiki/Potenzmenge}{Potenzmenge} benötigt.
+Somit wird noch eine Funktion benötigt, die eine Liste von Kombinationen von unseren Evaluationsobjekten zurückgibt.
+Genauer genommen wird die \href{https://de.wikipedia.org/wiki/Potenzmenge}{Potenzmenge} als Basis benötigt.
 Die Potenzmenge enthält nämlich alle Teilmengen einer Menge - also alle Kombinationen in aller möglichen Grössen, sowie
 die einzelnen Evaluationsklassen (\cite{potenzmenge}):
 

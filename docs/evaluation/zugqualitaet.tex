@@ -6,11 +6,11 @@ Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen 
 \subsection{Testaufbau}
 
 Zunächst wurde mit einer KI Kategorien und Positionen generiert. Diese wurden anschliessend überprüft und
-kritisch hinterfragt. Daraus ergaben sich 20 Positionen, die in 4 Kategorien unterteilt wurden:
+kritisch hinterfragt. Daraus ergaben sich 19 Positionen, die in 4 Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
-Beim Test wird für jede Position mit jeder möglichen Evaluationsfunktion bzw. Evaluationsfunktionskombination (mit Ausnahme von
-MateAwareEval allein) der beste Zug mit einer Tiefe von 8 berechnet.
+Im Test wird für jede Position mit unserer Evaluationsfunktion beziehungsweise einer Kombination mehrerer Evaluationsfunktionen
+der beste Zug bei einer Suchtiefe von 8 berechnet. \\
 Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch 5 bestmöglichen Züge. Dies kann mit dem Befehl \textit{MultiPV}
 erreicht werden (\cite{stockfishMultiPv}).
 
@@ -35,11 +35,14 @@ gerade Zahl als Tiefe gewählt werden muss, um sicherzustellen, dass der nächst
 berücksichtigt wird. Ansonsten werden werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
 eine noch höhere Zahl gewählt, in der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
 
-MateAwareEval alleine wurde ebenfalls nicht mehr berücksichtig, was als learning von einer vorherigen Testsausführung ist:
-Die Funktion MateAwareEval stellt nur sicher, dass Züge, welche zum Schachmatt führen, gewinnen. Falls jedoch dies
-nicht direkt ausgeführt werden kann, bringt diese Evaluation nichts und unsere es wird der ersten berechneten
-Schachzug vorgeschlagen, was zufälligerweise ein guter oder schlechter Zug sein kann. Um diese Zufälligkeit aus unsere Analyse
-zu entfernen, haben wir uns entschieden, diese Evaluation alleinstehend nicht mehr zu beurteilen.
+Ebenfalls wird aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
+\textit{MateAwareEval} sind. Die Funktion \textit{MateAwareEval} stellt sicher, dass Züge, welche zum Schachmatt führen,
+gewinnen. Falls jedoch innerhalb der berechneten Tiefe der Gegner nicht Schachmatt gesetzt werden kann, wird das Ergebnis
+der anderen Evaluation berücksicht oder, falls die \textit{MateAwareEval} alleine betrachtet wird, wird der erste berechneten
+Schachzug vorgeschlagen. \\
+Bei einer vorherigen Testausführung wurde gesehen, dass Evaluationen Evaluationen mit und ohne \textit{MateAwareEval}
+einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtichtshalber werden
+daher Evaluationen ohne \textit{MateAwareEval} ignoriert.
 
 \subsection{Testresultate}
 
@@ -82,5 +85,18 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
 
 Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. Hierfür spricht, dass es eine gute
 Balance zwischen den Evaluationen gibt und die richtige gewinnt. \\
-Spannend ist, wie
+Ebenfalls positiv zu sehen ist, dass mittels 3 Evaluationen bereits 70\% der Punkte erreicht werden konnten.
+
+Das als zweitplatzierer der \textit{MaterialEval} gewinnt, sagt uns, dass dieser in den Testpositionen mehr Gewicht hatte
+und das im generellen der Materialwert ein guter erster Indikator ist, die Position zu bewerten. \\
+Die finesse, welche die \textit{PieceSquareEval} jedoch nun hinzufügt, verbessert die Evaluation im ca. 30\%. So ist
+die \textit{PieceSquareEval} nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames / technique / zugzwang / fortress}
+zusehen ist, wo \textit{PieceSquareEval} \textit{MaterialEval} übertrumpft.
+
+Bei der Betrachtung der einzelnen Positionen sind ebenfalls Schwächen zusehen: \\
+Beispielsweise bei der Position \textit{r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1} kann erkennt werden,
+dass die Struktur von den Bauern unserer Schachcomputer nicht berücksichtigt. Hier erkennt Stockfish die
+
+
+- endgames \textit{8/8/8/3k4/8/4K3/4P3/8 w - - 0 1}
 
