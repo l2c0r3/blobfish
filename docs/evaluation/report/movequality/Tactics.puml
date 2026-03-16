@@ -7,12 +7,9 @@ end title
 h-axis [ Evaluation functions ]
 v-axis "Points won" 0 --> 50.0 spacing 10.0 grid
 
-bar "MateAwareEval & MaterialEval"[ 17.0 ] #1F77B4
+bar "MateAwareEval & MaterialEval"[ 16.0 ] #1F77B4
 bar "MateAwareEval & MaterialEval & PieceSquareEval"[ 22.0 ] #FF7F0E
 bar "MateAwareEval & PieceSquareEval"[ 10.0 ] #2CA02C
-bar "MaterialEval"[ 17.0 ] #D62728
-bar "MaterialEval & PieceSquareEval"[ 14.0 ] #9467BD
-bar "PieceSquareEval"[ 2.0 ] #8C564B
 
 legend right
 @endchart

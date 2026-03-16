@@ -10,9 +10,6 @@ v-axis "Points won" 0 --> 50.0 spacing 10.0 grid
 bar "MateAwareEval & MaterialEval"[ 12.0 ] #1F77B4
 bar "MateAwareEval & MaterialEval & PieceSquareEval"[ 24.0 ] #FF7F0E
 bar "MateAwareEval & PieceSquareEval"[ 1.0E-5 ] #2CA02C
-bar "MaterialEval"[ 12.0 ] #D62728
-bar "MaterialEval & PieceSquareEval"[ 24.0 ] #9467BD
-bar "PieceSquareEval"[ 1.0E-5 ] #8C564B
 
 legend right
 @endchart
