@@ -35,8 +35,13 @@ public class StockFishService implements AutoCloseable {
         return uci.go(depth);
     }
 
-    public void newGame() {
+    public void resetStockfish() {
         uci.newGame();
+        uci.clearHash();
+    }
+
+    public void setNrOfThread(int value) {
+        uci.setNrOfThread(value);
     }
 
     // Always close both

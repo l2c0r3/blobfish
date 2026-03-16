@@ -32,6 +32,9 @@ class UciClient implements AutoCloseable {
         System.out.println("sucessfull initated uci connection");
     }
 
+    /**
+     * Output the N best lines (principal variations, PVs) when searching.
+     */
     public void setMultiPV(int value) {
         System.out.println("setMultiPV to " + value);
         sendAndWaitForAck("setoption name MultiPV value " + value);
@@ -72,11 +75,30 @@ class UciClient implements AutoCloseable {
         return result;
     }
 
+    /**
+     * This is sent to the engine when the next search (started with position and go) will be from a different game.
+     * This can be a new game the engine should play or a new game it should analyze but also the next position from a
+     * test suite with positions only.
+     */
     public void newGame() {
         System.out.println("starts new game");
         send("ucinewgame");
         send("isready");
         waitTillReceive("readyok", Duration.ofSeconds(10));
+    }
+
+    /**
+     * The number of CPU threads used for searching a position. For best performance, set this equal to the number of
+     * CPU cores available.
+     */
+    public void setNrOfThread(int value) {
+        System.out.println("set Threads value" + value);
+        sendAndWaitForAck("setoption name Threads value " + value);
+    }
+
+    public void clearHash() {
+        System.out.println("clear hash");
+        sendAndWaitForAck("setoption name Clear Hash");
     }
 
     private void sendAndWaitForAck(String command) {

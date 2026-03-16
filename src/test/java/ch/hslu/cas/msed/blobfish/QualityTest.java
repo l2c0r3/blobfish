@@ -127,6 +127,7 @@ public class QualityTest {
                 .toList();
         List<QualityTestResult> qualityTestResults = new ArrayList<>();
         stockFishService.setMultiPV(pointDistribution.length);
+        stockFishService.setNrOfThread(1);
 
         // Act - calculate moves and points
         positionsToTest.forEach((QualityTestCategory qualityTestCategory, List<String> positions) -> {
@@ -177,7 +178,7 @@ public class QualityTest {
     }
 
     private List<String> getStockFishResult(ChessBoard chessBoard, int depthToCalc) {
-        stockFishService.newGame();
+        stockFishService.resetStockfish();
         stockFishService.setPosition(chessBoard.getFen());
         return stockFishService.go(depthToCalc);
     }

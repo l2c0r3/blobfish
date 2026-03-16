@@ -45,7 +45,7 @@ public class StockfishExtension implements BeforeAllCallback, TestInstancePostPr
      */
     @Override
     public void beforeEach(ExtensionContext context) {
-        stockfishService.newGame();
+        stockfishService.resetStockfish();
     }
 
     /**
