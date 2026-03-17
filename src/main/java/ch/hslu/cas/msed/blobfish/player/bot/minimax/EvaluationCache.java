@@ -3,13 +3,13 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import java.util.Map;
 
 public class EvaluationCache {
-    private final Map<Long, EvaluationCacheEntry> transpositionTable;
+    private final Map<String, EvaluationCacheEntry> transpositionTable;
 
-    public EvaluationCache(final Map<Long, EvaluationCacheEntry> transpositionTable) {
+    public EvaluationCache(final Map<String, EvaluationCacheEntry> transpositionTable) {
         this.transpositionTable = transpositionTable;
     }
 
-    public void put(final Long key, final EvaluationCacheEntry entry) {
+    public void put(final String key, final EvaluationCacheEntry entry) {
         transpositionTable.compute(key, (_, v) -> {
             if (v == null || entry.depth() > v.depth()) {
                 return entry;
@@ -19,7 +19,7 @@ public class EvaluationCache {
         });
     }
 
-    public EvaluationCacheEntry get(final Long key, final int depth) {
+    public EvaluationCacheEntry get(final String key, final int depth) {
         var entry = transpositionTable.get(key);
         if (entry == null || entry.depth() < depth) return null;
 

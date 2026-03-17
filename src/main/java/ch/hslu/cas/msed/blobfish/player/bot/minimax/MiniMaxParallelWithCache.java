@@ -20,7 +20,7 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
     }
 
     @Override
-    protected Map<Long, EvaluationCacheEntry> createCache() {
+    protected Map<String, EvaluationCacheEntry> createCache() {
         return new ConcurrentHashMap<>();
     }
 

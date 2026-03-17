@@ -31,15 +31,15 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
     @Override
     protected MoveNode compute() {
         // Check cache first
-        long cacheHash = chessBoard.getFen().hashCode();
-        var cached = cache.get(cacheHash, depth);
+        var position = chessBoard.getFen();
+        var cached = cache.get(position, depth);
         if (cached != null) {
             return new MoveNode(cached.value(), history);
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
             var moveNode = getEvaluation();
-            cache.put(cacheHash, new EvaluationCacheEntry(moveNode.eval(), depth));
+            cache.put(position, new EvaluationCacheEntry(moveNode.eval(), depth));
             return moveNode;
         }
 
@@ -53,7 +53,7 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
                     .map(ForkJoinTask::join)
                     .min(getMoveNodeComparator())
                     .map(moveNode -> {
-                        cache.put(cacheHash, new EvaluationCacheEntry(moveNode.eval(), depth));
+                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), depth));
                         return moveNode;
                     })
                     .orElse(null);

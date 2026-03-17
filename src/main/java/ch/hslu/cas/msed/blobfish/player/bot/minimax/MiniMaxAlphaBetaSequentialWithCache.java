@@ -21,7 +21,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
     }
 
     @Override
-    protected Map<Long, EvaluationCacheEntry> createCache() {
+    protected Map<String, EvaluationCacheEntry> createCache() {
         return new HashMap<>();
     }
 
@@ -41,15 +41,15 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
     private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final double alpha, final double beta) {
         // Check cache first
-        long cacheHash = chessBoard.getFen().hashCode();
-        var cached = cache.get(cacheHash, depth);
+        var position = chessBoard.getFen();
+        var cached = cache.get(position, depth);
         if (cached != null) {
             return new MoveNode(cached.value(), history);
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
-            cache.put(cacheHash, new EvaluationCacheEntry(eval, depth));
+            cache.put(position, new EvaluationCacheEntry(eval, depth));
             return new MoveNode(eval, history);
         }
 
@@ -94,7 +94,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
             }
         }
 
-        cache.put(cacheHash, new EvaluationCacheEntry(bestNextNode.eval(), depth));
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth));
 
         return bestNextNode;
     }

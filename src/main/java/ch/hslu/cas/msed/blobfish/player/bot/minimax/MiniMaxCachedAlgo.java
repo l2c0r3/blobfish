@@ -13,7 +13,7 @@ public abstract class MiniMaxCachedAlgo extends MiniMaxAlgo {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
-    abstract protected Map<Long, EvaluationCacheEntry> createCache();
+    abstract protected Map<String, EvaluationCacheEntry> createCache();
 
     protected void clearCache() {
         cache.clear();
