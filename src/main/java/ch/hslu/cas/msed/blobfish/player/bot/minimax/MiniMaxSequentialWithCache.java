@@ -57,6 +57,7 @@ public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
+        String bestMove = null;
         for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
@@ -72,11 +73,12 @@ public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
+                bestMove = move.toString();
             }
         }
 
         assert bestNextNode.history() != null;
-        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), bestNextNode.history().move(), depth));
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), bestMove, depth));
 
         return bestNextNode;
     }

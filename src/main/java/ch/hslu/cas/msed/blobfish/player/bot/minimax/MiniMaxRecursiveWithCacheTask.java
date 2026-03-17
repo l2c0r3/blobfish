@@ -3,11 +3,13 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
+import java.util.stream.IntStream;
 
 public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
     private final ChessBoard chessBoard;
@@ -48,28 +50,38 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
             return moveNode;
         }
 
-        var tasks = createSubTasks();
+        var legalMoves = chessBoard.legalMoves()
+                .stream()
+                .map(Move::toString)
+                .toList();
+        var tasks = createSubTasks(legalMoves);
 
+        List<MoveNode> results;
         if (depth <= depthThreshold || tasks.size() <= moveThreshold) {
-            return tasks.stream()
+            results = tasks.stream()
                     .map(MiniMaxRecursiveWithCacheTask::compute)
-                    .min(getMoveNodeComparator())
-                    .map(moveNode -> {
-                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), moveNode.history().move(), depth));
-                        return moveNode;
-                    })
-                    .orElseGet(this::getEvaluation);
+                    .toList();
         } else {
-            return ForkJoinTask.invokeAll(tasks)
+            results = ForkJoinTask.invokeAll(tasks)
                     .stream()
                     .map(ForkJoinTask::join)
-                    .min(getMoveNodeComparator())
-                    .map(moveNode -> {
-                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), moveNode.history().move(), depth));
-                        return moveNode;
-                    })
-                    .orElse(null);
+                    .toList();
         }
+
+        var comparator = getMoveNodeComparator();
+        // determine the best node and track best move
+        var bestPair = IntStream.range(0, results.size())
+                .mapToObj(i -> new Object() {
+                    final MoveNode node = results.get(i);
+                    final String move = legalMoves.get(i);
+                })
+                .min((a, b) -> comparator.compare(a.node, b.node))
+                .orElse(null);
+
+        assert bestPair != null;
+        cache.put(position, new EvaluationCacheEntry(bestPair.node.eval(), bestPair.move, depth));
+
+        return bestPair.node;
     }
 
     private MoveNode getEvaluation() {
@@ -88,13 +100,13 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
         return evalComparator.thenComparing(historyComparator);
     }
 
-    private List<MiniMaxRecursiveWithCacheTask> createSubTasks() {
+    private List<MiniMaxRecursiveWithCacheTask> createSubTasks(List<String> legalMoves) {
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
-        return chessBoard.legalMoves().stream()
+        return legalMoves.stream()
                 .map(move -> {
-                    var newPosition = chessBoard.doMove(move.toString());
-                    var newHistory = new MoveHistoryNode(move.toString(), history);
+                    var newPosition = chessBoard.doMove(move);
+                    var newHistory = new MoveHistoryNode(move, history);
                     return new MiniMaxRecursiveWithCacheTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold, cache);
                 }).toList();
     }

@@ -73,6 +73,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
             moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
         }
 
+        String bestMove = null;
         for (var move : moves) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
@@ -88,6 +89,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
+                bestMove = move.toString();
             }
 
             // Update alpha / beta
@@ -104,7 +106,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
         var boundType = determineBoundType(bestNextNode.eval(), alpha, beta);
         assert bestNextNode.history() != null;
-        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, bestNextNode.history().move(), boundType));
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, bestMove, boundType));
 
         return bestNextNode;
     }
