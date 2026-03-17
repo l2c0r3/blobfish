@@ -1,3 +1,19 @@
 package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
-public record EvaluationCacheEntry(int value, int depth) { }
+public record EvaluationCacheEntry(int value, int depth, BoundType type) {
+
+    /**
+     * This constructor should be used in non-alpha-beta pruning implementations, because the BoundType is only relevant for alpha-beta pruning.
+     * @param value The evaluation of the position
+     * @param depth The depth at which the evaluation was made
+     */
+    public EvaluationCacheEntry(int value, int depth) {
+        this(value, depth, BoundType.EXACT);
+    }
+
+    public enum BoundType {
+        EXACT,
+        LOWER_BOUND,
+        UPPER_BOUND
+    }
+}

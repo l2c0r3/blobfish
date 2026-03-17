@@ -27,24 +27,27 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
     @Override
     public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         clearCache();
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
     public PathEvaluation getBestPath(ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         clearCache();
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
-    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final double alpha, final double beta) {
+    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int alpha, final int beta) {
         // Check cache first
         var position = chessBoard.getFen();
         var cached = cache.get(position, depth);
         if (cached != null) {
-            return new MoveNode(cached.value(), history);
+            var eval = getCachedEvaluation(cached, alpha, beta);
+            if (eval != null) {
+                return new MoveNode(eval, history);
+            }
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
@@ -76,7 +79,7 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
             int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
             int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
-            boolean isEqualButShorter = Double.compare(nextNode.eval(), bestNextNode.eval()) == 0 && nextDepth < bestDepth;
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
@@ -94,9 +97,40 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
             }
         }
 
-        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth));
+        var boundType = determineBoundType(bestNextNode.eval(), alpha, beta);
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, boundType));
 
         return bestNextNode;
+    }
+
+    private EvaluationCacheEntry.BoundType determineBoundType(final int eval, final int alpha, final int beta) {
+        if (eval <= alpha) {
+            return EvaluationCacheEntry.BoundType.UPPER_BOUND;
+        } else if (eval >= beta) {
+            return EvaluationCacheEntry.BoundType.LOWER_BOUND;
+        } else {
+            return EvaluationCacheEntry.BoundType.EXACT;
+        }
+    }
+
+    private Integer getCachedEvaluation(final EvaluationCacheEntry entry, final int alpha, final int beta) {
+        switch (entry.type()) {
+            case EXACT -> {
+                return entry.value();
+            }
+            case LOWER_BOUND -> {
+                if (entry.value() >= beta) {
+                    return entry.value();
+                }
+            }
+            case UPPER_BOUND -> {
+                if (entry.value() <= alpha) {
+                    return entry.value();
+                }
+            }
+        }
+
+        return null;
     }
 
     private static String getSanOfMove(final Move move) {

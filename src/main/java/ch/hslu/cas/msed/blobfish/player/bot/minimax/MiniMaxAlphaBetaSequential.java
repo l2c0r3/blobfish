@@ -20,17 +20,17 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
 
     @Override
     public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
     public PathEvaluation getBestPath(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
-    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final double alpha, final double beta) {
+    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int alpha, final int beta) {
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
             return new MoveNode(eval, history);
@@ -59,7 +59,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
 
             int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
             int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
-            boolean isEqualButShorter = Double.compare(nextNode.eval(), bestNextNode.eval()) == 0 && nextDepth < bestDepth;
+            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
