@@ -15,9 +15,11 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
     private final PlayerColor playerAtTurn;
     private final MoveHistoryNode history;
     private final EvalStrategy evalStrategy;
+    private final int depthThreshold;
+    private final int moveThreshold;
     private final EvaluationCache cache;
 
-    public MiniMaxRecursiveWithCacheTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final EvaluationCache cache) {
+    public MiniMaxRecursiveWithCacheTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold, final EvaluationCache cache) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
         this.evalStrategy = evalStrategy;
@@ -25,6 +27,8 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
         this.depth = depth;
         this.playerAtTurn = playerAtTurn;
         this.history = history;
+        this.depthThreshold = depthThreshold;
+        this.moveThreshold = moveThreshold;
         this.cache = cache;
     }
 
@@ -34,30 +38,38 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
         var position = chessBoard.getFen();
         var cached = cache.get(position, depth);
         if (cached != null) {
-            return new MoveNode(cached.value(), history);
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
             var moveNode = getEvaluation();
-            cache.put(position, new EvaluationCacheEntry(moveNode.eval(), depth));
+            cache.put(position, new EvaluationCacheEntry(moveNode.eval(), null, depth));
             return moveNode;
         }
 
         var tasks = createSubTasks();
 
-        return switch (tasks.size()) {
-            case 0 -> getEvaluation();
-            case 1 -> tasks.getFirst().compute();
-            default -> ForkJoinTask.invokeAll(tasks)
+        if (depth <= depthThreshold || tasks.size() <= moveThreshold) {
+            return tasks.stream()
+                    .map(MiniMaxRecursiveWithCacheTask::compute)
+                    .min(getMoveNodeComparator())
+                    .map(moveNode -> {
+                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), moveNode.history().move(), depth));
+                        return moveNode;
+                    })
+                    .orElseGet(this::getEvaluation);
+        } else {
+            return ForkJoinTask.invokeAll(tasks)
                     .stream()
                     .map(ForkJoinTask::join)
                     .min(getMoveNodeComparator())
                     .map(moveNode -> {
-                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), depth));
+                        cache.put(position, new EvaluationCacheEntry(moveNode.eval(), moveNode.history().move(), depth));
                         return moveNode;
                     })
                     .orElse(null);
-        };
+        }
     }
 
     private MoveNode getEvaluation() {
@@ -83,7 +95,7 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
                 .map(move -> {
                     var newPosition = chessBoard.doMove(move.toString());
                     var newHistory = new MoveHistoryNode(move.toString(), history);
-                    return new MiniMaxRecursiveWithCacheTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, cache);
+                    return new MiniMaxRecursiveWithCacheTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold, cache);
                 }).toList();
     }
 }

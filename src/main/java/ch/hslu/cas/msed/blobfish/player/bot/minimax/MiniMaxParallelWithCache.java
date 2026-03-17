@@ -15,6 +15,10 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
+    private static final int MIN_DEPTH_THRESHOLD = 1;
+    private static final int DEPTH_THRESHOLD_PERCENTAGE = 33;
+    private static final int MOVE_THRESHOLD = 6;
+
     public MiniMaxParallelWithCache(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
@@ -35,7 +39,7 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
     }
 
     private <T> T calculate(ChessBoard chessBoard, Function<MoveNode, T> mapper) {
-        var task = new MiniMaxRecursiveWithCacheTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, cache);
+        var task = new MiniMaxRecursiveWithCacheTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, calculateDepthThreshold(), MOVE_THRESHOLD, cache);
 
         @SuppressWarnings("resource")
         var forkJoinPool = ForkJoinPool.commonPool();
@@ -43,6 +47,10 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
         clearCache();
 
         return mapper.apply(resultNode);
+    }
+
+    private int calculateDepthThreshold() {
+        return Math.max(MIN_DEPTH_THRESHOLD, (int) Math.round(getCalculationDepth() * DEPTH_THRESHOLD_PERCENTAGE / 100.0));
     }
 }
 

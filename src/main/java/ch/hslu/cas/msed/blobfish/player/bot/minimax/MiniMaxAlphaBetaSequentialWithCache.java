@@ -43,16 +43,14 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
         // Check cache first
         var position = chessBoard.getFen();
         var cached = cache.get(position, depth);
-        if (cached != null) {
-            var eval = getCachedEvaluation(cached, alpha, beta);
-            if (eval != null) {
-                return new MoveNode(eval, history);
-            }
+        if (cached != null && isCacheWithinBounds(cached, alpha, beta)) {
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
-            cache.put(position, new EvaluationCacheEntry(eval, depth));
+            cache.put(position, new EvaluationCacheEntry(eval, null, depth));
             return new MoveNode(eval, history);
         }
 
@@ -66,7 +64,14 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
         // sorting the moves should make pruning more reliable
         // this can be improved upon - the better the move ordering the better the alpha beta pruning is too
         var moves = chessBoard.legalMoves();
-        moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
+        if (cached != null) {
+            moves.sort(Comparator
+                    .comparing((Move m) -> !m.toString().equals(cached.bestMove()))
+                    .thenComparing(chessBoard::isCapture, Comparator.reverseOrder())
+            );
+        } else {
+            moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
+        }
 
         for (var move : moves) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
@@ -98,7 +103,8 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
         }
 
         var boundType = determineBoundType(bestNextNode.eval(), alpha, beta);
-        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, boundType));
+        assert bestNextNode.history() != null;
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, bestNextNode.history().move(), boundType));
 
         return bestNextNode;
     }
@@ -113,24 +119,12 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
         }
     }
 
-    private Integer getCachedEvaluation(final EvaluationCacheEntry entry, final int alpha, final int beta) {
-        switch (entry.type()) {
-            case EXACT -> {
-                return entry.value();
-            }
-            case LOWER_BOUND -> {
-                if (entry.value() >= beta) {
-                    return entry.value();
-                }
-            }
-            case UPPER_BOUND -> {
-                if (entry.value() <= alpha) {
-                    return entry.value();
-                }
-            }
-        }
-
-        return null;
+    private boolean isCacheWithinBounds(final EvaluationCacheEntry entry, final int alpha, final int beta) {
+        return switch (entry.type()) {
+            case EXACT -> true;
+            case LOWER_BOUND -> entry.value() >= beta;
+            case UPPER_BOUND -> entry.value() <= alpha;
+        };
     }
 
     private static String getSanOfMove(final Move move) {

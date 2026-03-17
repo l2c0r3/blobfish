@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 
+import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+
 import java.util.Map;
 
 public class EvaluationCache {
@@ -24,6 +26,24 @@ public class EvaluationCache {
         if (entry == null || entry.depth() < depth) return null;
 
         return entry;
+    }
+
+    public MoveHistoryNode buildPrincipalVariation(final ChessBoard board, final MoveHistoryNode baseHistory, final int depth) {
+        MoveHistoryNode history = baseHistory;
+        var currentBoard = board;
+
+        for (int i = 0; i < depth; i++) {
+            var entry = get(currentBoard.getFen(), depth - i);
+
+            if (entry == null || entry.bestMove() == null) {
+                break;
+            }
+
+            history = new MoveHistoryNode(entry.bestMove(), history);
+            currentBoard = currentBoard.doMove(entry.bestMove());
+        }
+
+        return history;
     }
 
     public void clear() {

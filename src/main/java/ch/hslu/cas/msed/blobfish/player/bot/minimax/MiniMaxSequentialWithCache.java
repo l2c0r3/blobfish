@@ -43,12 +43,13 @@ public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
         var position = chessBoard.getFen();
         var cached = cache.get(position, depth);
         if (cached != null) {
-            return new MoveNode(cached.value(), history);
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
         }
 
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
-            cache.put(position, new EvaluationCacheEntry(eval, depth));
+            cache.put(position, new EvaluationCacheEntry(eval, null, depth));
             return new MoveNode(eval, history);
         }
 
@@ -74,7 +75,8 @@ public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
             }
         }
 
-        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth));
+        assert bestNextNode.history() != null;
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), bestNextNode.history().move(), depth));
 
         return bestNextNode;
     }
