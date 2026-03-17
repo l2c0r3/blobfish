@@ -13,7 +13,14 @@ public class EvaluationCache {
 
     public void put(final String key, final EvaluationCacheEntry entry) {
         transpositionTable.compute(key, (_, v) -> {
-            if (v == null || entry.depth() > v.depth()) {
+            if (v == null ||
+                    entry.depth() > v.depth() ||
+                    // prefer EXACT matches
+                    (entry.depth() == v.depth() &&
+                            v.type() != EvaluationCacheEntry.BoundType.EXACT &&
+                            entry.type() == EvaluationCacheEntry.BoundType.EXACT
+                    )
+            ) {
                 return entry;
             } else {
                 return v;
@@ -35,7 +42,7 @@ public class EvaluationCache {
         for (int i = 0; i < depth; i++) {
             var entry = get(currentBoard.getFen(), depth - i);
 
-            if (entry == null || entry.bestMove() == null) {
+            if (entry == null || entry.bestMove() == null || entry.type() != EvaluationCacheEntry.BoundType.EXACT) {
                 break;
             }
 
