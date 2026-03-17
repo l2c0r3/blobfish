@@ -155,7 +155,7 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxRecursiveWithCacheTask
 	{field} -moveThreshold : int
 	{field} -playerAtTurn : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method} #compute () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
-	{method} -createSubTasks () : java.util.List
+	{method} -createSubTasks ( paramList1 : java.util.List ) : java.util.List
 	{method} -getEvaluation () : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} -getMoveNodeComparator () : java.util.Comparator
 }
