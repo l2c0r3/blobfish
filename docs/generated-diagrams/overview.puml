@@ -305,8 +305,8 @@ class ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation {
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCache {
 	{method} +clear () : void
-	{method} +get ( paramLong1 : Long , paramint2 : int ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry
-	{method} +put ( paramLong1 : Long , paramEvaluationCacheEntry2 : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry ) : void
+	{method} +get ( paramString1 : String , paramint2 : int ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry
+	{method} +put ( paramString1 : String , paramEvaluationCacheEntry2 : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry ) : void
 }
 
 
@@ -317,7 +317,15 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry {
 	{method} +equals ( paramObject1 : Object ) : boolean
 	{method} +hashCode () : int
 	{method} +toString () : String
+	{method} +type () : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry$BoundType
 	{method} +value () : int
+}
+
+
+enum ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry$BoundType {
+	{field} +EXACT
+	{field} +LOWER_BOUND
+	{field} +UPPER_BOUND
 }
 
 
@@ -326,7 +334,7 @@ abstract class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo {
 
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential {
-	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMoveHistoryNode4 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode , paramdouble5 : double , paramdouble6 : double ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMoveHistoryNode4 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode , paramint5 : int , paramint6 : int ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation
 	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation
 	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
@@ -334,9 +342,11 @@ class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential {
 
 
 class ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequentialWithCache {
-	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMoveHistoryNode4 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode , paramdouble5 : double , paramdouble6 : double ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
+	{method} -calcBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard , paramint2 : int , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMoveHistoryNode4 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveHistoryNode , paramint5 : int , paramint6 : int ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNode
 	{method} #createCache () : java.util.Map
+	{method} -determineBoundType ( paramint1 : int , paramint2 : int , paramint3 : int ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry$BoundType
 	{method} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation
+	{method} -getCachedEvaluation ( paramEvaluationCacheEntry1 : ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry , paramint2 : int , paramint3 : int ) : Integer
 	{method} +getNextBestMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.board.ChessBoard ) : ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation
 	{method}  {static} -getSanOfMove ( paramMove1 : com.github.bhlangonijr.chesslib.move.Move ) : String
 }
@@ -480,6 +490,7 @@ ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm *--  ch.hslu.cas.msed.blobfish
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm : botAlgorithm
 ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCache "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry : transpositionTable
+ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.EvaluationCacheEntry$BoundType : type
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo --|>  ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential *--  ch.hslu.cas.msed.blobfish.player.bot.minimax.MoveNodeMapper : moveNodeMapper
 ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential --|>  ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo
