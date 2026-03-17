@@ -6,8 +6,8 @@ import ch.hslu.cas.msed.blobfish.QualityTest.QualityTestResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -83,14 +83,14 @@ public class QualityTestLatexUtil {
         int rowCount = testResult.evalQualityResult().size();
 
         // Add fen
-        var fenCutted = String.join("\\\\", splitFenForLatex(testResult.fen(), 9));
+        var fenCutted = String.join("\\", splitFenForLatex(testResult.fen(), 9));
         sb.append("""
-                \\multirow{%d}{*}{
-                    \\begin{tabular}{l}
-                        %s
-                    \\end{tabular}
-                }
-                """.formatted(rowCount, fenCutted));
+            \\multirow{%d}{*}{%%
+                \\parbox[t]{0.18\\textwidth}{\\centering\\footnotesize
+                    %s
+                }%%
+            }
+            """.formatted(rowCount, fenCutted));
 
         // Add stockfish moves
         StringBuilder stockFishRanglist = new StringBuilder();
@@ -140,18 +140,17 @@ public class QualityTestLatexUtil {
     }
 
     private static List<String> splitFenForLatex(String fen, int chunkSize) {
-        String clean = escapeLatex(fen);
-        return clean.lines()
-                .flatMap(line -> chunkString(line, chunkSize).stream())
-                .toList();
-    }
-
-    private static List<String> chunkString(String input, int chunkSize) {
-        var result = new java.util.ArrayList<String>();
-        for (int i = 0; i < input.length(); i += chunkSize) {
-            result.add(input.substring(i, Math.min(input.length(), i + chunkSize)));
+        List<String> parts = new ArrayList<>();
+        int len = fen.length();
+        for (int i = 0; i < len; i += chunkSize) {
+            var subString = fen.substring(i, Math.min(len, i + chunkSize));
+            if (subString.length() == chunkSize) {
+                parts.add(subString + "\\");
+            } else {
+                parts.add(subString);
+            }
         }
-        return result;
+        return parts;
     }
 
     public static File generateOverallSum(List<QualityTestResult> results, int maxPoints) {
@@ -197,10 +196,10 @@ public class QualityTestLatexUtil {
         sb.append(rangliste);
 
         sb.append("""
-                        \\end{tabular}
-                    \\caption{Quality Test Rangliste}
-               \\end{table}
-            \\end{document}""");
+                            \\end{tabular}
+                        \\caption{Quality Test Rangliste}
+                   \\end{table}
+                \\end{document}""");
 
         return generateFile("overall", sb);
     }
