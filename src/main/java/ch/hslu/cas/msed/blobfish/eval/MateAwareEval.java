@@ -9,7 +9,7 @@ public class MateAwareEval implements EvalStrategy {
     private static final int MAX_NUMBER = 1_000_000;
 
     @Override
-    public int getEvaluation(ChessBoard board) {
+    public int getEvaluation(final ChessBoard board) {
         if (board.isMated()) {
             return PlayerColor.WHITE.equals(board.getSideToMove()) ? -MAX_NUMBER : MAX_NUMBER;
         }

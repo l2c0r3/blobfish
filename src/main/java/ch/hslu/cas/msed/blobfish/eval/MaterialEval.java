@@ -16,13 +16,13 @@ public class MaterialEval implements EvalStrategy {
      * a negative number (e.g., -200) means Black has the edge.
      */
     @Override
-    public int getEvaluation(ChessBoard board) {
+    public int getEvaluation(final ChessBoard board) {
         return parseFen(board.getFen()).stream()
                 .mapToInt(p -> PlayerColor.WHITE.equals(p.color()) ? p.materialPoints() : -p.materialPoints())
                 .sum();
     }
 
-    private List<Piece> parseFen(String fen) {
+    private List<Piece> parseFen(final String fen) {
         FenUtil.validateFenString(fen);
         var posBlocks = FenUtil.getFenPositionBlocks(fen);
 
@@ -35,7 +35,7 @@ public class MaterialEval implements EvalStrategy {
                 .toList();
     }
 
-    private String removeEmptyFieldsFromPosition(String fenBlock) {
+    private String removeEmptyFieldsFromPosition(final String fenBlock) {
         return fenBlock.replaceAll("\\d", "");
     }
 }

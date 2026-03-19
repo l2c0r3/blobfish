@@ -12,15 +12,15 @@ public abstract class BotAlgorithm {
     private final EvalStrategy evalStrategy;
     private final PlayerColor ownPlayerColor;
 
-    public BotAlgorithm(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
+    public BotAlgorithm(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
         if (calculationDepth < 0) throw new IllegalArgumentException("calculationDepth cannot be negative");
         this.calculationDepth = calculationDepth;
         this.evalStrategy = evalStrategy;
         this.ownPlayerColor = ownPlayerColor;
     }
 
-    public abstract FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard);
+    public abstract FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard);
 
-    public abstract PathEvaluation getBestPath(ChessBoard chessBoard);
+    public abstract PathEvaluation getBestPath(final ChessBoard chessBoard);
 
 }

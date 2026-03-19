@@ -7,7 +7,7 @@ public abstract class BotPlayer extends AbstractPlayer {
 
     protected final BotAlgorithm botAlgorithm;
 
-    public BotPlayer(PlayerColor playerColor, BotAlgorithm botAlgorithm) {
+    public BotPlayer(final PlayerColor playerColor, final BotAlgorithm botAlgorithm) {
         super(playerColor);
         this.botAlgorithm = botAlgorithm;
     }

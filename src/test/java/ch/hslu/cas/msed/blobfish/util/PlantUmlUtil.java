@@ -17,7 +17,7 @@ public class PlantUmlUtil {
 
     private static final List<String> diagramColors = List.of(
             "#1F77B4", // Blau
-            "#FF7F0E", //Orange
+            "#FF7F0E", // Orange
             "#2CA02C", // Grün
             "#D62728", // Rot
             "#9467BD", // Lila
@@ -43,7 +43,15 @@ public class PlantUmlUtil {
             "#E7BA52", // Goldgelb
             "#6B6ECF", // Lavendelblau
             "#FF6E54", // Feuerorange
-            "#B5CF6B"  // Limettengrün
+            "#B5CF6B", // Limettengrün
+            "#1A55FF", // Helles Blau
+            "#FF1A55", // Pink/Rot
+            "#55FF1A", // Neon Grün
+            "#AA33FF", // Violett
+            "#FFAA33", // Helles Orange
+            "#33FFAA", // Türkis/Grün
+            "#9933CC", // Dunkelviolett
+            "#CC3399"  // Magenta
     );
 
     private PlantUmlUtil() {

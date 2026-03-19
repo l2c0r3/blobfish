@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomEval implements EvalStrategy {
 
     @Override
-    public int getEvaluation(ChessBoard board) {
+    public int getEvaluation(final ChessBoard board) {
         return ThreadLocalRandom.current().nextInt(-10, 11);
     }
 }

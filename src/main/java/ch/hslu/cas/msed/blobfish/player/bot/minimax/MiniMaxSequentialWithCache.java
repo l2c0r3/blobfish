@@ -7,30 +7,49 @@ import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import com.github.bhlangonijr.chesslib.move.Move;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class MiniMaxSequential extends MiniMaxAlgo {
+
+public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
+    public MiniMaxSequentialWithCache(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     @Override
-    public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
+    protected Map<String, EvaluationCacheEntry> createCache() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
+        clearCache();
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
-    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
+        clearCache();
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
-    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history) {
+    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
+        // Check cache first
+        var position = chessBoard.getFen();
+        var cached = cache.get(position, depth);
+        if (cached != null) {
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
+        }
+
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
+            cache.put(position, new EvaluationCacheEntry(eval, null, depth));
             return new MoveNode(eval, history);
         }
 
@@ -38,6 +57,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
+        String bestMove = null;
         for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
@@ -53,13 +73,17 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
+                bestMove = move.toString();
             }
         }
+
+        assert bestNextNode.history() != null;
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), bestMove, depth));
 
         return bestNextNode;
     }
 
-    private static String getSanOfMove(final Move move) {
+    private static String getSanOfMove(Move move) {
         return move.toString();
     }
 }
