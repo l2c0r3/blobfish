@@ -8,31 +8,49 @@ import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
+public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxAlphaBetaSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
+    public MiniMaxAlphaBetaSequentialWithCache(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
+    }
+
+    @Override
+    protected Map<String, EvaluationCacheEntry> createCache() {
+        return new HashMap<>();
     }
 
     @Override
     public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        clearCache();
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
-    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
+    public PathEvaluation getBestPath(ChessBoard chessBoard) {
         var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        clearCache();
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
     private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int alpha, final int beta) {
+        // Check cache first
+        var position = chessBoard.getFen();
+        var cached = cache.get(position, depth);
+        if (cached != null && isCacheWithinBounds(cached, alpha, beta)) {
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
+        }
+
         if (depth <= 0 || chessBoard.isGameOver()) {
             var eval = getEvalStrategy().getEvaluation(chessBoard);
+            cache.put(position, new EvaluationCacheEntry(eval, null, depth));
             return new MoveNode(eval, history);
         }
 
@@ -46,8 +64,16 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
         // sorting the moves should make pruning more reliable
         // this can be improved upon - the better the move ordering the better the alpha beta pruning is too
         var moves = chessBoard.legalMoves();
-        moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
+        if (cached != null) {
+            moves.sort(Comparator
+                    .comparing((Move m) -> !m.toString().equals(cached.bestMove()))
+                    .thenComparing(chessBoard::isCapture, Comparator.reverseOrder())
+            );
+        } else {
+            moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
+        }
 
+        String bestMove = null;
         for (var move : moves) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
@@ -63,6 +89,7 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
+                bestMove = move.toString();
             }
 
             // Update alpha / beta
@@ -77,7 +104,29 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
             }
         }
 
+        var boundType = determineBoundType(bestNextNode.eval(), alpha, beta);
+        assert bestNextNode.history() != null;
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), depth, bestMove, boundType));
+
         return bestNextNode;
+    }
+
+    private EvaluationCacheEntry.BoundType determineBoundType(final int eval, final int alpha, final int beta) {
+        if (eval <= alpha) {
+            return EvaluationCacheEntry.BoundType.UPPER_BOUND;
+        } else if (eval >= beta) {
+            return EvaluationCacheEntry.BoundType.LOWER_BOUND;
+        } else {
+            return EvaluationCacheEntry.BoundType.EXACT;
+        }
+    }
+
+    private boolean isCacheWithinBounds(final EvaluationCacheEntry entry, final int alpha, final int beta) {
+        return switch (entry.type()) {
+            case EXACT -> true;
+            case LOWER_BOUND -> entry.value() >= beta;
+            case UPPER_BOUND -> entry.value() <= alpha;
+        };
     }
 
     private static String getSanOfMove(final Move move) {
