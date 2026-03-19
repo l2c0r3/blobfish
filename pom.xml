@@ -14,7 +14,6 @@
 
         <junit.version>6.0.3</junit.version>
         <testcontainers.version>2.0.4</testcontainers.version>
-        <jline.version>4.0.4</jline.version>
         <testcontainers.version>2.0.3</testcontainers.version>
         <jline.version>4.0.7</jline.version>
         <lombok.version>1.18.44</lombok.version>
