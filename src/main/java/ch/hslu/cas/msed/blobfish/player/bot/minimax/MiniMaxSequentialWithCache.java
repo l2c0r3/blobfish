@@ -7,51 +7,61 @@ import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import com.github.bhlangonijr.chesslib.move.Move;
 
-import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
+public class MiniMaxSequentialWithCache extends MiniMaxCachedAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxAlphaBetaSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
+    public MiniMaxSequentialWithCache(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
         super(calculationDepth, evalStrategy, ownPlayerColor);
     }
 
     @Override
-    public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    protected Map<String, EvaluationCacheEntry> createCache() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
+        clearCache();
         return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
-    public PathEvaluation getBestPath(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public PathEvaluation getBestPath(ChessBoard chessBoard) {
+        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null);
+        clearCache();
         return moveNodeMapper.mapToPathEvaluation(bestPath);
     }
 
-    private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int alpha, final int beta) {
-        if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = getEvalStrategy().getEvaluation(chessBoard);
-            return new MoveNode(eval, history);
+    private MoveNode calcBestPath(ChessBoard chessBoard, int depth, PlayerColor playerAtTurn, MoveHistoryNode history) {
+        // Check cache first
+        var position = chessBoard.getFen();
+        var cached = cache.get(position, depth);
+        if (cached != null) {
+            var newHistory = cache.buildPrincipalVariation(chessBoard, history, depth);
+            return new MoveNode(cached.value(), newHistory);
         }
 
-        var currentAlpha = alpha;
-        var currentBeta = beta;
+        if (depth <= 0 || chessBoard.isGameOver()) {
+            var eval = getEvalStrategy().getEvaluation(chessBoard);
+            cache.put(position, new EvaluationCacheEntry(eval, null, depth));
+            return new MoveNode(eval, history);
+        }
 
         var bestNextNode = PlayerColor.WHITE.equals(playerAtTurn) ? new MoveNode(Integer.MIN_VALUE, history) : new MoveNode(Integer.MAX_VALUE, history);
         var hasToMaximizingEvalBar = PlayerColor.WHITE.equals(playerAtTurn);
         var nextPlayerColor = PlayerColor.WHITE.equals(playerAtTurn) ? PlayerColor.BLACK : PlayerColor.WHITE;
 
-        // sorting the moves should make pruning more reliable
-        // this can be improved upon - the better the move ordering the better the alpha beta pruning is too
-        var moves = chessBoard.legalMoves();
-        moves.sort(Comparator.comparing(chessBoard::isCapture).reversed());
-
-        for (var move : moves) {
+        String bestMove = null;
+        for (var move : chessBoard.legalMoves()) {
             var newPosition = chessBoard.doMove(getSanOfMove(move));
             var newHistory = new MoveHistoryNode(move.toString(), history);
-            var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory, currentAlpha, currentBeta);
+            var nextNode = calcBestPath(newPosition, depth - 1, nextPlayerColor, newHistory);
 
             boolean isBetter = hasToMaximizingEvalBar ?
                     nextNode.eval() > bestNextNode.eval() :
@@ -59,28 +69,21 @@ public class MiniMaxAlphaBetaSequential extends MiniMaxAlgo {
 
             int nextDepth = nextNode.history() == null ? Integer.MAX_VALUE : nextNode.history().depth();
             int bestDepth = bestNextNode.history() == null ? Integer.MAX_VALUE : bestNextNode.history().depth();
-            boolean isEqualButShorter = nextNode.eval() == bestNextNode.eval() && nextDepth < bestDepth;
+            boolean isEqualButShorter = Double.compare(nextNode.eval(), bestNextNode.eval()) == 0 && nextDepth < bestDepth;
 
             if (isBetter || isEqualButShorter) {
                 bestNextNode = nextNode;
-            }
-
-            // Update alpha / beta
-            if (hasToMaximizingEvalBar) {
-                currentAlpha = Math.max(currentAlpha, bestNextNode.eval());
-            } else {
-                currentBeta = Math.min(currentBeta, bestNextNode.eval());
-            }
-
-            if (currentBeta <= currentAlpha) {
-                break;
+                bestMove = move.toString();
             }
         }
+
+        assert bestNextNode.history() != null;
+        cache.put(position, new EvaluationCacheEntry(bestNextNode.eval(), bestMove, depth));
 
         return bestNextNode;
     }
 
-    private static String getSanOfMove(final Move move) {
+    private static String getSanOfMove(Move move) {
         return move.toString();
     }
 }
