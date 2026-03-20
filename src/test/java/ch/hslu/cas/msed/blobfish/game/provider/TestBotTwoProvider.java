@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.game.providers;
+package ch.hslu.cas.msed.blobfish.game.provider;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
@@ -6,8 +6,8 @@ import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException;
 import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 
-public class TestBotOneProvider implements BotPlayerProvider<TestAlgoOneProvider.TestAlgoOne> {
-    private static final String BOT_NAME = "test-bot-one";
+public class TestBotTwoProvider implements BotPlayerProvider<TestAlgoTwoProvider.TestAlgoTwo> {
+    private static final String BOT_NAME = "test-bot-two";
 
     @Override
     public String getBotName() {
@@ -15,17 +15,17 @@ public class TestBotOneProvider implements BotPlayerProvider<TestAlgoOneProvider
     }
 
     @Override
-    public Class<TestAlgoOneProvider.TestAlgoOne> algorithmType() {
-        return TestAlgoOneProvider.TestAlgoOne.class;
+    public Class<TestAlgoTwoProvider.TestAlgoTwo> algorithmType() {
+        return TestAlgoTwoProvider.TestAlgoTwo.class;
     }
 
     @Override
-    public BotPlayer create(PlayerColor playerColor, TestAlgoOneProvider.TestAlgoOne botAlgorithm) {
-        return new TestBotOne(playerColor, botAlgorithm);
+    public BotPlayer create(PlayerColor playerColor, TestAlgoTwoProvider.TestAlgoTwo botAlgorithm) {
+        return new TestBotTwo(playerColor, botAlgorithm);
     }
 
-    public static class TestBotOne extends BotPlayer {
-        public TestBotOne(PlayerColor playerColor, TestAlgoOneProvider.TestAlgoOne botAlgorithm) {
+    public static class TestBotTwo extends BotPlayer {
+        public TestBotTwo(PlayerColor playerColor, TestAlgoTwoProvider.TestAlgoTwo botAlgorithm) {
             super(playerColor, botAlgorithm);
         }
 

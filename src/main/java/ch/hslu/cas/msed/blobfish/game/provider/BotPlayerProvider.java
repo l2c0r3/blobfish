@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.game.providers;
+package ch.hslu.cas.msed.blobfish.game.provider;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
