@@ -4,7 +4,7 @@ class ch.hslu.cas.msed.blobfish.game.BotPlayerFactory {
 	{method}  {static} -botSupportsAlgorithm ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider , paramClass2 : Class ) : boolean
 	{method}  {static} -castSafely ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider ) : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider
 	{method}  {static} -create ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramBotAlgorithm3 : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
-	{method}  {static} +create ( paramString1 : String , paramString2 : String , paramint3 : int , paramEvaluationStrategy4 : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy , paramPlayerColor5 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method}  {static} +create ( paramString1 : String , paramString2 : String , paramint3 : int , paramEvaluationStrategy4 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor5 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method}  {static} -getAlgorithmProviderReturnType ( paramBotAlgorithmProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider ) : Class
 	{method}  {static} +getViableBotNames () : java.util.List
 }
@@ -54,7 +54,7 @@ class ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException {
 
 
 interface ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider {
-	{method}  {abstract} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm
+	{method}  {abstract} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm
 	{method}  {abstract} +getAlgorithmName () : String
 }
 
@@ -76,14 +76,14 @@ class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxBotPlayerProvider {
 
 class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxParallelAlgorithmProvider {
 	{field} {static} -ALGORITHM_NAME : String
-	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxParallel
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxParallel
 	{method} +getAlgorithmName () : String
 }
 
 
 class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxSequentialAlgorithmProvider {
 	{field} {static} -ALGORITHM_NAME : String
-	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxSequential
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxSequential
 	{method} +getAlgorithmName () : String
 }
 
@@ -132,7 +132,7 @@ enum ch.hslu.cas.msed.blobfish.game.ui.board.SquareColor {
 
 class ch.hslu.cas.msed.blobfish.game.ui.screen.HomeScreen {
 	{field} {static} -CALC_DEPTH : int
-	{method} -getBotPlayer ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method} -getBotPlayer ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method} +getMatchConfig () : ch.hslu.cas.msed.blobfish.game.MatchConfig
 	{method} -getPlayerColor () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 }
