@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.game.providers;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel;
+import ch.hslu.cas.msed.blobfish.minimax.MiniMaxParallel;
 
 public class MiniMaxParallelAlgorithmProvider implements BotAlgorithmProvider {
     private static final String ALGORITHM_NAME = "parallel";

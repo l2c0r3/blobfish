@@ -4,7 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
-import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
+import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 
 public class TestAlgoTwoProvider implements BotAlgorithmProvider {
     private static final String ALGORITHM_NAME = "test-algo-two";

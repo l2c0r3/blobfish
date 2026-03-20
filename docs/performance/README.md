@@ -6,7 +6,7 @@
 
 This code is a JUnit test that compares the calculation time of different chess bot implementations. The variants differ
 on the one hand by how the game tree is traversed (e.g.
-[MiniMaxParallel.java](../../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxParallel.java)), i.e. the
+[MiniMaxParallel.java](../../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxParallel.java)), i.e. the
 algorithm, and on the other hand by the board evaluation function (e.g.
 [MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/MateAwareEval.java)).
 The variants are assembled dynamically at test runtime.

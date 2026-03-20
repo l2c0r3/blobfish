@@ -3,6 +3,7 @@ package ch.hslu.cas.msed.blobfish.player.bot;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import lombok.Getter;
 
 @Getter
