@@ -1,0 +1,142 @@
+\section{Software Design}
+Das Softwaredesign von Blobfish wurde mit dem Ziel entwickelt, eine erweiterbare und wartbare Schach-Engine zu schaffen.
+In diesem Abschnitt wird die Architektur kritisch betrachtet und die getroffenen Designentscheidungen mit ihren Vor- und Nachteilen analysiert.
+
+\subsection{Paketstruktur}
+Die Applikation ist in fünf Hauptpakete unterteilt: \texttt{base}, \texttt{board}, \texttt{eval}, \texttt{game} und \texttt{player}.
+Diese Struktur trennt die grundlegenden Schach-Konzepte (Figuren, Farben) von der Spiellogik, der Evaluation und der Benutzerinteraktion.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Die Pakete haben klar abgegrenzte Verantwortlichkeiten und folgen dem \textit{Single Responsibility Principle}.
+    \item Die Abhängigkeiten verlaufen mehrheitlich in eine Richtung: \texttt{game} $\rightarrow$ \texttt{player} $\rightarrow$ \texttt{board} $\rightarrow$ \texttt{base}. Dies vereinfacht das Verständnis des Datenflusses.
+    \item Neue Evaluationsstrategien oder Algorithmen können hinzugefügt werden, ohne bestehende Pakete zu verändern.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Das \texttt{player}-Paket enthält mit den Minimax-Varianten, dem Caching und den RecursiveTasks sehr viel Logik. Eine weitere Aufteilung, z.B.\ in ein separates \texttt{algorithm}-Paket, hätte die Übersichtlichkeit verbessern können.
+    \item Das \texttt{game}-Paket enthält sowohl die UI-Screens als auch die Factory-Logik und die Provider-Interfaces. Eine Trennung von Orchestrierung und Plugin-Mechanismus wäre sauberer gewesen.
+\end{itemize}
+
+\subsection{Entwurfsmuster}
+
+\subsubsection{Strategy Pattern -- Evaluationsfunktionen}
+Die Evaluationslogik ist über das Interface \texttt{EvalStrategy} abstrahiert.
+Verschiedene Implementierungen (\texttt{MaterialEval}, \texttt{PieceSquareEval}, \texttt{MateAwareEval}, \texttt{RandomEval}) können über den \texttt{CompositeEvalStrategy}-Builder kombiniert werden.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Neue Heuristiken können als eigenständige Klassen implementiert und flexibel kombiniert werden, ohne bestehenden Code zu ändern (\textit{Open-Closed Principle}).
+    \item Der Builder-Ansatz von \texttt{CompositeEvalStrategy} ermöglicht eine lesbare Konfiguration der Evaluationskombination.
+    \item Jede Strategie ist isoliert testbar.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Die Strategien haben keine Gewichtung. Alle Teilbewertungen werden gleichwertig aufsummiert. Eine gewichtete Kombination wäre für die Feinabstimmung der Engine nützlich.
+    \item Die \texttt{RandomEval}-Strategie existiert primär zu Testzwecken. Da sie das gleiche Interface implementiert wie die produktiven Strategien, könnte sie versehentlich in einer ernsthaften Konfiguration verwendet werden.
+\end{itemize}
+
+\subsubsection{Template Method -- Spielerabstraktion}
+Die abstrakte Klasse \texttt{AbstractPlayer} definiert die Methode \texttt{getNextMove()}, welche von \texttt{HumanPlayer} und \texttt{BotPlayer} unterschiedlich implementiert wird.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Der \texttt{MatchScreen} kann Spieler polymorph behandeln, ohne zwischen Mensch und Bot unterscheiden zu müssen.
+    \item Die Erweiterung um neue Spielertypen (z.B.\ ein Netzwerkspieler) ist durch eine neue Unterklasse einfach möglich.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Die Verwendung einer abstrakten Klasse statt eines Interfaces schränkt die Flexibilität ein, da Java nur Einfachvererbung unterstützt. Ein Interface mit \texttt{PlayerColor} als Attribut wäre eine Alternative gewesen.
+\end{itemize}
+
+\subsubsection{Service Provider Interface -- Plugin-Mechanismus}
+Über \texttt{BotAlgorithmProvider} und \texttt{BotPlayerProvider} können neue Bot-Typen und Algorithmen dynamisch registriert werden, ohne die \texttt{BotPlayerFactory} anpassen zu müssen.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Hohe Erweiterbarkeit: Neue Algorithmen können als eigenständige Provider bereitgestellt werden.
+    \item Die Entkopplung zwischen Factory und konkreten Implementierungen fördert lose Kopplung.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Der SPI-Mechanismus erhöht die Komplexität für ein Projekt dieser Grösse erheblich. Die Indirektion über Provider macht den Code schwerer nachvollziehbar, da die konkreten Implementierungen nicht direkt ersichtlich sind.
+    \item Fehler bei der Provider-Registrierung (z.B.\ fehlende Einträge in \texttt{META-INF/services}) zeigen sich erst zur Laufzeit.
+\end{itemize}
+
+\subsection{Immutabilität und Datenmodellierung}
+Die Applikation setzt konsequent auf Java Records für Datenklassen (\texttt{Piece}, \texttt{MoveNode}, \texttt{PathEvaluation}, \texttt{MatchConfig}).
+Die \texttt{ChessBoard}-Klasse gibt bei \texttt{doMove()} eine neue Instanz zurück, anstatt den internen Zustand zu verändern.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Immutable Objekte sind von Natur aus thread-safe, was besonders für die parallele Minimax-Implementierung wichtig ist.
+    \item Die Zughistorie wird über eine verkettete \texttt{MoveHistoryNode}-Struktur abgebildet. Durch die Unveränderlichkeit können verschiedene Suchpfade dieselben Elternknoten teilen, ohne sich gegenseitig zu beeinflussen.
+    \item Records reduzieren Boilerplate-Code und machen die Datenstrukturen explizit.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Das Erstellen eines neuen \texttt{ChessBoard}-Objekts bei jedem Zug erzeugt erhöhten Speicherverbrauch durch Garbage Collection, was sich bei grossen Suchtiefen bemerkbar machen kann.
+    \item Die \texttt{ChessBoard}-Klasse kapselt intern ein mutables \texttt{chesslib.Board}-Objekt. Die Immutabilität wird also durch Kopieren bei jedem Zug simuliert, nicht durch ein durchgängig immutables Datenmodell.
+\end{itemize}
+
+\subsection{Vererbungshierarchie der Algorithmen}
+Die Minimax-Varianten bilden eine tiefe Vererbungshierarchie: \texttt{BotAlgorithm} $\rightarrow$ \texttt{MiniMaxAlgo} $\rightarrow$ \texttt{MiniMaxCachedAlgo} $\rightarrow$ konkrete Implementierungen.
+Daraus ergeben sich acht Klassen für die verschiedenen Kombinationen (sequenziell/parallel, mit/ohne Alpha-Beta, mit/ohne Cache).
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Gemeinsame Logik (z.B.\ Cache-Verwaltung in \texttt{MiniMaxCachedAlgo}) wird nicht dupliziert.
+    \item Die Hierarchie spiegelt die konzeptuelle Verwandtschaft der Algorithmen wider.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Die kombinatorische Explosion der Varianten führt zu einer hohen Anzahl an Klassen. Jede neue Optimierung (z.B.\ Move Ordering, Iterative Deepening) würde die Anzahl der Klassen potentiell verdoppeln.
+    \item Ein kompositionsbasierter Ansatz -- z.B.\ ein konfigurierbarer \texttt{MiniMaxBuilder}, der Pruning, Caching und Parallelisierung als austauschbare Komponenten akzeptiert -- hätte die Klassenanzahl deutlich reduziert und wäre flexibler gewesen.
+    \item Die \texttt{calcBestPath()}-Methode enthält in mehreren Varianten duplizierten Code, obwohl sich nur einzelne Aspekte (Alpha-Beta-Bounds, Cache-Lookup) unterscheiden.
+\end{itemize}
+
+\subsection{Externe Abhängigkeiten}
+Die Applikation verwendet die Bibliothek \texttt{chesslib} für die Zugvalidierung und Brettverwaltung sowie \texttt{JLine} für die Terminal-Interaktion.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Die Verwendung von \texttt{chesslib} vermeidet die fehleranfällige Eigenimplementierung von Schachregeln (En Passant, Rochade, Bauernumwandlung etc.).
+    \item \texttt{JLine} bietet eine plattformübergreifende Terminal-Abstraktion mit Eingabevervollständigung und Farb-Unterstützung.
+    \item \texttt{ChessBoard} kapselt \texttt{chesslib} vollständig, sodass ein Wechsel der Bibliothek nur eine Klasse betreffen würde.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Die Abhängigkeit zu \texttt{chesslib} über JitPack statt Maven Central birgt ein Verfügbarkeitsrisiko. Ist JitPack nicht erreichbar, schlägt der Build fehl.
+    \item \texttt{chesslib} verwendet intern \texttt{ThreadLocal}-Variablen, die manuell über \texttt{ThreadLocalUtils} via Reflection zurückgesetzt werden müssen. Dies ist ein fragiler Workaround, der bei einem Update der Bibliothek brechen kann.
+    \item Die Kopplung an \texttt{chesslib}-Typen (\texttt{Move}, \texttt{Board}) reicht teilweise bis in die Algorithmen-Klassen hinein (z.B.\ \texttt{getSanOfMove()}-Methoden), obwohl die \texttt{ChessBoard}-Abstraktion dies eigentlich kapseln sollte.
+\end{itemize}
+
+\subsection{Diagrammgenerierung}
+Die UML-Klassendiagramme werden automatisch aus dem kompilierten Bytecode generiert.
+Dafür wird das Maven-Plugin \texttt{plantuml-generator-maven-plugin} eingesetzt, welches pro Paket eine PlantUML-Datei erzeugt.
+Anschliessend werden diese durch das \texttt{plantuml-maven-plugin} in PNG- und SVG-Formate gerendert.
+
+\paragraph{Pro:}
+\begin{itemize}
+    \item Die Diagramme sind immer konsistent mit dem aktuellen Code, da sie bei jedem Build neu generiert werden.
+    \item Die Aufteilung in paketweise Diagramme verhindert überladene Gesamtansichten.
+\end{itemize}
+
+\paragraph{Kontra:}
+\begin{itemize}
+    \item Die Generierung aus Bytecode erfordert eine vollständige Kompilierung. Änderungen an der Dokumentation können nicht unabhängig vom Code gebaut werden.
+    \item Die generierten Diagramme enthalten keine architekturellen Informationen wie Schichten oder Paketabhängigkeiten -- sie zeigen nur die Klassenstruktur innerhalb einzelner Pakete.
+\end{itemize}
+
+\subsection{Fazit}
+Das Softwaredesign von Blobfish zeigt eine durchdachte Architektur mit klarer Trennung der Verantwortlichkeiten und durchgängiger Nutzung etablierter Entwurfsmuster.
+Die grösste Schwäche liegt in der kombinatorischen Explosion der Algorithmen-Klassen, die durch einen kompositionsbasierten Ansatz hätte vermieden werden können.
+Der SPI-Mechanismus bietet maximale Erweiterbarkeit, ist für die aktuelle Projektgrösse jedoch überdimensioniert.
+Insgesamt überwiegen die positiven Aspekte: Die Codebase ist testbar, erweiterbar und die externen Abhängigkeiten sind sauber gekapselt.
