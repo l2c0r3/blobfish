@@ -81,7 +81,7 @@ public class PerformanceTest {
     private record ExecutionConfig(int depth) {
     }
 
-    private static final int DEFAULT_CALCULATION_DEPTH = 2;
+    private static final int DEFAULT_CALCULATION_DEPTH = 4;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
             new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6),
             new ExecutionConfigKey(MiniMaxAlphaBetaSequentialWithCache.class, Collections.emptyList()), new ExecutionConfig(6)
@@ -115,7 +115,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var numberOfMeasurements = 3;
+        var numberOfMeasurements = 10;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
