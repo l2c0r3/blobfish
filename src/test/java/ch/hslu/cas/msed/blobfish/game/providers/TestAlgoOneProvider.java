@@ -4,7 +4,6 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
-import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 
 public class TestAlgoOneProvider implements BotAlgorithmProvider {
@@ -23,11 +22,6 @@ public class TestAlgoOneProvider implements BotAlgorithmProvider {
     public static class TestAlgoOne extends BotAlgorithm {
         public TestAlgoOne(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
             super(calculationDepth, evalStrategy, ownPlayerColor);
-        }
-
-        @Override
-        public FirstMoveEvaluation getNextBestMove(ChessBoard chessBoard) {
-            return null;
         }
 
         @Override

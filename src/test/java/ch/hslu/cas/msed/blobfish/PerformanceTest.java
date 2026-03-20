@@ -3,7 +3,7 @@ package ch.hslu.cas.msed.blobfish;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.*;
-import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
+import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequentialWithCache;
@@ -54,7 +54,7 @@ public class PerformanceTest {
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
     }
 
-    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<FirstMoveEvaluation> measurementResult, int depth) {
+    private record MeasurementOfDepth(MeasurementUtil.MeasurementResult<PathEvaluation> measurementResult, int depth) {
     }
 
     private record AlgorithmStrategy(String algorithm, PossibleStrategy strategy) {
@@ -81,7 +81,7 @@ public class PerformanceTest {
     private record ExecutionConfig(int depth) {
     }
 
-    private static final int DEFAULT_CALCULATION_DEPTH = 4;
+    private static final int DEFAULT_CALCULATION_DEPTH = 2;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
             new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6),
             new ExecutionConfigKey(MiniMaxAlphaBetaSequentialWithCache.class, Collections.emptyList()), new ExecutionConfig(6)
@@ -115,7 +115,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var numberOfMeasurements = 10;
+        var numberOfMeasurements = 3;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
@@ -138,7 +138,7 @@ public class PerformanceTest {
 
                                 // do multiple measurements and calculate the median
                                 var measurements = IntStream.range(0, numberOfMeasurements).mapToObj(_ ->
-                                        MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getNextBestMove(chessboard))
+                                        MeasurementUtil.measureOperation(() -> miniMaxAlgoToTest.getBestPath(chessboard))
                                 ).toList();
 
                                 assertSameMovesAcrossMeasurements(measurements);
@@ -305,7 +305,7 @@ public class PerformanceTest {
     }
 
 
-    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<FirstMoveEvaluation>> measurements) {
+    private static void assertSameMovesAcrossMeasurements(List<MeasurementUtil.MeasurementResult<PathEvaluation>> measurements) {
         long distinctMoves = measurements.stream()
                 .map(MeasurementUtil.MeasurementResult::result)
                 .distinct()

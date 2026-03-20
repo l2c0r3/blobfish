@@ -13,8 +13,8 @@ public class MiniMaxBotPlayer extends BotPlayer {
 
     @Override
     public String getNextMove(final ChessBoard board) throws InvalidMoveException {
-        var result = botAlgorithm.getNextBestMove(board);
-        return result != null ? result.move() : null;
+        var result = botAlgorithm.getBestPath(board);
+        return result != null && result.move() != null && !result.move().isEmpty() ? result.move().getFirst() : null;
     }
 
 }

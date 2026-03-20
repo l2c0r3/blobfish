@@ -3,7 +3,6 @@ package ch.hslu.cas.msed.blobfish.player.bot.minimax;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.player.bot.FirstMoveEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import com.github.bhlangonijr.chesslib.move.Move;
 
@@ -23,13 +22,6 @@ public class MiniMaxAlphaBetaSequentialWithCache extends MiniMaxCachedAlgo {
     @Override
     protected Map<String, EvaluationCacheEntry> createCache() {
         return new HashMap<>();
-    }
-
-    @Override
-    public FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard) {
-        var bestPath = calcBestPath(chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        clearCache();
-        return moveNodeMapper.mapToFirstMoveEvaluation(bestPath);
     }
 
     @Override
