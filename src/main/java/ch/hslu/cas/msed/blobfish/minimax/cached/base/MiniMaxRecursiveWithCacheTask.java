@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.minimax.cached.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveHistoryNode;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveNode;
 import com.github.bhlangonijr.chesslib.move.Move;
@@ -18,15 +18,15 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
     private final int depth;
     private final PlayerColor playerAtTurn;
     private final MoveHistoryNode history;
-    private final EvalStrategy evalStrategy;
+    private final EvaluationStrategy evaluationStrategy;
     private final int depthThreshold;
     private final int moveThreshold;
     private final EvaluationCache cache;
 
-    public MiniMaxRecursiveWithCacheTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold, final EvaluationCache cache) {
+    public MiniMaxRecursiveWithCacheTask(final EvaluationStrategy evaluationStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold, final EvaluationCache cache) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
-        this.evalStrategy = evalStrategy;
+        this.evaluationStrategy = evaluationStrategy;
         this.chessBoard = chessBoard;
         this.depth = depth;
         this.playerAtTurn = playerAtTurn;
@@ -87,7 +87,7 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
     }
 
     private MoveNode getEvaluation() {
-        var eval = evalStrategy.getEvaluation(chessBoard);
+        var eval = evaluationStrategy.getEvaluation(chessBoard);
         return new MoveNode(eval, history);
     }
 
@@ -109,7 +109,7 @@ public class MiniMaxRecursiveWithCacheTask extends RecursiveTask<MoveNode> {
                 .map(move -> {
                     var newPosition = chessBoard.doMove(move);
                     var newHistory = new MoveHistoryNode(move, history);
-                    return new MiniMaxRecursiveWithCacheTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold, cache);
+                    return new MiniMaxRecursiveWithCacheTask(evaluationStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold, cache);
                 }).toList();
     }
 }

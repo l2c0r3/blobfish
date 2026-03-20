@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider;
 import ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
@@ -75,7 +75,7 @@ public final class BotPlayerFactory {
             @NonNull String botName,
             @NonNull String algorithmName,
             int calculationDepth,
-            EvalStrategy evalStrategy,
+            EvaluationStrategy evaluationStrategy,
             PlayerColor playerColor
     ) {
         var botProvider = BOT_PLAYERS.get(botName);
@@ -88,7 +88,7 @@ public final class BotPlayerFactory {
             throw new IllegalArgumentException("Unknown algorithm: " + algorithmName);
         }
 
-        var algorithm = algProvider.create(calculationDepth, evalStrategy, playerColor);
+        var algorithm = algProvider.create(calculationDepth, evaluationStrategy, playerColor);
         if (!botSupportsAlgorithm(botProvider, algorithm.getClass())) {
             throw new IllegalArgumentException("Unsupported bot player + algorithm combination");
         }
@@ -105,7 +105,7 @@ public final class BotPlayerFactory {
 
     private static Class<?> getAlgorithmProviderReturnType(BotAlgorithmProvider provider) {
         try {
-            Method createMethod = provider.getClass().getMethod("create", int.class, EvalStrategy.class, PlayerColor.class);
+            Method createMethod = provider.getClass().getMethod("create", int.class, EvaluationStrategy.class, PlayerColor.class);
             return createMethod.getReturnType();
         } catch (NoSuchMethodException e) {
             throw new IllegalStateException("Algorithm provider must have a create() method", e);

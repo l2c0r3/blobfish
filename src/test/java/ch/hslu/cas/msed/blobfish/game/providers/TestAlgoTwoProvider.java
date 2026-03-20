@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.game.providers;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
 import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 
@@ -15,13 +15,13 @@ public class TestAlgoTwoProvider implements BotAlgorithmProvider {
     }
 
     @Override
-    public TestAlgoTwo create(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
-        return new TestAlgoTwo(calculationDepth, evalStrategy, ownPlayerColor);
+    public TestAlgoTwo create(int calculationDepth, EvaluationStrategy evaluationStrategy, PlayerColor ownPlayerColor) {
+        return new TestAlgoTwo(calculationDepth, evaluationStrategy, ownPlayerColor);
     }
 
     public static class TestAlgoTwo extends BotAlgorithm {
-        public TestAlgoTwo(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
-            super(calculationDepth, evalStrategy, ownPlayerColor);
+        public TestAlgoTwo(int calculationDepth, EvaluationStrategy evaluationStrategy, PlayerColor ownPlayerColor) {
+            super(calculationDepth, evaluationStrategy, ownPlayerColor);
         }
 
         @Override

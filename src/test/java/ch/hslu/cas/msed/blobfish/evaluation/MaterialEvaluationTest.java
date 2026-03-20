@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MaterialEvalTest {
+class MaterialEvaluationTest {
 
-    private final MaterialEval testee = new MaterialEval();
+    private final MaterialEvaluation testee = new MaterialEvaluation();
 
     private static Stream<Object[]> positionToEvalProvider() {
         return Stream.of(

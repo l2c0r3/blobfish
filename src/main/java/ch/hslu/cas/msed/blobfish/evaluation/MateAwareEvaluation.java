@@ -4,7 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 
 
-public class MateAwareEval implements EvalStrategy {
+public class MateAwareEvaluation implements EvaluationStrategy {
 
     private static final int MAX_NUMBER = 1_000_000;
 

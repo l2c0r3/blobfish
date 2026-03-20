@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.minimax.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 
 import java.util.Comparator;
 import java.util.List;
@@ -14,14 +14,14 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     private final int depth;
     private final PlayerColor playerAtTurn;
     private final MoveHistoryNode history;
-    private final EvalStrategy evalStrategy;
+    private final EvaluationStrategy evaluationStrategy;
     private final int depthThreshold;
     private final int moveThreshold;
 
-    public MiniMaxRecursiveTask(final EvalStrategy evalStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold) {
+    public MiniMaxRecursiveTask(final EvaluationStrategy evaluationStrategy, final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history, final int depthThreshold, final int moveThreshold) {
         if (depth < 0) throw new IllegalArgumentException("depth cannot be negative");
 
-        this.evalStrategy = evalStrategy;
+        this.evaluationStrategy = evaluationStrategy;
         this.chessBoard = chessBoard;
         this.depth = depth;
         this.playerAtTurn = playerAtTurn;
@@ -53,7 +53,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
     }
 
     private MoveNode getEvaluation() {
-        var eval = evalStrategy.getEvaluation(chessBoard);
+        var eval = evaluationStrategy.getEvaluation(chessBoard);
         return new MoveNode(eval, history);
     }
 
@@ -75,7 +75,7 @@ public class MiniMaxRecursiveTask extends RecursiveTask<MoveNode> {
                 .map(move -> {
                     var newPosition = chessBoard.doMove(move.toString());
                     var newHistory = new MoveHistoryNode(move.toString(), history);
-                    return new MiniMaxRecursiveTask(evalStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold);
+                    return new MiniMaxRecursiveTask(evaluationStrategy, newPosition, depth - 1, nextPlayerColor, newHistory, depthThreshold, moveThreshold);
                 }).toList();
     }
 }

@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.providers;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.MiniMaxParallel;
 
 public class MiniMaxParallelAlgorithmProvider implements BotAlgorithmProvider {
@@ -13,7 +13,7 @@ public class MiniMaxParallelAlgorithmProvider implements BotAlgorithmProvider {
     }
 
     @Override
-    public MiniMaxParallel create(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
-        return new MiniMaxParallel(calculationDepth, evalStrategy, ownPlayerColor);
+    public MiniMaxParallel create(int calculationDepth, EvaluationStrategy evaluationStrategy, PlayerColor ownPlayerColor) {
+        return new MiniMaxParallel(calculationDepth, evaluationStrategy, ownPlayerColor);
     }
 }

@@ -45,10 +45,10 @@ public class PerformanceTest {
 
     @FunctionalInterface
     private interface MiniMaxAlgoConstructor {
-        MiniMaxAlgo create(int depth, EvalStrategy strategy, PlayerColor playerToMove);
+        MiniMaxAlgo create(int depth, EvaluationStrategy strategy, PlayerColor playerToMove);
     }
 
-    private record PossibleStrategy(CompositeEvalStrategy strategy, String description) {
+    private record PossibleStrategy(CompositeEvaluationStrategy strategy, String description) {
     }
 
     private record PositionToTest(String fen, PlayerColor playerToMove, String description) {
@@ -64,17 +64,17 @@ public class PerformanceTest {
     }
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MaterialEval()).build(), "Simple material evaluation"),
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).build(), "Mate aware material evaluation"),
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new PieceSquareEval()).build(), "Simple piece square evaluation"),
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new PieceSquareEval()).build(), "Mate aware piece square evaluation"),
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MaterialEval()).add(new PieceSquareEval()).build(), "Piece square material evaluation"),
-            new PossibleStrategy(CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).add(new PieceSquareEval()).build(), "Mate aware piece square material evaluation")
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).build(), "Simple material evaluation"),
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).build(), "Mate aware material evaluation"),
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new PieceSquareEvaluation()).build(), "Simple piece square evaluation"),
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new PieceSquareEvaluation()).build(), "Mate aware piece square evaluation"),
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build(), "Piece square material evaluation"),
+            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build(), "Mate aware piece square material evaluation")
     );
 
     private record ExecutionConfigKey(
             Class<? extends MiniMaxAlgo> algorithm,
-            List<Class<? extends EvalStrategy>> strategies
+            List<Class<? extends EvaluationStrategy>> strategies
     ) {
     }
 
@@ -366,10 +366,10 @@ public class PerformanceTest {
                     .filter(clazz -> !java.lang.reflect.Modifier.isAbstract(clazz.getModifiers()))
                     .map(clazz -> {
                         try {
-                            var constructor = clazz.getDeclaredConstructor(int.class, EvalStrategy.class, PlayerColor.class);
+                            var constructor = clazz.getDeclaredConstructor(int.class, EvaluationStrategy.class, PlayerColor.class);
                             return (MiniMaxAlgoConstructor) (
                                     int depth,
-                                    EvalStrategy strategy,
+                                    EvaluationStrategy strategy,
                                     PlayerColor playerToMove
                             ) -> instantiateAlgorithm(constructor, depth, strategy, playerToMove);
                         } catch (NoSuchMethodException e) {
@@ -382,7 +382,7 @@ public class PerformanceTest {
     private static MiniMaxAlgo instantiateAlgorithm(
             Constructor<?> constructor,
             int depth,
-            EvalStrategy strategy,
+            EvaluationStrategy strategy,
             PlayerColor playerToMove
     ) {
         try {

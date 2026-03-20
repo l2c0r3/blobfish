@@ -8,7 +8,7 @@ import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 
 import java.util.stream.IntStream;
 
-public class PieceSquareEval implements EvalStrategy {
+public class PieceSquareEvaluation implements EvaluationStrategy {
 
     @Override
     public int getEvaluation(final ChessBoard board) {

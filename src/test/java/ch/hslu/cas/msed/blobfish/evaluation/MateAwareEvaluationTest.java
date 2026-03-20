@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MateAwareEvalTest {
+class MateAwareEvaluationTest {
 
-    MateAwareEval testee = new MateAwareEval();
+    MateAwareEvaluation testee = new MateAwareEvaluation();
 
     private static Stream<Object[]> positionToEvalProvider() {
         return Stream.of(

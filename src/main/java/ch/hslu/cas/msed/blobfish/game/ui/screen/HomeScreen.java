@@ -30,7 +30,7 @@ public class HomeScreen {
         var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
 
         var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
-        var botPlayerEvalStrategy = CompositeEvalStrategy.builder().add(new MateAwareEval()).add(new MaterialEval()).add(new PieceSquareEval()).build();
+        var botPlayerEvalStrategy = CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build();
         var botPlayer = getBotPlayer(CALC_DEPTH, botPlayerEvalStrategy, botPlayerColor);
 
         return switch (humanPlayerColor) {
@@ -55,7 +55,7 @@ public class HomeScreen {
         return playerColor;
     }
 
-    private BotPlayer getBotPlayer(int calculationDepth, EvalStrategy evalStrategy, PlayerColor playerColor) {
+    private BotPlayer getBotPlayer(int calculationDepth, EvaluationStrategy evaluationStrategy, PlayerColor playerColor) {
         BotPlayer botPlayer;
         do {
             var viableBotNames = String.join("|", BotPlayerFactory.getViableBotNames());
@@ -72,7 +72,7 @@ public class HomeScreen {
                 var botName = parts[0];
                 var algorithmName = parts[1];
 
-                botPlayer = BotPlayerFactory.create(botName, algorithmName, calculationDepth, evalStrategy, playerColor);
+                botPlayer = BotPlayerFactory.create(botName, algorithmName, calculationDepth, evaluationStrategy, playerColor);
             } catch (IllegalArgumentException e) {
                 writer.printlnAndFlush("Invalid input.");
                 botPlayer = null;

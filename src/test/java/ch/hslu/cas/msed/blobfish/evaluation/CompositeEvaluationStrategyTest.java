@@ -8,30 +8,30 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CompositeEvalStrategyTest {
+class CompositeEvaluationStrategyTest {
 
     @Test
     void getEvaluation_strategiesAreEvaluatedInCorrectOrder() {
         // Arrange
         List<String> callOrder = new ArrayList<>();
 
-        EvalStrategy s1 = _ -> {
+        EvaluationStrategy s1 = _ -> {
             callOrder.add("s1");
             return 1;
         };
 
-        EvalStrategy s2 = _ -> {
+        EvaluationStrategy s2 = _ -> {
             callOrder.add("s2");
             return 2;
         };
 
-        EvalStrategy s3 = _ -> {
+        EvaluationStrategy s3 = _ -> {
             callOrder.add("s3");
             return 3;
         };
 
         // Act
-        EvalStrategy composite = CompositeEvalStrategy.builder()
+        EvaluationStrategy composite = CompositeEvaluationStrategy.builder()
                 .add(s1)
                 .add(s2)
                 .add(s3)
@@ -46,14 +46,14 @@ class CompositeEvalStrategyTest {
     @Test
     void getEvaluation() {
         // Arrange
-        EvalStrategy s1 = _ -> 100;
-        EvalStrategy s2 = _ -> 250;
-        EvalStrategy s3 = _ -> 310;
+        EvaluationStrategy s1 = _ -> 100;
+        EvaluationStrategy s2 = _ -> 250;
+        EvaluationStrategy s3 = _ -> 310;
 
         var expectedEvaluation = 660;
 
         // Act
-        EvalStrategy composite = CompositeEvalStrategy.builder()
+        EvaluationStrategy composite = CompositeEvaluationStrategy.builder()
                 .add(s1)
                 .add(s2)
                 .add(s3)
@@ -68,14 +68,14 @@ class CompositeEvalStrategyTest {
     @Test
     void getStrategies() {
         // Arrange
-        EvalStrategy s1 = _ -> 100;
-        EvalStrategy s2 = _ -> 250;
-        EvalStrategy s3 = _ -> 310;
+        EvaluationStrategy s1 = _ -> 100;
+        EvaluationStrategy s2 = _ -> 250;
+        EvaluationStrategy s3 = _ -> 310;
 
         var expectedStrategies = List.of(s1.getClass(), s2.getClass(), s3.getClass());
 
         // Act
-        var composite = CompositeEvalStrategy.builder()
+        var composite = CompositeEvaluationStrategy.builder()
                 .add(s1)
                 .add(s2)
                 .add(s3)

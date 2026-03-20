@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.minimax.cached;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveNodeMapper;
 import ch.hslu.cas.msed.blobfish.minimax.cached.base.EvaluationCacheEntry;
@@ -21,8 +21,8 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
     private static final int DEPTH_THRESHOLD_PERCENTAGE = 33;
     private static final int MOVE_THRESHOLD = 6;
 
-    public MiniMaxParallelWithCache(int calculationDepth, EvalStrategy evalStrategy, PlayerColor ownPlayerColor) {
-        super(calculationDepth, evalStrategy, ownPlayerColor);
+    public MiniMaxParallelWithCache(int calculationDepth, EvaluationStrategy evaluationStrategy, PlayerColor ownPlayerColor) {
+        super(calculationDepth, evaluationStrategy, ownPlayerColor);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MiniMaxParallelWithCache extends MiniMaxCachedAlgo {
 
     @Override
     public PathEvaluation getBestPath(ChessBoard chessBoard) {
-        var task = new MiniMaxRecursiveWithCacheTask(getEvalStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, calculateDepthThreshold(), MOVE_THRESHOLD, cache);
+        var task = new MiniMaxRecursiveWithCacheTask(getEvaluationStrategy(), chessBoard, getCalculationDepth(), getOwnPlayerColor(), null, calculateDepthThreshold(), MOVE_THRESHOLD, cache);
 
         @SuppressWarnings("resource")
         var forkJoinPool = ForkJoinPool.commonPool();

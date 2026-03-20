@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.minimax;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveHistoryNode;
@@ -15,8 +15,8 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private final MoveNodeMapper moveNodeMapper = new MoveNodeMapper();
 
-    public MiniMaxSequential(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
-        super(calculationDepth, evalStrategy, ownPlayerColor);
+    public MiniMaxSequential(final int calculationDepth, final EvaluationStrategy evaluationStrategy, final PlayerColor ownPlayerColor) {
+        super(calculationDepth, evaluationStrategy, ownPlayerColor);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MiniMaxSequential extends MiniMaxAlgo {
 
     private MoveNode calcBestPath(final ChessBoard chessBoard, final int depth, final PlayerColor playerAtTurn, final MoveHistoryNode history) {
         if (depth <= 0 || chessBoard.isGameOver()) {
-            var eval = getEvalStrategy().getEvaluation(chessBoard);
+            var eval = getEvaluationStrategy().getEvaluation(chessBoard);
             return new MoveNode(eval, history);
         }
 

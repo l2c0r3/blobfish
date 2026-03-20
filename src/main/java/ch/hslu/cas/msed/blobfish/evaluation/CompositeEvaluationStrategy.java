@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class CompositeEvalStrategy implements EvalStrategy {
+public class CompositeEvaluationStrategy implements EvaluationStrategy {
 
-    private final List<EvalStrategy> strategies;
+    private final List<EvaluationStrategy> strategies;
 
-    private CompositeEvalStrategy(final List<EvalStrategy> strategies) {
+    private CompositeEvaluationStrategy(final List<EvaluationStrategy> strategies) {
         this.strategies = List.copyOf(strategies);
     }
 
@@ -20,15 +20,15 @@ public class CompositeEvalStrategy implements EvalStrategy {
         return new Builder();
     }
 
-    public List<Class<? extends EvalStrategy>> getStrategies() {
-        return strategies.stream().map(EvalStrategy::getClass).collect(Collectors.toUnmodifiableList());
+    public List<Class<? extends EvaluationStrategy>> getStrategies() {
+        return strategies.stream().map(EvaluationStrategy::getClass).collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public int getEvaluation(final ChessBoard board) {
         int evaluation = 0;
 
-        for (EvalStrategy strategy : strategies) {
+        for (EvaluationStrategy strategy : strategies) {
             evaluation += strategy.getEvaluation(board);
         }
 
@@ -37,18 +37,18 @@ public class CompositeEvalStrategy implements EvalStrategy {
 
     public static class Builder {
 
-        private final List<EvalStrategy> strategies = new ArrayList<>();
+        private final List<EvaluationStrategy> strategies = new ArrayList<>();
 
-        public Builder add(@NonNull final EvalStrategy strategy) {
+        public Builder add(@NonNull final EvaluationStrategy strategy) {
             strategies.add(Objects.requireNonNull(strategy, "strategy must not be null"));
             return this;
         }
 
-        public CompositeEvalStrategy build() {
+        public CompositeEvaluationStrategy build() {
             if (strategies.isEmpty()) {
                 throw new IllegalStateException("At least one evaluation strategy is required");
             }
-            return new CompositeEvalStrategy(strategies);
+            return new CompositeEvaluationStrategy(strategies);
         }
     }
 }
