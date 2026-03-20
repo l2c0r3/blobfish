@@ -1,0 +1,92 @@
+Dynamic play
+----------------------------------------------------------------------
+- Material Eval & PieceSquareEval schlechter als Material
+-> unerwartet
+
+==> nach analyse von einzelnen position, random  8 punkte in den ersten pos und an einer anderen stelle
+kleiner unterschied von punkten (6 punkte hat material & pieces hätte 8 erhlaten sollen und
+material 0 aber hätte 6 verdient -> also 2 punkte für material&pieces statt nur material)
+
+Endagems
+----------------------------------------------------------------------
+- erwartet: Material & Piecsquare als erses
+- piecesqure > material
+
+
+Posiitonal
+----------------------------------------------------------------------
+- piecesquurare gar keine punkte
+
+
+Tactics
+----------------------------------------------------------------------
+- piecseaure wenige punkte
+
+
+tabelle
+----------------------------------------------------------------------
+- material & piecesquare viele punkte verhältnis
+- material zu material & piecesquare => piecersquare macht schon etwas
+
+
+Generell
+----
+Aufgefallen, dass regelmässig stockfish mit tiefe 8 ähnliche moves hat wie tiefe von 18
+
+
+r3r1k1/pp1n1ppp/2pbpn2/q1p5/3P4/2N1PN2/PPQ1BPPP/2RR2K1 w - - 0 1
+----------------------------------------------------------------------
+nur material hat 8 punkte andere 2 nichts -> reiner zufall für material (pfad macht keinen sinn) => -1 für weiss? => Stockfish auf leeches -0.5 (depth 20 SF18)
+
+material & eval kommt nacher besser aus  +2.6 macht auch mehr sinn (depth 20 SF18)
+
+
+r1b2rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2NBPN2/PPQ2PPP/R1B2RK1 w - - 0 1
+----------------------------------------------------------------------
+
+Material & Piecesaure: Stockfish 18: Top 4 Next move; Pfad recht an die top 5 moves von stockifsh depth 18. "Fast alles Pfeile; gengner und selber"
+
+- Material hat selber topmove aber anderen pfad => und unlogischer
+
+
+r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1
+----------------------------------
+Material & Piecesaure: erste 4 von den plys (halbzug) sind top move vom pfad
+
+
+r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 b - - 0 1
+----------------------------------
+Material & Piecesaure: okay gespielt nicht speziell
+Material: hätte den zweitbesten move nach lichess
+
+
+Tactics
+------------
+
+
+r1bq1rk1/ppp2ppp/2np1n2/4p1B1/2B1P3/2NP1N2/PPP2PPP/R2Q1RK1 b - - 1 1
+--------------------------------------------------------------------
+
+=> gröggfste frage: warum nimmt er nicht eine free pawn
+
+
+
+r2q1rk1/ppp2ppp/2npbn2/3Np1B1/2B1P3/2N5/PPP2PPP/R2Q1RK1 b - - 1 1
+=======================================================================
+
+=> gröggfste frage: warum nimmt er nicht die dam für einen bishop
+
+Overall
+----
+=> ma merkt, ischi engine sehr auf trade isch und aggressiv
+==> vieli positione sind mit hoche tiefe vo leechess posinal plays -> besserei position
+==> wier merke, dass piecesqaureeval einfluss hat aber alleine nu nit das cha
+
+
+
+==> spätes Endgame, wie z.B King Endgame, mekt mann, dass er die theorie nicht kennt
+
+
+
+=== erter zug sieht meistens gut aus, aber jeh tiefer im pfad desto grösseren überraschungen gibt es
+
