@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.evaluation;
+package ch.hslu.cas.msed.blobfish.eval;
 
 import ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil;
 import ch.hslu.cas.msed.blobfish.base.Piece;

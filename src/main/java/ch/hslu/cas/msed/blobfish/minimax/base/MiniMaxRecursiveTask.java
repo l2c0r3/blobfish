@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.minimax.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
 
 import java.util.Comparator;
 import java.util.List;

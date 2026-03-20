@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.provider;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.MiniMaxSequential;
 
 public class MiniMaxSequentialAlgorithmProvider implements BotAlgorithmProvider {

@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.minimax.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;
 
 public abstract class MiniMaxAlgo extends BotAlgorithm {
