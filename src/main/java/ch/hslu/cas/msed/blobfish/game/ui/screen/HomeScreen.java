@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.game.screen;
+package ch.hslu.cas.msed.blobfish.game.ui.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.eval.*;

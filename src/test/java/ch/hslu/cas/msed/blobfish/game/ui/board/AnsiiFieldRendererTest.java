@@ -1,15 +1,15 @@
-package ch.hslu.cas.msed.blobfish.board.ui;
+package ch.hslu.cas.msed.blobfish.game.ui.board;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PieceType;
+import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static ch.hslu.cas.msed.blobfish.board.ui.AnsiiFieldRenderer.*;
+import static ch.hslu.cas.msed.blobfish.game.ui.board.AnsiiFieldRenderer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AnsiiFieldRendererTest {

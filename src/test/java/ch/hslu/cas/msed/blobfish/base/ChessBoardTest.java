@@ -1,6 +1,5 @@
-package ch.hslu.cas.msed.blobfish.board;
+package ch.hslu.cas.msed.blobfish.base;
 
-import ch.hslu.cas.msed.blobfish.base.Piece;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

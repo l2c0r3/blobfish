@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 
 import java.util.concurrent.ThreadLocalRandom;
 

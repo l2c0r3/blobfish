@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.providers;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException;
 import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;

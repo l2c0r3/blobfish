@@ -1,7 +1,5 @@
-package ch.hslu.cas.msed.blobfish.board;
+package ch.hslu.cas.msed.blobfish.base;
 
-import ch.hslu.cas.msed.blobfish.base.Piece;
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.PieceType;
 import com.github.bhlangonijr.chesslib.Square;

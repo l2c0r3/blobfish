@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.base;
 
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveHistoryNode;
 
 import java.util.Map;

@@ -3,7 +3,7 @@ package ch.hslu.cas.msed.blobfish.eval;
 import ch.hslu.cas.msed.blobfish.base.FenUtil;
 import ch.hslu.cas.msed.blobfish.base.Piece;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;

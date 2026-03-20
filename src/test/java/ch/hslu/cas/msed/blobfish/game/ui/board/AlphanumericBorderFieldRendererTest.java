@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.board.ui;
+package ch.hslu.cas.msed.blobfish.game.ui.board;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import org.apache.commons.lang3.StringUtils;
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static ch.hslu.cas.msed.blobfish.board.ui.AlphanumericBorderFieldRenderer.*;
+import static ch.hslu.cas.msed.blobfish.game.ui.board.AlphanumericBorderFieldRenderer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlphanumericBorderFieldRendererTest {

@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.board.ui;
+package ch.hslu.cas.msed.blobfish.game.ui.board;
 
 public enum SquareColor {
     LIGHT,
