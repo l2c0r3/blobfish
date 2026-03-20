@@ -14,7 +14,7 @@ class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
 
 abstract class ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm {
 	{field} -calculationDepth : int
-	{field} -evalStrategy : ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy
+	{field} -evaluationStrategy : ch.hslu.cas.msed.blobfish.evaluation.EvaluationStrategy
 	{field} -ownPlayerColor : ch.hslu.cas.msed.blobfish.base.PlayerColor
 	{method}  {abstract} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation
 }

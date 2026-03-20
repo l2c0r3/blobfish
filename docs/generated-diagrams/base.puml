@@ -56,6 +56,11 @@ enum ch.hslu.cas.msed.blobfish.base.PlayerColor {
 }
 
 
+class ch.hslu.cas.msed.blobfish.base.ThreadLocalUtils {
+	{method}  {static} +resetStaticThreadLocal ( paramClass1 : Class , paramString2 : String ) : void
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException {
 	{field} -originalMove : String
 }
