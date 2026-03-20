@@ -162,21 +162,6 @@
                             <hideFields>true</hideFields>
                         </configuration>
                     </execution>
-                    <!-- board.puml  -->
-                    <execution>
-                        <id>board-uml</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
-                            <outputFilename>board.puml</outputFilename>
-                            <scanPackages>
-                                <scanPackage>ch.hslu.cas.msed.blobfish.board</scanPackage>
-                            </scanPackages>
-                        </configuration>
-                    </execution>
                     <!-- game.puml  -->
                     <execution>
                         <id>game-uml</id>
