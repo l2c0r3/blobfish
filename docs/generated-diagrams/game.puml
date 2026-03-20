@@ -69,7 +69,7 @@ interface ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider {
 class ch.hslu.cas.msed.blobfish.game.providers.MiniMaxBotPlayerProvider {
 	{field} {static} -BOT_NAME : String
 	{method} +algorithmType () : Class
-	{method} +create ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMiniMaxAlgo2 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method} +create ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMiniMaxAlgo2 : ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MiniMaxAlgo ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method} +getBotName () : String
 }
 
