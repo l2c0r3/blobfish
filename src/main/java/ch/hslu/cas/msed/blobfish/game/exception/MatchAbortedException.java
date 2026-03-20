@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.game.exceptions;
+package ch.hslu.cas.msed.blobfish.game.exception;
 
 public class MatchAbortedException extends RuntimeException {
     public MatchAbortedException(String message) {

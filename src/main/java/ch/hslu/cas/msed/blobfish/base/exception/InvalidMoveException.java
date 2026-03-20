@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.player.exceptions;
+package ch.hslu.cas.msed.blobfish.base.exception;
 
 import lombok.Getter;
 
