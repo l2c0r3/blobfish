@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.ui.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.eval.*;
+import ch.hslu.cas.msed.blobfish.evaluation.*;
 import ch.hslu.cas.msed.blobfish.game.BotPlayerFactory;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;

@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider;
 import ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider;
 import ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm;

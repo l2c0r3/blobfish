@@ -8,7 +8,7 @@ This code is a JUnit test that compares the calculation time of different chess 
 on the one hand by how the game tree is traversed (e.g.
 [MiniMaxParallel.java](../../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxParallel.java)), i.e. the
 algorithm, and on the other hand by the board evaluation function (e.g.
-[MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java)).
+[MateAwareEval.java](../../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/MateAwareEval.java)).
 The variants are assembled dynamically at test runtime.
 
 For each combination of algorithm, evaluation function, and depth from 1 to 4, the next best move is computed multiple
@@ -64,7 +64,7 @@ You can find the raw results here: [measurements/fa2eeeb](measurements/fa2eeeb)
 As expected, at the first look we can see:
 
 - The parallelization optimization reduces the calculation time
-- The [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java) has a negative impact on the calculation time
+- The [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/MateAwareEval.java) has a negative impact on the calculation time
 
 It gets more interesting when we focus on depth 4 and compare runtimes there:
 
@@ -90,7 +90,7 @@ If we want to estimate the average gain from parallelization, we can create the 
 This shows that, for our examples, parallelization makes the engine **~6.97** to **~7.11** times faster on average.
 
 If we want to see the cost
-of [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/eval/MateAwareEval.java) we can build
+of [Mate aware material evaluation](../../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/MateAwareEval.java) we can build
 the following table
 
 | Position                           |  V3/V4 |

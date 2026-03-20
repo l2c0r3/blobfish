@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish.player.bot;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.evaluation.EvalStrategy;
 import lombok.Getter;
 
 @Getter

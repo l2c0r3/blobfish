@@ -2,7 +2,7 @@ package ch.hslu.cas.msed.blobfish;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.*;
+import ch.hslu.cas.msed.blobfish.evaluation.*;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;

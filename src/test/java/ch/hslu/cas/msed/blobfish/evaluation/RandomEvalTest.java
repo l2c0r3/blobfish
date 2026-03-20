@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.eval;
+package ch.hslu.cas.msed.blobfish.evaluation;
 
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import org.junit.jupiter.api.Test;
