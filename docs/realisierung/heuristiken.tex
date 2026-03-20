@@ -28,7 +28,7 @@ Bei einer positiven Endsumme hat der Spieler mit den weissen Figuren den Vorteil
     firstnumber=18,
     caption={Materialistische Evaluation},
     label={lst:material-evaluation}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/MaterialEval.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/MaterialEval.java}
 
 \subsection{Piece Square Tabellen}
 Wie vorher schon erwähnt, bestehen mehrere Wertdefinitionen für Schachfiguren (\cite{evaluationofpieces}).
@@ -49,7 +49,7 @@ Die Bauern und Könige sind hier ausgeschlossen.
     firstnumber=107,
     caption={Endspiel berechnung},
     label={lst:endspiel-berechnung}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/board/ChessBoard.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/base/ChessBoard.java}
 
 Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
 \lstinputlisting[
@@ -58,7 +58,7 @@ Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
     firstnumber=14,
     caption={Piece Square Evaluation},
     label={lst:piece-square-evaluation}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/PieceSquareEval.java}
 
 Es wird zuerst ein Array der aktuellen Position generiert.
 Die Abbildung~\ref{fig:index-felder-tabelle} stellt das genaue Index-Schachfeld mapping dar.
@@ -106,7 +106,7 @@ Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für de
     firstnumber=81,
     caption={PST für den Turm},
     label={lst:pst-fuer-turm}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEval.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/evaluation/PieceSquareEval.java}
 
 Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays.
 Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \glspl{glos:reihe} und für den schwarzen Spieler die \glspl{glos:linie} gespiegelt werden.
