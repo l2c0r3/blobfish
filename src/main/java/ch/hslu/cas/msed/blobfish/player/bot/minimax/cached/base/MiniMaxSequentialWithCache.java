@@ -7,7 +7,6 @@ import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveHistoryNode;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveNode;
 import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveNodeMapper;
-import ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.MiniMaxCachedAlgo;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.HashMap;
