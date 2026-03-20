@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish;
+package ch.hslu.cas.msed.blobfish.base;
 
 import lombok.NonNull;
 

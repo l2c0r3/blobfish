@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game.ui.screen;
 
-import ch.hslu.cas.msed.blobfish.ThreadLocalUtils;
+import ch.hslu.cas.msed.blobfish.base.ThreadLocalUtils;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer;
