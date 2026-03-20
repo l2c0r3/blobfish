@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.base;
 
 public record EvaluationCacheEntry(int value, int depth, String bestMove, BoundType type) {
 

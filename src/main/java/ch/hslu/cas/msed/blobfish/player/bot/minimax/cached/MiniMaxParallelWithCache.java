@@ -1,9 +1,12 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax.cached;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
 import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveNodeMapper;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.base.EvaluationCacheEntry;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.base.MiniMaxRecursiveWithCacheTask;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax.base;
 
 import org.junit.jupiter.api.Test;
 

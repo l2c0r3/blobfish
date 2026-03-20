@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax.base;
 
 public record MoveHistoryNode(String move, MoveHistoryNode parent, int depth) {
 

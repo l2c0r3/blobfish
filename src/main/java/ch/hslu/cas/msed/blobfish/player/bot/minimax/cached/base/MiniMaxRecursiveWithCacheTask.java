@@ -1,8 +1,10 @@
-package ch.hslu.cas.msed.blobfish.player.bot.minimax;
+package ch.hslu.cas.msed.blobfish.player.bot.minimax.cached.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.board.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveHistoryNode;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MoveNode;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.Comparator;

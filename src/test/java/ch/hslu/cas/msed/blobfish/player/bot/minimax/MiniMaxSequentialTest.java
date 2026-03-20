@@ -4,6 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.eval.CompositeEvalStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEval;
+import ch.hslu.cas.msed.blobfish.player.bot.minimax.base.MiniMaxAlgo;
 
 class MiniMaxSequentialTest extends AbstractMiniMaxTest {
 
