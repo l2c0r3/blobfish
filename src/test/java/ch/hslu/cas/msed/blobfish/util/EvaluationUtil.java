@@ -1,8 +1,7 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import ch.hslu.cas.msed.blobfish.eval.CompositeEvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.RandomEval;
+import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 
@@ -13,11 +12,10 @@ import java.util.stream.Collectors;
 public class EvaluationUtil {
 
     private static final List<Class> EVAL_CLASSES_TO_IGNORE = List.of(
-            CompositeEvalStrategy.class,
-            RandomEval.class
+            CompositeEvaluationStrategy.class
     );
 
-    public record EvalConfig(EvalStrategy strategy, String description) {
+    public record EvalConfig(EvaluationStrategy strategy, String description) {
     }
 
     @SuppressWarnings("unchecked")
@@ -27,14 +25,14 @@ public class EvaluationUtil {
                 .acceptPackages("ch.hslu.cas.msed.blobfish")
                 .scan()) {
 
-            List<EvalStrategy> evalClasses = (List<EvalStrategy>) scan
-                    .getClassesImplementing(EvalStrategy.class)
+            List<EvaluationStrategy> evalClasses = (List<EvaluationStrategy>) scan
+                    .getClassesImplementing(EvaluationStrategy.class)
                     .stream()
                     .filter(classInfo -> !classInfo.isInterface())
                     .filter(classInfo -> !EVAL_CLASSES_TO_IGNORE.contains(classInfo.loadClass()))
                     .map(classInfo -> {
                         try {
-                            Class<? extends EvalStrategy> clazz = classInfo.loadClass(EvalStrategy.class);
+                            Class<? extends EvaluationStrategy> clazz = classInfo.loadClass(EvaluationStrategy.class);
                             return clazz.getDeclaredConstructor().newInstance();
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -49,7 +47,7 @@ public class EvaluationUtil {
         }
     }
 
-    private static EvalConfig mapToEvalConfig(List<EvalStrategy> evalStrategies) {
+    private static EvalConfig mapToEvalConfig(List<EvaluationStrategy> evalStrategies) {
         if (evalStrategies.isEmpty()) {
             return null;
         }
@@ -60,10 +58,10 @@ public class EvaluationUtil {
             return new EvalConfig(strategy, name);
         }
 
-        var strategyCombined = new CompositeEvalStrategy.Builder();
+        var strategyCombined = new CompositeEvaluationStrategy.Builder();
         evalStrategies.forEach(strategyCombined::add);
         var strategyDescription = evalStrategies.stream()
-                .map(EvalStrategy::getClass)
+                .map(EvaluationStrategy::getClass)
                 .map(Class::getSimpleName)
                 .collect(Collectors.joining(" & "));
         return new EvalConfig(strategyCombined.build(),  strategyDescription);

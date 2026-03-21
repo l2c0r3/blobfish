@@ -1,10 +1,10 @@
 package ch.hslu.cas.msed.blobfish;
 
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.CompositeEvalStrategy;
-import ch.hslu.cas.msed.blobfish.eval.MateAwareEval;
-import ch.hslu.cas.msed.blobfish.player.bot.PathEvaluation;
-import ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlphaBetaSequential;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.eval.MateAwareEvaluation;
+import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
+import ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxAlphaBetaSequentialWithCache;
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
@@ -122,8 +122,8 @@ public class QualityTest {
     void compareEvals() {
         // Arrange
         var evalStrategies = EvaluationUtil.getAllEvalStrategiesCombinations().stream()
-                .filter(e -> CompositeEvalStrategy.class.equals(e.strategy().getClass()))
-                .filter(e -> ((CompositeEvalStrategy) e.strategy()).getStrategies().contains(MateAwareEval.class))
+                .filter(e -> CompositeEvaluationStrategy.class.equals(e.strategy().getClass()))
+                .filter(e -> ((CompositeEvaluationStrategy) e.strategy()).getStrategies().contains(MateAwareEvaluation.class))
                 .toList();
         List<QualityTestResult> qualityTestResults = new ArrayList<>();
         stockFishService.setMultiPV(pointDistribution.length);
@@ -173,7 +173,7 @@ public class QualityTest {
 
     private PathEvaluation getBestPathWithEvalStrategy(ChessBoard chessBoard, EvalConfig evalConfig, int depthToCalc) {
         var playerColor = chessBoard.getSideToMove();
-        var bot = new MiniMaxAlphaBetaSequential(depthToCalc, evalConfig.strategy(), playerColor);
+        var bot = new MiniMaxAlphaBetaSequentialWithCache(depthToCalc, evalConfig.strategy(), playerColor);
         return bot.getBestPath(chessBoard);
     }
 
