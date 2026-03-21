@@ -1,25 +1,24 @@
 package ch.hslu.cas.msed.blobfish.player.bot;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import lombok.Getter;
 
 @Getter
 public abstract class BotAlgorithm {
 
     private final int calculationDepth;
-    private final EvalStrategy evalStrategy;
+    private final EvaluationStrategy evaluationStrategy;
     private final PlayerColor ownPlayerColor;
 
-    public BotAlgorithm(final int calculationDepth, final EvalStrategy evalStrategy, final PlayerColor ownPlayerColor) {
+    public BotAlgorithm(final int calculationDepth, final EvaluationStrategy evaluationStrategy, final PlayerColor ownPlayerColor) {
         if (calculationDepth < 0) throw new IllegalArgumentException("calculationDepth cannot be negative");
         this.calculationDepth = calculationDepth;
-        this.evalStrategy = evalStrategy;
+        this.evaluationStrategy = evaluationStrategy;
         this.ownPlayerColor = ownPlayerColor;
     }
-
-    public abstract FirstMoveEvaluation getNextBestMove(final ChessBoard chessBoard);
 
     public abstract PathEvaluation getBestPath(final ChessBoard chessBoard);
 

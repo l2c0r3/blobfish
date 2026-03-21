@@ -1,9 +1,9 @@
 package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.board.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvalStrategy;
-import ch.hslu.cas.msed.blobfish.game.providers.TestBotOneProvider;
+import ch.hslu.cas.msed.blobfish.base.ChessBoard;
+import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.game.provider.TestBotOneProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,33 +25,33 @@ class BotPlayerFactoryTest {
     void create_success() {
         var expectedBotPlayerClass = TestBotOneProvider.TestBotOne.class;
 
-        var botPlayer = BotPlayerFactory.create("test-bot-one", "test-algo-one", 1, new TestEvalStrategy(), PlayerColor.WHITE);
+        var botPlayer = BotPlayerFactory.create("test-bot-one", "test-algo-one", 1, new TestEvaluationStrategy(), PlayerColor.WHITE);
 
         Assertions.assertEquals(expectedBotPlayerClass, botPlayer.getClass());
     }
 
     @Test
     void create_wrong_bot_name() {
-        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot", "test-algo-one", 1, new TestEvalStrategy(), PlayerColor.WHITE));
+        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot", "test-algo-one", 1, new TestEvaluationStrategy(), PlayerColor.WHITE));
 
         Assertions.assertEquals("Unknown bot player: test-bot", thrown.getMessage());
     }
 
     @Test
     void create_wrong_algo_name() {
-        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot-one", "test-algo", 1, new TestEvalStrategy(), PlayerColor.WHITE));
+        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot-one", "test-algo", 1, new TestEvaluationStrategy(), PlayerColor.WHITE));
 
         Assertions.assertEquals("Unknown algorithm: test-algo", thrown.getMessage());
     }
 
     @Test
     void create_wrong_combination() {
-        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot-one", "test-algo-two", 1, new TestEvalStrategy(), PlayerColor.WHITE));
+        var thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> BotPlayerFactory.create("test-bot-one", "test-algo-two", 1, new TestEvaluationStrategy(), PlayerColor.WHITE));
 
         Assertions.assertEquals("Unsupported bot player + algorithm combination", thrown.getMessage());
     }
 
-    private static class TestEvalStrategy implements EvalStrategy {
+    private static class TestEvaluationStrategy implements EvaluationStrategy {
 
         @Override
         public int getEvaluation(ChessBoard board) {

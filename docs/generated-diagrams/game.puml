@@ -1,11 +1,11 @@
 @startuml
 
 class ch.hslu.cas.msed.blobfish.game.BotPlayerFactory {
-	{method}  {static} -botSupportsAlgorithm ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider , paramClass2 : Class ) : boolean
-	{method}  {static} -castSafely ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider ) : ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider
-	{method}  {static} -create ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramBotAlgorithm3 : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
-	{method}  {static} +create ( paramString1 : String , paramString2 : String , paramint3 : int , paramEvalStrategy4 : ch.hslu.cas.msed.blobfish.eval.EvalStrategy , paramPlayerColor5 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
-	{method}  {static} -getAlgorithmProviderReturnType ( paramBotAlgorithmProvider1 : ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider ) : Class
+	{method}  {static} -botSupportsAlgorithm ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider , paramClass2 : Class ) : boolean
+	{method}  {static} -castSafely ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider ) : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider
+	{method}  {static} -create ( paramBotPlayerProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramBotAlgorithm3 : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method}  {static} +create ( paramString1 : String , paramString2 : String , paramint3 : int , paramEvaluationStrategy4 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor5 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method}  {static} -getAlgorithmProviderReturnType ( paramBotAlgorithmProvider1 : ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider ) : Class
 	{method}  {static} +getViableBotNames () : java.util.List
 }
 
@@ -45,61 +45,102 @@ class ch.hslu.cas.msed.blobfish.game.OutputWriter {
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException {
+class ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException {
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.exceptions.MatchAbortedException {
+class ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException {
 }
 
 
-interface ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider {
-	{method}  {abstract} +create ( paramint1 : int , paramEvalStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvalStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm
+interface ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider {
+	{method}  {abstract} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm
 	{method}  {abstract} +getAlgorithmName () : String
 }
 
 
-interface ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider {
+interface ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider {
 	{method}  {abstract} +algorithmType () : Class
 	{method}  {abstract} +create ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramBotAlgorithm2 : ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method}  {abstract} +getBotName () : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.providers.MiniMaxBotPlayerProvider {
+class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxBotPlayerProvider {
 	{field} {static} -BOT_NAME : String
 	{method} +algorithmType () : Class
-	{method} +create ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMiniMaxAlgo2 : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxAlgo ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method} +create ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor , paramMiniMaxAlgo2 : ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method} +getBotName () : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.providers.MiniMaxParallelAlgorithmProvider {
+class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxParallelAlgorithmProvider {
 	{field} {static} -ALGORITHM_NAME : String
-	{method} +create ( paramint1 : int , paramEvalStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvalStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxParallel
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxParallel
 	{method} +getAlgorithmName () : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.providers.MiniMaxSequentialAlgorithmProvider {
+class ch.hslu.cas.msed.blobfish.game.provider.MiniMaxSequentialAlgorithmProvider {
 	{field} {static} -ALGORITHM_NAME : String
-	{method} +create ( paramint1 : int , paramEvalStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvalStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.minimax.MiniMaxSequential
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxSequential
 	{method} +getAlgorithmName () : String
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.screen.HomeScreen {
+class ch.hslu.cas.msed.blobfish.game.ui.board.AlphanumericBorderFieldRenderer {
+	{field} {static} +BG_COLOR : String
+	{field} {static} +FG_COLOR : String
+	{field} {static} +PLACEHOLDER_CHARACTER : char
+	{field} {static} +PLACEHOLDER_COLOR : String
+	{field} {static} +RESET : String
+	{field} {static} +ROW_STRING_WHITE : String
+	{method} +renderColumnField ( paramint1 : int ) : String
+	{method}  {static} -renderEmptyField () : String
+	{method} +renderRow ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+	{method}  {static} -renderRowString ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer {
+	{method} ~render ( paramUiBoard1 : ch.hslu.cas.msed.blobfish.game.ui.board.UiBoard , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
+interface ch.hslu.cas.msed.blobfish.game.ui.board.BorderFieldRenderer {
+	{method}  {abstract} +renderColumnField ( paramint1 : int ) : String
+	{method}  {abstract} +renderRow ( paramPlayerColor1 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer {
+	{field} -parser : ch.hslu.cas.msed.blobfish.game.ui.board.FenUiBoardParser
+	{method} +render ( paramString1 : String , paramPlayerColor2 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : String
+}
+
+
+interface ch.hslu.cas.msed.blobfish.game.ui.board.FieldRenderer {
+	{method}  {abstract} +render ( paramUiField1 : ch.hslu.cas.msed.blobfish.game.ui.board.UiField ) : String
+}
+
+
+enum ch.hslu.cas.msed.blobfish.game.ui.board.SquareColor {
+	{field} +DARK
+	{field} +LIGHT
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.ui.screen.HomeScreen {
 	{field} {static} -CALC_DEPTH : int
-	{method} -getBotPlayer ( paramint1 : int , paramEvalStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvalStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
+	{method} -getBotPlayer ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.player.bot.BotPlayer
 	{method} +getMatchConfig () : ch.hslu.cas.msed.blobfish.game.MatchConfig
 	{method} -getPlayerColor () : ch.hslu.cas.msed.blobfish.base.PlayerColor
 }
 
 
-class ch.hslu.cas.msed.blobfish.game.screen.MatchScreen {
+class ch.hslu.cas.msed.blobfish.game.ui.screen.MatchScreen {
 	{field} -black : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-	{field} -chessBoardRenderer : ch.hslu.cas.msed.blobfish.board.ui.ChessBoardRenderer
-	{field} -chessboard : ch.hslu.cas.msed.blobfish.board.ChessBoard
+	{field} -chessboard : ch.hslu.cas.msed.blobfish.base.ChessBoard
 	{field} -currentPlayer : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 	{field} -white : ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 	{method} -getNextMove () : String
@@ -112,14 +153,19 @@ class ch.hslu.cas.msed.blobfish.game.screen.MatchScreen {
 
 
 
-ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider : ALGORITHMS
-ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider : BOT_PLAYERS
-ch.hslu.cas.msed.blobfish.game.providers.MiniMaxBotPlayerProvider ..|>  ch.hslu.cas.msed.blobfish.game.providers.BotPlayerProvider
-ch.hslu.cas.msed.blobfish.game.providers.MiniMaxParallelAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider
-ch.hslu.cas.msed.blobfish.game.providers.MiniMaxSequentialAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.providers.BotAlgorithmProvider
-ch.hslu.cas.msed.blobfish.game.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
-ch.hslu.cas.msed.blobfish.game.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
-ch.hslu.cas.msed.blobfish.game.screen.MatchScreen *--  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
+ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider : ALGORITHMS
+ch.hslu.cas.msed.blobfish.game.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider : BOT_PLAYERS
+ch.hslu.cas.msed.blobfish.game.provider.MiniMaxBotPlayerProvider ..|>  ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider
+ch.hslu.cas.msed.blobfish.game.provider.MiniMaxParallelAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.provider.MiniMaxSequentialAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.ui.board.AlphanumericBorderFieldRenderer ..|>  ch.hslu.cas.msed.blobfish.game.ui.board.BorderFieldRenderer
+ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer *--  ch.hslu.cas.msed.blobfish.game.ui.board.BorderFieldRenderer : borderFieldRenderer
+ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer *--  ch.hslu.cas.msed.blobfish.game.ui.board.FieldRenderer : fieldRenderer
+ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer *--  ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer : boardRenderer
+ch.hslu.cas.msed.blobfish.game.ui.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
+ch.hslu.cas.msed.blobfish.game.ui.screen.HomeScreen *--  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
+ch.hslu.cas.msed.blobfish.game.ui.screen.MatchScreen *--  ch.hslu.cas.msed.blobfish.game.OutputWriter : writer
+ch.hslu.cas.msed.blobfish.game.ui.screen.MatchScreen *--  ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer : chessBoardRenderer
 
 
 @enduml
