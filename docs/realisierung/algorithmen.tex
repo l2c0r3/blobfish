@@ -24,12 +24,12 @@ Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer Zugkombination nach 
 \end{figure}
 
 \lstinputlisting[
-    firstline=26,
-    lastline=55,
-    firstnumber=26,
+    firstline=28,
+    lastline=57,
+    firstnumber=1,
     caption={Minimax sequenziell},
     label={lst:minimax-sequenziell}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxSequential.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxSequential.java}
 
 \subsection{Minimax parallel}
 \label{subsec:real-minimax-parallel}
@@ -52,7 +52,7 @@ Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind un
     firstnumber=12,
     caption={Minimax ForkJoin Task},
     label={lst:minimax-forkjoin-task}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxRecursiveTask.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
 
 \lstinputlisting[
     firstline=34,
@@ -60,4 +60,4 @@ Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind un
     firstnumber=34,
     caption={Minimax parallel Task-Aufruf},
     label={lst:minimax-parallel}
-]{../src/main/java/ch/hslu/cas/msed/blobfish/player/bot/minimax/MiniMaxParallel.java}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxParallel.java}

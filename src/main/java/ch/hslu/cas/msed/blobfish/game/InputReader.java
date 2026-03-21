@@ -1,6 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game;
 
-import ch.hslu.cas.msed.blobfish.game.exceptions.GameAbortedException;
+import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.reader.Parser;
