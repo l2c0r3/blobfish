@@ -1,6 +1,6 @@
 \section{Zugqualität}
-Mit der Zugqualität möchten wir herausfinden, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
-Um \enquote{das Beste} zu definieren, verwenden wir Stockfish 18 als Referenzengine. Stockfish 18 ist die neuste Version von Stockfish (Stand: März 2026). \\
+Mit der Zugqualität wird festgestellt, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
+Um \enquote{das Beste} zu definieren, wird Stockfish 18 als Referenzengine verwendet. Stockfish 18 ist die neuste Version von Stockfish (Stand: März 2026). \\
 Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe \ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
@@ -36,13 +36,13 @@ berücksichtigt wird. Ansonsten werden werden viele \enquote{unsinnige} Züge vo
 eine noch höhere Zahl gewählt, in der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
 
 Ebenfalls wird aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
-\textit{MateAwareEval} sind. Die Funktion \textit{MateAwareEval} stellt sicher, dass Züge, welche zum Schachmatt führen,
+\textit{MateAwareEvaluation} sind. Die Funktion \textit{MateAwareEvaluation} stellt sicher, dass Züge, welche zum Schachmatt führen,
 gewinnen. Falls jedoch innerhalb der berechneten Tiefe der Gegner nicht Schachmatt gesetzt werden kann, wird das Ergebnis
-der anderen Evaluation berücksicht oder, falls die \textit{MateAwareEval} alleine betrachtet wird, wird der erste berechneten
+der anderen Evaluation berücksicht oder, falls die \textit{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechneten
 Schachzug vorgeschlagen. \\
-Bei einer vorherigen Testausführung wurde gesehen, dass Evaluationen Evaluationen mit und ohne \textit{MateAwareEval}
+Bei einer vorherigen Testausführung wurde gesehen, dass Evaluationen Evaluationen mit und ohne \textit{MateAwareEvaluation}
 einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtichtshalber werden
-daher Evaluationen ohne \textit{MateAwareEval} ignoriert.
+daher Evaluationen ohne \textit{MateAwareEvaluation} ignoriert.
 
 \subsection{Testresultate}
 
@@ -52,14 +52,14 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{evaluation/report/movequality/DynamicPlayInitiativeSacrifices}
-    \caption{Testresultat Zugqualität - Dynamic play / initiative / sacrifices}
+    \caption{Testresultat Zugqualität - Dynamic play}
     \label{fig:resultatZugQualityDynamicPlay}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{evaluation/report/movequality/EndgamesTechniqueZugzwangFortress}
-    \caption{Testresultat Zugqualität - Endgames / technique / zugzwang / fortress}
+    \caption{Testresultat Zugqualität - Endgames}
     \label{fig:resultatZugEndgame}
 \end{figure}
 
@@ -67,7 +67,7 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{evaluation/report/movequality/PositionalPlayProphylaxis}
-    \caption{Testresultat Zugqualität - Positional play / prophylaxis}
+    \caption{Testresultat Zugqualität - Positional play}
     \label{fig:resultatZugQualityPositonalPlay}
 \end{figure}
 
@@ -87,23 +87,26 @@ Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. 
 zwischen den Evaluationen stimmt. \\
 Ebenfalls positiv zu sehen ist, dass anhand von unseren 3 Evaluationen bereits 72\% der Punkte erreicht werden konnten.
 
-\textit{MaterialEval} wurde Zweitplatzierter, was darauf hindeutet, dass die ausgewählten Testpositionen einen Fokus auf
+\textit{MaterialEvaluation} wurde Zweitplatzierter, was darauf hindeutet, dass die ausgewählten Testpositionen einen Fokus auf
 das Schlagen der gegnerischen Figuren haben. \\
-Die Finesse, welche die \textit{PieceSquareEval} jedoch nun hinzufügt, verbessert die Evaluation um ca. 38\%. So ist \textit{PieceSquareEval}
-nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames / technique / zugzwang / fortress}
-zusehen ist, wo \textit{PieceSquareEval} die \textit{MaterialEval} übertrumpft.
+Die Finesse, welche die \textit{PieceSquareEvaluation} jedoch nun hinzufügt, verbessert die Evaluation um ca. 38\%. So ist \textit{PieceSquareEvaluation}
+nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames}
+zusehen ist, wo \textit{PieceSquareEvaluation} die \textit{MaterialEvaluation} übertrumpft.
 
-Bei einem Blick auf das Diagramm von \textit{Dynamic play / initiative / sacrifices} fällt überraschenderweise auf, dass hier \textit{MaterialEval \& PieceSquareEval}
-weniger Punkte gesammelt hat als die \textit{MaterialEval}. So wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
-untersucht. Auf diesen können Positionen mit einer Engine untersucht werden. Die Ergebnisse der Enginen werden visuell
+Bei einem Blick auf das Diagramm von \textit{Dynamic play} fällt überraschenderweise auf, dass hier \textit{MaterialEvaluation \& PieceSquareEvaluation}
+weniger Punkte gesammelt hat als die \textit{MaterialEvaluation}. So wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
+untersucht. Auf diesen können Positionen mit einer Engine untersucht werden. Die Ergebnisse der Engine werden visuell
 mittels Pfeilen angezeigt. Auf dieser Weise konnten mittels Stockfish 18 und einer Tiefe von 20 die Ergebnisse gezielter
 untersucht werden. \\
+
+
+
 So ist un
 
 
 
 
-So fällt auf, dass regelmässig innerhalb der Pfade von \textit{MaterialEval \& PieceSquareEval} Top Züge gefunden wurde. Besonders
+So fällt auf, dass regelmässig innerhalb der Pfade von \textit{MaterialEvaluation \& PieceSquareEvaluation} Top Züge gefunden wurde. Besonders
 bei \textit{r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1} beispielsweise sind die ersten 4 Züge die Top Moves.
 
 
