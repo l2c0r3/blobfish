@@ -1,0 +1,15 @@
+@startchart
+
+title
+Positional play
+end title
+
+h-axis [ Evaluation functions ]
+v-axis "Points won" 0 --> 50.0 spacing 10.0 grid
+
+bar "MateAwareEvaluation & MaterialEvaluation"[ 12.0 ] #1F77B4
+bar "MateAwareEvaluation & MaterialEvaluation & PieceSquareEvaluation"[ 24.0 ] #FF7F0E
+bar "MateAwareEvaluation & PieceSquareEvaluation"[ 1.0E-5 ] #2CA02C
+
+legend right
+@endchart

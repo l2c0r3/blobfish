@@ -16,14 +16,14 @@
         >{\raggedright\arraybackslash}p{0.22\textwidth}|
         >{\centering\arraybackslash}p{0.30\textwidth}|
         >{\centering\arraybackslash}p{0.05\textwidth}|}
-\caption{Quality Test von Dynamic play / initiative / sacrifices} \\
+\caption{Quality Test von Dynamic play} \\
 \hline
-\multicolumn{5}{|c|}{\textbf{Dynamic play / initiative / sacrifices}} \\ \hline
+\multicolumn{5}{|c|}{\textbf{Dynamic play}} \\ \hline
 \textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
 \endfirsthead
 
 \hline
-\multicolumn{5}{|c|}{\textbf{Dynamic play / initiative / sacrifices} -- Fortsetzung} \\ \hline
+\multicolumn{5}{|c|}{\textbf{Dynamic play} -- Fortsetzung} \\ \hline
 \textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
 \endhead
 
@@ -45,11 +45,11 @@
         1. d4c5\\2. g2g4\\3. a2a3\\4. f3d2\\5. h2h3
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & d4c5, d6c5, a2a3, c5a3, b2a3, a5a3, d1d7, f6d7 & 8 \\
+& MateAwareEvaluation \& MaterialEvaluation & d4c5, d6c5, a2a3, c5a3, b2a3, a5a3, d1d7, f6d7 & 8 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & c1a1, c5d4, e3d4, c6c5, c3e4, f6e4, c2e4, c5d4 & 0 \\
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c1a1, c5d4, e3d4, c6c5, c3e4, f6e4, c2e4, c5d4 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & c2h7, f6h7, f3e5, c5d4, e3d4, h7f6, c3e4, d7e5 & 0 \\
+&& MateAwareEvaluation \& PieceSquareEvaluation & c2h7, f6h7, f3e5, c5d4, e3d4, h7f6, c3e4, d7e5 & 0 \\
 \hline
 \multirow{3}{*}{%
     \parbox[t]{0.18\textwidth}{\centering\footnotesize
@@ -62,11 +62,11 @@
         1. a2a4\\2. a2a3\\3. b2b3\\4. c3e2\\5. h2h3
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & c1d2, a7a6, g2g4, f6g4, c3b1, g4e3, d2e3, a5a2 & 0 \\
+& MateAwareEvaluation \& MaterialEvaluation & c1d2, a7a6, g2g4, f6g4, c3b1, g4e3, d2e3, a5a2 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & c1d2, a5b6, f3g5, g7g6, c3a4, b6c7, h2h3, e6e5 & 0 \\
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c1d2, a5b6, f3g5, g7g6, c3a4, b6c7, h2h3, e6e5 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & d3h7, g8h8, h7g8, a5c3, c2h7, f6h7, g8f7, h7f6 & 0 \\
+&& MateAwareEvaluation \& PieceSquareEvaluation & d3h7, g8h8, h7g8, a5c3, c2h7, f6h7, g8f7, h7f6 & 0 \\
 \hline
 \multirow{3}{*}{%
     \parbox[t]{0.18\textwidth}{\centering\footnotesize
@@ -79,11 +79,11 @@
         1. f6f3\\2. f6h6\\3. f6e7\\4. f6h4\\5. c6d4
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & f6f3, g2f3, c6d4, a2a3, d4c2, a1b1, d6d5, e4d5 & 8 \\
+& MateAwareEvaluation \& MaterialEvaluation & f6f3, g2f3, c6d4, a2a3, d4c2, a1b1, d6d5, e4d5 & 8 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & f6f3, g2f3, c6d4, c3b5, d4f3, g1h1, d6d5, e4d5 & 8 \\
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & f6f3, g2f3, c6d4, c3b5, d4f3, g1h1, d6d5, e4d5 & 8 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & f6f3, g2f3, c6d4, f3f4, a8d8, c4f7, g8f7, f4e5 & 8 \\
+&& MateAwareEvaluation \& PieceSquareEvaluation & f6f3, g2f3, c6d4, f3f4, a8d8, c4f7, g8f7, f4e5 & 8 \\
 \hline
 \multirow{3}{*}{%
     \parbox[t]{0.18\textwidth}{\centering\footnotesize
@@ -96,11 +96,11 @@
         1. a7a6\\2. c8g4\\3. g8h8\\4. h7h6\\5. c6a5
     \end{tabular}
 }
-& MateAwareEval \& MaterialEval & a7a5, a2a3, b7b5, c3b5, c8g4, b2b3, g4f3, g2f3 & 0 \\
+& MateAwareEvaluation \& MaterialEvaluation & a7a5, a2a3, b7b5, c3b5, c8g4, b2b3, g4f3, g2f3 & 0 \\
 \cline{3-5}
-&& MateAwareEval \& MaterialEval \& PieceSquareEval & c8g4, h2h3, g4f3, d1f3, c6d4, c4f7, f8f7, f3f6 & 6 \\
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c8g4, h2h3, g4f3, d1f3, c6d4, c4f7, f8f7, f3f6 & 6 \\
 \cline{3-5}
-&& MateAwareEval \& PieceSquareEval & d6d5, f3e5, c6e5, c1f4, c8f5, f4e5, f6e4, d3e4 & 0 \\
+&& MateAwareEvaluation \& PieceSquareEvaluation & d6d5, f3e5, c6e5, c1f4, c8f5, f4e5, f6e4, d3e4 & 0 \\
 \hline
 \end{longtable}
 \end{document}

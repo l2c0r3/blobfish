@@ -1,15 +1,15 @@
 @startchart
 
 title
-Tactics
+Dynamic play
 end title
 
 h-axis [ Evaluation functions ]
 v-axis "Points won" 0 --> 20.0 spacing 5.0 grid
 
-bar "MateAwareEvaluation & MaterialEvaluation"[ 8.0 ] #1F77B4
+bar "MateAwareEvaluation & MaterialEvaluation"[ 16.0 ] #1F77B4
 bar "MateAwareEvaluation & MaterialEvaluation & PieceSquareEvaluation"[ 14.0 ] #FF7F0E
-bar "MateAwareEvaluation & PieceSquareEvaluation"[ 2.0 ] #2CA02C
+bar "MateAwareEvaluation & PieceSquareEvaluation"[ 8.0 ] #2CA02C
 
 legend right
 @endchart
