@@ -50,9 +50,9 @@ public class QualityTest {
     @Getter
     public enum QualityTestCategory {
         TACTICS("Tactics"),
-        DYNAMIC_PLAY("Dynamic play / initiative / sacrifices"),
-        POSITIONAL_PLAY("Positional play / prophylaxis"),
-        ENDGAMES_TECHNIQUE("Endgames / technique / zugzwang / fortress");
+        DYNAMIC_PLAY("Dynamic play"),
+        POSITIONAL_PLAY("Positional play"),
+        ENDGAMES("Endgames");
         private final String description;
 
         QualityTestCategory(String description) {
@@ -87,7 +87,7 @@ public class QualityTest {
                     // Best long-term plan.
                     "r2q1rk1/pp2bppp/2npbn2/2p1p3/2P1P3/2NP1N2/PP2BPPP/R1BQ1RK1 w - - 0 1"
             )),
-            Map.entry(QualityTestCategory.ENDGAMES_TECHNIQUE, List.of(
+            Map.entry(QualityTestCategory.ENDGAMES, List.of(
                     // Direct mate attack.
                     "6k1/5ppp/5r2/8/8/5Q2/5PPP/6K1 w - - 0 1",
                     // Basic opposition endgame.
