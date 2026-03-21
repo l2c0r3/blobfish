@@ -10,7 +10,7 @@ Stockfish von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}
 Hierfür wird \href{https://testcontainers.com/}{Testcontainers} verwendet. Damit ist es möglich, während der
 Testausführung beliebige Docker-Container zu starten und diese nach Abschluss der Tests wieder zu stoppen.
 
-Da Stockfish selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht, wurde mithilfe von
+Da Stockfish selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht hat, wurde mithilfe von
 (\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt. Daraus können wir
 ein Image bauen und einen Container starten.
 
@@ -25,12 +25,12 @@ Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der
 
 \subsection{\gls{glos:JUnit}-Extension}
 
-Um möglichst einfach innerhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, haben wir
-uns entschieden, eine \gls{glos:JUnit}-Extension zu schreiben. Dies ermöglicht uns beispielsweise über Callbacks, Code
+Um möglichst einfach innerhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, wurde
+eine \gls{glos:JUnit}-Extension entwickelt. Eine Extension ermöglicht beispielsweise über Callbacks, Code
 vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
 Testklasse injected werden (\cite{junitExtensionRegistration}).
 
-So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche unsere entwickelte Extension verwendet:
+So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche die entwickelte Extension verwendet:
 
 \lstinputlisting[
     firstline=32,
@@ -66,7 +66,7 @@ erreicht werden kann.
 \textit{EvaluationUtil} enthält eine Methode, welche alle möglichen Evaluationmöglichkeiten zurückgibt. \\
 Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwendet. Diese Java-Bibliothek ermöglicht es
 unter anderem packages zu scannen. In unserem Fall wird es dafür genutzt, um alle Klassen herauszufinden, welche
-das Interface \textit{EvalStrategy} implementieren. Anschliessend haben wir jeweils ein Objekt davon initialisiert.
+das Interface \textit{EvalStrategy} implementieren. Anschliessend wird jeweils ein Objekt davon initialisiert.
 
 Somit wird noch eine Funktion benötigt, die eine Liste von Kombinationen von unseren Evaluationsobjekten zurückgibt.
 Genauer genommen wird die \href{https://de.wikipedia.org/wiki/Potenzmenge}{Potenzmenge} als Basis benötigt.

@@ -9,14 +9,14 @@ Zunächst wurde mit einer KI Kategorien und Positionen generiert. Diese wurden a
 kritisch hinterfragt. Daraus ergaben sich 18 Positionen, die in 4 Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
-Im Test wird für jede Position mit unserer Evaluationsfunktion beziehungsweise einer Kombination mehrerer Evaluationsfunktionen
+Im Test wird für jede Position mit der eigenen Evaluationsfunktion, beziehungsweise einer Kombination mehrerer Evaluationsfunktionen,
 der beste Zug bei einer Suchtiefe von 8 berechnet. \\
-Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch 5 bestmöglichen Züge. Dies kann mit dem Befehl \textit{MultiPV}
+Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch die 4 besten Alternativen. Dies kann mit dem Befehl \textit{MultiPV}
 erreicht werden (\cite{stockfishMultiPv}).
 
-Anschliessend wird verglichen, ob eine unserer Evaluationsfunktionen den besten, zweitbesten oder allgemein einen der
-von Stockfish ermittelten Top-Züge findet. Auf Grundlage eines Punktesystems werden dafür unterschiedlich viele Punkte
-vergeben: Für den besten Zug werden 8 Punkte vergeben, für den zweitbesten 6 usw.:
+Anschliessend wird verglichen, ob eine unserer Evaluationsfunktionen einer von Stockfish der ermittelten Top-Züge findet.
+Auf Grundlage eines Punktesystems werden dafür unterschiedlich viele Punkte vergeben: Für den besten Zug werden 8 Punkte
+vergeben, für den zweitbesten 6 usw.:
 
 \lstinputlisting[
     firstline=110,
@@ -33,14 +33,14 @@ Anhand der erreichten Punktzahl und der gewählten Züge können die Evaluations
 Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Bei der Analyse der Testresultate wurde bemerkt, dass eine
 gerade Zahl als Tiefe gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls
 berücksichtigt wird. Ansonsten werden werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
-eine noch höhere Zahl gewählt, in der Hoffnung, ein noch besseres Ergebnis erziehlen zu können.
+eine noch höhere Tiefe zu wählen, in der Hoffnung, das ein noch besseren Zug gefunden wird.
 
 Ebenfalls wird aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
 \textit{MateAwareEvaluation} sind. Die Funktion \textit{MateAwareEvaluation} stellt sicher, dass Züge, welche zum Schachmatt führen,
 gewinnen. Falls jedoch innerhalb der berechneten Tiefe der Gegner nicht Schachmatt gesetzt werden kann, wird das Ergebnis
 der anderen Evaluation berücksicht oder, falls die \textit{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechneten
 Schachzug vorgeschlagen. \\
-Bei einer vorherigen Testausführung wurde gesehen, dass Evaluationen Evaluationen mit und ohne \textit{MateAwareEvaluation}
+Bei einer vorherigen Testausführung wurde beobachtet, dass Evaluationen mit und ohne \textit{MateAwareEvaluation}
 einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtichtshalber werden
 daher Evaluationen ohne \textit{MateAwareEvaluation} ignoriert.
 
@@ -83,9 +83,9 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
 
 \subsection{Intepretation}
 
-Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. Hierfür spricht, dass die Balance
+Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. Daraus lässt sich ableiten, dass die Balance
 zwischen den Evaluationen stimmt. \\
-Ebenfalls positiv zu sehen ist, dass anhand von unseren 3 Evaluationen bereits 72\% der Punkte erreicht werden konnten.
+Ebenfalls positiv zu sehen ist, dass anhand von unseren 3 Evaluationen bereits 72\% der möglich zu erreichenden Punkte erreicht werden konnten.
 
 \textit{MaterialEvaluation} wurde Zweitplatzierter, was darauf hindeutet, dass die ausgewählten Testpositionen einen Fokus auf
 das Schlagen der gegnerischen Figuren haben. \\
@@ -94,28 +94,34 @@ nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames}
 zusehen ist, wo \textit{PieceSquareEvaluation} die \textit{MaterialEvaluation} übertrumpft.
 
 Bei einem Blick auf das Diagramm von \textit{Dynamic play} fällt überraschenderweise auf, dass hier \textit{MaterialEvaluation \& PieceSquareEvaluation}
-weniger Punkte gesammelt hat als die \textit{MaterialEvaluation}. So wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
-untersucht. Auf diesen können Positionen mit einer Engine untersucht werden. Die Ergebnisse der Engine werden visuell
-mittels Pfeilen angezeigt. Auf dieser Weise konnten mittels Stockfish 18 und einer Tiefe von 20 die Ergebnisse gezielter
-untersucht werden. \\
+weniger Punkte als \textit{MaterialEvaluation} gesammelt. Ebenfalls ist es spannend, dass beim \textit{Positional play}
+sowie \textit{Tactics} praktisch keine Punkte von der \textit{PieceSquareEvaluation} erzielt wurde.
 
+Des Weiteren wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
+untersucht. Auf diesem können Positionen mit einer Engine untersucht werden. Die Ergebnisse der Engine werden visuell
+mittels Pfeilen angezeigt. Damit konnten mittels Stockfish 18 und einer Tiefe von 20 die Testergebnisse gezielter
+untersucht werden.
 
+Über die Positionen von \textit{Dynamic play}, wo die \textit{MaterialEvaluation} mehr Punkte gesammelt hat als
+\textit{MaterialEvaluation \& PieceSquareEvaluation}, lässt sich sagen, dass den Unterschied vernachlässigt werden
+kann. Werden die Positionen im Analyseboard mit der Tiefe von 20 berechnet, so werden die von \textit{MaterialEvaluation \& PieceSquareEvaluation}
+in manchen Positionen stärker. Generell verschwinden manche Züge oder andere erscheinen sogar dann erst. \\
+So hätte bei Position \textit{r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/} \\ \textit{PPP2PPP/R1BQ1RK1 b - - 0 1}
+\textit{MaterialEvaluation \& PieceSquareEvaluation} die zwei Punkte Unterschied ausgleichen können, da es hier mehr Punkte
+gewonnen hätte.
 
-So ist un
+Bei der Analyse der einzelnen Pfäden lässt sich gesamthaft sagen, dass häufig einer der Top
+Moves gewählt wurde. So hat beispielsweise bei \textit{r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/ 2NP1Q2/PPP2PPP/R4RK1 b - - 0 1}
+\textit{MaterialEvaluation \& PieceSquareEvaluation} die ersten 4 Top Moves berechnet, was generell die Aussagekraft
+von \textit{MaterialEvaluation \& PieceSquareEvaluation} bestärkt.
 
-
-
-
-So fällt auf, dass regelmässig innerhalb der Pfade von \textit{MaterialEvaluation \& PieceSquareEvaluation} Top Züge gefunden wurde. Besonders
-bei \textit{r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/2NP1Q2/PPP2PPP/R4RK1 b - - 0 1} beispielsweise sind die ersten 4 Züge die Top Moves.
-
-
-
-
-Bei der Betrachtung der einzelnen Positionen sind ebenfalls Schwächen zusehen: \\
-Beispielsweise bei der Position \textit{r2q1rk1/ppp2ppp/2npbn2/3Np3/2B1P3/2N5/PPP2PPP/R1BQ1RK1 w - - 0 1} kann erkennt werden,
-dass die Struktur von den Bauern unserer Schachcomputer nicht berücksichtigt. Hier erkennt Stockfish die
-
-
-- endgames \textit{8/8/8/3k4/8/4K3/4P3/8 w - - 0 1}
-
+Generell lässt sich sagen, dass die eigene Engine als sehr aggressiv empfunden wurde und häufig die Figuren tauschen möchte, was
+zumindest innerhalb der Testpositionen geholfen hat. \\
+Werden die Berechnung mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von Stockfish
+eher \enquote{positional plays} sind - also Züge, welche nicht direkt eine gegnerische Figur schlagen, sondern Züge, welche die
+eigene Position verbessern oder die gegnerische verschlechtern. \\
+Hier kommt die Schwäche von unser Evaluationen zum Vorschein - er kennt diese mit der aktuellen Evaluationen
+schlicht und einfach noch nicht. Hier benötigt es noch weitere Heuristiken wie \href{https://www.chessprogramming.org/Pawn_Structure}{Pawn Structure}
+\href{https://www.chessprogramming.org/Mobility}{Mobility} oder \href{https://www.chessprogramming.org/King_Safety}{King Safety}\\
+Insgesamt lässt sich jedoch sagen, dass von all unseren Evaluationen bislang diejenige die Beste ist, welche
+alle vereint.
