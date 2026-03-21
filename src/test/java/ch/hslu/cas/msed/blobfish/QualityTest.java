@@ -3,8 +3,8 @@ package ch.hslu.cas.msed.blobfish;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEvaluation;
+import ch.hslu.cas.msed.blobfish.minimax.MiniMaxAlphaBetaSequential;
 import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
-import ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxAlphaBetaSequentialWithCache;
 import ch.hslu.cas.msed.blobfish.stockfish.StockFishService;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.InjectStockfish;
 import ch.hslu.cas.msed.blobfish.stockfish.junit.StockfishExtension;
@@ -173,7 +173,7 @@ public class QualityTest {
 
     private PathEvaluation getBestPathWithEvalStrategy(ChessBoard chessBoard, EvalConfig evalConfig, int depthToCalc) {
         var playerColor = chessBoard.getSideToMove();
-        var bot = new MiniMaxAlphaBetaSequentialWithCache(depthToCalc, evalConfig.strategy(), playerColor);
+        var bot = new MiniMaxAlphaBetaSequential(depthToCalc, evalConfig.strategy(), playerColor);
         return bot.getBestPath(chessBoard);
     }
 
