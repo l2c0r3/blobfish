@@ -112,7 +112,6 @@ public class PerformanceTest {
                 Arguments.of(new PositionToTest("8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42", PlayerColor.BLACK, "End game - deflection - short")),
                 Arguments.of(new PositionToTest("5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24", PlayerColor.WHITE, "Mid game - promotion - mate in 2 - short")),
                 Arguments.of(new PositionToTest("Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15", PlayerColor.BLACK, "Mid game - discovery - mate in 2 - short")),
-                // alpha beta pruning
                 Arguments.of(new PositionToTest("rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4", PlayerColor.WHITE, "Simple tactical position")),
                 Arguments.of(new PositionToTest("r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4", PlayerColor.WHITE, "Fork opportunity")),
                 Arguments.of(new PositionToTest("r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8", PlayerColor.WHITE, "Midgame tactical cluster")),
@@ -500,7 +499,7 @@ public class PerformanceTest {
     }
 
     private static File createGlobalMeasurementFile(File rootfile) {
-        var file = new File(rootfile, "performance-gains.csv");
+        var file = new File(rootfile, "measurements.csv");
         try {
             Files.write(file.toPath(), new byte[0], StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
@@ -574,14 +573,14 @@ public class PerformanceTest {
 
         var rowValues = measurements.stream()
                 .filter(e -> e.depth() == commonMaxDepth)
-                .collect(Collectors.groupingBy(TexTableUtil.GlobalMeasurementEntry::strategy))
+                .collect(Collectors.groupingBy(TexTableUtil.GlobalMeasurementEntry::positionFen))
                 .entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        strategyEntry -> algorithms.stream()
+                        positionEntry -> algorithms.stream()
                                 .map(algo ->
                                         MeasurementUtil.calcMedianDuration(
-                                                strategyEntry.getValue().stream()
+                                                positionEntry.getValue().stream()
                                                         .filter(e -> e.algorithm().equals(algo))
                                                         .map(TexTableUtil.GlobalMeasurementEntry::duration)
                                                         .toList()
@@ -602,7 +601,7 @@ public class PerformanceTest {
                 })
                 .toList();
 
-        var chartTitle = "Median calculation time across positions at depth %s".formatted(commonMaxDepth);
+        var chartTitle = "Median calculation time at depth %s".formatted(commonMaxDepth);
         var vAxisTitle = "Calculation time [ms]";
 
         var fileName = "performance-at-depth-%d".formatted(commonMaxDepth);

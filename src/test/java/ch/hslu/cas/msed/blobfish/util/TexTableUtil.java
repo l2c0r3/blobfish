@@ -44,7 +44,7 @@ public class TexTableUtil {
                 .stream()
                 .filter(e -> e.algorithm().equals(referenceAlgorithm))
                 .filter(e -> e.depth() == referenceDepth)
-                .collect(Collectors.groupingBy(GlobalMeasurementEntry::strategy));
+                .collect(Collectors.groupingBy(GlobalMeasurementEntry::positionFen));
 
         var algorithms = measurements
                 .stream()
@@ -57,17 +57,17 @@ public class TexTableUtil {
                 .stream()
                 .filter(e -> !e.algorithm().equals(referenceAlgorithm))
                 .filter(e -> e.depth() == referenceDepth)
-                .collect(Collectors.groupingBy(GlobalMeasurementEntry::strategy))
+                .collect(Collectors.groupingBy(GlobalMeasurementEntry::positionFen))
                 .entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        (strategyEntry) -> {
-                            var referenceMedian = MeasurementUtil.calcMedianDuration(referenceEntries.get(strategyEntry.getKey()).stream()
+                        (positionEntry) -> {
+                            var referenceMedian = MeasurementUtil.calcMedianDuration(referenceEntries.get(positionEntry.getKey()).stream()
                                     .map(GlobalMeasurementEntry::duration)
                                     .toList());
 
 
-                            return strategyEntry.getValue().stream()
+                            return positionEntry.getValue().stream()
                                     .collect(Collectors.groupingBy(GlobalMeasurementEntry::algorithm))
                                     .values().stream()
                                     .map(globalMeasurementEntries -> {
@@ -90,7 +90,7 @@ public class TexTableUtil {
                             .map(v -> Math.round(v * 1_000.0) / 1_000.0)
                             .toList();
 
-                    return createTableRow(e.getKey(), values, isEven);
+                    return createTableRow(insertSpaceAfterNthSlash(e.getKey(), 4), values, isEven);
                 })
                 .collect(Collectors.joining(System.lineSeparator()));
 
@@ -121,8 +121,8 @@ public class TexTableUtil {
                 .map("\\multicolumn{1}{r|}{\\textbf{%s}}"::formatted)
                 .collect(Collectors.joining(" & "));
 
-        var rowTitle = "Strategy";
-        var headerTitle = "Median performance gain multiplier across positions";
+        var rowTitle = "Position";
+        var headerTitle = "Median performance gain multiplier";
         var tableCaption = "Median performance difference from %s at depth %d".formatted(referenceAlgorithm, referenceDepth);
         var tableLabel = tableCaption.toLowerCase().replaceAll(" ", "-");
 
@@ -170,5 +170,18 @@ public class TexTableUtil {
                     \\label{tab:%s}
                 \\end{table}
                 """.formatted(numberOfColumns, numberOfColumns, headerTitle, numberOfColumns + 1, rowTitle, headers, rows, tableCaption, tableLabel);
+    }
+
+    public static String insertSpaceAfterNthSlash(String text, int n) {
+        int index = -1;
+
+        for (int i = 0; i < n; i++) {
+            index = text.indexOf('/', index + 1);
+            if (index == -1) {
+                return text; // fewer than n slashes
+            }
+        }
+
+        return text.substring(0, index + 1) + " " + text.substring(index + 1);
     }
 }
