@@ -1,11 +1,9 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import net.sourceforge.plantuml.GeneratedImage;
-import net.sourceforge.plantuml.SourceFileReader;
+import net.sourceforge.plantuml.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -59,7 +57,7 @@ public class PlantUmlUtil {
     }
 
     public static File createBarChart(String barTitle, List<String> horizontalAxisTitles, String verticalAxisTitle,
-                                      List<ChartBar> bars) {
+                                      List<ChartBar> bars, boolean useDynamicScaling) {
 
         if (bars.size() > diagramColors.size()) {
             throw new IllegalStateException("don't have enough diagram colors to create bar diagram");
@@ -86,6 +84,14 @@ public class PlantUmlUtil {
                 })
                 .collect(Collectors.joining("\n"));
 
+        var allValues = bars.stream().flatMap(b -> b.values().stream()).toList();
+        var maxValue = getMaxValueForChart(allValues);
+        var spacing = getBarChartSpacing(allValues);
+
+        var scaling = useDynamicScaling ? "%s spacing %s grid".formatted(maxValue, spacing) : """
+                6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+                """;
+
         var content = """
                 @startchart
                 skinparam dpi 300
@@ -96,7 +102,7 @@ public class PlantUmlUtil {
                 end title
                 
                 h-axis %s
-                v-axis "%s" 0 --> 6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+                v-axis "%s" 0 --> %s
                 
                 %s
                 
@@ -119,7 +125,7 @@ public class PlantUmlUtil {
                 }
                 </style>
                 @endchart
-                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, barStrings);
+                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, scaling, barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
@@ -130,14 +136,25 @@ public class PlantUmlUtil {
         return tmpFile;
     }
 
-    public static File convertPlantUmlToPng(File plantuml) {
-        try {
-            var reader = new SourceFileReader(false, plantuml);
-            List<GeneratedImage> list = reader.getGeneratedImages();
-            return list.getFirst().getPngFile();
+    public static File convertPlantUmlToSvg(File plantuml) {
+        var tmpFile = FileUtil.createTmpFile("plant2Svg", "svg");
+        try (var reader = new FileReader(plantuml);
+             var writer = new FileWriter(tmpFile)
+        ) {
+            var content = reader.readAllAsString();
+
+            var sourceFileReader = new SourceStringReader(content);
+
+            final ByteArrayOutputStream os = new ByteArrayOutputStream();
+            sourceFileReader.outputImage(os, new FileFormatOption(FileFormat.SVG));
+            os.close();
+
+            final String svg = os.toString(StandardCharsets.UTF_8);
+            writer.write(svg);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return tmpFile;
     }
 
     public static File convertPlantUmlToPng(File plantuml) {

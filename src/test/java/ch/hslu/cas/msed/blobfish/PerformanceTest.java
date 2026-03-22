@@ -79,11 +79,11 @@ public class PerformanceTest {
     }
 
     private static final List<PossibleStrategy> possibleStrategies = List.of(
-            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).build(), "Simple material evaluation"),
-            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).build(), "Mate aware material evaluation"),
-            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new PieceSquareEvaluation()).build(), "Simple piece square evaluation"),
-            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new PieceSquareEvaluation()).build(), "Mate aware piece square evaluation"),
-            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build(), "Piece square material evaluation"),
+//            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).build(), "Simple material evaluation"),
+//            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).build(), "Mate aware material evaluation"),
+//            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new PieceSquareEvaluation()).build(), "Simple piece square evaluation"),
+//            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new PieceSquareEvaluation()).build(), "Mate aware piece square evaluation"),
+//            new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build(), "Piece square material evaluation"),
             new PossibleStrategy(CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build(), "Mate aware piece square material evaluation")
     );
 
@@ -96,7 +96,7 @@ public class PerformanceTest {
     private record ExecutionConfig(int depth) {
     }
 
-    private static final int DEFAULT_CALCULATION_DEPTH = 4;
+    private static final int DEFAULT_CALCULATION_DEPTH = 2;
     private static final Map<ExecutionConfigKey, ExecutionConfig> executionConfig = ImmutableMap.of(
             new ExecutionConfigKey(MiniMaxAlphaBetaSequential.class, Collections.emptyList()), new ExecutionConfig(6),
             new ExecutionConfigKey(MiniMaxAlphaBetaSequentialWithCache.class, Collections.emptyList()), new ExecutionConfig(6)
@@ -142,7 +142,7 @@ public class PerformanceTest {
     @ParameterizedTest
     @MethodSource(value = "positionProvider")
     void measure_startPos(PositionToTest positionToTest) {
-        var numberOfMeasurements = 10;
+        var numberOfMeasurements = 1;
         var chessboard = new ChessBoard(positionToTest.fen());
         var folderToSaveMeasurements = getFolderOfPosition(positionToTest, rootFolderForMeasurements);
         folderToSaveMeasurements.mkdirs();
@@ -316,7 +316,7 @@ public class PerformanceTest {
                 })
                 .toList();
 
-        return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults);
+        return PlantUmlUtil.createBarChart(chartTitle, hAxisTitle, vAxisTitle, barResults, false);
     }
 
     private File writeTexTableToFile(final PerformanceTest.PositionToTest positionToTest, final Map<AlgorithmStrategy, List<MeasurementOfDepth>> results, final DURATION_RESULT_TYPE resultType) {
@@ -606,7 +606,7 @@ public class PerformanceTest {
         var vAxisTitle = "Calculation time [ms]";
 
         var fileName = "performance-at-depth-%d".formatted(commonMaxDepth);
-        var pumlFile = PlantUmlUtil.createBarChart(chartTitle, algorithms, vAxisTitle, barResults);
+        var pumlFile = PlantUmlUtil.createBarChart(chartTitle, algorithms, vAxisTitle, barResults, false);
         var pngFile = PlantUmlUtil.convertPlantUmlToPng(pumlFile);
 
         try {
