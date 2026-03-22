@@ -5,7 +5,7 @@ import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.eval.MateAwareEvaluation;
 import ch.hslu.cas.msed.blobfish.eval.MaterialEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
-import ch.hslu.cas.msed.blobfish.minimax.cached.base.MiniMaxSequentialWithCache;
+import ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxSequentialWithCache;
 
 class MiniMaxSequentialWithCacheTest extends AbstractMiniMaxTest {
 
