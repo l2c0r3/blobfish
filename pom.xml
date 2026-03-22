@@ -237,7 +237,6 @@
                             </scanPackages>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
 
