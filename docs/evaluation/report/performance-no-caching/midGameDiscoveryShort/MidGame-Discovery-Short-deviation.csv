@@ -1,0 +1,19 @@
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.002;0.075;1.649;117.262;260.848
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.002;0.007;0.012;0.214;6.93;33.075;48.187
+MiniMaxParallel (Mate aware material evaluation);0.005;0.012;0.964;9.76;195.771
+MiniMaxParallel (Piece square material evaluation);0.003;0.028;0.648;4.667;19.807
+MiniMaxParallel (Simple material evaluation);0.009;0.025;0.352;13.279;168.22
+MiniMaxParallel (Mate aware piece square evaluation);0.002;0.022;0.824;48.351;162.919
+MiniMaxSequential (Mate aware piece square evaluation);0.006;0.016;0.432;27.246;546.189
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.004;0.01;0.043;0.285;1.43;21.813;38.792
+MiniMaxParallel (Simple piece square evaluation);0.004;0.011;0.35;15.57;127.615
+MiniMaxSequential (Mate aware piece square material evaluation);0.002;0.021;0.44;20.045;117.078
+MiniMaxAlphaBetaSequential (Simple material evaluation);0.005;0.016;0.576;0.181;5.494;18.983;37.84
+MiniMaxAlphaBetaSequential (Simple piece square evaluation);0.002;0.006;0.21;0.775;2.435;34.135;53.527
+MiniMaxAlphaBetaSequential (Piece square material evaluation);0.004;0.012;0.534;0.571;1.157;42.883;80.769
+MiniMaxParallel (Mate aware piece square material evaluation);0.007;0.008;0.885;9.07;81.541
+MiniMaxSequential (Piece square material evaluation);0.006;0.014;1.423;25.981;109.229
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.006;0.016;0.029;0.192;4.173;28.953;42.624
+MiniMaxSequential (Simple material evaluation);0.003;0.279;1.359;44.649;577.58
+MiniMaxSequential (Simple piece square evaluation);0.003;0.01;0.978;19.633;146.172

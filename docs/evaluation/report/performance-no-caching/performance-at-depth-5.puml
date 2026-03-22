@@ -1,0 +1,37 @@
+@startchart
+skinparam dpi 300
+scale 1.5
+
+title
+Median calculation time across positions at depth 5
+end title
+
+h-axis [ MiniMaxSequential,MiniMaxParallel,MiniMaxAlphaBetaSequential ]
+v-axis "Calculation time [ms]" 0 --> 6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+
+bar "Simple piece square evaluation"[ 5.614,4.888,2.894 ] #1F77B4
+bar "Mate aware piece square evaluation"[ 5.616,4.889,2.898 ] #FF7F0E
+bar "Simple material evaluation"[ 5.639,4.921,2.713 ] #2CA02C
+bar "Mate aware piece square material evaluation"[ 5.772,5.026,2.927 ] #D62728
+bar "Piece square material evaluation"[ 5.771,5.026,2.924 ] #9467BD
+bar "Mate aware material evaluation"[ 5.642,4.922,2.719 ] #8C564B
+
+legend left
+
+<style>
+chartDiagram {
+    bar {
+        LineThickness 1.2
+    }
+    axis {
+        LineColor #34495e
+        LineThickness 1.5
+        FontSize 11
+    }
+    grid {
+        LineColor #dddddd
+        LineThickness 1
+    }
+}
+</style>
+@endchart

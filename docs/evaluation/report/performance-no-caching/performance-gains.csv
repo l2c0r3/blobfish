@@ -1,0 +1,1225 @@
+Position FEN;Position description;Algorithm;Strategy;Depth;Duration [ms]
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware material evaluation;1;PT0.00036095S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware material evaluation;2;PT0.01413285S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware material evaluation;3;PT0.59459295S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware material evaluation;4;PT23.46443655S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware material evaluation;5;PT16M10.2213073S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.00038285S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0008944S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.01758055S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.038887S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.5296141S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT1.13646815S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT17.4667415S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware material evaluation;1;PT0.0005151S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware material evaluation;2;PT0.0025972S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware material evaluation;3;PT0.09537245S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware material evaluation;4;PT4.4340706S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware material evaluation;5;PT3M12.88916415S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Piece square material evaluation;1;PT0.00052675S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Piece square material evaluation;2;PT0.00326325S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Piece square material evaluation;3;PT0.12575485S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Piece square material evaluation;4;PT5.68979865S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Piece square material evaluation;5;PT4M5.09829215S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple material evaluation;1;PT0.0008111S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple material evaluation;2;PT0.00360215S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple material evaluation;3;PT0.11340185S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple material evaluation;4;PT4.385426S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple material evaluation;5;PT3M11.4742307S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00052655S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00241805S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.0874203S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square evaluation;4;PT4.1367387S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square evaluation;5;PT3M0.18084015S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00034615S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.01373375S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.57998665S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square evaluation;4;PT22.79257885S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square evaluation;5;PT15M39.40325155S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0003479S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00152395S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.0235804S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.0802481S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.86309265S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT2.1696089S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT24.35103375S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple piece square evaluation;1;PT0.00052295S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple piece square evaluation;2;PT0.0023889S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple piece square evaluation;3;PT0.0875158S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple piece square evaluation;4;PT4.17135835S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Simple piece square evaluation;5;PT3M0.52118165S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.0004953S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01926695S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.82107875S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square material evaluation;4;PT31.98883265S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Mate aware piece square material evaluation;5;PT22M3.98135995S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00242685S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.00316375S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.0235511S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.0388267S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.52034435S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT1.134742S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT17.24181625S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00076435S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.0016584S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.022483S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.08333075S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.87610295S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT2.31882065S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT24.33747535S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.000488S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0010952S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.02607955S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.0468296S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.709478S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT1.48373485S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT25.8084272S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0005296S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0033928S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.1278257S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square material evaluation;4;PT5.6771552S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxParallel;Mate aware piece square material evaluation;5;PT4M5.5277552S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Piece square material evaluation;1;PT0.00049035S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Piece square material evaluation;2;PT0.01904025S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Piece square material evaluation;3;PT0.81405655S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Piece square material evaluation;4;PT31.64852915S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Piece square material evaluation;5;PT21M54.63103765S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.0005291S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0011823S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.02591015S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.04810445S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.7172409S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT1.50408005S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT26.03370125S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple material evaluation;1;PT0.0004023S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple material evaluation;2;PT0.01447495S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple material evaluation;3;PT0.6047206S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple material evaluation;4;PT23.2508502S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple material evaluation;5;PT16M0.59273415S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple piece square evaluation;1;PT0.0003459S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple piece square evaluation;2;PT0.01350705S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple piece square evaluation;3;PT0.57537325S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple piece square evaluation;4;PT22.4565914S
+1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1;Complex position with many options;MiniMaxSequential;Simple piece square evaluation;5;PT15M35.04969065S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.0002642S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.0105871S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.35996675S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware material evaluation;4;PT13.2879535S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware material evaluation;5;PT7M25.193463S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.000263S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.00073575S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.01019855S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.03158235S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.28909935S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT0.87638215S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT6.71213445S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.00036455S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.0021188S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.0555268S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware material evaluation;4;PT2.450976S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware material evaluation;5;PT1M25.4434824S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Piece square material evaluation;1;PT0.00038535S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0026841S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Piece square material evaluation;3;PT0.0745597S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Piece square material evaluation;4;PT3.14717955S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Piece square material evaluation;5;PT1M48.74177455S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple material evaluation;1;PT0.0003523S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple material evaluation;2;PT0.0021499S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple material evaluation;3;PT0.05620615S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple material evaluation;4;PT2.44857985S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple material evaluation;5;PT1M25.0206353S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.0003818S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00198505S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.0504094S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT2.288219S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M20.18017035S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00025185S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.0103792S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.3401113S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT12.63524215S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT7M3.12666695S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.000247S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00304205S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.02245275S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.05364605S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.47485795S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT1.9279351S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT15.93406455S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.0003818S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.0019896S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.0498082S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple piece square evaluation;4;PT2.30037015S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Simple piece square evaluation;5;PT1M19.9377656S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00035555S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01420565S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.490869S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT17.9155088S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT10M0.5094468S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.0004979S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.00128825S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.0119136S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.03299415S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.28095505S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT0.8431955S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT6.214177S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.0002521S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00306045S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.0226535S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.05247865S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.45647755S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT1.90751335S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT15.1186009S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.00035795S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.00093285S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0146423S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.0522785S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.4591705S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT1.83056555S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT11.92611355S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0003829S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.00268105S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.07479245S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT3.1631793S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M49.09192105S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Piece square material evaluation;1;PT0.0003569S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Piece square material evaluation;2;PT0.01427785S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Piece square material evaluation;3;PT0.4859852S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Piece square material evaluation;4;PT17.74873825S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Piece square material evaluation;5;PT9M58.2364585S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00035405S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0009179S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.01517415S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.05461125S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.4767681S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT1.8778534S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT12.51217945S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple material evaluation;1;PT0.00027525S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple material evaluation;2;PT0.0107829S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple material evaluation;3;PT0.35714435S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple material evaluation;4;PT13.2638482S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple material evaluation;5;PT7M22.1339983S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002759S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.0099686S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.34279065S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple piece square evaluation;4;PT12.52058495S
+5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31;Mid game - deflection - short;MiniMaxSequential;Simple piece square evaluation;5;PT7M0.36176745S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.0004388S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.01736835S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.81729045S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware material evaluation;4;PT31.5094091S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware material evaluation;5;PT23M30.82696665S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.000437S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0018861S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.0255899S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.10267195S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.6999082S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT2.63375805S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT20.1292173S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.0005663S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.00310765S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.13177665S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware material evaluation;4;PT5.6622114S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware material evaluation;5;PT4M27.3780772S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Piece square material evaluation;1;PT0.0005918S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0039518S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Piece square material evaluation;3;PT0.16703265S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Piece square material evaluation;4;PT7.31929085S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Piece square material evaluation;5;PT5M37.41301355S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple material evaluation;1;PT0.0005289S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple material evaluation;2;PT0.00304675S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple material evaluation;3;PT0.12482695S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple material evaluation;4;PT5.66682195S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple material evaluation;5;PT4M24.5272349S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00057805S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00283675S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.1126833S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT5.19067335S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT4M4.90561835S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00040795S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.01652795S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.75570065S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT29.53405395S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT22M2.57278935S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0004136S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.0020736S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.034157S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.14260445S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT1.5114438S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT8.56504735S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT1M5.74137915S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.00058225S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.00277455S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.11209565S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple piece square evaluation;4;PT5.2065209S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Simple piece square evaluation;5;PT4M4.77903805S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.0005885S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.0231074S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT1.0819867S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT42.1714471S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT31M24.97816975S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00070085S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.0031468S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.025801S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.09895695S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.6968959S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT2.5665452S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT19.96916715S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00040335S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.0020379S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.0333923S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.1404862S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT1.56821905S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT8.51980975S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT1M9.3122995S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0005806S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0023698S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.033292S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.13226755S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT1.08341625S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT3.72291075S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT29.94686715S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00058135S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.00394645S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.16690375S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT7.2904727S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT5M38.91322415S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Piece square material evaluation;1;PT0.00057965S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Piece square material evaluation;2;PT0.02296415S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Piece square material evaluation;3;PT1.0762588S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Piece square material evaluation;4;PT41.9781584S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Piece square material evaluation;5;PT31M14.5558799S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.0005934S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0024458S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.03458285S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.13447935S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT1.09066925S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT3.79444835S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT30.1688666S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple material evaluation;1;PT0.00044825S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple material evaluation;2;PT0.01765965S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple material evaluation;3;PT0.81537725S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple material evaluation;4;PT31.54687265S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple material evaluation;5;PT23M17.8279772S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.0004029S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.0162656S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.76174105S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple piece square evaluation;4;PT29.26375085S
+r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11;Mid game - fork - short;MiniMaxSequential;Simple piece square evaluation;5;PT21M46.80023805S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware material evaluation;1;PT0.000355S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware material evaluation;2;PT0.01008755S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware material evaluation;3;PT0.40754085S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware material evaluation;4;PT11.19874075S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware material evaluation;5;PT7M12.6116308S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.0003604S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.00107035S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.02510865S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.11595445S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT1.50874955S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT11.4461355S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT2M19.849232S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware material evaluation;1;PT0.00047005S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware material evaluation;2;PT0.0018588S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware material evaluation;3;PT0.0626451S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware material evaluation;4;PT2.04961055S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware material evaluation;5;PT1M21.50146895S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Piece square material evaluation;1;PT0.00048935S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Piece square material evaluation;2;PT0.00241625S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Piece square material evaluation;3;PT0.08333135S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Piece square material evaluation;4;PT2.6402112S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Piece square material evaluation;5;PT1M43.8833279S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple material evaluation;1;PT0.0004718S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple material evaluation;2;PT0.0018723S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple material evaluation;3;PT0.0623775S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple material evaluation;4;PT2.03643555S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple material evaluation;5;PT1M21.72513225S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00048395S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00174735S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.05626045S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square evaluation;4;PT1.90389035S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M15.9249477S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0003324S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.0092585S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.3760944S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square evaluation;4;PT10.4689208S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square evaluation;5;PT6M46.41091725S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.00033535S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00442125S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.0186546S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.518017S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT3.5028553S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT1M0.682558S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT8M10.25050035S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple piece square evaluation;1;PT0.0004866S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple piece square evaluation;2;PT0.00168375S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple piece square evaluation;3;PT0.056458S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple piece square evaluation;4;PT1.8972345S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Simple piece square evaluation;5;PT1M15.65860385S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00048575S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.0134249S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.5500849S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square material evaluation;4;PT15.08307645S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Mate aware piece square material evaluation;5;PT9M43.91548505S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00061105S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.0015093S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.02555145S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.11712055S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT1.2134235S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT5.85754425S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT37.3977155S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.000334S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00442215S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.05129505S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.6647218S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT8.2841463S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT44.6461315S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT5M36.0885471S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.00047825S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0025468S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0625248S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.33911935S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT4.48757255S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT28.0110368S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT3M11.1648554S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0004954S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0023993S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.08315195S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square material evaluation;4;PT2.61603985S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M43.9386058S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Piece square material evaluation;1;PT0.00047815S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Piece square material evaluation;2;PT0.0133633S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Piece square material evaluation;3;PT0.54463705S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Piece square material evaluation;4;PT15.06680395S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Piece square material evaluation;5;PT9M40.9274817S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00048135S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.00254835S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.0626667S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.33881155S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT7.24102565S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT40.9274253S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT7M10.48931585S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple material evaluation;1;PT0.0003707S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple material evaluation;2;PT0.0102631S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple material evaluation;3;PT0.40899775S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple material evaluation;4;PT11.23475455S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple material evaluation;5;PT7M8.8520054S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple piece square evaluation;1;PT0.0003346S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple piece square evaluation;2;PT0.0093682S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple piece square evaluation;3;PT0.38045045S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple piece square evaluation;4;PT10.448928S
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Mid game - en passant - long;MiniMaxSequential;Simple piece square evaluation;5;PT6M42.96056525S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.0002407S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.00897935S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.28770855S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware material evaluation;4;PT10.40221565S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware material evaluation;5;PT5M35.60951165S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.0002404S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.00111705S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.012974S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.06589955S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.51284715S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT3.91590435S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT29.4193879S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.0003199S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.0016085S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.04429275S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware material evaluation;4;PT1.91290505S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware material evaluation;5;PT1M5.2761545S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Piece square material evaluation;1;PT0.0003371S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0021044S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Piece square material evaluation;3;PT0.05873045S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Piece square material evaluation;4;PT2.4331858S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Piece square material evaluation;5;PT1M22.22086305S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple material evaluation;1;PT0.00030985S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple material evaluation;2;PT0.0016314S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple material evaluation;3;PT0.0434262S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple material evaluation;4;PT1.9044868S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple material evaluation;5;PT1M4.53395925S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00033255S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.0015098S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.04079415S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT1.76675165S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M0.80098585S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0002259S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.00835695S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.27010465S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT9.623042S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT5M17.33655855S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.00022485S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.0013791S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.02888135S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.1240949S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.78410565S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT6.79661205S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT32.5239503S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.00033795S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.00149195S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.0391803S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple piece square evaluation;4;PT1.72184045S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Simple piece square evaluation;5;PT1M0.04426905S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.0003235S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01192665S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.38758635S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT13.89862535S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT7M34.70425215S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00025315S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.001153S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.0137918S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.06689555S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.5021802S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT3.86223945S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT28.9458729S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.0002209S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00137575S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.02915415S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.12548495S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.7678337S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT6.70792055S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT31.92123945S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0003218S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0030325S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0205876S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.1064843S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.82149885S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT5.6215001S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT1M10.14967595S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0003386S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.00209875S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.05945745S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT2.44241645S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M22.92113565S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Piece square material evaluation;1;PT0.0003191S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Piece square material evaluation;2;PT0.01191425S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Piece square material evaluation;3;PT0.38181535S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Piece square material evaluation;4;PT13.84480655S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Piece square material evaluation;5;PT7M28.4231698S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.0003239S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0030248S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.02045845S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.10658505S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.83190035S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT5.65870595S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT1M10.7703978S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple material evaluation;1;PT0.00024605S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple material evaluation;2;PT0.0093535S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple material evaluation;3;PT0.2800275S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple material evaluation;4;PT10.2887015S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple material evaluation;5;PT5M30.4630802S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002201S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.00825045S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.26140765S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple piece square evaluation;4;PT9.54359595S
+r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26;Mid game - discovery - short;MiniMaxSequential;Simple piece square evaluation;5;PT5M10.3279697S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.00019755S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.00648545S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.1919182S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware material evaluation;4;PT6.0333733S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware material evaluation;5;PT3M0.07754005S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.00019695S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.000736S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.00892715S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.01722835S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.26717705S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT0.5138438S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT6.11781045S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.00028205S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.00124115S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.0298593S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware material evaluation;4;PT1.1549975S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware material evaluation;5;PT36.34972745S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Piece square material evaluation;1;PT0.0002945S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0015963S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Piece square material evaluation;3;PT0.04031825S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Piece square material evaluation;4;PT1.501764S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Piece square material evaluation;5;PT46.1814456S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple material evaluation;1;PT0.00027S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple material evaluation;2;PT0.0012399S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple material evaluation;3;PT0.0299239S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple material evaluation;4;PT1.13514095S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple material evaluation;5;PT36.00070215S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.0002883S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.0011656S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.0279641S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT1.10482555S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT34.66018835S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00018765S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.0062272S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.18303235S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT5.8876336S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT2M55.259178S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0001868S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00064785S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.01292475S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.01808675S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.25411075S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT0.6240936S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT5.88499565S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.00028415S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.00115625S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.0274886S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple piece square evaluation;4;PT1.0875338S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Simple piece square evaluation;5;PT34.2791075S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.0002714S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.00886755S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.26208285S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT8.30352435S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT4M5.934706S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00020065S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.0007795S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.00918855S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.0175954S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.2655263S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT0.5172192S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT5.91868915S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00018765S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.000602S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.0125444S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.0179981S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.2528624S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT0.62257485S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT5.8796605S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0002649S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0009541S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0119819S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.0235628S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.43715255S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT0.7079531S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT8.5587576S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00029315S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0015949S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.04081975S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT1.5171791S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT46.4819362S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Piece square material evaluation;1;PT0.0002632S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Piece square material evaluation;2;PT0.00874745S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Piece square material evaluation;3;PT0.2577223S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Piece square material evaluation;4;PT8.26398945S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Piece square material evaluation;5;PT4M4.2162558S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00027345S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.00096235S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.01227645S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.02391915S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.448578S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT0.7133158S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT8.81449185S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple material evaluation;1;PT0.0002001S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple material evaluation;2;PT0.0066233S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple material evaluation;3;PT0.1906881S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple material evaluation;4;PT6.0567151S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple material evaluation;5;PT2M57.782053S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.00018325S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.0061727S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.1824476S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple piece square evaluation;4;PT5.81651965S
+8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42;End game - deflection - short;MiniMaxSequential;Simple piece square evaluation;5;PT2M52.6822521S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.00034645S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.0086199S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.36342885S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;4;PT9.336339S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;5;PT6M25.4379267S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.00034635S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0008045S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.01992055S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.05183305S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT1.4874177S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT3.27522145S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT1M17.12761605S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.00047275S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.00158985S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.0572228S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;4;PT1.76718905S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;5;PT1M15.1267197S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;1;PT0.0004926S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0021808S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;3;PT0.075254S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;4;PT2.22305515S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;5;PT1M35.0888555S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple material evaluation;1;PT0.0004483S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple material evaluation;2;PT0.00164235S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple material evaluation;3;PT0.05749495S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple material evaluation;4;PT1.72615785S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple material evaluation;5;PT1M14.7290748S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.0004741S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00152565S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.05158465S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT1.57709915S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M9.62339965S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0003284S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.0081299S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.3457458S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT8.8144659S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT6M3.27858425S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.00032785S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.0013526S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.01824075S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.05785265S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT1.17185565S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT2.7292263S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT54.48239195S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.0004804S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.00149375S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.05178195S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;4;PT1.5951984S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;5;PT1M9.5414069S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00047075S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01183S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.5011251S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT12.64848735S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT8M40.59414215S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00035215S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.00082925S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.01983665S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.05186435S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.79265925S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT2.9575942S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT29.4436665S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00032285S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00134875S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.01758755S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.05940855S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.83821985S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT1.9381116S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT28.2971541S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0004626S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0012649S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.03075565S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.07541S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT1.35095375S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT4.42138665S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT47.19848655S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0004887S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.002153S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.0767862S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT2.23306315S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M34.56368855S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;1;PT0.0004677S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;2;PT0.0115796S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;3;PT0.49193545S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;4;PT12.59995915S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;5;PT8M37.69522145S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.0004628S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0012712S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.0310673S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.07579065S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT2.14900005S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT4.8917007S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT1M49.07135945S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple material evaluation;1;PT0.00035735S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple material evaluation;2;PT0.0088201S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple material evaluation;3;PT0.37565465S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple material evaluation;4;PT9.39172545S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple material evaluation;5;PT6M21.94465705S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.0003181S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.0081052S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.34112885S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;4;PT8.7813948S
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Mid game - promotion - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;5;PT5M59.60766495S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;1;PT0.00023005S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;2;PT0.00706415S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;3;PT0.18478895S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;4;PT5.7768016S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware material evaluation;5;PT2M28.89149525S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.00023225S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0004239S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.0069618S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.0185508S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.3272833S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT0.8917399S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT12.9851246S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;1;PT0.00030815S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;2;PT0.0013416S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;3;PT0.02852735S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;4;PT1.11091665S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware material evaluation;5;PT29.15251815S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;1;PT0.00033115S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;2;PT0.0016805S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;3;PT0.0380147S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;4;PT1.3794146S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Piece square material evaluation;5;PT36.68825155S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple material evaluation;1;PT0.00029395S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple material evaluation;2;PT0.00135075S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple material evaluation;3;PT0.0283224S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple material evaluation;4;PT1.08912605S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple material evaluation;5;PT28.82915175S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00032095S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.0012784S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.0259647S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;4;PT0.99707405S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square evaluation;5;PT27.2414659S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0002159S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.00653735S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.1731693S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;4;PT5.48836065S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square evaluation;5;PT2M21.64046025S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.00026445S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00064905S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.01063645S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.0243631S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.19645255S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT0.54114855S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT4.09053825S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;1;PT0.0003203S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;2;PT0.0012712S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;3;PT0.0256446S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;4;PT1.00243935S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Simple piece square evaluation;5;PT27.0170606S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00031245S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.00937615S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.2469929S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;4;PT7.8150504S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Mate aware piece square material evaluation;5;PT3M21.19831845S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.0002346S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.00044345S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.00744745S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.03058465S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.32214285S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT0.675352S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT13.0243207S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.0002111S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00062745S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.01082365S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.02772825S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.2417119S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT0.5998531S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT5.5045239S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.00031125S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0004957S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0102664S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.04274465S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.46615065S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT1.0856956S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT17.55324625S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00033195S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0017066S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.03859735S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;4;PT1.40562065S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxParallel;Mate aware piece square material evaluation;5;PT36.96656695S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;1;PT0.00030665S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;2;PT0.0092029S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;3;PT0.2434355S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;4;PT7.7269548S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Piece square material evaluation;5;PT3M18.6906322S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.0003181S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.00051635S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.00935365S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.0263948S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.50206695S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT1.34538355S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT20.1894023S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple material evaluation;1;PT0.0002375S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple material evaluation;2;PT0.0070382S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple material evaluation;3;PT0.1834549S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple material evaluation;4;PT5.73205195S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple material evaluation;5;PT2M26.6950177S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002133S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;2;PT0.0064528S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;3;PT0.1699566S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;4;PT5.39509155S
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Mid game - discovery - mate in 2 - short;MiniMaxSequential;Simple piece square evaluation;5;PT2M19.16690885S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware material evaluation;1;PT0.00024135S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware material evaluation;2;PT0.00910635S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware material evaluation;3;PT0.2667102S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware material evaluation;4;PT9.94284825S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware material evaluation;5;PT5M6.49625805S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.00023765S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.00074405S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.0077745S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.0421392S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.24892445S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT2.41883245S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT8.56774325S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware material evaluation;1;PT0.0003216S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware material evaluation;2;PT0.00164175S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware material evaluation;3;PT0.04240475S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware material evaluation;4;PT1.82210105S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware material evaluation;5;PT57.7082509S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Piece square material evaluation;1;PT0.0003302S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Piece square material evaluation;2;PT0.00208745S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Piece square material evaluation;3;PT0.05587305S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Piece square material evaluation;4;PT2.31151435S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Piece square material evaluation;5;PT1M13.39270905S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple material evaluation;1;PT0.0002974S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple material evaluation;2;PT0.00164865S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple material evaluation;3;PT0.0428155S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple material evaluation;4;PT1.79411875S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple material evaluation;5;PT57.738577S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00032235S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00149605S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.0377796S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square evaluation;4;PT1.63187865S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square evaluation;5;PT53.45293185S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0002231S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.00843395S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.25317715S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square evaluation;4;PT9.41072245S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square evaluation;5;PT4M49.9434741S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.00027045S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00171025S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.0141478S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.11151065S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.7841691S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT5.5431858S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT38.0677306S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple piece square evaluation;1;PT0.00032005S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple piece square evaluation;2;PT0.00148205S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple piece square evaluation;3;PT0.03768615S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple piece square evaluation;4;PT1.65026785S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Simple piece square evaluation;5;PT53.1660568S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00032075S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01198485S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.36027075S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square material evaluation;4;PT13.37421555S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Mate aware piece square material evaluation;5;PT6M51.0136799S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.0002422S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.00073195S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.0078119S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.04186215S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.25092295S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT2.4028069S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT8.4037017S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00022565S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00172525S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.0139864S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.11282265S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.7791947S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT5.52260515S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT37.4216574S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.00031705S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0013378S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.01091445S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.07950965S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.3871142S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT4.54116495S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT17.6910936S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00032745S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.00210025S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.05569405S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square material evaluation;4;PT2.29639725S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M13.3692364S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Piece square material evaluation;1;PT0.0003189S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Piece square material evaluation;2;PT0.0120095S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Piece square material evaluation;3;PT0.35715685S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Piece square material evaluation;4;PT13.38032265S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Piece square material evaluation;5;PT6M50.731388S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00031465S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0013361S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.01102895S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.07982145S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.3956321S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT4.58506085S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT17.8696699S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple material evaluation;1;PT0.0002469S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple material evaluation;2;PT0.0091615S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple material evaluation;3;PT0.26738015S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple material evaluation;4;PT9.95763845S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple material evaluation;5;PT5M4.6912042S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002227S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple piece square evaluation;2;PT0.0083926S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple piece square evaluation;3;PT0.250495S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple piece square evaluation;4;PT9.36796915S
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Simple tactical position;MiniMaxSequential;Simple piece square evaluation;5;PT4M47.3764964S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware material evaluation;1;PT0.0003077S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware material evaluation;2;PT0.01026075S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware material evaluation;3;PT0.37056665S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware material evaluation;4;PT12.20641795S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware material evaluation;5;PT7M26.92031705S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.0003047S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0007956S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.0153599S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.0405929S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.5197672S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT1.5766847S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT20.15346925S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware material evaluation;1;PT0.0003961S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware material evaluation;2;PT0.00204105S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware material evaluation;3;PT0.0593761S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware material evaluation;4;PT2.248256S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware material evaluation;5;PT1M25.48911645S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Piece square material evaluation;1;PT0.0004193S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Piece square material evaluation;2;PT0.00248305S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Piece square material evaluation;3;PT0.0781616S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Piece square material evaluation;4;PT2.8834058S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Piece square material evaluation;5;PT1M48.42578S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple material evaluation;1;PT0.0003864S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple material evaluation;2;PT0.0021194S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple material evaluation;3;PT0.0582478S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple material evaluation;4;PT2.26273955S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple material evaluation;5;PT1M25.32705885S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00041865S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00194475S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.05301995S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square evaluation;4;PT2.0832638S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M19.08586435S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00028725S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.00978415S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.3487714S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square evaluation;4;PT11.52747385S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square evaluation;5;PT7M0.6359375S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0002855S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00164955S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.0265657S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.1004234S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT1.2486558S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT4.2772988S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT1M4.84033585S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple piece square evaluation;1;PT0.00042645S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple piece square evaluation;2;PT0.0019591S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple piece square evaluation;3;PT0.0526218S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple piece square evaluation;4;PT2.0660361S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Simple piece square evaluation;5;PT1M18.9505087S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.000408S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.0137568S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.49891385S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square material evaluation;4;PT16.44784375S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Mate aware piece square material evaluation;5;PT10M0.89660305S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00031215S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.0008133S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.01547955S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.0409808S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.5137375S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT1.5494171S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT19.85687595S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.0002882S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00164715S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.02590965S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.09958155S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT1.24070205S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT4.23828685S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT1M1.54894065S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0004109S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.00105865S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.0221638S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.07694865S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT1.00782055S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT4.82576065S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT56.69168515S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.0004161S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0024836S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.0782599S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square material evaluation;4;PT2.8891275S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxParallel;Mate aware piece square material evaluation;5;PT1M48.19864635S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Piece square material evaluation;1;PT0.0004154S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Piece square material evaluation;2;PT0.0139978S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Piece square material evaluation;3;PT0.4963916S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Piece square material evaluation;4;PT16.337648S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Piece square material evaluation;5;PT9M58.84289385S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00040955S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.00106215S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.02237135S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.0755109S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT1.019416S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT4.87775045S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT57.1694712S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple material evaluation;1;PT0.00032085S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple material evaluation;2;PT0.01057515S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple material evaluation;3;PT0.37959765S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple material evaluation;4;PT12.24732885S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple material evaluation;5;PT7M25.1405901S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002859S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple piece square evaluation;2;PT0.0095943S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple piece square evaluation;3;PT0.3515493S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple piece square evaluation;4;PT11.4511549S
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Fork opportunity;MiniMaxSequential;Simple piece square evaluation;5;PT6M59.09380175S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware material evaluation;1;PT0.0003204S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware material evaluation;2;PT0.0114573S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware material evaluation;3;PT0.42561835S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware material evaluation;4;PT15.03255425S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware material evaluation;5;PT9M22.08427305S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.0003098S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.001121S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.02179955S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.0476009S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.6133308S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT1.6253251S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT35.14487545S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware material evaluation;1;PT0.00040295S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware material evaluation;2;PT0.00229065S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware material evaluation;3;PT0.06412045S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware material evaluation;4;PT2.7370081S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware material evaluation;5;PT1M46.5520981S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Piece square material evaluation;1;PT0.00041575S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Piece square material evaluation;2;PT0.00267145S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Piece square material evaluation;3;PT0.0868389S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Piece square material evaluation;4;PT3.4901266S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Piece square material evaluation;5;PT2M14.3931938S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple material evaluation;1;PT0.00038795S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple material evaluation;2;PT0.00222755S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple material evaluation;3;PT0.0655955S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple material evaluation;4;PT2.71607325S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple material evaluation;5;PT1M46.3812611S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.00041905S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.0020734S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.05846975S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square evaluation;4;PT2.527367S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square evaluation;5;PT1M37.63576255S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.0002867S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.01057425S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.38969235S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square evaluation;4;PT13.99809275S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square evaluation;5;PT8M43.06775405S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0002875S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.00087455S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.01457385S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.06331005S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.67829385S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT2.60457745S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT25.68771215S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple piece square evaluation;1;PT0.0004244S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple piece square evaluation;2;PT0.0020561S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple piece square evaluation;3;PT0.0583836S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple piece square evaluation;4;PT2.5439593S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Simple piece square evaluation;5;PT1M38.21698285S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.00041675S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.0152395S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.56133435S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square material evaluation;4;PT20.0396417S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Mate aware piece square material evaluation;5;PT12M30.25547235S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.0003153S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.001142S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.02228695S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.0484506S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.6219074S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT1.6300368S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT34.9271746S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.0002864S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00087595S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.0145308S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.06302225S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.69234285S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT2.6081184S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT25.5447141S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0004156S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.00141345S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.03027395S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.07516335S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.8580744S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT2.5503718S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT54.35428145S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00041675S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.00271175S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.08645015S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square material evaluation;4;PT3.52274455S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxParallel;Mate aware piece square material evaluation;5;PT2M14.49107285S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Piece square material evaluation;1;PT0.00041465S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Piece square material evaluation;2;PT0.0151737S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Piece square material evaluation;3;PT0.56297575S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Piece square material evaluation;4;PT20.054448S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Piece square material evaluation;5;PT12M29.72016275S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00041365S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.0014154S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.03032665S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.07679385S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.8612163S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT2.5783512S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT54.6465304S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple material evaluation;1;PT0.00032345S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple material evaluation;2;PT0.0121761S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple material evaluation;3;PT0.4368408S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple material evaluation;4;PT15.14168435S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple material evaluation;5;PT9M22.1462378S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple piece square evaluation;1;PT0.0002876S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple piece square evaluation;2;PT0.0107242S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple piece square evaluation;3;PT0.3897616S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple piece square evaluation;4;PT13.93508475S
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Midgame tactical cluster;MiniMaxSequential;Simple piece square evaluation;5;PT8M40.66996035S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware material evaluation;1;PT0.000418S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware material evaluation;2;PT0.0136018S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware material evaluation;3;PT0.61451835S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware material evaluation;4;PT19.89951265S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware material evaluation;5;PT14M38.59329685S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;1;PT0.0004144S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;2;PT0.0009679S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;3;PT0.0184236S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;4;PT0.04365105S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;5;PT0.7420199S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;6;PT1.51734885S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware material evaluation;7;PT26.2101949S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware material evaluation;1;PT0.0005346S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware material evaluation;2;PT0.0024299S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware material evaluation;3;PT0.09407375S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware material evaluation;4;PT3.5993977S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware material evaluation;5;PT2M43.9917447S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Piece square material evaluation;1;PT0.0005726S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Piece square material evaluation;2;PT0.0030198S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Piece square material evaluation;3;PT0.12521765S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Piece square material evaluation;4;PT4.59843745S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Piece square material evaluation;5;PT3M29.1733419S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple material evaluation;1;PT0.00049235S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple material evaluation;2;PT0.002404S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple material evaluation;3;PT0.09428025S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple material evaluation;4;PT3.581676S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple material evaluation;5;PT2M44.84865415S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square evaluation;1;PT0.0005342S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square evaluation;2;PT0.00214855S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square evaluation;3;PT0.08352935S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square evaluation;4;PT3.2575708S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square evaluation;5;PT2M31.01793885S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square evaluation;1;PT0.00037705S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square evaluation;2;PT0.01236905S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square evaluation;3;PT0.57341965S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square evaluation;4;PT18.4665998S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square evaluation;5;PT13M35.6012948S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;1;PT0.0003834S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;2;PT0.0011958S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;3;PT0.01829035S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;4;PT0.04352505S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;5;PT0.79961385S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;6;PT2.132878S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square evaluation;7;PT37.9999114S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple piece square evaluation;1;PT0.00053745S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple piece square evaluation;2;PT0.00214025S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple piece square evaluation;3;PT0.08432805S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple piece square evaluation;4;PT3.2509399S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Simple piece square evaluation;5;PT2M31.74966495S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square material evaluation;1;PT0.0005489S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square material evaluation;2;PT0.01784295S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square material evaluation;3;PT0.81819255S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square material evaluation;4;PT26.49301425S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Mate aware piece square material evaluation;5;PT19M29.45407705S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;1;PT0.00042075S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;2;PT0.0009749S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;3;PT0.0184485S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;4;PT0.04433275S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;5;PT0.7319847S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;6;PT1.52797695S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple material evaluation;7;PT26.0200911S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;1;PT0.00038075S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;2;PT0.00119205S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;3;PT0.01845325S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;4;PT0.04341735S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;5;PT0.78872295S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;6;PT2.11759535S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Simple piece square evaluation;7;PT37.72395815S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;1;PT0.0005493S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;2;PT0.0011861S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;3;PT0.02359055S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;4;PT0.0541495S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;5;PT0.9847142S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;6;PT1.89567585S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Piece square material evaluation;7;PT37.9258166S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square material evaluation;1;PT0.00055745S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square material evaluation;2;PT0.0030762S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square material evaluation;3;PT0.12525205S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square material evaluation;4;PT4.6060241S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxParallel;Mate aware piece square material evaluation;5;PT3M27.5766158S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Piece square material evaluation;1;PT0.0005493S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Piece square material evaluation;2;PT0.0176846S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Piece square material evaluation;3;PT0.8192979S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Piece square material evaluation;4;PT26.32593545S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Piece square material evaluation;5;PT19M24.9088562S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;1;PT0.00055385S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;2;PT0.001191S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;3;PT0.024197S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;4;PT0.0541485S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;5;PT0.9902062S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;6;PT1.8881329S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxAlphaBetaSequential;Mate aware piece square material evaluation;7;PT38.1374711S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple material evaluation;1;PT0.00042735S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple material evaluation;2;PT0.0137548S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple material evaluation;3;PT0.62651015S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple material evaluation;4;PT19.84839475S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple material evaluation;5;PT14M29.0365921S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple piece square evaluation;1;PT0.00037915S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple piece square evaluation;2;PT0.0123649S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple piece square evaluation;3;PT0.56389615S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple piece square evaluation;4;PT18.48632705S
+r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10;Complex tactical middle game;MiniMaxSequential;Simple piece square evaluation;5;PT13M32.6340766S
