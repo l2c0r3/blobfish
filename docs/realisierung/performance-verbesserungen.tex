@@ -14,7 +14,7 @@ Aus diesen Gründen wurde die Alpha-Beta-Pruning Optimierung nur für die sequen
 Die ursprüngliche Implementierung des Minimax-Algorithmus musste nur minimal angepasst werden, um diese Optimierung einzubauen.
 Es wurden 2 neue Parameter zur Funktion hinzugefügt: alpha und beta.
 Diese merken sich die relevanten Werte der vorherigen Evaluationen und anhand dessen wird entschieden, ob die Suche vorzeitig abgebrochen werden kann (\cite{alphabetachessprogramming}).
-Die relevanten Zeilen sind die Zeilen 66-75.
+Die relevanten Zeilen sind die Zeilen 66--75.
 \lstinputlisting[
     firstline=30,
     lastline=78,
@@ -27,3 +27,132 @@ Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig.
 Darum werden sie auf den Zeilen 45--46 sortiert.
 Die Sortierung ist zunächst sehr primitiv - es werden Züge, die eine Figur fangen, zuerst ausgewertet, da diese eine grössere Chance haben bessere Werte zu liefern.
 Mit dem Einbau weiterer Heuristiken wird auch diese Sortierung erweitert.
+
+\subsection{Caching}
+Das Caching der Evaluationen der Schachpositionen wurde bei allen drei Implementierungen des MiniMax-Algorithmus umgesetzt, um festzustellen, wo dieser Ansatz am effektivsten ist:
+\begin{itemize}
+    \item MiniMax sequentiell
+    \item MiniMax parallel
+    \item MiniMax sequentiell mit Alpha-Beta-Pruning
+\end{itemize}
+
+Für den \gls{glos:cache} wurde eine Klasse erstellt, die intern eine Map verwendet.
+\lstinputlisting[
+    firstline=8,
+    lastline=9,
+    firstnumber=8,
+    caption={EvaluationCache},
+    label={lst:evaluation-cache}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCache.java}
+
+Zusätzlich wurde eine abstrakte Klasse erstellt, von der alle Algorithmus Implementierungen erben.
+Diese Klasse enthält eine Instanz des \glspl{glos:cache}, die für alle geerbten Klassen zugänglich ist.
+\lstinputlisting[
+    firstline=9,
+    lastline=11,
+    firstnumber=9,
+    caption={MiniMaxCachedAlgo},
+    label={lst:minimax-cached-algo}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/MiniMaxCachedAlgo.java}
+Da der \gls{glos:cache} auch in einer Multi-threaded Implementierung verwendet wird, muss die verwendete Map für die \gls{glos:transpositionstabelle} Thread-safe sein.
+Um den Overhead von Thread-Safety bei den sequentiellen Implementierungen zu vermeiden, bietet die \textit{MiniMaxCachedAlgo} Klasse eine abstrakte Methode für die Instanziierung der \gls{glos:transpositionstabelle}.
+Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene Map-Implementierung verwenden.
+\lstinputlisting[
+    firstline=17,
+    lastline=17,
+    firstnumber=17,
+    caption={MiniMaxCachedAlgo - createCache},
+    label={lst:minimax-cached-algo-createCache}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/MiniMaxCachedAlgo.java}
+Die sequentiellen Implementierungen verwenden eine einfache \textit{java.util.HashMap}, wobei die parallele Implementierung eine \textit{java.util.concurrent.ConcurrentHashMap} verwendet.
+
+Der Schlüssel der \gls{glos:transpositionstabelle} ist die FEN Notation einer Position - als String.
+Der Wert wurde mit dem folgenden Java-Record abgebildet:
+\lstinputlisting[
+    firstline=3,
+    lastline=3,
+    firstnumber=3,
+    caption={EvaluationCacheEntry},
+    label={lst:evaluation-cache-entry}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCacheEntry.java}
+Eine Instanz dieses Records enthält den Evaluationswert, die Suchtiefe, den nächsten besten Zug aus dieser Position und den Grenzwerttyp.
+Der Grenzwerttyp wird beim Alpha-Beta-Pruning verwendet.
+\lstinputlisting[
+    firstline=16,
+    lastline=20,
+    firstnumber=16,
+    caption={EvaluationCacheEntry - Grenzwerttyp},
+    label={lst:evaluation-cache-entry-bound-type}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCacheEntry.java}
+
+Um bei den zwischengespeicherten Werten aus der \gls{glos:transpositionstabelle} die korrekte Zughistorie abzubilden könnte die relative Zughistorie auch gespeichert werden.
+Dies kann bei vielen zwischengespeicherten Werten und grossen Suchtiefe zu Memory-Problemen führen.
+Um dieses Problem zu vermeiden wird nur der nächste beste Zug aus der zwischengespeicherten Schachposition gespeichert.
+Mit dieser Information kann die Zughistorie nach Bedarf auf die folgende Art nachgebildet werden:
+\lstinputlisting[
+    firstline=39,
+    lastline=55,
+    firstnumber=39,
+    caption={EvaluationCache - Principal Variation},
+    label={lst:evaluation-cache-principal-variation}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCache.java}
+Diese Nachbildung ist die Reihenfolge der besten möglichen Züge aus der bestimmten Position und nennt sich \gls{glos:principalvariation}.
+Bei der ursprünglichen Evaluation der Position wurde der beste Zugpfad bestimmt.
+Währenddessen wurde jeder Zug des Zugpfades evaluiert und in die \gls{glos:transpositionstabelle} zwischengespeichert.
+Somit sind alle Positionen aus der \gls{glos:principalvariation} im \gls{glos:cache} vorhanden und können nachgebildet werden.
+
+Die Verwendung des \glspl{glos:cache} ist bei jeder Implementierung grundsätzlich gleich.
+Es wird darum nur am MiniMax mit Alpha-Beta-Pruning Beispiel erläutert.
+
+Als Erstes wird in der Funktion geschaut, ob der \gls{glos:cache} einen gültigen Eintrag für die zu evaluierende Position enthält.
+Falls dies der Fall ist, wird die Zughistorie nachgebildet und die Evaluation mit der neuen Historie wird, ohne weitere Evaluationen, zurückgegeben.
+\lstinputlisting[
+    firstline=41,
+    lastline=46,
+    firstnumber=41,
+    caption={MiniMaxAlphaBetaSequentialWithCache - Aus Cache lesen},
+    label={lst:minimax-alpha-beta-with-cache-read-cache}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
+
+Damit sich auch etwas in \gls{glos:cache} befindet, muss bei jeder Evaluation ein neuer Eintrag zur \gls{glos:transpositionstabelle} hinzugefügt werden.
+\lstinputlisting[
+    firstline=48,
+    lastline=52,
+    firstnumber=48,
+    caption={MiniMaxAlphaBetaSequentialWithCache - Blattknoten und Game over},
+    label={lst:minimax-alpha-beta-with-cache-leaf-node}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
+\lstinputlisting[
+    firstline=104,
+    lastline=106,
+    firstnumber=104,
+    caption={MiniMaxAlphaBetaSequentialWithCache - Allgemeine Berechnung},
+    label={lst:minimax-alpha-beta-with-cache-general-calc}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
+
+Durch das Speichern des nächsten besten Zuges kann auch die sortierung der Züge für Alpha-Beta-Pruning optimiert werden, idem die Schachpositionen aus dem \gls{glos:cache} zuerst evaluiert werden.
+\lstinputlisting[
+    firstline=63,
+    lastline=71,
+    firstnumber=63,
+    caption={MiniMaxAlphaBetaSequentialWithCache - Zugevaluationsreihenfolge},
+    label={lst:minimax-alpha-beta-with-cache-move-order}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
+
+Der Vollständigkeit halber ist die gesamte Implementierung unten aufgeführt.
+\lstinputlisting[
+    firstline=39,
+    lastline=127,
+    firstnumber=39,
+    caption={MiniMaxAlphaBetaSequentialWithCache},
+    label={lst:minimax-alpha-beta-with-cache}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
+
+Und noch die \textit{put} und \textit{get} Methoden der Klasse \textit{EvaluationCache}.
+\lstinputlisting[
+    firstline=15,
+    lastline=37,
+    firstnumber=15,
+    caption={EvaluationCache - put und get},
+    label={lst:evaluation-cache-put-and-get}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCache.java}
