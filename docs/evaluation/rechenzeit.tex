@@ -1,0 +1,49 @@
+\section{Rechenzeit}
+Die Rechenzeit bezieht sich auf die Zeit, die benötigt wird, um aus einer Schachposition den besten Zug zu berechnen.
+Je kürzer die Zeit, desto besser die Auswertung.
+Diese Metrik wird nicht mit Stockfish verglichen, da dies sehr unrealistisch wäre.
+Der Vergleich beschränkt sich auf die verschiedenen Eigenimplementierungen, um festzustellen, welche Ansätze die grössten Zeitersparnisse bringen.
+
+\subsection{Testaufbau}
+Alle Tests wurden auf demselben Rechner mit den folgenden Spezifikationen durchgeführt:
+\begin{itemize}
+\item Betriebssystem: Microsoft Windows 11 Pro
+\item CPU: AMD Ryzen 7 7800X3D, 4.20 GHz, 8 cores / 16 threads
+\item Mainboard: MSI B650M GAMING PLUS WIFI
+\item RAM: 64GB DDR5
+\item GPU: RTX 4080 Super
+\end{itemize}
+
+Die Tests wurden als \gls{glos:JUnit}-Tests konzipiert.
+Für die Tests wurden zwölf Schachpositionen ausgewählt: Sieben stammten aus \gls{glos:lichess} Puzzles, vier wurden von einer KI generiert und manuell überprüft, und eine wurde manuell erstellt.
+Es wurde ein \textit{@ParameterizedTest} erstellt, der die erwähnten Positionen als \textit{@MethodSource} verwendet.
+So wird die Testlogik nur einmal geschrieben und für jede Schachposition ausgeführt.
+Alle Tests laufen sequentiell ab, damit sie sich nicht gegenseitig Ressourcen wegnehmen.
+
+Der \gls{glos:JUnit}-Test holt dynamisch alle MiniMax-Algorithmus Implementierungen.
+Die gewünschten Evaluationsstrategiekombinationen können mittels \textit{CompositeEvaluationStrategy} erstellt werden.
+\begin{lstlisting}[
+    language = JavaIntelliJ,
+    caption={CompositeEvaluationStrategy - Aufruf Beispiel},
+    label={lst:composite-eval-strategy-call-example}
+]
+var strategy = CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).build();
+\end{lstlisting}
+
+
+Der Test erstellt alle möglichen Kombinationen der Algorithmen und Evaluationsstrategien und führt sie für die parametrierte Position aus.
+Zusätzlich kann noch die Suchtiefe für jede Kombination eingestellt werden.
+Alle Messungen werden zehnmal durchgeführt und es wird der Median aller Durchführungen berechnet.
+Somit sollten grosse Ausreisser die Resultate nicht stark beeinflussen.
+
+Der Test stellt ausserdem sicher, dass alle wiederholten Messungen sowie alle Algorithmen, die dieselben Auswertungsstrategien verwenden, zu denselben Ergebnissen führen.
+Durch diese Prüfung wird sichergestellt, dass alle Zeitunterschiede gültig sind.
+
+Die Ergebnisse der Tests werden in Dateien gespeichert.
+Einerseits wird eine Textdatei pro Algorithmus-Strategie-Suchtiefe-Kombination aller Messungen erstellt.
+Andererseits wird pro Test (bzw.\ pro Schachposition) ein \gls{glos:plantuml}-Diagramm erstellt, wo alle Algorithmus-Strategie-Suchtiefe-Kombinationen verglichen werden können.
+Zusätzlich wird für jede Kombination eine Tabelle der Abweichungen (\gls{glos:mad}) erstellt.
+
+Schlussendlich wird ein Diagramm aller Messungen für die grösste gemeinsame Suchtiefe, und eine Tabelle der zeitlichen Effizienzsteigerungen der Algorithmen erstellt.
+
+\subsection{Testresultate}
