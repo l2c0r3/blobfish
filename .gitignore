@@ -39,7 +39,10 @@ nb-configuration.xml
 # Local environment
 .env
 
-# measurements
+# own generated folder in local tests
 /measurements/
+/quality/
+
 # out of latex
 /out/
+

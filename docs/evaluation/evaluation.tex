@@ -1,33 +1,9 @@
 \chapter{Evaluation}
 
-\section{Basis}
+\subfile{evaluation/basis}
 
-\subsection{Stockfish}
-Wir möchten unsere Engine mit Stockfish vergleichen. Nicht, weil wir davon ausgehen, dass unsere Engine mitthalten kann,
-sondern vielmehr, um daraus zu lernen und einen Referenzpunkt zu haben.
+\subfile{evaluation/zugqualitaet}
 
-Die grundlegende Idee besteht darin, \gls{glos:JUnit}-Tests zu schreiben, welche mit Stockfish interagieren. Dafür muss
-Stockfish von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird.
+\subfile{evaluation/geschwindigkeit}
 
-Hierfür haben wir \href{https://testcontainers.com/}{Testcontainers} verwendet. Damit ist es möglich, während der
-Testausführung beliebige Docker-Container zu starten und diese nach Abschluss der Tests wieder zu stoppen.
-
-Da Stockfish selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht, haben wir mithilfe von
-(\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt. Daraus können wir
-ein Image bauen und einen Container starten.
-
-Um während der Tests mit Stockfish kommunizieren zu können, benötigen wir einen Client. Ein weit verbreitetes
-Kommunikationsprotokoll, das von vielen Schachengines und auch von Stockfish verwendet wird, ist das
-\href{https://backscattering.de/chess/uci/}{UCI-Protokoll}. Damit kann Stockfish beispielsweise eine Position übermittelt
-und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befehle sind
-\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html}{hier} aufgeführt.
-
-Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
-\textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
-
-
-\section{Zugqualität}
-
-\section{Geschwindigkeit}
-
-\section{Zugtiefe}
+\subfile{evaluation/zugtiefe}

@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\begin{document}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+
+\begin{longtable}{|
+        >{\raggedright\arraybackslash}p{0.18\textwidth}|
+        >{\centering\arraybackslash}p{0.14\textwidth}|
+        >{\raggedright\arraybackslash}p{0.22\textwidth}|
+        >{\centering\arraybackslash}p{0.30\textwidth}|
+        >{\centering\arraybackslash}p{0.05\textwidth}|}
+\caption{Quality Test von Positional play} \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Positional play}} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
+\endfirsthead
+
+\hline
+\multicolumn{5}{|c|}{\textbf{Positional play} -- Fortsetzung} \\ \hline
+\textbf{FEN} & \textbf{Stockfish best next move} & \textbf{Evaluation} & \textbf{Move} & \textbf{Pkt.} \\ \hline
+\endhead
+
+\hline
+\multicolumn{5}{|r|}{Fortsetzung auf der nächsten Seite} \\
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+\multirow{3}{*}{%
+    \parbox[t]{0.18\textwidth}{\centering\footnotesize
+        2r3k1/5pp\\1/p3p2p/1\\p1pP3/3P1\\P2/1P3N1P\\/P5P1/2R3\\K1 w - - \\0 1
+    }%
+}
+&
+\multirow{3}{*}{
+    \begin{tabular}{c}
+        1. c1c8\\2. c1c5\\3. c1d1\\4. c1e1\\5. c1f1
+    \end{tabular}
+}
+& MateAwareEvaluation \& MaterialEvaluation & c1c8, g8h7, c8a8, b5b4, a8a6, h6h5, g2g3, h5h4 & 8 \\
+\cline{3-5}
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c1c8, g8h7, c8a8, h7g6, a8a6, g6f5, g2g3, f5e4 & 8 \\
+\cline{3-5}
+&& MateAwareEvaluation \& PieceSquareEvaluation & g1f2, c8c1, f4f5, c1e1, f2g3, e1e4, f5e6, e4e5 & 0 \\
+\hline
+\multirow{3}{*}{%
+    \parbox[t]{0.18\textwidth}{\centering\footnotesize
+        2r2rk1/1b\\q1bppp/p2\\ppn2/1pn5\\/4P3/1NN1\\BP2/PPQ2P\\BP/2RR2K1\\ w - - 0 \\1
+    }%
+}
+&
+\multirow{3}{*}{
+    \begin{tabular}{c}
+        1. c3e2\\2. a2a3\\3. c2d2\\4. e4e5\\5. h2h3
+    \end{tabular}
+}
+& MateAwareEvaluation \& MaterialEvaluation & b3c5, d6c5, a2a3, b5b4, c3b1, b4a3, b2a3, f6e4 & 0 \\
+\cline{3-5}
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c3e2, h7h6, e2g3, b7c6, b3d4, c6b7, f3f4, f6e4 & 8 \\
+\cline{3-5}
+&& MateAwareEvaluation \& PieceSquareEvaluation & f3f4, b7e4, b3c5, c7c5, c2e4, c5f5, e4f5, d6d5 & 0 \\
+\hline
+\multirow{3}{*}{%
+    \parbox[t]{0.18\textwidth}{\centering\footnotesize
+        r2q1rk1/p\\p2bppp/2n\\pbn2/2p1p\\3/2P1P3/2\\NP1N2/PP2\\BPPP/R1BQ\\1RK1 w - \\- 0 1
+    }%
+}
+&
+\multirow{3}{*}{
+    \begin{tabular}{c}
+        1. c3d5\\2. a1b1\\3. a2a3\\4. c1d2\\5. h2h3
+    \end{tabular}
+}
+& MateAwareEvaluation \& MaterialEvaluation & a2a3, a7a5, b2b3, a5a4, b3a4, e6g4, f3e5, d6e5 & 4 \\
+\cline{3-5}
+&& MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & c3d5, h7h6, h2h3, e6d5, c4d5, c6b4, c1e3, b4d5 & 8 \\
+\cline{3-5}
+&& MateAwareEvaluation \& PieceSquareEvaluation & c1f4, d6d5, c4d5, d8d5, f4e5, d5e4, d3e4, f6e4 & 0 \\
+\hline
+\end{longtable}
+\end{document}

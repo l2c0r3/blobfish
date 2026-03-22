@@ -136,6 +136,26 @@ public class PlantUmlUtil {
         return tmpFile;
     }
 
+    public static File convertPlantUmlToPng(File plantuml) {
+        var tmpFile = FileUtil.createTmpFile("plant2Png", ".png");
+
+        try (var reader = new FileReader(plantuml);
+             var out = new FileOutputStream(tmpFile);
+             var os = new ByteArrayOutputStream()) {
+
+            var content = reader.readAllAsString();
+            var sourceFileReader = new SourceStringReader(content);
+
+            sourceFileReader.outputImage(os, new FileFormatOption(FileFormat.PNG));
+            os.writeTo(out);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return tmpFile;
+    }
+
     private static Double getMaxValueForChart(List<Double> measurements) {
         double max = measurements == null ? 0.0 :
                 measurements.stream()

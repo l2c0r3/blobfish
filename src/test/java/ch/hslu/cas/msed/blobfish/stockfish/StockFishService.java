@@ -19,6 +19,10 @@ public class StockFishService implements AutoCloseable {
         this.uci.setPosition(fen);
     }
 
+    public void setMultiPV(int multiPV) {
+        uci.setMultiPV(multiPV);
+    }
+
     public void setDefaultCalculationDepth(int calulationDepth) {
         this.calculationDepth = calulationDepth;
     }
@@ -29,6 +33,15 @@ public class StockFishService implements AutoCloseable {
 
     public List<String> go(int depth) {
         return uci.go(depth);
+    }
+
+    public void resetStockfish() {
+        uci.newGame();
+        uci.clearHash();
+    }
+
+    public void setNrOfThread(int value) {
+        uci.setNrOfThread(value);
     }
 
     // Always close both
