@@ -1,0 +1,12 @@
+@startuml
+!include <C4/C4_Component>
+
+title Component Diagramm
+
+Person(player, "Schachspieler")
+
+Container_Boundary(cli, "Blobfish") {
+    Component(base, "base", "Java Package", "Grundlegende Datenstrukturen wie ChessBoard, Piece, usw.")
+}
+
+@enduml

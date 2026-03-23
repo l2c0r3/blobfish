@@ -1,0 +1,15 @@
+@startuml
+!include <C4/C4_Context>
+
+title System Context Diagramm
+
+Person(player, "Schachspieler", "Spielt Schach gegen den Computer über das Terminal.")
+
+System(blobfish, "Blobfish", "Schachcomputer, der mittels MiniMax-Algorithmus und verschiedenen Heuristiken den besten Zug berechnet.")
+
+System_Ext(chesslib, "chesslib", "Java-Bibliothek für Zuggenerierung, Zugvalidierung und PGN/FEN generierung")
+
+Rel(player, blobfish, "Spielt gegen", "CLI / Terminal")
+Rel(blobfish, chesslib, "verwendet")
+
+@enduml
