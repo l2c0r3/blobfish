@@ -1,15 +1,16 @@
-package ch.hslu.cas.msed.blobfish.player;
+package ch.hslu.cas.msed.blobfish.game.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException;
+import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
 
-public class HumanPlayer extends AbstractPlayer {
+public class HumanCliPlayer extends AbstractPlayer {
 
     private final InputReader reader;
 
-    public HumanPlayer(final PlayerColor playerColor, final InputReader reader) {
+    public HumanCliPlayer(final PlayerColor playerColor, final InputReader reader) {
         super(playerColor);
         this.reader = reader;
     }

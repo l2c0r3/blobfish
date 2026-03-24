@@ -4,6 +4,7 @@ import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayerProvider;
 import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 
 public class TestBotOneProvider implements BotPlayerProvider<TestAlgoOneProvider.TestAlgoOne> {

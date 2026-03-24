@@ -2,11 +2,11 @@ package ch.hslu.cas.msed.blobfish.game.ui.screen;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.eval.*;
-import ch.hslu.cas.msed.blobfish.game.BotPlayerFactory;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayerFactory;
 import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
-import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer;
 import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 
 public class HomeScreen {
@@ -27,7 +27,7 @@ public class HomeScreen {
         writer.flush();
 
         var humanPlayerColor = getPlayerColor();
-        var humanPlayer = new HumanPlayer(humanPlayerColor, reader);
+        var humanPlayer = new HumanCliPlayer(humanPlayerColor, reader);
 
         var botPlayerColor = PlayerColor.WHITE.equals(humanPlayerColor) ? PlayerColor.BLACK : PlayerColor.WHITE;
         var botPlayerEvalStrategy = CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation()).add(new MaterialEvaluation()).add(new PieceSquareEvaluation()).build();

@@ -1,9 +1,7 @@
-package ch.hslu.cas.msed.blobfish.game;
+package ch.hslu.cas.msed.blobfish.game.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
-import ch.hslu.cas.msed.blobfish.game.provider.BotAlgorithmProvider;
-import ch.hslu.cas.msed.blobfish.game.provider.BotPlayerProvider;
 import ch.hslu.cas.msed.blobfish.player.BotAlgorithm;
 import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 import lombok.NonNull;
