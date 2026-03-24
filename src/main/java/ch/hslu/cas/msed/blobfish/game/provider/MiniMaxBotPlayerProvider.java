@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.provider;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
+import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxBotPlayer;
 

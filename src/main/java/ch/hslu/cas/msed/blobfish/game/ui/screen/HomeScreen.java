@@ -7,7 +7,7 @@ import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
+import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 
 public class HomeScreen {
     private final OutputWriter writer;
