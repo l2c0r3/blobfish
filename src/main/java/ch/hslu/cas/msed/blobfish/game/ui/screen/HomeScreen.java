@@ -1,5 +1,6 @@
 package ch.hslu.cas.msed.blobfish.game.ui.screen;
 
+import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.eval.*;
 import ch.hslu.cas.msed.blobfish.game.player.BotPlayerFactory;
@@ -7,7 +8,7 @@ import ch.hslu.cas.msed.blobfish.game.InputReader;
 import ch.hslu.cas.msed.blobfish.game.MatchConfig;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer;
-import ch.hslu.cas.msed.blobfish.player.BotPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayer;
 
 public class HomeScreen {
     private final OutputWriter writer;

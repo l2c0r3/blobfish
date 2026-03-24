@@ -1,6 +1,7 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

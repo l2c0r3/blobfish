@@ -1,5 +1,7 @@
 package ch.hslu.cas.msed.blobfish.minimax.base;
 
+import ch.hslu.cas.msed.blobfish.base.PathEvaluation;
+
 import java.util.ArrayList;
 
 public class MoveNodeMapper {

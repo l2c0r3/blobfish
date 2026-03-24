@@ -1,5 +1,6 @@
-package ch.hslu.cas.msed.blobfish.player;
+package ch.hslu.cas.msed.blobfish.game.player;
 
+import ch.hslu.cas.msed.blobfish.base.BotAlgorithm;
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 
 public abstract class BotPlayer extends AbstractPlayer {

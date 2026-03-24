@@ -1,7 +1,5 @@
-package ch.hslu.cas.msed.blobfish.eval;
+package ch.hslu.cas.msed.blobfish.base;
 
-
-import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 
 public interface EvaluationStrategy {
 

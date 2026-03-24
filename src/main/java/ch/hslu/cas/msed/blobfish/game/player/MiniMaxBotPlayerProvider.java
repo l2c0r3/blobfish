@@ -1,9 +1,7 @@
 package ch.hslu.cas.msed.blobfish.game.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.player.BotPlayer;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
-import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxBotPlayer;
 
 public class MiniMaxBotPlayerProvider implements BotPlayerProvider<MiniMaxAlgo> {
     private static final String BOT_NAME = "minimax";

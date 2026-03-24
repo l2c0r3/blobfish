@@ -7,9 +7,9 @@ import ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException;
-import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.AbstractPlayer;
 import ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer;
-import ch.hslu.cas.msed.blobfish.player.BotPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayer;
 import ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException;
 import com.github.bhlangonijr.chesslib.move.MoveList;
 
