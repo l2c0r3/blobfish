@@ -7,9 +7,9 @@ import ch.hslu.cas.msed.blobfish.game.ui.board.ChessBoardRenderer;
 import ch.hslu.cas.msed.blobfish.game.OutputWriter;
 import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException;
-import ch.hslu.cas.msed.blobfish.player.AbstractPlayer;
-import ch.hslu.cas.msed.blobfish.player.HumanPlayer;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.AbstractPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayer;
 import ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException;
 import com.github.bhlangonijr.chesslib.move.MoveList;
 
@@ -71,11 +71,11 @@ public class MatchScreen {
     }
 
     private boolean shouldDisplayBoard(AbstractPlayer currentPlayer) {
-        if (white instanceof HumanPlayer && black instanceof HumanPlayer) {
+        if (white instanceof HumanCliPlayer && black instanceof HumanCliPlayer) {
             return true;
         } else if (white instanceof BotPlayer && black instanceof BotPlayer) {
             return true;
-        } else return currentPlayer instanceof HumanPlayer;
+        } else return currentPlayer instanceof HumanCliPlayer;
     }
 
     private void printPosition(PlayerColor playerColor) {

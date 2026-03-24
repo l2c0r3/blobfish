@@ -1,9 +1,9 @@
-package ch.hslu.cas.msed.blobfish.minimax.base;
+package ch.hslu.cas.msed.blobfish.game.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.player.bot.BotPlayer;
 import ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException;
+import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
 
 public class MiniMaxBotPlayer extends BotPlayer {
 

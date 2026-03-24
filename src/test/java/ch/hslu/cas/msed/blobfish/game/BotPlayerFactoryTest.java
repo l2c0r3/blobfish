@@ -2,7 +2,8 @@ package ch.hslu.cas.msed.blobfish.game;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.game.player.BotPlayerFactory;
 import ch.hslu.cas.msed.blobfish.game.provider.TestBotOneProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

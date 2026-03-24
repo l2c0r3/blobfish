@@ -1,20 +1,18 @@
-package ch.hslu.cas.msed.blobfish.player;
+package ch.hslu.cas.msed.blobfish.game.player;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.game.exception.GameAbortedException;
 import ch.hslu.cas.msed.blobfish.game.exception.MatchAbortedException;
+import lombok.Getter;
 
+@Getter
 public abstract class AbstractPlayer {
 
     private final PlayerColor playerColor;
 
     public AbstractPlayer(final PlayerColor playerColor) {
         this.playerColor = playerColor;
-    }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
     }
 
     /**
