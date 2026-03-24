@@ -7,7 +7,6 @@ import ch.hslu.cas.msed.blobfish.base.PathEvaluation;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveNodeMapper;
 import ch.hslu.cas.msed.blobfish.minimax.cached.base.EvaluationCacheEntry;
 import ch.hslu.cas.msed.blobfish.minimax.cached.base.MiniMaxCachedAlgo;
-import ch.hslu.cas.msed.blobfish.minimax.cached.base.MiniMaxRecursiveWithCacheTask;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
