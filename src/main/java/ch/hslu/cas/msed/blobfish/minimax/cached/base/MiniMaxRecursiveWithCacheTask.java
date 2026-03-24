@@ -1,12 +1,10 @@
-package ch.hslu.cas.msed.blobfish.minimax.cached;
+package ch.hslu.cas.msed.blobfish.minimax.cached.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
 import ch.hslu.cas.msed.blobfish.base.ChessBoard;
 import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveHistoryNode;
 import ch.hslu.cas.msed.blobfish.minimax.base.MoveNode;
-import ch.hslu.cas.msed.blobfish.minimax.cached.base.EvaluationCache;
-import ch.hslu.cas.msed.blobfish.minimax.cached.base.EvaluationCacheEntry;
 import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.Comparator;
