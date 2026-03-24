@@ -1,34 +1,7 @@
 @startuml
 
-abstract class ch.hslu.cas.msed.blobfish.player.AbstractPlayer {
-	{field} -playerColor : ch.hslu.cas.msed.blobfish.base.PlayerColor
-	{method}  {abstract} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : String
-}
 
 
-class ch.hslu.cas.msed.blobfish.player.HumanPlayer {
-	{field} -reader : ch.hslu.cas.msed.blobfish.game.InputReader
-	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : String
-}
-
-
-abstract class ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm {
-	{field} -calculationDepth : int
-	{field} -evaluationStrategy : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy
-	{field} -ownPlayerColor : ch.hslu.cas.msed.blobfish.base.PlayerColor
-	{method}  {abstract} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation
-}
-
-
-abstract class ch.hslu.cas.msed.blobfish.player.bot.BotPlayer {
-}
-
-
-
-
-ch.hslu.cas.msed.blobfish.player.HumanPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
-ch.hslu.cas.msed.blobfish.player.bot.BotPlayer *--  ch.hslu.cas.msed.blobfish.player.bot.BotAlgorithm : botAlgorithm
-ch.hslu.cas.msed.blobfish.player.bot.BotPlayer --|>  ch.hslu.cas.msed.blobfish.player.AbstractPlayer
 
 
 @enduml

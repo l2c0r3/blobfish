@@ -7,6 +7,12 @@ class ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil {
 }
 
 
+abstract class ch.hslu.cas.msed.blobfish.base.BotAlgorithm {
+	{field} -calculationDepth : int
+	{method}  {abstract} +getBestPath ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : ch.hslu.cas.msed.blobfish.base.PathEvaluation
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.ChessBoard {
 	{field} {static} -STARTPOSITION_FEN : String
 	{field} -board : com.github.bhlangonijr.chesslib.Board
@@ -23,9 +29,25 @@ class ch.hslu.cas.msed.blobfish.base.ChessBoard {
 }
 
 
+interface ch.hslu.cas.msed.blobfish.base.EvaluationStrategy {
+	{method}  {abstract} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : int
+}
+
+
 class ch.hslu.cas.msed.blobfish.base.FenUtil {
 	{method}  {static} +getFenPositionBlocks ( paramString1 : String ) : [Ljava.lang.String;
 	{method}  {static} +validateFenString ( paramString1 : String ) : void
+}
+
+
+class ch.hslu.cas.msed.blobfish.base.PathEvaluation {
+	{field} -eval : double
+	{field} -move : java.util.List
+	{method} +equals ( paramObject1 : Object ) : boolean
+	{method} +eval () : double
+	{method} +hashCode () : int
+	{method} +move () : java.util.List
+	{method} +toString () : String
 }
 
 
@@ -68,6 +90,8 @@ class ch.hslu.cas.msed.blobfish.base.exception.InvalidMoveException {
 
 
 
+ch.hslu.cas.msed.blobfish.base.BotAlgorithm *--  ch.hslu.cas.msed.blobfish.base.EvaluationStrategy : evaluationStrategy
+ch.hslu.cas.msed.blobfish.base.BotAlgorithm *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : ownPlayerColor
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PieceType : type
 ch.hslu.cas.msed.blobfish.base.Piece *--  ch.hslu.cas.msed.blobfish.base.PlayerColor : color
 
