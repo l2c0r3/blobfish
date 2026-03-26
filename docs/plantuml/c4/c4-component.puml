@@ -3,14 +3,13 @@
 
 title Component Diagramm
 
-Person(human, "Schachspieler")
+Person(player, "Schachspieler")
 
 Container_Boundary(cli, "Blobfish") {
     Component(base, "base", "Java Package", "Grundlegende Datenstrukturen wie ChessBoard, Piece, sowie Util Klassen")
     Component(eval, "eval", "Java Package", "Heuristiken um Schachpositionen zu beurteilen")
     Component(game, "game", "Java Package", "Spielsteuerung, UI und Terminal-Interaktion")
     Component(minimax, "minimax", "Java Package", "MiniMax-Algorithmen")
-    Component(player, "player", "Java Package", "Spieler Abstraktion")
 }
 
 System_Ext(chesslib, "chesslib", "Java-Bibliothek für Zuggenerierung, Zugvalidierung und PGN/FEN generierung")
@@ -21,19 +20,10 @@ Rel(base, chesslib, "verwendet")
 Rel(eval, base, "verwendet")
 
 Rel(game, base, "verwendet")
-Rel(game, eval, "verwendet")
-Rel(game, player, "verwendet")
-Rel(game, minimax, "verwendet")
-Rel(game, jline, "verwendet")
 
 Rel(minimax, base, "verwendet")
-Rel(minimax, eval, "verwendet")
-Rel(minimax, player, "verwendet")
 
-Rel(player, base, "verwendet")
-Rel(player, game, "verwendet")
-
-Rel(human, game, "Interagiert via Terminal")
+Rel(player, game, "Interagiert via Terminal")
 
 
 @enduml
