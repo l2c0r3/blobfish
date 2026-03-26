@@ -23,6 +23,7 @@ Rel(eval, base, "verwendet")
 
 Rel(game, base, "verwendet")
 Rel(game, minimax, "verwendet")
+Rel(game, jline, "verwendet")
 
 Rel(minimax, base, "verwendet")
 
