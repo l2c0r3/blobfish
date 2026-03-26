@@ -16,9 +16,6 @@ package "ch.hslu.cas.msed.blobfish.eval" {
       + getStrategies(): List<Class<EvaluationStrategy>>
       + getEvaluation(ChessBoard): int
     }
-    class "..." as someClass {
-      + getEvaluation(ChessBoard): int
-    }
     class PieceSquareEvaluation {
       + getEvaluation(ChessBoard): int
       - getPieceValue(int, Piece, boolean): int
@@ -29,7 +26,6 @@ package "ch.hslu.cas.msed.blobfish.eval" {
 EvaluationStrategy -[hidden]down- CompositeEvaluationStrategy
 
 CompositeEvaluationStrategy  -[dashed]-^  EvaluationStrategy
-someClass           -[dashed]-^  EvaluationStrategy
 PieceSquareEvaluation        -[dashed]-^  EvaluationStrategy
 
 @enduml
