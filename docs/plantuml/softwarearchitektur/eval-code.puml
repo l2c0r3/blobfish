@@ -16,13 +16,8 @@ package "ch.hslu.cas.msed.blobfish.eval" {
       + getStrategies(): List<Class<EvaluationStrategy>>
       + getEvaluation(ChessBoard): int
     }
-    class MateAwareEvaluation {
+    class "..." as someClass {
       + getEvaluation(ChessBoard): int
-    }
-    class MaterialEvaluation {
-      + getEvaluation(ChessBoard): int
-      - removeEmptyFieldsFromPosition(String): String
-      - parseFen(String): List<Piece>
     }
     class PieceSquareEvaluation {
       + getEvaluation(ChessBoard): int
@@ -34,8 +29,7 @@ package "ch.hslu.cas.msed.blobfish.eval" {
 EvaluationStrategy -[hidden]down- CompositeEvaluationStrategy
 
 CompositeEvaluationStrategy  -[dashed]-^  EvaluationStrategy
-MateAwareEvaluation          -[dashed]-^  EvaluationStrategy
-MaterialEvaluation           -[dashed]-^  EvaluationStrategy
+someClass           -[dashed]-^  EvaluationStrategy
 PieceSquareEvaluation        -[dashed]-^  EvaluationStrategy
 
 @enduml
