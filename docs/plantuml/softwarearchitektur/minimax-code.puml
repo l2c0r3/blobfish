@@ -1,0 +1,42 @@
+@startuml
+
+top to bottom direction
+set namespaceSeparator none
+skinparam linetype ortho
+
+package "ch.hslu.cas.msed.blobfish.base" {
+    class BotAlgorithm {
+      + getCalculationDepth(): int
+      + getEvaluationStrategy(): EvaluationStrategy
+      + getOwnPlayerColor(): PlayerColor
+      + getBestPath(ChessBoard): PathEvaluation
+    }
+}
+
+package "ch.hslu.cas.msed.blobfish.game.player" {
+    interface BotPlayerProvider<A> << interface >> {
+      + getBotName(): String
+      + create(PlayerColor, A): BotPlayer
+      + algorithmType(): Class<A>
+    }
+}
+
+package "ch.hslu.cas.msed.blobfish.minimax" {
+    package "base" {
+        class MiniMaxAlgo {}
+    }
+
+    package "cached" {
+        class MiniMaxSequentialWithCache {
+        }
+    }
+    class MiniMaxSequential {
+    }
+}
+
+BotPlayerProvider                    -[dashed]->  BotAlgorithm
+MiniMaxAlgo                          -[plain]-^  BotAlgorithm
+MiniMaxSequential                    -[plain]-^  MiniMaxAlgo
+MiniMaxSequentialWithCache           -[plain]-^  MiniMaxAlgo
+
+@enduml
