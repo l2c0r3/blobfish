@@ -1,7 +1,7 @@
 @startuml
 !include <C4/C4_Component>
 
-title Component Diagramm
+title Component Diagram
 
 Person(player, "Schachspieler")
 
@@ -20,6 +20,7 @@ Rel(base, chesslib, "verwendet")
 Rel(eval, base, "verwendet")
 
 Rel(game, base, "verwendet")
+Rel(game, minimax, "verwendet")
 
 Rel(minimax, base, "verwendet")
 

@@ -3,7 +3,7 @@
 
 LAYOUT_LEFT_RIGHT()
 
-title System Context Diagramm
+title System Context Diagram
 
 Person(player, "Schachspieler", "Spielt Schach gegen den Computer über das Terminal.")
 
