@@ -25,8 +25,8 @@ package "ch.hslu.cas.msed.blobfish.eval" {
       - parseFen(String): List<Piece>
     }
     class PieceSquareEvaluation {
-      - getPieceValue(int, Piece, boolean): int
       + getEvaluation(ChessBoard): int
+      - getPieceValue(int, Piece, boolean): int
       - getPstForPiece(Piece, boolean): int[]
     }
 }
