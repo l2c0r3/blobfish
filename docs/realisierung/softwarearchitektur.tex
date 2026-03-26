@@ -2,32 +2,21 @@
 
 Nachfolgend wird die Softwarearchitektur mittels dem \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
 
-\subsection{Software system}
+\subsection{System context}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/c4-context}
-    \caption{Softwarearchitektur - Software system}
+    \caption{Softwarearchitektur - System context}
     \label{fig:c4-context}
 \end{figure}
 
-\subsubsection{Container}
+Angefangen mit dem Systemkontext, ist zu erkennen, dass es sich oberflächlich um ein einfaches System handelt: Ein Schachspieler,
+welcher anhand einer CLI gegen einen Schachcomputer, blobfish, Schach spielt.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/c4-container}
-    \caption{Softwarearchitektur - Container}
-    \label{fig:c4-container}
-\end{figure}
-
-\subsection{Component}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/c4-component}
-    \caption{Softwarearchitektur - Component}
-    \label{fig:c4-component}
-\end{figure}
+Da die Applikation eine Java-Applikation ist, als \gls{glos:uberjar} ausgeliefert wird die Applikation ohne weitere \gls{glos:c4container}
+auskommt, wurde auf das Container Diagram verzichtet, das keinen wirklichen Mehrwert gegenüber dem Context-Diagramm bietet,
+da es praktisch dasselbe ist.
 
 \subsection{Code}
 

@@ -1,6 +1,8 @@
 @startuml
 !include <C4/C4_Component>
 
+LAYOUT_LEFT_RIGHT()
+
 title Component Diagram
 
 Person(player, "Schachspieler")
