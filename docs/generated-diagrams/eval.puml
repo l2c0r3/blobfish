@@ -1,19 +1,16 @@
 @startuml
 
 class ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy {
+	{field} -strategies : java.util.List
 	{method}  {static} +builder () : ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy$Builder
 	{method} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : int
 }
 
 
 class ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy$Builder {
-	{method} +add ( paramEvaluationStrategy1 : ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy ) : ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy$Builder
+	{field} -strategies : java.util.List
+	{method} +add ( paramEvaluationStrategy1 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy ) : ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy$Builder
 	{method} +build () : ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy
-}
-
-
-interface ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy {
-	{method}  {abstract} +getEvaluation ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : int
 }
 
 
@@ -46,12 +43,6 @@ class ch.hslu.cas.msed.blobfish.eval.PieceSquareEvaluation {
 
 
 
-ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy : strategies
-ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy ..|>  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy
-ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy$Builder "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy : strategies
-ch.hslu.cas.msed.blobfish.eval.MateAwareEvaluation ..|>  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy
-ch.hslu.cas.msed.blobfish.eval.MaterialEvaluation ..|>  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy
-ch.hslu.cas.msed.blobfish.eval.PieceSquareEvaluation ..|>  ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy
 
 
 @enduml
