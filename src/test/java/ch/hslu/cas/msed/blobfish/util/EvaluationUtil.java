@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.util;
 
 import ch.hslu.cas.msed.blobfish.eval.CompositeEvaluationStrategy;
-import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 

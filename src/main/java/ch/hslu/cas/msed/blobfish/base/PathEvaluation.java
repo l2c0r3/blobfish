@@ -1,4 +1,4 @@
-package ch.hslu.cas.msed.blobfish.minimax.base;
+package ch.hslu.cas.msed.blobfish.base;
 
 import java.util.List;
 

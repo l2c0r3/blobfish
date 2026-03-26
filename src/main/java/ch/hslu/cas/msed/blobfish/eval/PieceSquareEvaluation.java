@@ -1,10 +1,6 @@
 package ch.hslu.cas.msed.blobfish.eval;
 
-import ch.hslu.cas.msed.blobfish.base.BoardTransformationUtil;
-import ch.hslu.cas.msed.blobfish.base.Piece;
-import ch.hslu.cas.msed.blobfish.base.PieceType;
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.base.ChessBoard;
+import ch.hslu.cas.msed.blobfish.base.*;
 
 import java.util.stream.IntStream;
 

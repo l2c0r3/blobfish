@@ -1,7 +1,7 @@
 package ch.hslu.cas.msed.blobfish.minimax.cached.base;
 
 import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
+import ch.hslu.cas.msed.blobfish.base.EvaluationStrategy;
 import ch.hslu.cas.msed.blobfish.minimax.base.MiniMaxAlgo;
 
 import java.util.Map;

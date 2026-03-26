@@ -1,9 +1,5 @@
-package ch.hslu.cas.msed.blobfish.player.bot;
+package ch.hslu.cas.msed.blobfish.base;
 
-import ch.hslu.cas.msed.blobfish.base.PlayerColor;
-import ch.hslu.cas.msed.blobfish.base.ChessBoard;
-import ch.hslu.cas.msed.blobfish.eval.EvaluationStrategy;
-import ch.hslu.cas.msed.blobfish.minimax.base.PathEvaluation;
 import lombok.Getter;
 
 @Getter
