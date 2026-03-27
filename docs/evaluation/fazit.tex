@@ -2,21 +2,24 @@
 
 \begin{table}[h]
     \centering
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabular}{|l|c|c|c|}
+    \renewcommand{\arraystretch}{1.8}
+    \setlength{\tabcolsep}{12pt}
+
+    \begin{tabular}{|>{\columncolor{gray!20}}c|l|c|c|c|}
         \hline
-        & \makecell{MateAwareEvaluation \\ + MaterialEvaluation \\ + PieceSquareEvaluation}
-        & \makecell{MateAwareEvaluation \\ + MaterialEvaluation}
-        & \makecell{MateAwareEvaluation \\ + PieceSquareEvaluation} \\
+        \rowcolor{gray!20}
+        \diagbox[width=6em]{Such}{Eval}
+        & \makecell{12\\MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation}
+        & \makecell{20\\MateAwareEvaluation \& MaterialEvaluation}
+        & \makecell{7\\MateAwareEvaluation \& PieceSquareEvaluation} \\
         \hline
-        MiniMaxAlphaBetaSequential & & & \\
+        \cellcolor{gray!20}7 \\MiniMaxAlphaBetaSequentialWithCache & 19 & 27 & 14 \\
         \hline
-        MiniMaxParallel & & & \\
+        \cellcolor{gray!20}20 \\MiniMaxParallelWithCache & 32 & 40 & 27 \\
         \hline
-        MiniMaxSequential & & & \\
+        \cellcolor{gray!20}5 \\MiniMaxSequentialWithCache & 17 & 25 & 12 \\
         \hline
     \end{tabular}
-    \caption{Übersicht der Kombinationen aus Algorithmus und Evaluationsstrategie}
-    \label{tab:evaluation-matrix}
+
 \end{table}
 
