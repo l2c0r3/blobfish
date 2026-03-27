@@ -3,10 +3,10 @@
 Die nächsten möglichen Schritte für das Projekt lassen sich in unterschiedliche Kategorien unterteilen. Die Priorität
 könnte dabei auf \enquote{Iterative Deepening} und anschliessend \enquote{UCI Support} gelegt werden. \\
 Dadurch können dann Testing Frameworks wie \href{https://github.com/AndyGrant/OpenBench}{OpenBench} eingesetzt werden,
-welche ein UCI Support vorbedingen. Solche Testing Frameworks verwenden
+welche ein UCI Support voraussetzen. Solche Testing Frameworks verwenden
 \href{https://www.chessprogramming.org/Sequential_Probability_Ratio_Test}{Sequential Probability Ratio Tests}
 die anhand von ganzen Spielen die Weiterentwicklungen statistisch überprüfen (\cite{sequentialProbabilityRatioTest}) \\
-Zusätzlich kann mittels Iterative Deepening und UCI Support standardisiert Spiele gegen andere Bots durchgeführt werden
+Zusätzlich können mittels Iterative Deepening und UCI Support standardisierte Spiele gegen andere Bots durchgeführt werden
 und beispielsweise an Turniere teilgenommen werden.
 Andere mögliche Verbesserungen umfassen die Zugqualität, Endgame Tablebases sowie Opening Books.
 
@@ -40,7 +40,7 @@ welche alle möglichen Schachpositionen mit bis zu 7 Figuren vorberechnet haben 
 
 \section{Iterative Deepening}
 
-Innerhalb eines Schachspiels hat jeder Spieler nur eine gewisse Zeit, um seine Züge zu spielen. Der Faktor Zeit haben
+Innerhalb eines Schachspiels hat jeder Spieler nur eine gewisse Zeit, um seine Züge zu spielen. Den Faktor Zeit haben
 wir aus Zeitgründen weggelassen. \\
 Bei unserem Minimax-Algorithmus, welcher eine depth-first Suche ist, hat sich als Time Management Strategy Iterative
 Deepening etabliert. Hierbei wird zuerst mit der Tiefe von 1 alle Züge berechnet, woraufhin die Tiefe von 2 berechnet
@@ -54,5 +54,5 @@ und \text{increment} das Inkrement pro Zug ist (\cite{timeManagement}):
 
 \section{Universal Chess Interface (UCI)}
 
-Das UCI ist ein standardisiertes Protokoll zur Kommunikation zwischen Schach-Engines und grafischen Oberflächen (\cite{uci})
+Das UCI ist ein standardisiertes Protokoll zur Kommunikation zwischen Schach-Engines und grafischen Oberflächen (\cite{uci}).
 Mit UCI-Support kann die Engine in gängige Schach-GUIs eingebunden werden und gegen andere Engines in automatisierten Tests antreten.
