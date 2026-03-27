@@ -29,9 +29,25 @@ da es praktisch dasselbe ist.
 
 Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit untereinander zu.
 
+Das \textit{base} Package enthält grundlegende Datenstrukturen wie das \texttt{ChessBoard}, \texttt{Piece}, Interfaces sowie Util Klassen.
+Desweiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \texit{chesslib}, welche unter anderem für die Zuggenerierung
+und Spiellogik verwendet wird.
+
+Das Package \textit{eval} oder \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
+Schachpositionen zu bewerten und \textit{minimax} unterschiedliche Implementierungen des Minimax-Algorithmus. \\
+Auffällig dabei ist, dass beide Packages keine direkte Abhängigkeit miteinander haben, was so bewusst implementiert wurde.
+Die Verbindung zwischen den beiden Packages wird über das Interface \texttt{EvaluationStrategy} aus dem \texttt{base}-Package hergestellt,
+welches die Kopplung zwischen Bewertungslogik und Suchalgorithmus auflöst.
+
+Das \textit{game} Package enthält sämtliche Klassen und Logik für die CLI-Applikation. Sei es der Game-Flow, die UI Darstellung
+oder die Terminal-Interaktion, wofür zusätzlich \textit{jline} verwendet wurde.
+
 \subsection{Code}
 
-\subsubsection{eval}
+Beim Code wird der Fokus auf zwei Packages gelegt: \textit{eval} und \textit{minimax}, um einen Überblick von der Implementierung
+zu erhalten.
+
+\subsubsection{Positionsbewertung}
 
 \begin{figure}[H]
     \centering
@@ -40,7 +56,16 @@ Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit unter
     \label{fig:softwararchitecture-eval}
 \end{figure}
 
-\subsubsection{minimax}
+Der Code für die Bewertung von Spielpositionen befindet sich bis auf das Interface \texttt{EvaluationStrategy} im \textit{eval}
+Package. Dafür steht in der Darstellung exemplarisch \textit{PiececSquareEvaluation}. Die restlichen Heuristiken sind
+übersichtshalber nicht dargestellt. \\
+Um mehrere Heuristiken zu kombinieren, wurde die Klasse \textit{CompositeEvaluationStrategy} implementiert. Über das
+Builder-Pattern können fluent \textit{EvaluationStrategy} Implementationen übergeben werden und über die \textit{getEvaluation}-Methode
+zu einer Gesamtbewertung zusammenfasst werden. \\
+Mittels dieses Designs können einfach weitere Heuristiken implementiert und beliebig kombiniert werden, ohne bestehenden Code anpassen
+zu müssen.
+
+\subsubsection{Minimax-Algorithmus}
 
 \begin{figure}[H]
     \centering
