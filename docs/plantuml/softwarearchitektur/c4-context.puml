@@ -1,0 +1,14 @@
+@startuml
+!include <C4/C4_Context>
+
+LAYOUT_LEFT_RIGHT()
+
+title System Context Diagram
+
+Person(player, "Schachspieler", "Spielt Schach gegen den Computer über das Terminal.")
+
+System(blobfish, "blobfish", "Schachcomputer, gegen welchem gespielt werden kann")
+
+Rel(player, blobfish, "Spielt gegen", "CLI / Terminal")
+
+@enduml

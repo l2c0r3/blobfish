@@ -1,0 +1,33 @@
+@startuml
+!include <C4/C4_Component>
+
+LAYOUT_LEFT_RIGHT()
+
+title Component Diagram
+
+Person(player, "Schachspieler")
+
+Container_Boundary(cli, "Blobfish") {
+    Component(base, "base", "Java Package", "Grundlegende Datenstrukturen wie ChessBoard, Piece, sowie Util Klassen")
+    Component(eval, "eval", "Java Package", "Heuristiken um Schachpositionen zu beurteilen")
+    Component(game, "game", "Java Package", "Spielsteuerung, UI und Terminal-Interaktion")
+    Component(minimax, "minimax", "Java Package", "MiniMax-Algorithmen")
+}
+
+System_Ext(chesslib, "chesslib", "Java-Bibliothek für Zuggenerierung, Zugvalidierung und PGN/FEN generierung")
+System_Ext(jline, "jline", "Java-Bibliothek für Terminal-Input handling")
+
+Rel(base, chesslib, "verwendet")
+
+Rel(eval, base, "verwendet")
+
+Rel(game, base, "verwendet")
+Rel(game, minimax, "verwendet")
+Rel(game, jline, "verwendet")
+
+Rel(minimax, base, "verwendet")
+
+Rel(player, game, "Interagiert via Terminal")
+
+
+@enduml

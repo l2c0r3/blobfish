@@ -1,0 +1,87 @@
+\section{Softwarearchitektur}
+
+Nachfolgend wird mittels dem \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
+
+\subsection{Systemkontext}
+
+Der Systemkontext stellt den Kontext dar, in welchem sich die Applikation befindet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/c4-context}
+    \caption{Softwarearchitektur - System context}
+    \label{fig:c4-context}
+\end{figure}
+
+Angefangen mit dem Systemkontext, ist zu erkennen, dass es sich oberflächlich um ein einfaches System handelt: Ein Schachspieler,
+welcher über einer CLI gegen einen Schachcomputer, blobfish, Schach spielt.
+
+\subsection{Container}
+
+Da die Applikation eine Java-Applikation ist, welche als \gls{glos:uberjar} ausgeliefert wird und ohne weitere \gls{glos:c4container}
+auskommt, wurde auf das Container Diagram verzichtet, weil es praktisch dasselbe ist.
+
+\subsection{Component}
+
+Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit untereinander zu erkennen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/c4-component}
+    \caption{Softwarearchitektur - Component diagram}
+    \label{fig:c4-component}
+\end{figure}
+
+Das \textit{base} Package enthält grundlegende Datenstrukturen wie das \texttt{ChessBoard}, \texttt{Piece}, Interfaces sowie Util Klassen.
+Desweiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
+und Spiellogik verwendet wird.
+
+Das Package \textit{eval} oder \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
+Schachpositionen zu bewerten und \textit{minimax} unterschiedliche Implementierungen des Minimax-Algorithmus. \\
+Auffällig dabei ist, dass beide Packages keine direkte Abhängigkeit miteinander haben, was so bewusst umgesetzt wurde.
+Die Verbindung zwischen den beiden Packages wird über das Interface \texttt{EvaluationStrategy} aus dem \textit{base}-Package hergestellt,
+welches die Kopplung zwischen Bewertungslogik und Suchalgorithmus auflöst.
+
+Das \textit{game} Package enthält sämtliche Klassen und Logik für die CLI-Applikation. Sei es der Game-Flow, die UI Darstellung
+oder die Terminal-Interaktion, wofür letzteres zusätzlich die \textit{jline} Bibliothek verwendet wurde.
+
+\subsection{Code}
+
+Beim Code wird der Fokus auf zwei Funktionen gelegt: Die Positionsbewertung und den Minimax-Algorithmus, um einen Überblick von der Implementierung
+zu erhalten.
+
+\subsubsection{Positionsbewertung}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/eval-code}
+    \caption{Softwarearchitektur - eval}
+    \label{fig:softwarearchitecture-eval}
+\end{figure}
+
+Der Code für die Bewertung von Spielpositionen befindet sich bis auf das Interface \texttt{EvaluationStrategy} im \textit{eval}
+Package. Dafür steht in der Darstellung exemplarisch \texttt{PieceSquareEvaluation}. Die restlichen Heuristiken sind
+übersichtshalber nicht dargestellt. \\
+Um mehrere Heuristiken zu kombinieren, wurde die Klasse \texttt{CompositeEvaluationStrategy} implementiert. Über das
+Builder-Pattern können fluent Klassen vom Typ \texttt{EvaluationStrategy} übergeben werden, welche dann über die \texttt{getEvaluation}-Methode
+für eine Gesamtbewertung verwendet werden. \\
+Mittels dieses Designs können einfach weitere Heuristiken implementiert und beliebig kombiniert werden, ohne bestehenden Code anpassen
+zu müssen.
+
+\subsubsection{Minimax-Algorithmus}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/minimax-code}
+    \caption{Softwarearchitektur - minimax}
+    \label{fig:softwarearchitecture-minimax}
+\end{figure}
+
+Die abstrakte Klasse \texttt{BotAlgorithm} definiert die gemeinsame Basis aller Suchalgorithmen. Sie hält die zu berechnende Tiefe,
+die zu verwendende \texttt{EvaluationStrategy}, die einzunehmende Spielerfarbe und deklariert die abstrakte
+Methode \texttt{getBestPath()}. \\
+Vom Interface \texttt{MiniMaxAlgo}, welche eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
+Hier exemplarisch \texttt{MiniMaxSequential} und \texttt{MiniMaxSequentialWithCache}. Die Klassen sind übersichtshalber
+minimalistisch und nicht vollzählig dargestellt. \\
+Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung von Bots vom konkreten Algorithmus und ermöglicht es,
+verschiedene Bots für unterschiedliche \texttt{BotAlgorithm} bereitzustellen.

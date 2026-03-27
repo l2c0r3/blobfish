@@ -1,0 +1,58 @@
+\chapter{Ausblick}
+
+Die nächsten möglichen Schritte für das Projekt lassen sich in unterschiedliche Kategorien unterteilen. Die Priorität
+könnte dabei auf \enquote{Iterative Deepening} und anschliessend \enquote{UCI Support} gelegt werden. \\
+Dadurch können dann Testing Frameworks wie \href{https://github.com/AndyGrant/OpenBench}{OpenBench} eingesetzt werden,
+welche ein UCI Support voraussetzen. Solche Testing Frameworks verwenden
+\href{https://www.chessprogramming.org/Sequential_Probability_Ratio_Test}{Sequential Probability Ratio Tests}
+die anhand von ganzen Spielen die Weiterentwicklungen statistisch überprüfen (\cite{sequentialProbabilityRatioTest}) \\
+Zusätzlich können mittels Iterative Deepening und UCI Support standardisierte Spiele gegen andere Bots durchgeführt werden
+und beispielsweise an Turniere teilgenommen werden.
+Andere mögliche Verbesserungen umfassen die Zugqualität, Endgame Tablebases sowie Opening Books.
+
+\section{Zugqualität}
+
+Wie es sich bei der Evaluation der Zugqualität herausgestellt hat, hat die Engine Verbesserungspotenzial bei \enquote{positionalen Stellungen}.
+Hierfür können Heuristiken wie \href{https://www.chessprogramming.org/Pawn_Structure}{Pawn Structure}
+\href{https://www.chessprogramming.org/Mobility}{Mobility} oder \href{https://www.chessprogramming.org/King_Safety}{King Safety}
+implementiert werden.
+
+\section{Endgame Tablebase \& Opening Books}
+
+Um die Eröffnungsphase sowie Endspielsituationen optimal zu spielen, existieren
+\href{https://www.chessprogramming.org/Opening_Book}{Opening Books} sowie
+\href{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame Tablebases}:
+
+Opening Books bieten drei wesentliche Vorteile (\cite{openingBook}):
+
+\begin{itemize}
+    \item \textbf{Zeitersparnis:} Anstatt alle möglichen Züge aufwendig zu berechnen, können geeignete Züge direkt gefunden und ausgeführt werden
+    \item \textbf{Höhere Spielqualität:} Eine reine Suche erkennt nicht immer langfristige strategische Konzepte oder Motive (z.\,B. Materialopfer für spätere Vorteile)
+    \item \textbf{Grössere Vielfalt:} Unterschiedliche Eröffnungen können aus dem Buch zufällig ausgewählt werden, während der Suchalgorithmus deterministisch immer denselben wählt
+\end{itemize}
+
+
+Opening Books sind in verschiedenen Formaten verfügbar und können online bezogen werden (\cite{openingBook}).
+
+Mithilfe von Endgame Tablebases können Endspiele ressourcenschonend, gezielt und fehlerfrei gespielt werden,
+was die Gewinnwahrscheinlichkeit erhöht. Hierfür existieren Tablebases mit einer Grösse von bis zu 17 Terabyte (!),
+welche alle möglichen Schachpositionen mit bis zu 7 Figuren vorberechnet haben (\cite{endGameTableBase, syzygyBases}).
+
+\section{Iterative Deepening}
+
+Innerhalb eines Schachspiels hat jeder Spieler nur eine gewisse Zeit, um seine Züge zu spielen. Den Faktor Zeit haben
+wir aus Zeitgründen weggelassen. \\
+Bei unserem Minimax-Algorithmus, welcher eine depth-first Suche ist, hat sich als Time Management Strategy Iterative
+Deepening etabliert. Hierbei wird zuerst mit der Tiefe von 1 der bestmögliche Zug berechnet, woraufhin die Tiefe von 2 berechnet
+wird usw. Sobald die gegebene Zeit pro Zug aufgebraucht ist, wird das Ergebnis der zuletzt vollständig berechneten Tiefe
+zurückgegeben (\cite{iterativeDeepening}).
+
+Als Basis für die Zeit pro Zug hat sich folgende Berechnung durchgesetzt, wobei \text{base} die verbleibende Spielzeit
+und \text{increment} das Inkrement pro Zug ist (\cite{timeManagement}):
+
+\[\frac{\text{base}}{20} + \frac{\text{increment}}{2}\]
+
+\section{Universal Chess Interface (UCI)}
+
+Das UCI ist ein standardisiertes Protokoll zur Kommunikation zwischen Schach-Engines und grafischen Oberflächen (\cite{uci}).
+Mit UCI-Support kann die Engine in gängige Schach-GUIs eingebunden werden und gegen andere Engines in automatisierten Tests antreten.
