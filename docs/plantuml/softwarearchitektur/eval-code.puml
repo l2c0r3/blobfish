@@ -1,0 +1,31 @@
+@startuml
+
+top to bottom direction
+set namespaceSeparator none
+skinparam linetype ortho
+
+package "ch.hslu.cas.msed.blobfish.base" {
+    interface EvaluationStrategy << interface >> {
+      + getEvaluation(ChessBoard): int
+    }
+}
+
+package "ch.hslu.cas.msed.blobfish.eval" {
+    class CompositeEvaluationStrategy {
+      + builder(): Builder
+      + getStrategies(): List<Class<EvaluationStrategy>>
+      + getEvaluation(ChessBoard): int
+    }
+    class PieceSquareEvaluation {
+      + getEvaluation(ChessBoard): int
+      - getPieceValue(int, Piece, boolean): int
+      - getPstForPiece(Piece, boolean): int[]
+    }
+}
+
+EvaluationStrategy -[hidden]down- CompositeEvaluationStrategy
+
+CompositeEvaluationStrategy  -[dashed]-^  EvaluationStrategy
+PieceSquareEvaluation        -[dashed]-^  EvaluationStrategy
+
+@enduml
