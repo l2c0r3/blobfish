@@ -60,7 +60,7 @@ zu erhalten.
 \end{figure}
 
 Der Code für die Bewertung von Spielpositionen befindet sich bis auf das Interface \texttt{EvaluationStrategy} im \textit{eval}
-Package. Dafür steht in der Darstellung exemplarisch \texttt{PiececSquareEvaluation}. Die restlichen Heuristiken sind
+Package. Dafür steht in der Darstellung exemplarisch \texttt{PieceSquareEvaluation}. Die restlichen Heuristiken sind
 übersichtshalber nicht dargestellt. \\
 Um mehrere Heuristiken zu kombinieren, wurde die Klasse \texttt{CompositeEvaluationStrategy} implementiert. Über das
 Builder-Pattern können fluent Klassen vom Typ \texttt{EvaluationStrategy} übergeben werden, welche dann über die \texttt{getEvaluation}-Methode
