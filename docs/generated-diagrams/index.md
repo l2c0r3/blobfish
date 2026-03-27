@@ -13,6 +13,3 @@
 ### overview
 ![overview](overview.png)
 
-### player
-![player](player.png)
-

@@ -222,21 +222,6 @@
                             </scanPackages>
                         </configuration>
                     </execution>
-                    <!-- player.puml  -->
-                    <execution>
-                        <id>player-uml</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
-                            <outputFilename>player.puml</outputFilename>
-                            <scanPackages>
-                                <scanPackage>ch.hslu.cas.msed.blobfish.player</scanPackage>
-                            </scanPackages>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
 
