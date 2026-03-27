@@ -7,7 +7,7 @@ title System Context Diagram
 
 Person(player, "Schachspieler", "Spielt Schach gegen den Computer über das Terminal.")
 
-System(blobfish, "Blobfish", "Schachcomputer, gegen welchem gespielt werden kann")
+System(blobfish, "blobfish", "Schachcomputer, gegen welchem gespielt werden kann")
 
 Rel(player, blobfish, "Spielt gegen", "CLI / Terminal")
 
