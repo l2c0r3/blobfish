@@ -1,24 +1,30 @@
 \section{Fazit}
 
+\section{Fazit}
+
 \begin{table}[h]
     \centering
     \scriptsize
     \renewcommand{\arraystretch}{1.5}
     \setlength{\tabcolsep}{4pt}
 
-    \begin{tabular}{|>{\columncolor{gray!20}}p{0.25\textwidth}|p{0.23\textwidth}|p{0.23\textwidth}|p{0.23\textwidth}|}
+    \begin{tabular}{|
+            >{\centering\arraybackslash\columncolor{gray!20}}p{0.25\textwidth}|
+            >{\centering\arraybackslash}p{0.23\textwidth}|
+            >{\centering\arraybackslash}p{0.23\textwidth}|
+            >{\centering\arraybackslash}p{0.23\textwidth}|}
         \hline
         \rowcolor{gray!20}
         \diagbox[width=8em]{Such-\\algorithmus}{Evaluation}
-        & \makecell[l]{(12)\\MateAwareEvaluation \\ \& MaterialEvaluation \\ \& PieceSquareEvaluation}
-        & \makecell[l]{(20)\\MateAwareEvaluation \\ \& MaterialEvaluation}
-        & \makecell[l]{(7)\\MateAwareEvaluation \\ \& PieceSquareEvaluation} \\
+        & \makecell[c]{(12)\\MateAwareEvaluation \\ \& MaterialEvaluation \\ \& PieceSquareEvaluation}
+        & \makecell[c]{(20)\\MateAwareEvaluation \\ \& MaterialEvaluation}
+        & \makecell[c]{(7)\\MateAwareEvaluation \\ \& PieceSquareEvaluation} \\
         \hline
-        \cellcolor{gray!20}\makecell[l]{(7)\\MiniMaxAlphaBeta-\\SequentialWithCache} & 19 & 27 & 14 \\
+        \cellcolor{gray!20}\makecell[c]{(7)\\MiniMaxAlphaBeta-\\SequentialWithCache} & 19 & 27 & 14 \\
         \hline
-        \cellcolor{gray!20}\makecell[l]{(20)\\MiniMaxParallelWithCache} & 32 & 40 & 27 \\
+        \cellcolor{gray!20}\makecell[c]{(20)\\MiniMaxParallelWithCache} & 32 & 40 & 27 \\
         \hline
-        \cellcolor{gray!20}\makecell[l]{(5)\\MiniMaxSequential\\WithCache} & 17 & 25 & 12 \\
+        \cellcolor{gray!20}\makecell[c]{(5)\\MiniMaxSequential\\WithCache} & 17 & 25 & 12 \\
         \hline
     \end{tabular}
 \end{table}
