@@ -162,6 +162,36 @@
                             <hideFields>true</hideFields>
                         </configuration>
                     </execution>
+                    <!-- base.puml  -->
+                    <execution>
+                        <id>base-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
+                            <outputFilename>base.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.base</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
+                    <!-- eval.puml  -->
+                    <execution>
+                        <id>eval-uml</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
+                            <outputFilename>eval.puml</outputFilename>
+                            <scanPackages>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.eval</scanPackage>
+                            </scanPackages>
+                        </configuration>
+                    </execution>
                     <!-- game.puml  -->
                     <execution>
                         <id>game-uml</id>
@@ -177,33 +207,18 @@
                             </scanPackages>
                         </configuration>
                     </execution>
-                    <!-- player.puml  -->
+                    <!-- minimax.puml  -->
                     <execution>
-                        <id>player-uml</id>
+                        <id>minimax-uml</id>
                         <phase>process-classes</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
-                            <outputFilename>player.puml</outputFilename>
+                            <outputFilename>minimax.puml</outputFilename>
                             <scanPackages>
-                                <scanPackage>ch.hslu.cas.msed.blobfish.player</scanPackage>
-                            </scanPackages>
-                        </configuration>
-                    </execution>
-                    <!-- base.puml  -->
-                    <execution>
-                        <id>base-uml</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
-                            <outputFilename>base.puml</outputFilename>
-                            <scanPackages>
-                                <scanPackage>ch.hslu.cas.msed.blobfish.base</scanPackage>
+                                <scanPackage>ch.hslu.cas.msed.blobfish.minimax</scanPackage>
                             </scanPackages>
                         </configuration>
                     </execution>
