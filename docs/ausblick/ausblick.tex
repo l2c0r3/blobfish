@@ -18,28 +18,37 @@ implementiert werden.
 
 \section{Endgame Tablebase \& Opening Books}
 
-Um die Eröffnungsphase optimal zu gestalten als auch bekannte End   spielsituationen perfekt zu lösen, existieren
-\href{\href{https://www.chessprogramming.org/Opening_Book%7D%7BOpening}{https://www.chessprogramming.org/Opening_Book}{Opening} Books} sowie
-\href{\href{https://www.chessprogramming.org/Endgame_Tablebases%7D%7BEndgame}{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame} Tablebases}:
+Um die Eröffnungsphase optimal, als auch bekannte Endspielsituationen perfekt zu spielem, existieren
+\href{https://www.chessprogramming.org/Opening_Book}{Opening Books} sowie
+\href{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame Tablebases}:
 
 Opening Books bieten drei wesentliche Vorteile (\cite{openingBook}):
 
 \begin{itemize}
-    \item \textbf{Zeitersparnis:} Anstatt alle möglichen Züge aufwendig zu berechnen, können Schachprogramme mithilfe von Eröffnungsbüchern sofort geeignete Züge ausführen und dadurch Rechenzeit einsparen
+    \item \textbf{Zeitersparnis:} Anstatt alle möglichen Züge aufwendig zu berechnen, können Schachprogramme mithilfe von Eröffnungsbüchern sofort geeignete Züge ausführen
     \item \textbf{Höhere Spielqualität:} Eine reine Suche erkennt nicht immer langfristige strategische Konzepte oder Motive (z.\,B. Materialopfer für spätere Vorteile)
-    \item \textbf{Grössere Vielfalt:} Da zahlreiche bekannte Eröffnungsvarianten existieren, können Züge aus dem Buch auch zufällig ausgewählt werden, während der Suchalgorithmen deterministisch immer denselben wählt
+    \item \textbf{Grössere Vielfalt:} Unterschiedliche Eröffnungen könnenn aus dem Buch zufällig ausgewählt werden, während der Suchalgorithmen deterministisch immer denselben wählt
 \end{itemize}
 
 
 Opening Books sind in verschiedenen Formaten verfügbar und können online bezogen werden (\cite{openingBook}).
 
-Für das Endspiel gilt ein ähnliches Prinzip: Mithilfe von Endgame Tablebases kann das Endspiel ressourcenschonend,
-gezielt und fehlerfrei gespielt werden, was die Gewinnwahrscheinlichkeit erhöht. Hierfür existieren Tablebases mit einem
-Umfang von bis zu 17 Terabyte (!), welche alle möglichen Schachpositionen mit bis zu 7 Figuren vorberechnet haben (\cite{endGameTableBase, syzygyBases}).
+Mithilfe von Endgame Tablebases können Endspiele ressourcenschonend, gezielt und fehlerfrei gespielt werden,
+was die Gewinnwahrscheinlichkeit erhöht. Hierfür existieren Tablebases mit einer Grösse von bis zu 17 Terabyte (!),
+welche alle möglichen Schachpositionen mit bis zu 7 Figuren vorberechnet haben (\cite{endGameTableBase, syzygyBases}).
 
 \section{Iterative Deepening}
 
-\href{https://www.chessprogramming.org/Iterative_Deepening}{Iterative Deepening}
+Innerhalb von einem Schachspiel hat jeder Spieler nur eine gewisse Zeit, um seine Züge zu machen. Der Faktor Zeit, haben
+wir aus Zeitgründen aktuell aussen vor gelassen. \\
+Bei unserem Minimax-Algortihmus, welcher eine deth-first Suche ist, hat sich als eine Time Management Strategy Iterative
+Deepening etabliert. Hierbei wird zuerst mit der Tiefe von 1 alle Züge berechnet vorauf hin die Tiefe von 2 berechnet
+wird usw. Sobald die gegebene Zeit pro Zug aufgebraucht ist, wird das Ergebnis mit der höchsten Tiefe zurückgegeben (\cite{iterativeDeepening}).
+
+Als Basis für hat sich folgende Berechnung für Zeit pro Zug durchgesetzt (\cite{timeManagement}):
+
+\frac{\text{base}}{20} + \frac{\text{increment}}{2}
+
 
 \section{UCI}
 
