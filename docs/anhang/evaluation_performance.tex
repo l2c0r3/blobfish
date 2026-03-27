@@ -167,5 +167,28 @@
 \newpage
 \section{Rechengeschwindigkeitsmultiplikator im Vergleich zu MiniMaxSequential}
 \label{sec:performance-gains}
-\subfile{evaluation/report/performance/performance-gains-minimaxsequential-by-position}
-\subfile{evaluation/report/performance/performance-gains-minimaxsequential-by-strategy}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-1-by-position}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-2-by-position}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-3-by-position}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-4-by-position}
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \input{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-5-by-position}
+    }
+    \caption{Median performance difference from MiniMaxSequential at depth 5 by position}
+    \label{tab:median-performance-difference-from-minimaxsequential-at-depth-5-by-position}
+\end{table}
+
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-1-by-strategy}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-2-by-strategy}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-3-by-strategy}
+\subfile{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-4-by-strategy}
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \input{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-5-by-strategy}
+    }
+    \caption{Median performance difference from MiniMaxSequential at depth 5 by strategy}
+    \label{tab:median-performance-difference-from-minimaxsequential-at-depth-5-by-strategy}
+\end{table}

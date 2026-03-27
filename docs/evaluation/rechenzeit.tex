@@ -1,4 +1,5 @@
 \section{Rechenzeit}
+\label{sec:rechenzeit}
 Die Rechenzeit bezieht sich auf die Zeit, die benötigt wird, um aus einer Schachposition den besten Zug zu berechnen.
 Je kürzer die Zeit, desto besser die Auswertung.
 Diese Metrik wird nicht mit Stockfish verglichen, da dies sehr unrealistisch wäre.
@@ -7,11 +8,11 @@ Der Vergleich beschränkt sich auf die verschiedenen Eigenimplementierungen, um 
 \subsection{Testaufbau}
 Alle Tests wurden auf demselben Rechner mit den folgenden Spezifikationen durchgeführt:
 \begin{itemize}
-\item Betriebssystem: Microsoft Windows 11 Pro
-\item CPU: AMD Ryzen 7 7800X3D, 4.20 GHz, 8 cores / 16 threads
-\item Mainboard: MSI B650M GAMING PLUS WIFI
-\item RAM: 64GB DDR5
-\item GPU: RTX 4080 Super
+    \item Betriebssystem: Microsoft Windows 11 Pro
+    \item CPU: AMD Ryzen 7 7800X3D, 4.20 GHz, 8 cores / 16 threads
+    \item Mainboard: MSI B650M GAMING PLUS WIFI
+    \item RAM: 64GB DDR5
+    \item GPU: RTX 4080 Super
 \end{itemize}
 
 Die Tests wurden als \gls{glos:JUnit}-Tests konzipiert.
@@ -39,11 +40,57 @@ Somit sollten grosse Ausreisser die Resultate nicht stark beeinflussen.
 Der Test stellt ausserdem sicher, dass alle wiederholten Messungen sowie alle Algorithmen, die dieselben Auswertungsstrategien verwenden, zu denselben Ergebnissen führen.
 Durch diese Prüfung wird sichergestellt, dass alle Zeitunterschiede gültig sind.
 
-Die Ergebnisse der Tests werden in Dateien gespeichert.
-Einerseits wird eine Textdatei pro Algorithmus-Strategie-Suchtiefe-Kombination aller Messungen erstellt.
-Andererseits wird pro Test (bzw.\ pro Schachposition) ein \gls{glos:plantuml}-Diagramm erstellt, wo alle Algorithmus-Strategie-Suchtiefe-Kombinationen verglichen werden können.
-Zusätzlich wird für jede Kombination eine Tabelle der Abweichungen (\gls{glos:mad}) erstellt.
-
-Schlussendlich wird ein Diagramm aller Messungen für die grösste gemeinsame Suchtiefe, und eine Tabelle der zeitlichen Effizienzsteigerungen der Algorithmen erstellt.
+Die Testergebnisse werden in Dateien gespeichert, die zur Erstellung von Diagrammen verwendet werden.
 
 \subsection{Testresultate}
+Für jede Position wurde ein \gls{glos:plantuml}-Diagramm erstellt mit den Algorithmen, Zugtiefen und Rechenzeiten.
+Alle Diagramme befinden sich im Anhang unter Rechenzeit Daten~\ref{ch:performance_data} und ehen wie folgt aus.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/performance/complexPositionWithManyOptions/ComplexPositionWithManyOptions}
+    \caption{Rechenzeiten für die erste getestete Schachposition}
+    \label{fig:rechenzeiten-fuer-erste-position}
+\end{figure}
+
+Für die vertikale Achse wurde eine \gls{glos:logskala} zur Basis 10 verwendet, da sich die Rechenzeiten pro Tiefe stark unterscheiden.
+Bei einer linearen Skala könnten entweder die kleineren Werte nicht verglichen werden, oder die Diagramme müssten sehr hoch sein.
+
+Für die Zugtiefen 6 und 7 wurden nur die Algorithmen mit der Alpha-Beta-Pruning Optimierung (mit und ohne Caching) evaluiert.
+Der Grund dafür ist der grosse Unterschied der Rechenzeiten - der Test wurde viel zu lange dauern.
+
+Für die grösste gemeinsam berechenbare Zugtiefe wurde noch eine Tabelle erstellt, welche die relativen Rechengeschwindigkeiten zum nicht optimierten Algorithmus aufzeigt.
+Die Zahlen geben den Geschwindigkeitsmultiplikator im Vergleich zum ursprünglichen Algorithmus an - die Zahl 2 steht also für die doppelte Geschwindigkeit bzw.\ die Hälfte der erforderlichen Rechenzeit.
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \input{report/performance/performance-gains-minimaxsequential-at-depth-5-by-strategy}
+    }
+    \caption{Medianer Geschwindigkeitsmultiplikator bei Zugtiefe 5}
+    \label{tab:medianer-geschwindigkeitsmultiplikator-bei-zugtiefe-5}
+\end{table}
+
+Die Werte in der Tabelle sind Medianwerte über alle Schachpositionen.
+Die weiteren Tabellen befinden sich im Anhang unter Rechengeschwindigkeitsmultiplikator im Vergleich zu MiniMaxSequential~\ref{sec:performance-gains}.
+
+Für eine kompaktere Darstellung der Evaluationen unterschiedlicher Algorithmen und Strategien wurden pro Zugtiefe noch ein Diagramm erstellt.
+Diese Diagramme befinden sich ebenfalls im Anhang, unter Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}.
+Untenstehend noch das Diagramm für die Zugtiefe 5.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{evaluation/report/performance/performance-at-depth-5-by-strategy}
+    \caption{Rechenzeit für Zugtiefe 5}
+    \label{fig:rechenzeit-fuer-tiefe-5-pro-strategie}
+\end{figure}
+
+\subsection{Interpretation}
+Die Messungen zeigen, dass die Alpha-Beta-Pruning-Optimierung den grössten Leistungsgewinn bringt.
+Es ist erstaunlich zu sehen genau wie viel schneller diese Optimierung im Vergleich zum Caching und zur Parallelisierung ist.
+
+Der Zeitunterschied gegenüber einer einfachen Parallelisierung lässt sich durch die begrenzte Anzahl verfügbarer CPUs erklären.
+Jedoch wäre die nötige Anzahl CPUs bei grösseren Zugtiefen fast nicht erreichbar um die gleiche Leistung zu Alpha-Beta-Pruning zu erreichen, da bei jeder zusätzlichen Tiefe die Anzahl nötigen Evaluationen exponentiell steigen kann.
+
+Bei ganz kleinen Zugtiefen scheint der Overhead der Caching-Implementation grösser zu sein, als der Gewinn.
+Der Leistungsgewinn der Caching-Optimierung steigt mit der Zugtiefe.
+Dies ist einfach zu erklären - je grösser die Zugtiefe, desto mehr Möglichkeiten auf die gleiche Schachposition mehrmals zu stossen.

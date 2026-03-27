@@ -1,1 +1,47 @@
 \section{Zugtiefe}
+Die Zugtiefe ist die Anzahl Schachzüge, die im Voraus durchgespielt werden während der bestimmung des nächsten besten Zuges aus einer bestimmten Schachposition.
+Die Tiefe ist direkt abhängig von der Rechenzeit.
+Je schneller eine Position ausgewertet wird, desto mehr Züge im Voraus können innerhalb einer angemessenen Zeitspanne analysiert werden.
+
+\subsection{Testaufbau}
+Da die Zugtiefe direkt von der Rechenzeit abhängig ist, wurde hier der gleiche \gls{glos:JUnit}-Test verwendet, wie für die Rechenzeitberechnung (Kapitel~\ref{sec:rechenzeit}).
+Die Ausführung dieser Tests ist sehr Zeitaufwändig, vor allem bei grösseren Zugtiefen.
+Darum wurde entschieden, dass die maximale Zugtiefe eines Algorithmus erreicht wurde, sobald die Rechenzeit 10 Sekunden überschreitet.
+Diese Grenze wurde nicht technisch durchgesetzt, sondern durch das wiederholende Ausführen des Tests für alle Positionen mit unterschiedlichen Tiefen.
+Sobald die Rechenzeit überzeugend 10 Sekunden überschritt, wurde diese Tiefe fest im Test hinterlegt.
+Eine Ausnahme bildete hier die sequenzielle Implementierung des MiniMax-Algorithmus ohne jegliche Optimierungen (Kapitel~\ref{subsec:minimax-sequenziell}), um einen besseren Vergleich zu ermöglichen.
+Folglich wurde der Test vollständig ausgeführt, womit die genauen Rechenzeiten dokumentiert wurden.
+Die finale Testausführung lief knapp über 9 Tage.
+
+\subsection{Testresultate}
+Aus den Diagrammen im Anhang (Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}) ergibt sich die folgende maximale Zugtiefe innerhalb 10 Sekunden (Mediane Rechenzeit aus 10 Evaluationen):
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|}
+            \hline
+            \textbf{Algorithmus} & \textbf{Maximale Tiefe} \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+            MiniMaxSequential & 3 \\
+            \hline
+            \rowcolor[HTML]{EFEFEF}
+            MiniMaxSequentialWithCache & 4 \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+            MiniMaxParallel & 4 \\
+            \hline
+            \rowcolor[HTML]{EFEFEF}
+            MiniMaxParallelWithCache & 4 \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+            MiniMaxSequentialAlphaBeta & 6 \\
+            \hline
+            \rowcolor[HTML]{EFEFEF}
+            MiniMaxSequentialAlphaBetaWithCache & 6 \\
+            \hline
+        \end{tabular}%
+    }
+    \caption{Maximale Zugtiefe innerhalb von 10 Sekunden}
+    \label{tab:maximale-zugtiefe-pro-algorithmus}
+\end{table}
