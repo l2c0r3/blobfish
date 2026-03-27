@@ -14,12 +14,12 @@ bar "Mate aware piece square evaluation"[ 5.278,5.616,4.45,4.745,2.78,2.898 ] #1
 bar "Mate aware piece square material evaluation"[ 5.365,5.772,4.559,4.928,2.792,2.927 ] #FF7F0E
 bar "Mate aware material evaluation"[ 5.295,5.642,4.474,4.796,2.585,2.719 ] #2CA02C
 
-legend left
+legend right
 
 <style>
 chartDiagram {
     bar {
-        LineThickness 1.2
+        LineThickness 1
     }
     axis {
         LineColor #34495e
