@@ -2,24 +2,24 @@
 
 \begin{table}[h]
     \centering
-    \renewcommand{\arraystretch}{1.8}
-    \setlength{\tabcolsep}{12pt}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{4pt}
 
-    \begin{tabular}{|>{\columncolor{gray!20}}c|l|c|c|c|}
+    \begin{tabular}{|>{\columncolor{gray!20}}p{2.8cm}|p{3.2cm}|p{2.8cm}|p{2.8cm}|}
         \hline
         \rowcolor{gray!20}
-        \diagbox[width=6em]{Such}{Eval}
-        & \makecell{12\\MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation}
-        & \makecell{20\\MateAwareEvaluation \& MaterialEvaluation}
-        & \makecell{7\\MateAwareEvaluation \& PieceSquareEvaluation} \\
+        \diagbox[width=8em]{Such-\\algorithmus}{Evaluation}
+        & \makecell[l]{(12)\\MateAwareEvaluation \\ \& MaterialEvaluation \\ \& PieceSquareEvaluation}
+        & \makecell[l]{(20)\\MateAwareEvaluation \\ \& MaterialEvaluation}
+        & \makecell[l]{(7)\\MateAwareEvaluation \\ \& PieceSquareEvaluation} \\
         \hline
-        \cellcolor{gray!20}7 \\MiniMaxAlphaBetaSequentialWithCache & 19 & 27 & 14 \\
+        \cellcolor{gray!20}\makecell[l]{(7)\\MiniMaxAlphaBetaSequentialWithCache} & 19 & 27 & 14 \\
         \hline
-        \cellcolor{gray!20}20 \\MiniMaxParallelWithCache & 32 & 40 & 27 \\
+        \cellcolor{gray!20}\makecell[l]{(20)\\MiniMaxParallelWithCache} & 32 & 40 & 27 \\
         \hline
-        \cellcolor{gray!20}5 \\MiniMaxSequentialWithCache & 17 & 25 & 12 \\
+        \cellcolor{gray!20}\makecell[l]{(5)\\MiniMaxSequentialWithCache} & 17 & 25 & 12 \\
         \hline
     \end{tabular}
-
 \end{table}
 
