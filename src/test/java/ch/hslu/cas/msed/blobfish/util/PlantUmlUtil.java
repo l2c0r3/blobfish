@@ -106,12 +106,12 @@ public class PlantUmlUtil {
                 
                 %s
                 
-                legend left
+                legend right
                 
                 <style>
                 chartDiagram {
                     bar {
-                        LineThickness 1.2
+                        LineThickness 1
                     }
                     axis {
                         LineColor #34495e
