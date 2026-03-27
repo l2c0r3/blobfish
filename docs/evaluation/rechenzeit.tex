@@ -44,7 +44,7 @@ Die Testergebnisse werden in Dateien gespeichert, die zur Erstellung von Diagram
 
 \subsection{Testresultate}
 Für jede Position wurde ein \gls{glos:plantuml}-Diagramm erstellt mit den Algorithmen, Zugtiefen und Rechenzeiten.
-Alle Diagramme befinden sich im Anhang unter Rechenzeit Daten~\ref{ch:performance_data} und ehen wie folgt aus.
+Alle Diagramme befinden sich im Anhang unter Rechenzeit Daten~\ref{ch:performance_data} und sehen wie folgt aus.
 
 \begin{figure}[H]
     \centering
@@ -57,14 +57,14 @@ Für die vertikale Achse wurde eine \gls{glos:logskala} zur Basis 10 verwendet, 
 Bei einer linearen Skala könnten entweder die kleineren Werte nicht verglichen werden, oder die Diagramme müssten sehr hoch sein.
 
 Für die Zugtiefen 6 und 7 wurden nur die Algorithmen mit der Alpha-Beta-Pruning Optimierung (mit und ohne Caching) evaluiert.
-Der Grund dafür ist der grosse Unterschied der Rechenzeiten - der Test wurde viel zu lange dauern.
+Der Grund dafür ist der grosse Unterschied der Rechenzeiten - der Test würde viel zu lange dauern.
 
 Für die grösste gemeinsam berechenbare Zugtiefe wurde noch eine Tabelle erstellt, welche die relativen Rechengeschwindigkeiten zum nicht optimierten Algorithmus aufzeigt.
 Die Zahlen geben den Geschwindigkeitsmultiplikator im Vergleich zum ursprünglichen Algorithmus an - die Zahl 2 steht also für die doppelte Geschwindigkeit bzw.\ die Hälfte der erforderlichen Rechenzeit.
 \begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{%
-        \input{report/performance/performance-gains-minimaxsequential-at-depth-5-by-strategy}
+        \input{evaluation/report/performance/performance-gains-minimaxsequential-at-depth-5-by-strategy}
     }
     \caption{Medianer Geschwindigkeitsmultiplikator bei Zugtiefe 5}
     \label{tab:medianer-geschwindigkeitsmultiplikator-bei-zugtiefe-5}
