@@ -44,7 +44,8 @@ Innerhalb eines Schachspiels hat jeder Spieler nur eine gewisse Zeit, um seine Z
 wir aus Zeitgründen weggelassen. \\
 Bei unserem Minimax-Algorithmus, welcher eine depth-first Suche ist, hat sich als Time Management Strategy Iterative
 Deepening etabliert. Hierbei wird zuerst mit der Tiefe von 1 alle Züge berechnet, woraufhin die Tiefe von 2 berechnet
-wird usw. Sobald die gegebene Zeit pro Zug aufgebraucht ist, wird das Ergebnis mit der höchsten Tiefe zurückgegeben (\cite{iterativeDeepening}).
+wird usw. Sobald die gegebene Zeit pro Zug aufgebraucht ist, wird das Ergebnis der zuletzt vollständig berechneten Tiefe
+zurückgegeben (\cite{iterativeDeepening}).
 
 Als Basis für die Zeit pro Zug hat sich folgende Berechnung durchgesetzt, wobei \text{base} die verbleibende Spielzeit
 und \text{increment} das Inkrement pro Zug ist (\cite{timeManagement}):
