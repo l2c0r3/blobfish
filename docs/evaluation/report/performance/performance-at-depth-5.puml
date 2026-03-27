@@ -1,0 +1,44 @@
+@startchart
+skinparam dpi 300
+scale 1.5
+
+title
+Median calculation time at depth 5
+end title
+
+h-axis [ MiniMax\nSequential\nWithCache,MiniMax\nSequential,MiniMax\nParallel\nWithCache,MiniMax\nParallel,MiniMax\nAlphaBeta\nSequential\nWithCache,MiniMax\nAlphaBeta\nSequential ]
+v-axis "Calculation time [ms]" 0 --> 6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+
+
+bar "r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10"[ 5.636,5.944,4.833,5.088,2.74,2.903 ] #1F77B4
+bar "8/5ppk/4p1p1/3pq3/3Q4/1B2r2P/P5P1/3R3K b - - 8 42"[ 4.829,5.255,4.009,4.414,2.223,2.427 ] #FF7F0E
+bar "r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4"[ 5.39,5.65,4.584,4.806,2.885,3.008 ] #2CA02C
+bar "rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17"[ 5.319,5.636,4.506,4.786,3.449,3.544 ] #D62728
+bar "5rk1/5q1p/p2PR1p1/4p1b1/1pP5/1P1Q4/P5PP/1K2R3 b - - 0 31"[ 5.27,5.649,4.44,4.818,2.531,2.676 ] #9467BD
+bar "r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8"[ 5.448,5.75,4.641,4.899,2.708,2.831 ] #8C564B
+bar "5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24"[ 5.227,5.586,4.422,4.74,2.99,3.172 ] #E377C2
+bar "1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1"[ 5.647,5.987,4.873,5.153,2.661,2.856 ] #7F7F7F
+bar "rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4"[ 5.235,5.486,4.439,4.643,2.471,2.597 ] #BCBD22
+bar "r3k2r/pNp1ppbp/2nq2pn/7P/2B3b1/3P1N2/PPP2PP1/R1BQK2R b KQkq - 0 11"[ 5.836,6.149,5.086,5.302,2.922,3.037 ] #17BECF
+bar "r5k1/7p/1p1Qp1p1/p1np1r2/1q3P1P/1P6/2P3P1/RB3RK1 w - - 3 26"[ 5.215,5.526,4.42,4.677,2.74,2.894 ] #AEC7E8
+bar "Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15"[ 4.828,5.173,4.007,4.326,2.438,2.515 ] #FFBB78
+
+legend left
+
+<style>
+chartDiagram {
+    bar {
+        LineThickness 1.2
+    }
+    axis {
+        LineColor #34495e
+        LineThickness 1.5
+        FontSize 11
+    }
+    grid {
+        LineColor #dddddd
+        LineThickness 1
+    }
+}
+</style>
+@endchart

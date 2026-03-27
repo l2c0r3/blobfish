@@ -1,0 +1,19 @@
+rnbqkbnr/ppp2ppp/8/3pp3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.241;9.106;266.71;9942.848;306496.258
+MiniMaxSequential (Mate aware piece square evaluation);0.223;8.434;253.177;9410.722;289943.474
+MiniMaxSequential (Mate aware piece square material evaluation);0.321;11.985;360.271;13374.216;411013.68
+MiniMaxSequentialWithCache (Mate aware material evaluation);2.32;10.334;282.069;8296.041;171823.723
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.248;8.998;268.827;7875.483;164833.149
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.425;12.769;360.348;10344.245;208994.399
+MiniMaxParallel (Mate aware material evaluation);0.531;3.26;40.699;1433.498;43953.921
+MiniMaxParallel (Mate aware piece square evaluation);0.229;1.442;35.008;1271.751;39006.103
+MiniMaxParallel (Mate aware piece square material evaluation);0.326;2.137;53.474;1943.139;59695.64
+MiniMaxParallelWithCache (Mate aware material evaluation);0.307;1.823;39.805;1184.387;27477.415
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.654;1.7;36.577;1114.439;25793.132
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);0.457;2.228;52.706;1500.44;33538.856
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.238;0.744;7.775;42.139;248.924;2418.832;8567.743
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.27;1.71;14.148;111.511;784.169;5543.186;38067.731
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.315;1.336;11.029;79.821;395.632;4585.061;17869.67
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.325;0.982;8.72;36.395;188.095;1713.258;4682.191
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.236;1.845;14.437;103.887;655.579;4089.11;24922.771
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.338;1.416;10.883;68.785;296.535;3376.539;11406.065

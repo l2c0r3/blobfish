@@ -1,0 +1,19 @@
+5r1k/1pqnbr1P/p2p1pQp/2p5/3PP2P/1PN5/1PP3R1/R5K1 w - - 0 24;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.346;8.62;363.429;9336.339;385437.927
+MiniMaxSequential (Mate aware piece square evaluation);0.328;8.13;345.746;8814.466;363278.584
+MiniMaxSequential (Mate aware piece square material evaluation);0.471;11.83;501.125;12648.487;520594.142
+MiniMaxSequentialWithCache (Mate aware material evaluation);2.639;9.544;353.646;6263.326;168706.301
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.684;8.55;331.551;5922.555;162856.708
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.539;13.033;445.649;7949.411;204833.412
+MiniMaxParallel (Mate aware material evaluation);1.538;3.389;57.701;1342.507;54970.687
+MiniMaxParallel (Mate aware piece square evaluation);0.329;1.446;47.067;1194.644;49172.677
+MiniMaxParallel (Mate aware piece square material evaluation);0.584;2.099;73.25;1838.813;74099.004
+MiniMaxParallelWithCache (Mate aware material evaluation);0.524;2.411;49.676;901.16;26418.261
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.734;1.727;45.484;880.751;25086.999
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);0.605;2.221;63.983;1159.374;32354.464
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.346;0.805;19.921;51.833;1487.418;3275.221;77127.616
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.328;1.353;18.241;57.853;1171.856;2729.226;54482.392
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.463;1.271;31.067;75.791;2149.0;4891.701;109071.359
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.439;1.073;20.526;47.833;978.643;2112.164;28287.208
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.354;1.479;17.947;55.337;723.767;1627.871;17407.541
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.556;1.485;30.265;68.766;1345.651;3118.081;39207.528
