@@ -16,21 +16,29 @@ Hierfür können Heuristiken wie \href{https://www.chessprogramming.org/Pawn_Str
 \href{https://www.chessprogramming.org/Mobility}{Mobility} oder \href{https://www.chessprogramming.org/King_Safety}{King Safety}
 implementiert werden.
 
-\section{Suchalgorithmus}
+\section{Endgame Tablebase \& Opening Books}
 
+Um den Anfang an optimal zu bestehen und bekannte Endszenarien optimal zu lösen, existieren
+\href{https://www.chessprogramming.org/Opening_Book}{Opening Books} sowie
+\href{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame Tablebases}:
 
+Opening Books haben drei Vorteile (\cite{openingBook}):
 
-\section{Weitere Funktionalitäten}
+\begin{itemize}
+    \item Zeit sparen: Statt alle möglichen Züge aufwendig zu berechnen, können Schachprogramme mit Eröffnungsbüchern sofort Züge spielen und sparen so viel Rechenzeit.
+    \item Bessere Spielqualität: Reine Suche erkennt nicht immer langfristige Strategien oder taktische Ideen (z. B. Opfer für spätere Vorteile). Eröffnungswissen kann hier helfen.
+    \item Mehr Vielfalt: Da es viele bekannte Eröffnungen gibt, können Züge aus dem Buch zufällig gewählt werden, während Suchalgorithmen oft immer gleich entscheiden.
+\end{itemize}
 
-\subsection{Endgame Tablebase \& Opening Books}
+Opening Books existieren in unterschiedlichen Formaten und können online heruntergeladen werden (\cite{openingBook}).
 
-- Endgames https://www.chessprogramming.org/Endgame_Tablebases
-- Openning Books https://www.chessprogramming.org/Opening_Book
+Für das Ende des Spiels gilt dasselbe, mittels Endgame Tablebases kann Ressourcenarm, gezielt und Fehlerfrei das Endgame gespielt
+werden, was die Gewinnchance erhöht. Hierfür gibt es Tablebases, welche bis zu 17 Terrabyte (!) gross sind und
+(\cite{endGameTableBase}).
 
-\subsection{Iterative Deepening}
+\section{Iterative Deepening}
 
-https://www.chessprogramming.org/Iterative_Deepening
+\href{https://www.chessprogramming.org/Iterative_Deepening}{Iterative Deepening}
 
-\subsection{UCI}
+\section{UCI}
 
-\subsection{}
