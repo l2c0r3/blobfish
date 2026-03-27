@@ -1,6 +1,10 @@
 \section{Fazit}
 
-\section{Fazit}
+Eine Nutzwertanalyse, wie sie ursprünglich angedacht war, macht aus aktueller Sicht keinen Sinn, für den Suchalgorithmus
+aktuell nur das Kriterium \enquote{Rechenzeit} existiert und für die Evaluationsstrategie das Kriterium \enquote{Qualität}. \\
+Somit wurde entschieden eine Kombinationsmatrix zu erstellen, woraus die beste Kombination aus Suchalgorithmus und Evaluationsstrategie
+genommen werden kann. Jede Variante enthält gemäss seiner Rangliste von seiner jeweiligen Disziplin Punkte: der Erstplazierte
+Anahand
 
 \begin{table}[h]
     \centering
@@ -21,14 +25,16 @@
         & \makecell[c]{\textbf{(7)}\\MateAwareEval\\PieceSquareEval} \\
         \hline
         \makecell[c]{\textbf{(7)}\\MiniMaxAlphaBeta\\SequentialWithCache}
-        & \textbf{19} & \textbf{27} & \textbf{14} \\
+        & 19 & 27 & 14 \\
         \hline
         \makecell[c]{\textbf{(20)}\\MiniMaxParallel\\WithCache}
-        & \textbf{32} & \textbf{40} & \textbf{27} \\
+        & 32 & 40 & 27 \\
         \hline
         \makecell[c]{\textbf{(5)}\\MiniMaxSequential\\WithCache}
-        & \textbf{17} & \textbf{25} & \textbf{12} \\
+        & 17 & 25 & 12 \\
         \hline
     \end{tabular}
+    \caption{Übersicht der Kombinationen aus Suchalgorithmus und Evaluationsstrategie}
+    \label{tab:evaluation-matrix}
 \end{table}
 
