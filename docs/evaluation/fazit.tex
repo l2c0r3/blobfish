@@ -4,27 +4,30 @@
 
 \begin{table}[h]
     \centering
-    \scriptsize
-    \renewcommand{\arraystretch}{1.5}
-    \setlength{\tabcolsep}{4pt}
+    \small
+    \renewcommand{\arraystretch}{1.7}
+    \setlength{\tabcolsep}{6pt}
 
     \begin{tabular}{|
-            >{\centering\arraybackslash\columncolor{gray!20}}p{0.25\textwidth}|
-            >{\centering\arraybackslash}p{0.23\textwidth}|
-            >{\centering\arraybackslash}p{0.23\textwidth}|
-            >{\centering\arraybackslash}p{0.23\textwidth}|}
+            >{\centering\arraybackslash\columncolor{gray!20}}m{0.24\textwidth}|
+            >{\centering\arraybackslash}m{0.25\textwidth}|
+            >{\centering\arraybackslash}m{0.25\textwidth}|
+            >{\centering\arraybackslash}m{0.22\textwidth}|}
         \hline
         \rowcolor{gray!20}
-        \diagbox[width=8em]{Such-\\algorithmus}{Evaluation}
-        & \makecell[c]{(12)\\MateAwareEvaluation \\ \& MaterialEvaluation \\ \& PieceSquareEvaluation}
-        & \makecell[c]{(20)\\MateAwareEvaluation \\ \& MaterialEvaluation}
-        & \makecell[c]{(7)\\MateAwareEvaluation \\ \& PieceSquareEvaluation} \\
+        \diagbox[width=9em,height=5em]{\textbf{Suchalgo.}}{\textbf{Evaluation}}
+        & \makecell[c]{\textbf{(12)}\\MateAwareEval\\MaterialEval\\PieceSquareEval}
+        & \makecell[c]{\textbf{(20)}\\MateAwareEval\\MaterialEval}
+        & \makecell[c]{\textbf{(7)}\\MateAwareEval\\PieceSquareEval} \\
         \hline
-        \cellcolor{gray!20}\makecell[c]{(7)\\MiniMaxAlphaBeta-\\SequentialWithCache} & 19 & 27 & 14 \\
+        \makecell[c]{\textbf{(7)}\\MiniMaxAlphaBeta\\SequentialWithCache}
+        & \textbf{19} & \textbf{27} & \textbf{14} \\
         \hline
-        \cellcolor{gray!20}\makecell[c]{(20)\\MiniMaxParallelWithCache} & 32 & 40 & 27 \\
+        \makecell[c]{\textbf{(20)}\\MiniMaxParallel\\WithCache}
+        & \textbf{32} & \textbf{40} & \textbf{27} \\
         \hline
-        \cellcolor{gray!20}\makecell[c]{(5)\\MiniMaxSequential\\WithCache} & 17 & 25 & 12 \\
+        \makecell[c]{\textbf{(5)}\\MiniMaxSequential\\WithCache}
+        & \textbf{17} & \textbf{25} & \textbf{12} \\
         \hline
     \end{tabular}
 \end{table}
