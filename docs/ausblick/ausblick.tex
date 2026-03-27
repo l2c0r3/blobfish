@@ -18,23 +18,24 @@ implementiert werden.
 
 \section{Endgame Tablebase \& Opening Books}
 
-Um den Anfang an optimal zu bestehen und bekannte Endszenarien optimal zu lösen, existieren
-\href{https://www.chessprogramming.org/Opening_Book}{Opening Books} sowie
-\href{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame Tablebases}:
+Um die Eröffnungsphase optimal zu gestalten als auch bekannte End   spielsituationen perfekt zu lösen, existieren
+\href{\href{https://www.chessprogramming.org/Opening_Book%7D%7BOpening}{https://www.chessprogramming.org/Opening_Book}{Opening} Books} sowie
+\href{\href{https://www.chessprogramming.org/Endgame_Tablebases%7D%7BEndgame}{https://www.chessprogramming.org/Endgame_Tablebases}{Endgame} Tablebases}:
 
-Opening Books haben drei Vorteile (\cite{openingBook}):
+Opening Books bieten drei wesentliche Vorteile (\cite{openingBook}):
 
 \begin{itemize}
-    \item Zeit sparen: Statt alle möglichen Züge aufwendig zu berechnen, können Schachprogramme mit Eröffnungsbüchern sofort Züge spielen und sparen so viel Rechenzeit.
-    \item Bessere Spielqualität: Reine Suche erkennt nicht immer langfristige Strategien oder taktische Ideen (z. B. Opfer für spätere Vorteile). Eröffnungswissen kann hier helfen.
-    \item Mehr Vielfalt: Da es viele bekannte Eröffnungen gibt, können Züge aus dem Buch zufällig gewählt werden, während Suchalgorithmen oft immer gleich entscheiden.
+    \item \textbf{Zeitersparnis:} Anstatt alle möglichen Züge aufwendig zu berechnen, können Schachprogramme mithilfe von Eröffnungsbüchern sofort geeignete Züge ausführen und dadurch Rechenzeit einsparen
+    \item \textbf{Höhere Spielqualität:} Eine reine Suche erkennt nicht immer langfristige strategische Konzepte oder Motive (z.\,B. Materialopfer für spätere Vorteile)
+    \item \textbf{Grössere Vielfalt:} Da zahlreiche bekannte Eröffnungsvarianten existieren, können Züge aus dem Buch auch zufällig ausgewählt werden, während der Suchalgorithmen deterministisch immer denselben wählt
 \end{itemize}
 
-Opening Books existieren in unterschiedlichen Formaten und können online heruntergeladen werden (\cite{openingBook}).
 
-Für das Ende des Spiels gilt dasselbe, mittels Endgame Tablebases kann Ressourcenarm, gezielt und Fehlerfrei das Endgame gespielt
-werden, was die Gewinnchance erhöht. Hierfür gibt es Tablebases, welche bis zu 17 Terrabyte (!) gross sind und
-(\cite{endGameTableBase}).
+Opening Books sind in verschiedenen Formaten verfügbar und können online bezogen werden (\cite{openingBook}).
+
+Für das Endspiel gilt ein ähnliches Prinzip: Mithilfe von Endgame Tablebases kann das Endspiel ressourcenschonend,
+gezielt und fehlerfrei gespielt werden, was die Gewinnwahrscheinlichkeit erhöht. Hierfür existieren Tablebases mit einem
+Umfang von bis zu 17 Terabyte (!), welche alle möglichen Schachpositionen mit bis zu 7 Figuren vorberechnet haben (\cite{endGameTableBase, syzygyBases}).
 
 \section{Iterative Deepening}
 
