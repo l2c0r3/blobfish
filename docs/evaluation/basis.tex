@@ -29,14 +29,14 @@ Die Studie folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehre
 \begin{itemize}
 \item Hardwareumgebung
 \item Testpositionen
-\item Konfiguration der Referenz-Engine (Stockfish mit fester Suchtiefe)
+\item Konfiguration der Referenz-Engine
 \end{itemize}
 
 Die Suchtiefe wird nicht als unabhängiges Bewertungskriterium betrachtet, da sie direkt von der verfügbaren Rechenzeit abhängt und zugleich die Zugqualität beeinflusst.
 Stattdessen wird sie als erklärende Hilfsgrösse betrachtet.
 
 \section{Benchmarking-Ansatz}
-Die Evaluation der Zugqualität erfolgt als Benchmarking gegen ein Referenzsystem, wobei Stockfish als starker Vergleichsmassstab dient.
+Die Evaluation der Zugqualität erfolgt als Benchmarking gegen ein Referenzsystem, wobei \gls{glos:stockfish} als starker Vergleichsmassstab dient.
 Alle Engine-Konfigurationen werden auf identischen Schachpositionen getestet.
 Für jede Position wird der von der implementierten Engine gewählte Zug mit den besten Zügen der Referenz-Engine bei gleicher Suchtiefe verglichen.
 Dieser Ansatz ermöglicht eine relative Bewertung der Zugqualität, ohne auf absolute Bewertungswerte angewiesen zu sein.
@@ -44,6 +44,7 @@ Dieser Ansatz ermöglicht eine relative Bewertung der Zugqualität, ohne auf abs
 Die Evaluation der Rechenzeit hingegen erfolgt als Benchmarking gegen den Minimax-Algorithmus ohne jegliche Optimierungen.
 Auch hierfür werden alle Engine-Konfigurationen auf identischen Schachpositionen und auch auf identischer Hardware getestet.
 Es wird für jede Position und alle definierten Zugtiefen der beste Zug berechnet.
+Bei diesen Messungen ist jedoch nicht der beste Zug die wichtige Information, sondern die benötigte Rechenzeit um diesen zu herausfinden.
 Die Messungen werden mehrmals durchgeführt und die Rechenzeiten werden festgehalten.
 Dieses Vorgehen ermöglicht eine relative Bewertung der Rechenzeit im Hinblick auf die Zugtiefe - wobei Ausreisser aufgrund der mehrfachen Wiederholungen der Messungen nur einen geringen Einfluss auf das Ergebnis haben.
 
@@ -64,39 +65,38 @@ Medianwerte dienen dem Vergleich der zentralen Tendenz.
 Für die Auswertung der Resultate wurde erstmals eine Nutzwertanalyse angedacht.
 Da Abhängigkeiten zwischen den Variablen (insbesondere zwischen Rechenzeit, Suchtiefe und Zugqualität) zu Verzerrungen führen können, wurde diese Methode nicht eingesetzt.
 Stattdessen werden die Zugqualität und die Rechenzeit separat evaluiert.
-Die Interpretation erfolgt anhand von einer rangbasierten Bewertungsmethode (für Zugqualität) und direktem Metrikvergleich (für Rechenzeit).
+Die Interpretation erfolgt anhand einer rangbasierten Bewertungsmethode (für Zugqualität) und direktem Metrikvergleich (für Rechenzeit).
 
 \section{Stockfish}
-Die Engine wird mit Stockfish verglichen. Nicht, weil davon ausgegangen wird, dass die entwickelte Engine mithalten kann,
+Die Engine wird mit \gls{glos:stockfish} verglichen. Nicht, weil davon ausgegangen wird, dass die entwickelte Engine mithalten kann,
 sondern vielmehr, um daraus zu lernen und einen Referenzpunkt zu haben.
 
-Die grundlegende Idee besteht darin, \gls{glos:JUnit}-Tests zu schreiben, welche mit Stockfish interagieren. Dafür muss
-Stockfish von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird.
+Die grundlegende Idee besteht darin, \gls{glos:JUnit}-Tests zu schreiben, welche mit \gls{glos:stockfish} interagieren. Dafür muss
+\gls{glos:stockfish} von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird.
 
-Hierfür wird \href{https://testcontainers.com/}{Testcontainers} verwendet. Damit ist es möglich, während der
+Hierfür wird die \href{https://testcontainers.com/}{Testcontainers}-Library verwendet. Damit ist es möglich, während der
 Testausführung beliebige Docker-Container zu starten und diese nach Abschluss der Tests wieder zu stoppen.
 
-Da Stockfish selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht hat, wurde mithilfe von
-(\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt. Daraus können wir
-ein Image bauen und einen Container starten.
+Da \gls{glos:stockfish} selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht hat, wurde mithilfe von
+(\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt.
+Daraus kann ein Image gebaut und somit auch ein Container gestartet werden.
 
-Um während der Tests mit Stockfish kommunizieren zu können, wird einen Client benötigt. Ein weit verbreitetes
-Kommunikationsprotokoll, das von vielen Schach-Engines und auch von Stockfish verwendet wird, ist das
-\href{https://backscattering.de/chess/uci/}{UCI-Protokoll}. Damit kann Stockfish beispielsweise eine Position übermittelt
-und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befehle sind
-\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html}{hier} aufgeführt.
+Um während der Tests mit \gls{glos:stockfish} kommunizieren zu können, wird ein Client benötigt. Ein weit verbreitetes
+Kommunikationsprotokoll, das von vielen Schach-Engines und auch von \gls{glos:stockfish} verwendet wird, ist das \href{https://backscattering.de/chess/uci/}{UCI-Protokoll}.
+Damit kann beispielsweise an \gls{glos:stockfish} eine Position übermittelt und der nächste Zug berechnet werden.
+Die von \gls{glos:stockfish} unterstützten UCI-Befehle sind auf der \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html}{offiziellen Dokumentation}~aufgeführt.
 
-Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
+Sämtliche Klassen und Dateien, die entwickelt wurden, um \gls{glos:stockfish} während der Tests auszuführen, befinden sich unter
 \textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
 
 \section{JUnit-Extension}
 
-Um möglichst einfach innerhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, wurde
-eine \gls{glos:JUnit}-Extension entwickelt. Eine Extension ermöglicht beispielsweise über Callbacks, Code
-vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
+Um möglichst einfach innerhalb einer Testmethode mit \gls{glos:stockfish} kommunizieren zu können, wurde
+eine \gls{glos:JUnit}-Extension entwickelt. Die Extension ermöglicht, unter anderem, über Callbacks, Code
+vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls können über PostProcessing Objekte in Felder der
 Testklasse injected werden (\cite{junitExtensionRegistration}).
 
-So sehen beispielsweise die ersten Zeilen der Testklasse \texttt{QualityTest}, welche die entwickelte Extension verwendet:
+So sehen beispielsweise die ersten Zeilen der Testklasse \texttt{QualityTest} aus, welche die entwickelte Extension verwendet:
 
 \lstinputlisting[
     firstline=34,
@@ -107,15 +107,15 @@ So sehen beispielsweise die ersten Zeilen der Testklasse \texttt{QualityTest}, w
 ]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
 
 Mittels der Annotation \texttt{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
-dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal ein Docker-Container von Stockfish bereits
+dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal ein Docker-Container von \gls{glos:stockfish} bereits
 gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
 Als Nächstes wird die \texttt{StockFishService}-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
-wird dann mittels PostProcessing in das Feld auf Zeile 6 injected.
+wird dann mittels PostProcessing in das Feld auf Zeile 39 injected.
 
 Anschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \texttt{stockFishService}
-Variable mit Stockfish kommuniziert werden, und so beispielsweise Positionen berechnet werden.
+Variable mit \gls{glos:stockfish} kommuniziert werden, und so beispielsweise Positionen berechnet werden.
 Zwischen den Testmethoden übermittelt die Extension den Befehl
-\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame} an Stockfish,
+\href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame} an \gls{glos:stockfish},
 um die Engine zurückzusetzen.
 
 Nachdem alle Testmethoden ausgeführt sind und ein Docker-Container für die Testausführung gestartet wurde, stoppt

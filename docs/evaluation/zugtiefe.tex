@@ -1,6 +1,6 @@
 \section{Zugtiefe}
 Die Zugtiefe ist die Anzahl Schachzüge, die im Voraus durchgespielt werden während der Bestimmung des nächsten besten Zuges aus einer bestimmten Schachposition.
-Sie wird als abhängige Variable betrachtet, die von der Rechenzeit beeinflusst wird, und dient eher der erklärenden Analyse als der direkten Bewertung.
+Sie wird als unabhängige Variable betrachtet, die von der Rechenzeit beeinflusst wird, und dient eher der erklärenden Analyse als der direkten Bewertung.
 Je schneller eine Position ausgewertet wird, desto mehr Züge im Voraus können innerhalb einer angemessenen Zeitspanne analysiert werden.
 
 \subsection{Testaufbau}
@@ -8,10 +8,10 @@ Da die Zugtiefe direkt von der Rechenzeit abhängig ist, wurde hier der gleiche 
 Die Ausführung dieser Tests ist sehr Zeitaufwändig, vor allem bei grösseren Zugtiefen.
 Darum wurde entschieden, dass die maximale Zugtiefe eines Algorithmus erreicht wurde, sobald die Rechenzeit 10 Sekunden überschreitet.
 Diese Grenze wurde nicht technisch durchgesetzt, sondern durch das wiederholende Ausführen des Tests für alle Positionen mit unterschiedlichen Tiefen.
-Sobald die Rechenzeit überzeugend 10 Sekunden überschritt, wurde diese Tiefe fest im Test hinterlegt.
+Sobald die Rechenzeit überzeugend 10 Sekunden überschritt, wurde diese Tiefe fest im Test hinterlegt. \\
 Eine Ausnahme bildete hier die sequenzielle Implementierung des Minimax-Algorithmus ohne jegliche Optimierungen (Kapitel~\ref{subsec:minimax-sequenziell}), um einen besseren Vergleich zu ermöglichen.
-Folglich wurde der Test vollständig ausgeführt, womit die genauen Rechenzeiten dokumentiert wurden.
-Die finale Testausführung lief knapp über 9 Tage.
+Folglich wurde der Test vollständig ausgeführt, womit die genauen Rechenzeiten dokumentiert wurden. \\
+Die finale Testausführung lief knapp unter 7 Tagen.
 
 \subsection{Testresultate}
 Aus den Diagrammen im Anhang (Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}) ergibt sich die folgende maximale Zugtiefe innerhalb 10 Sekunden (Mediane Rechenzeit aus 10 Evaluationen):

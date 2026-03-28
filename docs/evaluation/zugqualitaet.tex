@@ -1,20 +1,20 @@
 \section{Zugqualität}
 Mit der Zugqualität wird festgestellt, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
 Um \enquote{das Beste} zu definieren, wird Stockfish 18 als Referenzengine verwendet. Stockfish 18 ist die neuste Version von Stockfish (Stand: März 2026). \\
-Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe \ref{subsec:vergleichSchachcomputer}).
+Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe~\ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
 
-Zunächst wurde mit einer KI Kategorien und Positionen generiert. Diese wurden anschliessend überprüft und
+Zunächst wurden mit einer KI Kategorien und Positionen generiert. Diese wurden anschliessend überprüft und
 kritisch hinterfragt. Daraus ergaben sich 18 Positionen, die in 4 Kategorien unterteilt wurden:
 Taktik, dynamisches Spiel, Positionsspiel und Endspiel.
 
 Im Test wird für jede Position mit der eigenen Evaluationsfunktion, beziehungsweise einer Kombination mehrerer Evaluationsfunktionen,
 der beste Zug bei einer Suchtiefe von 8 berechnet. \\
-Stockfish rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch die 4 besten Alternativen. Dies kann mit dem Befehl \texttt{MultiPV}
+\gls{glos:stockfish} rechnet ebenfalls bis zur Tiefe 8. Zusätzlich berechnet er auch die 4 besten Alternativen. Dies kann mit dem Befehl \texttt{MultiPV}
 erreicht werden (\cite{stockfishMultiPv}).
 
-Anschliessend wird verglichen, ob eine unserer Evaluationsfunktionen einer von Stockfish der ermittelten Top-Züge findet.
+Anschliessend wird verglichen, ob eine unserer Evaluationsfunktionen einer von \gls{glos:stockfish} der ermittelten Top-Züge findet.
 Auf Grundlage eines Punktesystems werden dafür unterschiedlich viele Punkte vergeben: Für den besten Zug werden 8 Punkte
 vergeben, für den zweitbesten 6 usw.:
 
@@ -35,10 +35,10 @@ gerade Zahl als Tiefe gewählt werden muss, um sicherzustellen, dass der nächst
 berücksichtigt wird. Ansonsten werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
 eine noch höhere Tiefe zu wählen, in der Hoffnung, dass ein noch besserer Zug gefunden wird.
 
-Ebenfalls wird aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
+Ebenfalls werden aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
 \texttt{MateAwareEvaluation} sind. Die Funktion \texttt{MateAwareEvaluation} stellt sicher, dass Züge, welche zum Schachmatt führen,
 gewinnen. Falls jedoch innerhalb der berechneten Tiefe der Gegner nicht Schachmatt gesetzt werden kann, wird das Ergebnis
-der anderen Evaluation berücksichtigt oder, falls die \texttt{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechneten
+der anderen Evaluation berücksichtigt oder, falls die \texttt{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechnete
 Schachzug vorgeschlagen. \\
 Bei einer vorherigen Testausführung wurde beobachtet, dass Evaluationen mit und ohne \texttt{MateAwareEvaluation}
 einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtshalber werden
@@ -47,7 +47,7 @@ daher Evaluationen ohne \texttt{MateAwareEvaluation} ignoriert.
 \subsection{Testresultate}
 
 Nachfolgend werden pro Kategorie die Testresultate dargestellt. In den Diagrammen sind
-jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind im Anhang unter \ref{zugqualit_tabel} zu finden.
+jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind im Anhang unter~\ref{zugqualit_tabel} zu finden.
 
 \begin{figure}[H]
     \centering
@@ -90,16 +90,16 @@ Ebenfalls positiv zu sehen ist, dass anhand von unseren 3 Evaluationen bereits 7
 \texttt{MaterialEvaluation} wurde Zweitplatzierter, was darauf hindeutet, dass die ausgewählten Testpositionen einen Fokus auf
 das Schlagen der gegnerischen Figuren haben. \\
 Die Finesse, welche die \texttt{PieceSquareEvaluation} jedoch nun hinzufügt, verbessert die Evaluation um ca. 38\%. So ist \texttt{PieceSquareEvaluation}
-nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames}
-zusehen ist, wo \texttt{PieceSquareEvaluation} die \texttt{MaterialEvaluation} übertrumpft.
+nicht zu unterschätzen, was ebenfalls in der Kategorie \textit{Endgames}
+zu sehen ist, wo \texttt{PieceSquareEvaluation} die \texttt{MaterialEvaluation} übertrumpft.
 
 Bei einem Blick auf das Diagramm von \textit{Dynamic play} fällt überraschenderweise auf, dass hier \texttt{MaterialEvaluation \& PieceSquareEvaluation}
 weniger Punkte als \texttt{MaterialEvaluation} gesammelt hat. Ebenfalls ist es spannend, dass beim \textit{Positional play}
-sowie \textit{Tactics} praktisch keine Punkte von der \texttt{PieceSquareEvaluation} erzielt wurde.
+sowie \textit{Tactics} praktisch keine Punkte von der \texttt{PieceSquareEvaluation} erzielt wurden.
 
 Des Weiteren wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
 untersucht. Auf diesem können Positionen mit einer Engine untersucht werden. Die Ergebnisse der Engine werden visuell
-mittels Pfeilen angezeigt. Damit konnten mittels Stockfish 18 und einer Tiefe von 20 die Testergebnisse gezielter
+durch Pfeile angezeigt. Damit konnten mittels \gls{glos:stockfish} 18 und einer Tiefe von 20 die Testergebnisse gezielter
 untersucht werden.
 
 Über die Positionen von \textit{Dynamic play}, wo die \texttt{MaterialEvaluation} mehr Punkte gesammelt hat als
@@ -117,11 +117,11 @@ von \texttt{MaterialEvaluation \& PieceSquareEvaluation} bestärkt.
 
 Generell lässt sich sagen, dass die eigene Engine als sehr aggressiv empfunden wurde und häufig die Figuren tauschen möchte, was
 zumindest innerhalb der Testpositionen geholfen hat. \\
-Werden die Berechnung mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von Stockfish
+Werden die Berechnung mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von \gls{glos:stockfish}
 eher \enquote{positional plays} sind - also Züge, welche nicht direkt eine gegnerische Figur schlagen, sondern Züge, welche die
 eigene Position verbessern oder die gegnerische verschlechtern. \\
 Hier kommt die Schwäche von unseren Evaluationen zum Vorschein - sie kennen solche Züge aktuell noch nicht.
-Dafür benötigt es noch weitere Heuristiken wie \href{https://www.chessprogramming.org/Pawn_Structure}{Pawn Structure}
+Dafür werden noch weitere Heuristiken benötigt, wie z.B.~\href{https://www.chessprogramming.org/Pawn_Structure}{Pawn Structure}
 \href{https://www.chessprogramming.org/Mobility}{Mobility} oder \href{https://www.chessprogramming.org/King_Safety}{King Safety}.\\
 Insgesamt lässt sich jedoch sagen, dass von all unseren Evaluationen bislang diejenige die Beste ist, welche
-alle vereint.
+alle implementierten Heuristiken vereint.

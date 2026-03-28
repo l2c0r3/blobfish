@@ -2,7 +2,7 @@
 
 
 \section{Schachcomputer}
-Ein erster Meilenstein in der Welt der Schachcomputer wurde mit Deep Blue, einem Schachcomputer von IBM, geschaffen. Ziel des Teams war es, der beste
+Ein erster Meilenstein in der Welt der Schachcomputer wurde mit Deep Blue, einem Schachcomputer von IBM, geschaffen. Ziel des Teams war es, die besten
 Schachspieler der Welt zu schlagen. Der erste Versuch scheiterte im Februar 1996 in Philadelphia gegen Garry Kasparov mit 4-2.
 Im Mai 1997 kam es zu einem berühmten Rematch, welches im Equitable Center in New York ausgetragen wurde.
 Hier schlug Deep Blue Kasparov 3.5-2.5 (\cite{deepBlueIbm}).
@@ -24,7 +24,7 @@ Dieses Turnier ist in Seasons aufgeteilt, welche jeweils ungefähr 3-4 Monate da
 (Season 18 bis Season 23) hat ebenfalls \gls{glos:stockfish} gewonnen (\cite{tcecWebseite}).
 
 Wichtig ist jedoch, dass die jeweils daraus erstellten \gls{glos:elo}-Werte sich nicht direkt miteinander vergleichen lassen.
-Es existieren nämlich unterschiedliche Berechnungen für die \gls{glos:elo}. So verwendet beispielsweise \gls{glos:ccrl} das
+Es existieren nämlich unterschiedliche Berechnungen für die \glspl{glos:elo}. So verwendet beispielsweise \gls{glos:ccrl} das
 \href{https://www.remi-coulom.fr/Bayesian-Elo/}{Bayesian-Rating} und \gls{glos:cegt} \href{https://github.com/michiguel/Ordo}{Ordo}.
 
 Ebenfalls lassen sich diese \gls{glos:elo}-Werte nicht mit menschlichen, wie zum Beispiel denen der \gls{glos:fide}, vergleichen.
@@ -237,7 +237,7 @@ Im linken Teil des mittleren Teil-Baumes wird Stufe 2 auf die gleiche Art bestim
     \label{fig:minimax-alpha-beta-tree-1}
 \end{figure}
 
-Da Stufe 2 hier den Wert 2 liefert, und die übergeordnete Stufe einen Minimalwert sucht, kann hier provisorisch festgestellt werden, dass die Stufe 1 hier einen Wert liefern wird, der kleiner oder gleich 2 ist.
+Da Stufe 2 hier den Wert 2 liefert, und die übergeordnete Stufe einen Minimalwert sucht, kann provisorisch festgestellt werden, dass die Stufe 1 an dieser Stelle einen Wert liefern wird, der kleiner oder gleich 2 ist.
 Die Stufe 0 hingegen sucht einen Maximalwert.
 Zwischen 6 und einem Wert der kleiner oder gleich 2 ist, wird der Wert 6 genommen.
 Somit kann festgestellt werden, dass es keine Rolle spielt welche Werte in den Stufen 2 und 3 sich im restlichen Teil des mittleren Teil-Baumes befinden, da diese Werte sowieso nicht genommen werden.
@@ -290,7 +290,7 @@ Der Speicher der Schachpositionen und deren zugehörigen Evaluationen wird auch 
 
 Eine \gls{glos:transpositionstabelle} ist normalerweise eine \gls{glos:hashtabelle}, wobei der Schlüssel ein \gls{glos:hash} der evaluierten Position ist und der Wert ist grundsätzlich das Ergebnis der Evaluation.
 Beim Abrufen von Werten aus einem \gls{glos:cache} sind einige Punkte zu beachten, darum enthalten Werte einer \gls{glos:transpositionstabelle} normalerweise noch zusätzliche Informationen~\cite{transpositiontable}.
-Die für dieses Projekt relevanten zu berücksichtigenden Punkte sind folgende:
+Die für dieses Projekt relevanten und zu berücksichtigenden Punkte sind folgende:
 \begin{enumerate}
     \item Die Suchtiefe der Evaluation muss gespeichert werden
     \item Für Alpha-Beta-Pruning muss der Grenzwert (Alpha oder Beta) gespeichert werden
@@ -301,10 +301,10 @@ Falls der zwischengespeicherte Wert eine kleinere Suchtiefe hat, kann es sein, d
 
 Bei der Alpha-Beta-Pruning Optimierung werden gewisse Pfade übersprungen.
 In diesem Fall enthält die ausgewertete Position möglicherweise keinen genauen Evaluationswert, sondern lediglich einen Grenzwert (Alpha oder Beta).
-Diese Grenzwerte müssen beim Abrufen der Werte berücksichtigt werden.
-Beim Speichern der Evaluationswerte in eine \gls{glos:transpositionstabelle} sollen exakte Werte bevorzugt werden.
+Diese Grenzwerte müssen beim Abrufen der \gls{glos:cache}-Werte berücksichtigt werden.
+Beim Speichern der Evaluationswerte in eine \gls{glos:transpositionstabelle} sollen exakte Werte bevorzugt werden, da sie genauer sind.
 
-Wenn mehrere Züge von einer bestimmten Position aus zur gleichen Bewertung führen, wird derjenige bevorzugt, der das Ziel schneller erreicht, bzw.\ eine kürzere Zughistorie aufweist.
+Wenn mehrere unterschiedliche Zugfolgen von einer bestimmten Position aus zur gleichen Bewertung führen, wird derjenige Zug bevorzugt, der das Ziel schneller erreicht, bzw.\ eine kürzere Zughistorie aufweist.
 Um diese Logik beizubehalten, muss die Zughistorie auch bei Evaluationen aus dem \gls{glos:cache} korrekt bleiben.
 
 Für den Schlüssel der \gls{glos:transpositionstabelle} wird oft ein 64-bit \gls{glos:zobristhash} verwendet.
