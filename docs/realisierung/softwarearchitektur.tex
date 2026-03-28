@@ -62,11 +62,13 @@ zu erhalten.
 Der Code für die Bewertung von Spielpositionen befindet sich bis auf das Interface \texttt{EvaluationStrategy} im \textit{eval}
 Package. Dafür steht in der Darstellung exemplarisch \texttt{PieceSquareEvaluation}. Die restlichen Heuristiken sind
 übersichtshalber nicht dargestellt. \\
+\begin{sloppypar}
 Um mehrere Heuristiken zu kombinieren, wurde die Klasse \texttt{CompositeEvaluationStrategy} implementiert. Über das
 Builder-Pattern können fluent Klassen vom Typ \texttt{EvaluationStrategy} übergeben werden, welche dann über die \texttt{getEvaluation}-Methode
 für eine Gesamtbewertung verwendet werden. \\
 Mittels dieses Designs können einfach weitere Heuristiken implementiert und beliebig kombiniert werden, ohne bestehenden Code anpassen
 zu müssen.
+\end{sloppypar}
 
 \subsubsection{Minimax-Algorithmus}
 
@@ -77,6 +79,7 @@ zu müssen.
     \label{fig:softwarearchitecture-minimax}
 \end{figure}
 
+\begin{sloppypar}
 Die abstrakte Klasse \texttt{BotAlgorithm} definiert die gemeinsame Basis aller Suchalgorithmen. Sie hält die zu berechnende Tiefe,
 die zu verwendende \texttt{EvaluationStrategy}, die einzunehmende Spielerfarbe und deklariert die abstrakte
 Methode \texttt{getBestPath()}. \\
@@ -85,3 +88,4 @@ Hier exemplarisch \texttt{MiniMaxSequential} und \texttt{MiniMaxSequentialWithCa
 minimalistisch und nicht vollzählig dargestellt. \\
 Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung von Bots vom konkreten Algorithmus und ermöglicht es,
 verschiedene Bots für unterschiedliche \texttt{BotAlgorithm} bereitzustellen.
+\end{sloppypar}
