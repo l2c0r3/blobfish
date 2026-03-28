@@ -1,4 +1,6 @@
 @startuml
+skinparam dpi 300
+
 ' Force top-down layout
 top to bottom direction
 
