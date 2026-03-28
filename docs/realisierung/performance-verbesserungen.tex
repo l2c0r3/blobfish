@@ -12,21 +12,26 @@ Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgew
 Aus diesen Gründen wurde die Alpha-Beta-Pruning Optimierung nur für die sequenzielle Implementierung umgesetzt.
 
 Die ursprüngliche Implementierung des Minimax-Algorithmus musste nur minimal angepasst werden, um diese Optimierung einzubauen.
-Es wurden 2 neue Parameter zur Funktion hinzugefügt: alpha und beta.
+Es wurden zwei neue Parameter zur Funktion hinzugefügt: \texttt{alpha} und \texttt{beta}.
 Diese merken sich die relevanten Werte der vorherigen Evaluationen und anhand dessen wird entschieden, ob die Suche vorzeitig abgebrochen werden kann (\cite{alphabetachessprogramming}).
-Die relevanten Zeilen sind die Zeilen 66--75.
+Der Entscheid passiert nach der Evaluation jedes Schachzuges.
 \lstinputlisting[
-    firstline=30,
-    lastline=78,
-    firstnumber=30,
-    caption={Minimax sequenziell mit Alpha-Beta-Pruning},
+    firstline=66,
+    lastline=74,
+    firstnumber=66,
+    caption={Alpha-Beta-Pruning Logik},
     label={lst:minimax-sequenziell-alpha-beta}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxAlphaBetaSequential.java}
 
-Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig.
-Darum werden sie auf den Zeilen 45--46 sortiert.
+Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig, darum werden sie vor der Iteration sortiert.
 Die Sortierung ist zunächst sehr primitiv - es werden Züge, die eine Figur fangen, zuerst ausgewertet, da diese eine grössere Chance haben bessere Werte zu liefern.
-Mit dem Einbau weiterer Heuristiken wird auch diese Sortierung erweitert.
+\lstinputlisting[
+    firstline=45,
+    lastline=46,
+    firstnumber=45,
+    caption={Soertierung für Alpha-Beta-Pruning},
+    label={lst:minimax-sequenziell-alpha-beta-sorting}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxAlphaBetaSequential.java}
 
 \subsection{Caching}
 Das Caching der Evaluationen der Schachpositionen wurde bei allen drei Implementierungen des Minimax-Algorithmus umgesetzt, um festzustellen, wo dieser Ansatz am effektivsten ist:
@@ -139,11 +144,11 @@ Durch das Speichern des nächsten besten Zuges kann auch die Sortierung der Züg
     label={lst:minimax-alpha-beta-with-cache-move-order}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
 
-Der Vollständigkeit halber ist die gesamte Implementierung unten aufgeführt.
+Der Vollständigkeit halber sind noch die Umsetzungen der \texttt{determineBoundType} und \texttt{isCacheWithinBounds} Methoden unten aufgeführt.
 \lstinputlisting[
-    firstline=39,
+    firstline=111,
     lastline=127,
-    firstnumber=39,
+    firstnumber=111,
     caption={MiniMaxAlphaBetaSequentialWithCache},
     label={lst:minimax-alpha-beta-with-cache}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}

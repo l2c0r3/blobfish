@@ -24,6 +24,7 @@ Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer Zugkombination nach 
     \label{fig:minimax-sequential}
 \end{figure}
 
+Die Umsetzung sieht im Code folgendermassen aus:
 \lstinputlisting[
     firstline=28,
     lastline=57,
@@ -47,14 +48,28 @@ Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind un
     \label{fig:minimax-parallel}
 \end{figure}
 
+Jeder Task führt die \texttt{compute}-Methode aus.
+Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTask} Klasse, bzw.\ die \texttt{compute}-Methode.
+Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit implementiert, laut Dozentenfeedback aus der Programmierarbeit.
 \lstinputlisting[
-    firstline=12,
-    lastline=81,
-    firstnumber=12,
-    caption={Minimax ForkJoin Task},
-    label={lst:minimax-forkjoin-task}
+    firstline=33,
+    lastline=53,
+    firstnumber=33,
+    caption={Minimax ForkJoin Task - compute Methode},
+    label={lst:minimax-forkjoin-task-compute}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
 
+Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Erstellung neuer Tasks ersichtlich.
+\lstinputlisting[
+    firstline=71,
+    lastline=80,
+    firstnumber=71,
+    caption={Minimax ForkJoin Task - Sub-Task Erstellung},
+    label={lst:minimax-forkjoin-task-subtask-erstellung}
+]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
+
+Die Erstellung des ersten Tasks befindet sich in der Klasse \texttt{MiniMaxParallel}.
+Dieser wird über den ForkJoin \texttt{commonPool} ausgeführt.
 \lstinputlisting[
     firstline=26,
     lastline=34,
