@@ -1,0 +1,19 @@
+r1bqkbnr/pppp1ppp/2n5/4p3/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 2 4;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.308;10.261;370.567;12206.418;446920.317
+MiniMaxSequential (Mate aware piece square evaluation);0.287;9.784;348.771;11527.474;420635.938
+MiniMaxSequential (Mate aware piece square material evaluation);0.408;13.757;498.914;16447.844;600896.603
+MiniMaxSequentialWithCache (Mate aware material evaluation);0.409;11.119;378.741;9666.873;245194.018
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.309;10.208;354.698;9275.036;236419.261
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.536;15.228;482.316;12310.807;298585.874
+MiniMaxParallel (Mate aware material evaluation);1.205;4.7;62.487;1766.128;64038.033
+MiniMaxParallel (Mate aware piece square evaluation);0.295;1.638;48.66;1559.073;56805.345
+MiniMaxParallel (Mate aware piece square material evaluation);0.493;3.208;75.01;2381.979;86629.304
+MiniMaxParallelWithCache (Mate aware material evaluation);0.384;1.967;53.289;1392.61;38361.515
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.324;1.797;48.544;1282.727;36390.931
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);0.55;2.736;70.623;1791.779;46738.541
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.305;0.796;15.36;40.593;519.767;1576.685;20153.469
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.286;1.65;26.566;100.423;1248.656;4277.299;64840.336
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.41;1.062;22.371;75.511;1019.416;4877.75;57169.471
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.452;1.102;17.097;41.002;364.149;1139.563;10589.643
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.317;1.808;27.787;102.091;993.321;3453.387;40223.263
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.478;1.222;22.916;74.192;768.678;3957.608;38233.992

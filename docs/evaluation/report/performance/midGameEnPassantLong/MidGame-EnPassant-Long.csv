@@ -1,0 +1,19 @@
+rn1q1r1k/pbpp1p1p/1p2p3/4P3/3P2Qp/P2B4/1PP2PPP/R4RK1 w - - 0 17;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.355;10.088;407.541;11198.741;432611.631
+MiniMaxSequential (Mate aware piece square evaluation);0.332;9.259;376.094;10468.921;406410.917
+MiniMaxSequential (Mate aware piece square material evaluation);0.486;13.425;550.085;15083.076;583915.485
+MiniMaxSequentialWithCache (Mate aware material evaluation);0.426;10.807;394.479;8040.956;208230.349
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.486;10.012;375.262;7631.431;199880.926
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.58;14.299;501.531;10228.974;249992.493
+MiniMaxParallel (Mate aware material evaluation);0.576;3.123;71.183;1604.037;61119.442
+MiniMaxParallel (Mate aware piece square evaluation);0.342;1.654;51.71;1411.17;54349.963
+MiniMaxParallel (Mate aware piece square material evaluation);0.515;2.265;81.004;2169.617;82622.869
+MiniMaxParallelWithCache (Mate aware material evaluation);2.105;4.881;56.413;1162.901;32030.499
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.378;1.739;50.488;1064.584;30304.883
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);1.152;3.109;85.942;1488.802;38974.233
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.36;1.07;25.109;115.954;1508.75;11446.136;139849.232
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.335;4.421;18.655;518.017;3502.855;60682.558;490250.5
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.481;2.548;62.667;338.812;7241.026;40927.425;430489.316
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.537;1.448;27.552;116.262;1171.672;8331.236;66610.022
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.362;4.737;18.872;462.099;2812.222;35108.598;242297.142
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.547;2.861;62.437;316.224;5313.113;26253.043;191870.288

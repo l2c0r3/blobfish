@@ -103,6 +103,7 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
     \label{fig:minimax-tree}
 \end{figure}
 
+
 \section{Heuristiken}
 
 \subsection{Materialistische Evaluation}
@@ -270,3 +271,33 @@ Der Pfad des optimalen Zustands ist blau und die übersprungen Pfade/Zustände s
     \caption{Minimax Alpha-Beta Beispielbaum - Zusammengefasst}
     \label{fig:minimax-alpha-beta-tree-end}
 \end{figure}
+
+\subsection{Caching}
+Eine bestimmte Position auf dem Schachbrett kann durch viele unterschiedliche Zugkombinationen entstehen.
+Somit wird bei der Suche nach dem nächsten besten Zug die gleiche Schachposition meist mehrmals evaluiert.
+Um die mehrfache Evaluation der gleichen Schachposition zu vermeiden wird die Evaluation \gls{glos:cache}d.
+Die evaluierte Position wird als \gls{glos:cache} key verwendet.
+Der Speicher der Schachpositionen und deren zugehörigen Evaluationen wird auch als \gls{glos:transpositionstabelle} bezeichnet.
+
+Eine \gls{glos:transpositionstabelle} ist normalerweise eine \gls{glos:hashtabelle}, wobei der Schlüssel ein \gls{glos:hash} der evaluierten Position ist und der Wert ist grundsätzlich das Ergebnis der Evaluation.
+Beim Abrufen von Werten aus einem \gls{glos:cache} sind einige Punkte zu beachten, darum enthalten Werte einer \gls{glos:transpositionstabelle} normalerweise noch zusätzliche Informationen~\cite{transpositiontable}.
+Die für dieses Projekt relevanten zu berücksichtigenden Punkte sind folgende:
+\begin{enumerate}
+    \item Die Suchtiefe der Evaluation muss gespeichert werden
+    \item Für Alpha-Beta-Pruning muss der Grenzwert (Alpha oder Beta) gespeichert werden
+    \item Die Zughistorie muss für die \gls{glos:cache}-Werte beibehalten werden
+\end{enumerate}
+Für eine Schachposition darf der Evaluationswert aus einer \gls{glos:transpositionstabelle} abgerufen werden, nur wenn die Suchtiefe grösser oder gleich der zu evaluierender Suchtiefe ist.
+Falls der zwischengespeicherte Wert eine kleinere Suchtiefe hat, kann es sein, dass der Evaluationswert nicht richtig ist, da aus der aktuellen Schachposition mehrere Züge im Voraus evaluiert werden.
+
+Bei der Alpha-Beta-Pruning Optimierung werden gewisse Pfade übersprungen.
+In diesem Fall enthält die ausgewertete Position möglicherweise keinen genauen Evaluationswert, sondern lediglich einen Grenzwert (Alpha oder Beta).
+Diese Grenzwerte müssen beim Abrufen der Werte berücksichtigt werden.
+Beim Speichern der Evaluationswerte in eine \gls{glos:transpositionstabelle} sollen exakte Werte bevorzugt werden.
+
+Wenn mehrere Züge von einer bestimmten Position aus zur gleichen Bewertung führen, wird derjenige bevorzugt, der das Ziel schneller erreicht, bzw.\ eine kürzere Zughistorie aufweist.
+Um diese Logik beizubehalten, muss die Zughistorie auch bei Evaluationen aus dem \gls{glos:cache} korrekt bleiben.
+
+Für den Schlüssel der \gls{glos:transpositionstabelle} wird oft ein 64-bit \gls{glos:zobristhash} verwendet.
+Dieser \gls{glos:hash} ist schnell berechenbar, braucht nicht viel Speicher und erlaubt es Veränderungen in der Schachposition einfach im \gls{glos:hash} darzustellen~\cite{zobristhash}.
+Diese Funktion liegt ausserhalb des Rahmens dieser Arbeit und wird daher nicht im Detail behandelt.

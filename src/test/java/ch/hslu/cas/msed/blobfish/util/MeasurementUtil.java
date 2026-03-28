@@ -11,7 +11,11 @@ public class MeasurementUtil {
         // util class
     }
 
-    public record MeasurementResult<ResultType>(Duration duration, ResultType result) {}
+    public record MeasurementResult<ResultType>(Duration duration, ResultType result) {
+    }
+
+    public record MeasurementWithDeviationResult<ResultType>(Duration median, Duration deviation, ResultType result) {
+    }
 
     public static <ResultType> MeasurementResult<ResultType> measureOperation(Callable<ResultType> operation) {
         var startTime = System.nanoTime();
@@ -34,6 +38,23 @@ public class MeasurementUtil {
         return total.dividedBy(measurements.size());
     }
 
+    public static Double calcMedian(List<Double> measurements) {
+        if (measurements.isEmpty()) {
+            return 0.0;
+        }
+
+        var sortedMeasurements = new ArrayList<>(measurements);
+        sortedMeasurements.sort(Double::compareTo);
+
+        if (sortedMeasurements.size() % 2 == 0) {
+            var d1 = sortedMeasurements.get(measurements.size() / 2 - 1);
+            var d2 = sortedMeasurements.get(measurements.size() / 2);
+            return (d1 + d2) / 2;
+        } else {
+            return sortedMeasurements.get(sortedMeasurements.size() / 2);
+        }
+    }
+
     public static Duration calcMedianDuration(List<Duration> measurements) {
         if (measurements.isEmpty()) {
             return Duration.ZERO;
@@ -49,5 +70,15 @@ public class MeasurementUtil {
         } else {
             return sortedMeasurements.get(sortedMeasurements.size() / 2);
         }
+    }
+
+    public static Duration calcMedianOfAbsoluteDeviationsDuration(List<Duration> measurements) {
+        if (measurements.isEmpty()) {
+            return Duration.ZERO;
+        }
+
+        var median = calcMedianDuration(measurements);
+        var absoluteDeviations = measurements.stream().map(m -> m.minus(median).abs()).toList();
+        return calcMedianDuration(absoluteDeviations);
     }
 }
