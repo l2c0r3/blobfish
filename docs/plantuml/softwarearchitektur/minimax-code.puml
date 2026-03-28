@@ -28,6 +28,9 @@ package "ch.hslu.cas.msed.blobfish.minimax" {
     }
 
     package "cached" {
+        package "base" as cachedBased {
+            class MiniMaxCachedAlgo {}
+        }
         class MiniMaxSequentialWithCache {
         }
     }
@@ -38,6 +41,7 @@ package "ch.hslu.cas.msed.blobfish.minimax" {
 BotPlayerProvider                    -[dashed]->  BotAlgorithm
 MiniMaxAlgo                          -[plain]-^  BotAlgorithm
 MiniMaxSequential                    -[plain]-^  MiniMaxAlgo
-MiniMaxSequentialWithCache           -[plain]-^  MiniMaxAlgo
+MiniMaxCachedAlgo                    -[plain]-^  MiniMaxAlgo
+MiniMaxSequentialWithCache           -[plain]-^  MiniMaxCachedAlgo
 
 @enduml
