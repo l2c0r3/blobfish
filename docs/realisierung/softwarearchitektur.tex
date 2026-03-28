@@ -8,7 +8,7 @@ Der Systemkontext stellt den Kontext dar, in welchem sich die Applikation befind
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/c4-context}
+    \includegraphics[width=0.8\linewidth]{generated-diagrams/c4-context}
     \caption{Softwarearchitektur - System context}
     \label{fig:c4-context}
 \end{figure}
@@ -20,6 +20,8 @@ welcher über einer CLI gegen einen Schachcomputer, blobfish, Schach spielt.
 
 Da die Applikation eine Java-Applikation ist, welche als \gls{glos:uberjar} ausgeliefert wird und ohne weitere \gls{glos:c4container}
 auskommt, wurde auf das Container Diagram verzichtet, weil es praktisch dasselbe ist.
+
+\newpage
 
 \subsection{Component}
 
@@ -45,6 +47,8 @@ welches die Kopplung zwischen Bewertungslogik und Suchalgorithmus auflöst.
 Das \textit{game} Package enthält sämtliche Klassen und Logik für die CLI-Applikation. Sei es der Game-Flow, die UI Darstellung
 oder die Terminal-Interaktion, wofür letzteres zusätzlich die \textit{jline} Bibliothek verwendet wurde.
 
+\newpage
+
 \subsection{Code}
 
 Beim Code wird der Fokus auf zwei Funktionen gelegt: Die Positionsbewertung und den Minimax-Algorithmus, um einen Überblick von der Implementierung
@@ -54,7 +58,7 @@ zu erhalten.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{generated-diagrams/eval-code}
+    \includegraphics[width=\linewidth]{generated-diagrams/eval-code}
     \caption{Softwarearchitektur - eval}
     \label{fig:softwarearchitecture-eval}
 \end{figure}
@@ -72,7 +76,7 @@ zu müssen.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{generated-diagrams/minimax-code}
+    \includegraphics[width=\linewidth]{generated-diagrams/minimax-code}
     \caption{Softwarearchitektur - minimax}
     \label{fig:softwarearchitecture-minimax}
 \end{figure}
