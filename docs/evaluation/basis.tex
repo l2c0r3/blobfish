@@ -1,4 +1,3 @@
-\section{Basis}
 Ziel dieser Evaluation ist die systematische Vergleichsanalyse verschiedener Konfigurationen der implementierten Schach-Engine hinsichtlich ihrer Spielstärke und ihrer rechnerischen Effizienz.
 Jede Konfiguration besteht aus einer Kombination aus Suchalgorithmus und Bewertungsstrategie.
 
@@ -11,7 +10,7 @@ Die Untersuchung orientiert sich an folgenden Forschungsfragen:
 
 Zur Beantwortung dieser Fragestellungen wird ein kontrolliertes experimentelles Setup mit quantitativen Metriken verwendet.
 
-\subsection{Versuchsdesign}
+\section{Versuchsdesign}
 Die Studie folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehrere unabhängige Variablen systematisch variiert werden, während alle übrigen Bedingungen konstant gehalten werden.
 
 \textbf{Unabhängige Variablen}
@@ -36,13 +35,13 @@ Die Studie folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehre
 Die Suchtiefe wird nicht als unabhängiges Bewertungskriterium betrachtet, da sie direkt von der verfügbaren Rechenzeit abhängt und zugleich die Zugqualität beeinflusst.
 Stattdessen wird sie als erklärende Hilfsgrösse betrachtet.
 
-\subsection{Benchmarking-Ansatz}
+\section{Benchmarking-Ansatz}
 Die Evaluation der Zugqualität erfolgt als Benchmarking gegen ein Referenzsystem, wobei Stockfish als starker Vergleichsmassstab dient.
 Alle Engine-Konfigurationen werden auf identischen Schachpositionen getestet.
 Für jede Position wird der von der implementierten Engine gewählte Zug mit den besten Zügen der Referenz-Engine bei gleicher Suchtiefe verglichen.
 Dieser Ansatz ermöglicht eine relative Bewertung der Zugqualität, ohne auf absolute Bewertungswerte angewiesen zu sein.
 
-Die Evaluation der Rechenzeit hingegen erfolgt als Benchmarking gegen den basis MiniMax-Algorithmus - ohne Optimierungen.
+Die Evaluation der Rechenzeit hingegen erfolgt als Benchmarking gegen den basis Minimax-Algorithmus - ohne Optimierungen.
 Auch hierfür werden alle Engine-Konfigurationen auf identischen Schachpositionen und auch auf identischer Hardware getestet.
 Es wird für jede Position und alle definierten Zugtiefen der beste Zug berechnet.
 Die Messungen werden mehrmals durchgeführt und die Rechenzeiten werden festgehalten.
@@ -57,7 +56,7 @@ Alle Messungen wurden auf demselben Rechner mit den folgenden Spezifikationen du
     \item GPU: RTX 4080 Super
 \end{itemize}
 
-\subsection{Datenauswertung}
+\section{Datenauswertung}
 Die erhobenen Daten werden mittels vergleichender Analyse und robuster statistischer Verfahren ausgewertet.
 Medianwerte dienen dem Vergleich der zentralen Tendenz.
 \gls{glos:mad} quantifiziert die Stabilität und Streuung.
@@ -67,7 +66,7 @@ Da Abhängigkeiten zwischen den Variablen (insbesondere zwischen Rechenzeit, Suc
 Stattdessen werden die Zugqualität und die Rechenzeit separat evaluiert.
 Die Interpretation erfolgt anhand von einer rangbasierten Bewertungsmethode (für Zugqualität) und direktem Metrikvergleich (für Rechenzeit).
 
-\subsection{Stockfish}
+\section{Stockfish}
 Die Engine wird mit Stockfish verglichen. Nicht, weil davon ausgegangen wird, dass die entwickelte Engine mithalten kann,
 sondern vielmehr, um daraus zu lernen und einen Referenzpunkt zu haben.
 
@@ -90,7 +89,7 @@ und der nächste Zug berechnet werden. Die von Stockfish unterstützten UCI-Befe
 Sämtliche Klassen und Dateien, die entwickelt wurden, um Stockfish während der Tests auszuführen, befinden sich unter
 \textit{src/test/java/ch/hslu/cas/msed/blobfish/stockfish} sowie \textit{src/test/resources/stockfish}.
 
-\subsection{JUnit-Extension}
+\section{JUnit-Extension}
 
 Um möglichst einfach innerhalb einer Testmethode mit Stockfish beispielsweise Positionen berechnen zu können, wurde
 eine \gls{glos:JUnit}-Extension entwickelt. Eine Extension ermöglicht beispielsweise über Callbacks, Code
@@ -122,8 +121,8 @@ um die Engine zurückzusetzen.
 Nachdem alle Testmethoden ausgeführt sind und ein Docker-Container für die Testausführung gestartet wurde, stoppt
 die Extension den Container.
 
-\subsection{Evaluationen lokalisieren}
-\label{subsec:evalpotenzmenge}
+\section{Evaluationen lokalisieren}
+\label{sec:evalpotenzmenge}
 
 In den nachfolgenden Tests werden immer wieder Evaluationen, sowie deren möglichen Kombinationen, miteinander verglichen.
 Die Kombinationen von den Evaluationen sind interessant, da so potenziell eine noch bessere Evaluation der Position
