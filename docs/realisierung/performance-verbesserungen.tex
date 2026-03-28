@@ -5,7 +5,7 @@ Zunächst war vorgesehen, sämtliche Optimierungen sowohl für die sequenzielle 
 Nach einer Recherche in Alpha-Beta-Pruning ergab sich, dass diese Optimierung für sequentielle Implementierungen vorgesehen ist.
 
 Es bestehen auch Ansätze für parallele Implementierungen, wie Young Brothers Wait Concept.
-Die Idee ist, dass der Zug mit der höchsten Wahrscheinlichkeit, der beste zu sein, zuerst evaluiert wird - danach werden alle anderen Züge in parallel evaluiert.
+Die Idee ist, dass der Zug mit der höchsten Wahrscheinlichkeit, der beste zu sein, zuerst evaluiert wird - danach werden alle anderen Züge parallel evaluiert.
 Somit können die restlichen Züge mit dem ersten verglichen werden\ \cite{alphabetaybwc}.
 
 Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgewinn sehr variabel und unerheblich.

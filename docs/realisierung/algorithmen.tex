@@ -2,7 +2,7 @@
 \begin{sloppypar}
 In der Programmierarbeit wurden mit Java schon zwei Versionen des Minimax-Algorithmus implementiert.
 Eine sequentielle (Normalfall) und eine parallele (mittels ForkJoin) Lösung.
-Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier kurz Dokumentiert.
+Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier kurz dokumentiert.
 \end{sloppypar}
 
 \subsection{Minimax sequenziell}
@@ -36,7 +36,7 @@ Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer Zugkombination nach 
 
 \subsection{Minimax parallel}
 \label{subsec:real-minimax-parallel}
-Die parallele Implementierung enthält die gleiche Basislogik, jedoch wird anstelle einer iteration für alle legale Züge das ForkJoin Prinzip verwendet.
+Die parallele Implementierung enthält die gleiche Basislogik, jedoch wird anstelle einer Iteration für alle legalen Züge das ForkJoin Prinzip verwendet.
 Für jeden legalen Zug wird ein Task erstellt.
 Alle erstellten Tasks werden zur Ausführung zum ForkJoin Pool hinzugefügt.
 Dies passiert rekursiv für jede Tiefe.

@@ -32,16 +32,16 @@ Anhand der erreichten Punktzahl und der gewählten Züge können die Evaluations
 
 Derselbe Test wurde schon mit einer Tiefe von 5 ausgeführt. Bei der Analyse der Testresultate wurde bemerkt, dass eine
 gerade Zahl als Tiefe gewählt werden muss, um sicherzustellen, dass der nächstmögliche Zug vom Gegner ebenfalls
-berücksichtigt wird. Ansonsten werden werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
-eine noch höhere Tiefe zu wählen, in der Hoffnung, das ein noch besseren Zug gefunden wird.
+berücksichtigt wird. Ansonsten werden viele \enquote{unsinnige} Züge vorgeschlagen. Ebenfalls wurde entschieden
+eine noch höhere Tiefe zu wählen, in der Hoffnung, dass ein noch besserer Zug gefunden wird.
 
 Ebenfalls wird aus der Potenzmenge nur die Evaluationsfunktionen berücksichtigt, welche eine Kombination mit
 \textit{MateAwareEvaluation} sind. Die Funktion \textit{MateAwareEvaluation} stellt sicher, dass Züge, welche zum Schachmatt führen,
 gewinnen. Falls jedoch innerhalb der berechneten Tiefe der Gegner nicht Schachmatt gesetzt werden kann, wird das Ergebnis
-der anderen Evaluation berücksicht oder, falls die \textit{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechneten
+der anderen Evaluation berücksichtigt oder, falls die \textit{MateAwareEvaluation} alleine betrachtet wird, wird der erste berechneten
 Schachzug vorgeschlagen. \\
 Bei einer vorherigen Testausführung wurde beobachtet, dass Evaluationen mit und ohne \textit{MateAwareEvaluation}
-einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtichtshalber werden
+einen konstanten Punkteunterschied haben, was das oben beschriebene Verhalten bestätigt. Übersichtshalber werden
 daher Evaluationen ohne \textit{MateAwareEvaluation} ignoriert.
 
 \subsection{Testresultate}
@@ -81,7 +81,7 @@ jedoch nicht mehr die einzelnen Züge und deren Ergebnisse zu sehen. Diese sind 
 
 \subfile{report/movequality/Overall.tex}
 
-\subsection{Intepretation}
+\subsection{Interpretation}
 
 Wie zu erwarten hat die Evaluation gewonnen, welche am meisten berücksichtigt. Daraus lässt sich ableiten, dass die Balance
 zwischen den Evaluationen stimmt. \\
@@ -94,7 +94,7 @@ nicht zu unterschätzen, was ebenfalls in der Kategorie \enquote{Endgames}
 zusehen ist, wo \textit{PieceSquareEvaluation} die \textit{MaterialEvaluation} übertrumpft.
 
 Bei einem Blick auf das Diagramm von \textit{Dynamic play} fällt überraschenderweise auf, dass hier \textit{MaterialEvaluation \& PieceSquareEvaluation}
-weniger Punkte als \textit{MaterialEvaluation} gesammelt. Ebenfalls ist es spannend, dass beim \textit{Positional play}
+weniger Punkte als \textit{MaterialEvaluation} gesammelt hat. Ebenfalls ist es spannend, dass beim \textit{Positional play}
 sowie \textit{Tactics} praktisch keine Punkte von der \textit{PieceSquareEvaluation} erzielt wurde.
 
 Des Weiteren wurden die einzelnen Testdaten auf dem \href{https://lichess.org/analysis}{Analyseboard von lichess.org}
@@ -103,7 +103,7 @@ mittels Pfeilen angezeigt. Damit konnten mittels Stockfish 18 und einer Tiefe vo
 untersucht werden.
 
 Über die Positionen von \textit{Dynamic play}, wo die \textit{MaterialEvaluation} mehr Punkte gesammelt hat als
-\textit{MaterialEvaluation \& PieceSquareEvaluation}, lässt sich sagen, dass den Unterschied vernachlässigt werden
+\textit{MaterialEvaluation \& PieceSquareEvaluation}, lässt sich sagen, dass der Unterschied vernachlässigt werden
 kann. Werden die Positionen im Analyseboard mit der Tiefe von 20 berechnet, so werden die von \textit{MaterialEvaluation \& PieceSquareEvaluation}
 in manchen Positionen stärker. Generell verschwinden manche Züge oder andere erscheinen sogar dann erst. \\
 So hätte bei Position \textit{r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/} \\ \textit{PPP2PPP/R1BQ1RK1 b - - 0 1}
@@ -122,7 +122,7 @@ zumindest innerhalb der Testpositionen geholfen hat. \\
 Werden die Berechnung mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von Stockfish
 eher \enquote{positional plays} sind - also Züge, welche nicht direkt eine gegnerische Figur schlagen, sondern Züge, welche die
 eigene Position verbessern oder die gegnerische verschlechtern. \\
-Hier kommt die Schwäche von unser Evaluationen zum Vorschein - er kennt diese mit der aktuellen Evaluationen
+Hier kommt die Schwäche von unser Evaluationen zum Vorschein - sie kennt diese mit den aktuellen Evaluationen
 schlicht und einfach noch nicht. Hier benötigt es noch weitere Heuristiken wie \href{https://www.chessprogramming.org/Pawn_Structure}{Pawn Structure}
 \href{https://www.chessprogramming.org/Mobility}{Mobility} oder \href{https://www.chessprogramming.org/King_Safety}{King Safety}.\\
 Insgesamt lässt sich jedoch sagen, dass von all unseren Evaluationen bislang diejenige die Beste ist, welche

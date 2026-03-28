@@ -1,6 +1,6 @@
 \section{Softwarearchitektur}
 
-Nachfolgend wird mittels dem \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
+Nachfolgend wird mittels des \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
 
 \subsection{Systemkontext}
 
@@ -33,7 +33,7 @@ Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit unter
 \end{figure}
 
 Das \textit{base} Package enthält grundlegende Datenstrukturen wie das \texttt{ChessBoard}, \texttt{Piece}, Interfaces sowie Util Klassen.
-Desweiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
+Des Weiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
 und Spiellogik verwendet wird.
 
 Das Package \textit{eval} oder \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
@@ -83,7 +83,7 @@ zu müssen.
 Die abstrakte Klasse \texttt{BotAlgorithm} definiert die gemeinsame Basis aller Suchalgorithmen. Sie hält die zu berechnende Tiefe,
 die zu verwendende \texttt{EvaluationStrategy}, die einzunehmende Spielerfarbe und deklariert die abstrakte
 Methode \texttt{getBestPath()}. \\
-Vom Interface \texttt{MiniMaxAlgo}, welche eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
+Vom Interface \texttt{MiniMaxAlgo}, welches eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
 Hier exemplarisch \texttt{MiniMaxSequential} und \texttt{MiniMaxSequentialWithCache}. Die Klassen sind übersichtshalber
 minimalistisch und nicht vollzählig dargestellt. \\
 Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung von Bots vom konkreten Algorithmus und ermöglicht es,

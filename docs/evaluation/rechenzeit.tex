@@ -86,10 +86,10 @@ Untenstehend noch das Diagramm für die Zugtiefe 5.
 
 \subsection{Interpretation}
 Die Messungen zeigen, dass die Alpha-Beta-Pruning-Optimierung den grössten Leistungsgewinn bringt.
-Es ist erstaunlich zu sehen genau wie viel schneller diese Optimierung im Vergleich zum Caching und zur Parallelisierung ist.
+Es ist erstaunlich zu sehen, genau wie viel schneller diese Optimierung im Vergleich zum Caching und zur Parallelisierung ist.
 
 Der Zeitunterschied gegenüber einer einfachen Parallelisierung lässt sich durch die begrenzte Anzahl verfügbarer CPUs erklären.
-Jedoch wäre die nötige Anzahl CPUs bei grösseren Zugtiefen fast nicht erreichbar um die gleiche Leistung zu Alpha-Beta-Pruning zu erreichen, da bei jeder zusätzlichen Tiefe die Anzahl nötigen Evaluationen exponentiell steigen kann.
+Jedoch wäre die nötige Anzahl CPUs bei grösseren Zugtiefen fast nicht erreichbar um die gleiche Leistung zu Alpha-Beta-Pruning zu erreichen, da bei jeder zusätzlichen Tiefe die Anzahl der nötigen Evaluationen exponentiell steigen kann.
 
 Bei ganz kleinen Zugtiefen scheint der Overhead der Caching-Implementation grösser zu sein, als der Gewinn.
 Der Leistungsgewinn der Caching-Optimierung steigt mit der Zugtiefe.
