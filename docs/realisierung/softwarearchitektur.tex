@@ -1,6 +1,6 @@
 \section{Softwarearchitektur}
 
-Nachfolgend wird mittels dem \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
+Nachfolgend wird mittels des \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
 
 \subsection{Systemkontext}
 
@@ -8,7 +8,7 @@ Der Systemkontext stellt den Kontext dar, in welchem sich die Applikation befind
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/c4-context}
+    \includegraphics[width=0.8\linewidth]{generated-diagrams/c4-context}
     \caption{Softwarearchitektur - System context}
     \label{fig:c4-context}
 \end{figure}
@@ -20,6 +20,8 @@ welcher über einer CLI gegen einen Schachcomputer, blobfish, Schach spielt.
 
 Da die Applikation eine Java-Applikation ist, welche als \gls{glos:uberjar} ausgeliefert wird und ohne weitere \gls{glos:c4container}
 auskommt, wurde auf das Container Diagram verzichtet, weil es praktisch dasselbe ist.
+
+\newpage
 
 \subsection{Component}
 
@@ -33,7 +35,7 @@ Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit unter
 \end{figure}
 
 Das \textit{base} Package enthält grundlegende Datenstrukturen wie das \texttt{ChessBoard}, \texttt{Piece}, Interfaces sowie Util Klassen.
-Desweiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
+Des Weiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
 und Spiellogik verwendet wird.
 
 Das Package \textit{eval} oder \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
@@ -44,6 +46,8 @@ welches die Kopplung zwischen Bewertungslogik und Suchalgorithmus auflöst.
 
 Das \textit{game} Package enthält sämtliche Klassen und Logik für die CLI-Applikation. Sei es der Game-Flow, die UI Darstellung
 oder die Terminal-Interaktion, wofür letzteres zusätzlich die \textit{jline} Bibliothek verwendet wurde.
+
+\newpage
 
 \subsection{Code}
 
@@ -80,7 +84,7 @@ zu müssen.
 Die abstrakte Klasse \texttt{BotAlgorithm} definiert die gemeinsame Basis aller Suchalgorithmen. Sie hält die zu berechnende Tiefe,
 die zu verwendende \texttt{EvaluationStrategy}, die einzunehmende Spielerfarbe und deklariert die abstrakte
 Methode \texttt{getBestPath()}. \\
-Vom Interface \texttt{MiniMaxAlgo}, welche eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
+Vom Interface \texttt{MiniMaxAlgo}, welches eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
 Hier exemplarisch \texttt{MiniMaxSequential} und \texttt{MiniMaxSequentialWithCache}. Die Klassen sind übersichtshalber
 minimalistisch und nicht vollzählig dargestellt. \\
 Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung von Bots vom konkreten Algorithmus und ermöglicht es,

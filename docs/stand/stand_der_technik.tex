@@ -2,13 +2,13 @@
 
 
 \section{Schachcomputer}
-Ein erster Meilenstein in der Welt der Schachcomputer wurde mit Deep Blue, einem Schachcomputer von IBM, geschaffen. Ziel des Team war es, der beste
+Ein erster Meilenstein in der Welt der Schachcomputer wurde mit Deep Blue, einem Schachcomputer von IBM, geschaffen. Ziel des Teams war es, der beste
 Schachspieler der Welt zu schlagen. Der erste Versuch scheiterte im Februar 1996 in Philadelphia gegen Garry Kasparov mit 4-2.
 Im Mai 1997 kam es zu einem berühmten Rematch, welches im Equitable Center in New York ausgetragen wurde.
 Hier schlug Deep Blue Kasparov 3.5-2.5 (\cite{deepBlueIbm}).
 
 Dies war eine grosse Sensation, denn Garry Kasparov war 1985 bis 2000 Classical World Champion (\cite{worldChessChampion})
-und gilt nach \href{https://www.chess.com/}{chess.com}, wegen seinen Erfolgen als bester Schachspieler aller Zeiten (\cite{bestChessPlayerOfAllTime}).
+und gilt nach \href{https://www.chess.com/}{chess.com}, wegen seiner Erfolge als bester Schachspieler aller Zeiten (\cite{bestChessPlayerOfAllTime}).
 
 \subsection{Vergleich unter Schachcomputer}
 \label{subsec:vergleichSchachcomputer}
@@ -20,7 +20,7 @@ vielen Rankings von beiden Organisationen hat, Stand März 2026, \gls{glos:stock
 Ein anderer spannender Vergleich ist das Schachcomputerturnier von \gls{glos:tcec}.
 Eine Besonderheit von diesem Turnier ist, dass die Computer, im Vergleich zu den Modis von \gls{glos:ccrl} oder \gls{glos:cegt},
 eine lange Bedenkzeit haben.
-Dieses Turnier in Season aufgeteilt, welche jeweils ungefähr 3-4 Monate dauern. Die letzten 5 ausgetragenen Seasons
+Dieses Turnier ist in Seasons aufgeteilt, welche jeweils ungefähr 3-4 Monate dauern. Die letzten 5 ausgetragenen Seasons
 (Season 18 bis Season 23) hat ebenfalls \gls{glos:stockfish} gewonnen (\cite{tcecWebseite}).
 
 Wichtig ist jedoch, dass die jeweils daraus erstellten \gls{glos:elo}-Werte sich nicht direkt miteinander vergleichen lassen.
@@ -38,7 +38,7 @@ Standard, Rapid etc. (\cite{comparableElo}).
 \subsection{Minimax}
 Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
 Dieser Algorithmus wird meist für rundenbasierte \glspl{glos:nullsummenspiel} mit 2 Spielern verwendet.
-Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der name Minimax.
+Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der Name Minimax.
 Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch wenn der Gegner optimal spielt.
 
 Der Algorithmus hat in nicht-\glspl{glos:nullsummenspiel}n auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
@@ -48,7 +48,7 @@ Da Schach ein rundenbasiertes \gls{glos:nullsummenspiel} mit 2 Spielern ist, eig
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax}
+    \includegraphics[width=0.9\linewidth]{generated-diagrams/general-minimax}
     \caption{Ablaufdiagramm für Minimax}
     \label{fig:minimax-flowchart}
 \end{figure}
@@ -59,7 +59,7 @@ Somit sind in der Tiefe 1 alle Zustände enthalten, die der Spieler 1 erzeugen k
 Die Tiefe 2 stellt alle Zustände dar, die Spieler 2 anschliessend erreichen kann (\cite{minimaxchessprogramming}).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-0}
+    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-0}
     \caption{Minimax Beispielbaum - Ausgangslage}
     \label{fig:minimax-tree-0}
 \end{figure}
@@ -71,7 +71,7 @@ So werden alle Kinderknoten des vorherigen Entscheidungsknoten traversiert und d
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-1}
+    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-1}
     \caption{Minimax Beispielbaum - Schritt 1}
     \label{fig:minimax-tree-1}
 \end{figure}
@@ -80,7 +80,7 @@ Als nächstes werden alle Entscheidungsknoten der gleichen Ebene auf die gleiche
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-2}
+    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-2}
     \caption{Minimax Beispielbaum - Schritt 2}
     \label{fig:minimax-tree-2}
 \end{figure}
@@ -89,7 +89,7 @@ Als letztes wird noch die oberste Ebene auf die gleiche Art berechnet, diesmal w
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example-3}
+    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-3}
     \caption{Minimax Beispielbaum - Schritt 3}
     \label{fig:minimax-tree-3}
 \end{figure}
@@ -98,7 +98,7 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax-tree-example}
+    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example}
     \caption{Minimax Beispielbaum - Zusammengefasst}
     \label{fig:minimax-tree}
 \end{figure}

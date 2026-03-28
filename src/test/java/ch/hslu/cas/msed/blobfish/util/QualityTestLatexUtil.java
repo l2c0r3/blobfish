@@ -39,6 +39,7 @@ public class QualityTestLatexUtil {
                 \\setlength{\\LTleft}{0pt}
                 \\setlength{\\LTright}{0pt}
                 
+                \\small
                 \\begin{longtable}{|
                         >{\\raggedright\\arraybackslash}p{0.18\\textwidth}|
                         >{\\centering\\arraybackslash}p{0.14\\textwidth}|
