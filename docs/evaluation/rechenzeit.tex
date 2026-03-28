@@ -17,12 +17,12 @@ Alle Tests wurden auf demselben Rechner mit den folgenden Spezifikationen durchg
 
 Die Tests wurden als \gls{glos:JUnit}-Tests konzipiert.
 Für die Tests wurden zwölf Schachpositionen ausgewählt: Sieben stammten aus \gls{glos:lichess} Puzzles, vier wurden von einer KI generiert und manuell überprüft, und eine wurde manuell erstellt.
-Es wurde ein \textit{@ParameterizedTest} erstellt, der die erwähnten Positionen als \textit{@MethodSource} verwendet.
+Es wurde ein \texttt{@ParameterizedTest} erstellt, der die erwähnten Positionen als \texttt{@MethodSource} verwendet.
 So wird die Testlogik nur einmal geschrieben und für jede Schachposition ausgeführt.
 Alle Tests laufen sequentiell ab, damit sie sich nicht gegenseitig Ressourcen wegnehmen.
 
 Der \gls{glos:JUnit}-Test holt dynamisch alle MiniMax-Algorithmus Implementierungen.
-Die gewünschten Evaluationsstrategiekombinationen können mittels \textit{CompositeEvaluationStrategy} erstellt werden.
+Die gewünschten Evaluationsstrategiekombinationen können mittels \texttt{CompositeEvaluationStrategy} erstellt werden.
 \begin{lstlisting}[
     language = JavaIntelliJ,
     caption={CompositeEvaluationStrategy - Aufruf Beispiel},
@@ -71,7 +71,7 @@ Die Zahlen geben den Geschwindigkeitsmultiplikator im Vergleich zum ursprünglic
 \end{table}
 
 Die Werte in der Tabelle sind Medianwerte über alle Schachpositionen.
-Die weiteren Tabellen befinden sich im Anhang unter Rechengeschwindigkeitsmultiplikator im Vergleich zu MiniMaxSequential~\ref{sec:performance-gains}.
+Die weiteren Tabellen befinden sich im Anhang unter Rechengeschwindigkeitsmultiplikator im Vergleich zu \texttt{MiniMaxSequential}~\ref{sec:performance-gains}.
 
 Für eine kompaktere Darstellung der Evaluationen unterschiedlicher Algorithmen und Strategien wurden pro Zugtiefe noch ein Diagramm erstellt.
 Diese Diagramme befinden sich ebenfalls im Anhang, unter Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}.

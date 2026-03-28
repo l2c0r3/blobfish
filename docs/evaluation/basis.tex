@@ -30,7 +30,7 @@ eine \gls{glos:JUnit}-Extension entwickelt. Eine Extension ermöglicht beispiels
 vor oder nach einer Testklasse oder Testmethode auszuführen (\cite{junitCallbacks}). Ebenfalls kann über PostProcessing Objekte in Felder der
 Testklasse injected werden (\cite{junitExtensionRegistration}).
 
-So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, welche die entwickelte Extension verwendet:
+So sehen beispielsweise die ersten Zeilen der Testklasse \texttt{QualityTest}, welche die entwickelte Extension verwendet:
 
 \lstinputlisting[
     firstline=32,
@@ -40,13 +40,13 @@ So sehen beispielsweise die ersten Zeilen der Testklasse \textit{QualityTest}, w
     label={lst:qualitTestHead}
 ]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
 
-Mittels der Annotation \textit{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
+Mittels der Annotation \texttt{@ExtendWith(StockfishExtension.class)} wird die eigene Extension geladen. Dies bewirkt,
 dass bevor die erste Testmethode ausgeführt wird, kontrolliert wird, ob lokal ein Docker-Container von Stockfish bereits
 gestartet ist. Falls dies nicht der Fall ist, wird ein neuer Container gestartet.
-Als Nächstes wird die StockFishService-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
+Als Nächstes wird die \texttt{StockFishService}-Klasse, eine Fassade, innerhalb der Extension initialisiert. Dieses Objekt
 wird dann mittels PostProcessing in das Feld auf Zeile 6 injected.
 
-Anschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \textit{stockFishService}
+Anschliessend werden die Testmethoden ausgeführt. Innerhalb der Testmethoden kann nun via der \texttt{stockFishService}
 Variable mit Stockfish kommuniziert werden, und so beispielsweise Positionen berechnet werden.
 Zwischen den Testmethoden übermittelt die Extension den Befehl
 \href{https://official-stockfish.github.io/docs/stockfish-wiki/UCI-\&-Commands.html\#ucinewgame}{ucinewgame} an Stockfish,
@@ -63,10 +63,10 @@ Die Kombinationen von den Evaluationen sind interessant, da so potenziell eine n
 erreicht werden kann.
 
 
-\textit{EvaluationUtil} enthält eine Methode, welche alle möglichen Evaluationmöglichkeiten zurückgibt. \\
+\texttt{EvaluationUtil} enthält eine Methode, welche alle möglichen Evaluationmöglichkeiten zurückgibt. \\
 Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwendet. Diese Java-Bibliothek ermöglicht es
 unter anderem packages zu scannen. In unserem Fall wird es dafür genutzt, um alle Klassen herauszufinden, welche
-das Interface \textit{EvalStrategy} implementieren. Anschliessend wird jeweils ein Objekt davon initialisiert.
+das Interface \texttt{EvalStrategy} implementieren. Anschliessend wird jeweils ein Objekt davon initialisiert.
 
 Somit wird noch eine Funktion benötigt, die eine Liste von Kombinationen von unseren Evaluationsobjekten zurückgibt.
 Genauer genommen wird die \href{https://de.wikipedia.org/wiki/Potenzmenge}{Potenzmenge} als Basis benötigt.
@@ -86,5 +86,5 @@ So ist die Potenzmenge von $\{\texttt{a}, \texttt{b}, \texttt{c}\}$ folgende:
     \item $\{\texttt{c}\}$
 \end{itemize}
 
-Die Funktionalität, die Potenzmenge einer Liste von Objekten zu ermitteln, wurde in die Klasse \textit{PowerSetUtil} ausgelagert.
+Die Funktionalität, die Potenzmenge einer Liste von Objekten zu ermitteln, wurde in die Klasse \texttt{PowerSetUtil} ausgelagert.
 

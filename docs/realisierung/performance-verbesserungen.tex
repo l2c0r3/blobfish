@@ -55,7 +55,7 @@ Diese Klasse enthält eine Instanz des \glspl{glos:cache}, die für alle geerbte
     label={lst:minimax-cached-algo}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/MiniMaxCachedAlgo.java}
 Da der \gls{glos:cache} auch in einer Multi-threaded Implementierung verwendet wird, muss die verwendete Map für die \gls{glos:transpositionstabelle} Thread-safe sein.
-Um den Overhead von Thread-Safety bei den sequentiellen Implementierungen zu vermeiden, bietet die \textit{MiniMaxCachedAlgo} Klasse eine abstrakte Methode für die Instanziierung der \gls{glos:transpositionstabelle}.
+Um den Overhead von Thread-Safety bei den sequentiellen Implementierungen zu vermeiden, bietet die \texttt{MiniMaxCachedAlgo} Klasse eine abstrakte Methode für die Instanziierung der \gls{glos:transpositionstabelle}.
 Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene Map-Implementierung verwenden.
 \lstinputlisting[
     firstline=17,
@@ -148,7 +148,7 @@ Der Vollständigkeit halber ist die gesamte Implementierung unten aufgeführt.
     label={lst:minimax-alpha-beta-with-cache}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/MiniMaxAlphaBetaSequentialWithCache.java}
 
-Und noch die \textit{put} und \textit{get} Methoden der Klasse \textit{EvaluationCache}.
+Und noch die \texttt{put} und \texttt{get} Methoden der Klasse \texttt{EvaluationCache}.
 \lstinputlisting[
     firstline=15,
     lastline=37,
