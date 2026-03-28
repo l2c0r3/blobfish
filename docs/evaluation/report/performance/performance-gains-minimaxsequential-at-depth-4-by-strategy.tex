@@ -1,0 +1,28 @@
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|p{8cm}|*{5}{r|}}
+            \hline
+            & \multicolumn{5}{c|}{\textbf{Median performance gain multiplier}} \\
+            \cline{2-6}
+            \multirow{-2}{*}{\parbox{8cm}{\centering\textbf{Strategy}}} & \multicolumn{1}{r|}{\textbf{MiniMaxAlphaBetaSequentialWithCache}} & \multicolumn{1}{r|}{\textbf{MiniMaxAlphaBetaSequential}} & \multicolumn{1}{r|}{\textbf{MiniMaxParallelWithCache}} & \multicolumn{1}{r|}{\textbf{MiniMaxParallel}} & \multicolumn{1}{r|}{\textbf{MiniMaxSequentialWithCache}} \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+\textbf{Mate aware piece square evaluation}               & 155.01 & 153.22 & 9.79 & 7.41 & 1.36 \\
+
+\rowcolor[HTML]{EFEFEF}
+\textbf{Mate aware piece square material evaluation}               & 229.23 & 208.40 & 10.34 & 6.93 & 1.50 \\
+
+\rowcolor[HTML]{FFFFFF}
+\textbf{Mate aware material evaluation}               & 286.82 & 272.82 & 9.64 & 6.95 & 1.37 \\
+\hline
+\hline
+\rowcolor[HTML]{FFFFFF}
+\textbf{Median}               & \textbf{229.23} & \textbf{208.4} & \textbf{9.79} & \textbf{6.94} & \textbf{1.37} \\
+
+            \hline
+        \end{tabular}%
+    }
+    \caption{Median performance difference from MiniMaxSequential at depth 4 by strategy}
+    \label{tab:median-performance-difference-from-minimaxsequential-at-depth-4-by-strategy}
+\end{table}

@@ -20,7 +20,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(1),
                         Duration.ofSeconds(1),
                         Duration.ofSeconds(1)),
-                        Duration.ofSeconds(1)
+                        Duration.ofSeconds(1),
+                        Duration.ofSeconds(0)
                 },
 
                 // even ->  (12 + 14) / 2 = 13s
@@ -29,7 +30,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(12),
                         Duration.ofSeconds(14),
                         Duration.ofSeconds(15)),
-                        Duration.ofSeconds(13)
+                        Duration.ofSeconds(13),
+                        Duration.ofSeconds(1).plusMillis(500)
                 },
 
                 // odd -> middle
@@ -37,7 +39,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(5),
                         Duration.ofSeconds(14),
                         Duration.ofSeconds(15)),
-                        Duration.ofSeconds(14)
+                        Duration.ofSeconds(14),
+                        Duration.ofSeconds(1)
                 },
 
                 // unsorted, odd
@@ -45,7 +48,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(10),
                         Duration.ofSeconds(1),
                         Duration.ofSeconds(7)),
-                        Duration.ofSeconds(7)
+                        Duration.ofSeconds(7),
+                        Duration.ofSeconds(3)
                 },
 
                 // unsorted, odd
@@ -55,7 +59,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(2),
                         Duration.ofSeconds(3),
                         Duration.ofSeconds(7)),
-                        Duration.ofSeconds(3)
+                        Duration.ofSeconds(3),
+                        Duration.ofSeconds(2)
                 },
 
                 // unsorted, even -> (7 + 10) / 2 = 8.5s
@@ -64,7 +69,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(1),
                         Duration.ofSeconds(10),
                         Duration.ofSeconds(7)),
-                        Duration.ofSeconds(8).plusMillis(500)
+                        Duration.ofSeconds(8).plusMillis(500),
+                        Duration.ofSeconds(2).plusMillis(500)
                 },
 
                 // duplicates 1,5,5,9 => (5+5)/2 = 5
@@ -73,7 +79,8 @@ class MeasurementUtilTest {
                         Duration.ofSeconds(9),
                         Duration.ofSeconds(1),
                         Duration.ofSeconds(5)),
-                        Duration.ofSeconds(5)
+                        Duration.ofSeconds(5),
+                        Duration.ofSeconds(2)
                 }
         );
     }
@@ -81,12 +88,14 @@ class MeasurementUtilTest {
 
     @ParameterizedTest
     @MethodSource("medianProvider")
-    void test_calcMedianDuration_returnsExpected(List<Duration> measurements, Duration expected) {
+    void test_calcMedianDuration_andDeviation_returnsExpected(List<Duration> measurements, Duration expectedMedian, Duration expectedDeviation) {
         // Act
-        var result = MeasurementUtil.calcMedianDuration(measurements);
+        var actualMedian = MeasurementUtil.calcMedianDuration(measurements);
+        var actualDeviation = MeasurementUtil.calcMedianOfAbsoluteDeviationsDuration(measurements);
 
         // Assert
-        assertEquals(expected, result);
+        assertEquals(expectedMedian, actualMedian);
+        assertEquals(expectedDeviation, actualDeviation);
     }
 
     @Test

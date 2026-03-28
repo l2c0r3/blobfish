@@ -1,0 +1,19 @@
+r2q1rk1/ppp2ppp/2npbn2/4p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.32;11.457;425.618;15032.554;562084.273
+MiniMaxSequential (Mate aware piece square evaluation);0.287;10.574;389.692;13998.093;523067.754
+MiniMaxSequential (Mate aware piece square material evaluation);0.417;15.24;561.334;20039.642;750255.472
+MiniMaxSequentialWithCache (Mate aware material evaluation);2.459;12.66;423.054;11176.578;280752.315
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.308;11.255;397.052;10575.911;267700.061
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.535;16.15;546.674;14044.259;340193.191
+MiniMaxParallel (Mate aware material evaluation);1.695;5.556;63.271;2133.636;79222.611
+MiniMaxParallel (Mate aware piece square evaluation);0.305;1.765;53.551;1872.557;70099.009
+MiniMaxParallel (Mate aware piece square material evaluation);0.451;2.734;83.223;2893.195;106799.297
+MiniMaxParallelWithCache (Mate aware material evaluation);0.387;2.317;59.174;1583.934;43705.05
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.398;2.201;54.004;1464.952;41147.918
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);0.529;2.896;75.522;2012.695;54077.429
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.31;1.121;21.8;47.601;613.331;1625.325;35144.875
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.288;0.875;14.574;63.31;678.294;2604.577;25687.712
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.414;1.415;30.327;76.794;861.216;2578.351;54646.53
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.398;1.476;22.483;48.215;459.953;1129.948;17101.468
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.313;0.969;14.777;65.394;511.815;1966.224;11121.03
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.483;1.63;30.289;74.49;642.14;1827.105;27755.838

@@ -1,0 +1,49 @@
+@startchart
+skinparam dpi 300
+scale 1.5
+
+title
+FEN: r1bq1rk1/ppp1ppbp/2np1np1/4N3/2B1P3/2P2Q1P/PP3PP1/RNB1K2R w KQ - 2 10
+end title
+
+h-axis [ Depth 1,Depth 2,Depth 3,Depth 4,Depth 5,Depth 6,Depth 7 ]
+v-axis "Calculation time [ms]" 0 --> 6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+
+bar "MiniMaxSequential (Mate aware material evaluation)"[ 1.0E-5,1.114,2.788,4.299,5.944 ] #1F77B4
+bar "MiniMaxSequential (Mate aware piece square evaluation)"[ 1.0E-5,1.079,2.758,4.266,5.911 ] #FF7F0E
+bar "MiniMaxSequential (Mate aware piece square material evaluation)"[ 1.0E-5,1.23,2.913,4.423,6.068 ] #2CA02C
+bar "MiniMaxSequentialWithCache (Mate aware material evaluation)"[ 1.0E-5,1.176,2.777,4.158,5.636 ] #D62728
+bar "MiniMaxSequentialWithCache (Mate aware piece square evaluation)"[ 1.0E-5,1.114,2.743,4.123,5.611 ] #9467BD
+bar "MiniMaxSequentialWithCache (Mate aware piece square material evaluation)"[ 1.0E-5,1.279,2.878,4.25,5.709 ] #8C564B
+bar "MiniMaxParallel (Mate aware material evaluation)"[ 1.0E-5,0.602,1.954,3.448,5.088 ] #E377C2
+bar "MiniMaxParallel (Mate aware piece square evaluation)"[ 1.0E-5,1.0E-5,1.886,3.393,5.035 ] #7F7F7F
+bar "MiniMaxParallel (Mate aware piece square material evaluation)"[ 1.0E-5,0.477,2.072,3.581,5.217 ] #BCBD22
+bar "MiniMaxParallelWithCache (Mate aware material evaluation)"[ 1.0E-5,0.301,1.908,3.304,4.833 ] #17BECF
+bar "MiniMaxParallelWithCache (Mate aware piece square evaluation)"[ 1.0E-5,0.301,1.881,3.274,4.808 ] #AEC7E8
+bar "MiniMaxParallelWithCache (Mate aware piece square material evaluation)"[ 1.0E-5,0.477,2.025,3.413,4.913 ] #FFBB78
+bar "MiniMaxAlphaBetaSequential (Mate aware material evaluation)"[ 1.0E-5,1.0E-5,1.255,1.633,2.87,3.181,4.418 ] #98DF8A
+bar "MiniMaxAlphaBetaSequential (Mate aware piece square evaluation)"[ 1.0E-5,1.0E-5,1.255,1.633,2.903,3.329,4.58 ] #FF9896
+bar "MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation)"[ 1.0E-5,1.0E-5,1.38,1.732,2.996,3.276,4.581 ] #C5B0D5
+bar "MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation)"[ 1.0E-5,1.0E-5,1.255,1.602,2.674,2.971,3.944 ] #9EDAE5
+bar "MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation)"[ 1.0E-5,1.0E-5,1.255,1.623,2.74,3.172,4.287 ] #393B79
+bar "MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation)"[ 1.0E-5,1.0E-5,1.362,1.699,2.78,3.049,4.116 ] #637939
+
+legend right
+
+<style>
+chartDiagram {
+    bar {
+        LineThickness 1
+    }
+    axis {
+        LineColor #34495e
+        LineThickness 1.5
+        FontSize 11
+    }
+    grid {
+        LineColor #dddddd
+        LineThickness 1
+    }
+}
+</style>
+@endchart

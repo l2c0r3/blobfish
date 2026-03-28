@@ -1,0 +1,57 @@
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|p{8cm}|*{7}{r|}}
+            \hline
+            & \multicolumn{7}{c|}{\textbf{Median of absolute deviation (MAD) [ms]}} \\
+            \cline{2-8}
+            \multirow{-2}{*}{\parbox{8cm}{\centering\textbf{Complex position with many options}}} & \multicolumn{1}{r|}{\textbf{Depth 1}} & \multicolumn{1}{r|}{\textbf{Depth 2}} & \multicolumn{1}{r|}{\textbf{Depth 3}} & \multicolumn{1}{r|}{\textbf{Depth 4}} & \multicolumn{1}{r|}{\textbf{Depth 5}} & \multicolumn{1}{r|}{\textbf{Depth 6}} & \multicolumn{1}{r|}{\textbf{Depth 7}} \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxSequential (Mate aware material evaluation)}                                & 0.00                                  & 0.03                                  & 1.24                                  & 21.12 & 556.80 &  &  \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxSequential (Mate aware piece square evaluation)}                            & 0.00                                  & 0.01                                  & 1.00                                  & 29.85 & 895.67 &  &  \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxSequential (Mate aware piece square material evaluation)}                   & 0.01                                  & 0.06 & 6.89 & 39.22 & 1434.06 &  &  \\
+
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxSequentialWithCache (Mate aware material evaluation)}                       & 0.51                                  & 0.43                                  & 5.62 & 21.00 & 354.60 &  &  \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxSequentialWithCache (Mate aware piece square evaluation)}                   & 0.07                                  & 0.03 & 6.42 & 49.65 & 415.68 &  &  \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxSequentialWithCache (Mate aware piece square material evaluation)}               & 0.01 & 0.14 & 10.74 & 30.72 & 1124.03 &  &  \\
+
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxParallel (Mate aware material evaluation)}                                  & 0.70                                  & 3.15                                  & 4.02                                  & 33.32                                 & 116.87 &  &  \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxParallel (Mate aware piece square evaluation)}                              & 0.20                                  & 0.36                                  & 0.92                                  & 5.84 & 40.32 &  &  \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxParallel (Mate aware piece square material evaluation)}                     & 0.02                                  & 0.18 & 1.26 & 2.73 & 1021.28 &  &  \\
+
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxParallelWithCache (Mate aware material evaluation)}                         & 0.07                                  & 0.11                                  & 1.60 & 5.95 & 379.68 &  &  \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxParallelWithCache (Mate aware piece square evaluation)}                     & 0.01                                  & 0.05 & 0.51 & 6.38 & 306.46 &  &  \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxParallelWithCache (Mate aware piece square material evaluation)}            & 0.10 & 0.41 & 1.76 & 3.67 & 41.51 &  &  \\
+
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxAlphaBetaSequential (Mate aware material evaluation)}                       & 0.01                                  & 0.01                                  & 0.58 & 0.79 & 3.57 & 3.65 & 20.68 \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxAlphaBetaSequential (Mate aware piece square evaluation)}                   & 0.00                                  & 0.01 & 0.32 & 0.54 & 1.08 & 12.95 & 18.97 \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation)}               & 0.00 & 0.01 & 0.46 & 0.55 & 2.37 & 12.01 & 36.00 \\
+
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation)}              & 0.01 & 0.07 & 0.14 & 0.44 & 1.18 & 1.78 & 41.41 \\
+            \rowcolor[HTML]{FFFFFF}
+            \textbf{MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation)}               & 0.00 & 0.01 & 0.08 & 0.14 & 2.64 & 14.73 & 34.33 \\
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation)}               & 0.02 & 0.01 & 0.34 & 1.05 & 4.36 & 7.05 & 27.65 \\
+
+            \hline
+        \end{tabular}%
+    }
+    \caption{DEVIATION: 1r4r1/5p1k/p2p1q1p/2b1nPQ1/p7/6RP/B1R2PPK/2B5 b - - 0 1}
+    \label{tab:complex-position-with-many-options-deviation}
+\end{table}

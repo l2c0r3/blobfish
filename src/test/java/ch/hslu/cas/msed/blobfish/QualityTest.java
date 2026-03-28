@@ -218,7 +218,7 @@ public class QualityTest {
                     bars.add(new PlantUmlUtil.ChartBar(config.description(), List.of(pointsWon)));
                 });
 
-        return PlantUmlUtil.createBarChart(description, horizontalAxisTitles, verticalAxisTitle, bars);
+        return PlantUmlUtil.createBarChart(description, horizontalAxisTitles, verticalAxisTitle, bars, true);
     }
 
     private static File createQualityFolder() {

@@ -1,0 +1,19 @@
+Q7/p1pk3p/2p2qp1/3p1b2/8/1PN1P3/P1PP2PP/R4KNR b - - 4 15;Depth 1;Depth 2;Depth 3;Depth 4;Depth 5;Depth 6;Depth 7
+MiniMaxSequential (Mate aware material evaluation);0.23;7.064;184.789;5776.802;148891.495
+MiniMaxSequential (Mate aware piece square evaluation);0.216;6.537;173.169;5488.361;141640.46
+MiniMaxSequential (Mate aware piece square material evaluation);0.312;9.376;246.993;7815.05;201198.318
+MiniMaxSequentialWithCache (Mate aware material evaluation);0.25;7.404;178.95;4021.864;67267.961
+MiniMaxSequentialWithCache (Mate aware piece square evaluation);0.236;7.073;170.744;3874.462;64943.826
+MiniMaxSequentialWithCache (Mate aware piece square material evaluation);0.347;10.249;228.193;5251.258;81483.324
+MiniMaxParallel (Mate aware material evaluation);2.011;4.418;29.109;834.488;21201.476
+MiniMaxParallel (Mate aware piece square evaluation);0.224;1.268;24.194;746.493;19012.938
+MiniMaxParallel (Mate aware piece square material evaluation);0.376;2.903;38.012;1136.469;29007.635
+MiniMaxParallelWithCache (Mate aware material evaluation);0.349;1.643;24.897;608.074;10169.84
+MiniMaxParallelWithCache (Mate aware piece square evaluation);0.237;1.252;23.319;583.609;9707.565
+MiniMaxParallelWithCache (Mate aware piece square material evaluation);0.388;1.999;33.627;776.044;12826.607
+MiniMaxAlphaBetaSequential (Mate aware material evaluation);0.232;0.424;6.962;18.551;327.283;891.74;12985.125
+MiniMaxAlphaBetaSequential (Mate aware piece square evaluation);0.264;0.649;10.636;24.363;196.453;541.149;4090.538
+MiniMaxAlphaBetaSequential (Mate aware piece square material evaluation);0.318;0.516;9.354;26.395;502.067;1345.384;20189.402
+MiniMaxAlphaBetaSequentialWithCache (Mate aware material evaluation);0.307;0.639;7.529;18.607;274.058;660.402;8142.669
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square evaluation);0.231;0.696;10.643;23.795;150.093;417.601;2324.585
+MiniMaxAlphaBetaSequentialWithCache (Mate aware piece square material evaluation);0.363;0.591;8.722;25.061;404.754;1026.351;12192.596

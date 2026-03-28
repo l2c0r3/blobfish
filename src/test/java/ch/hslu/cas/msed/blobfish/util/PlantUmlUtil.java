@@ -1,8 +1,6 @@
 package ch.hslu.cas.msed.blobfish.util;
 
-import net.sourceforge.plantuml.FileFormat;
-import net.sourceforge.plantuml.FileFormatOption;
-import net.sourceforge.plantuml.SourceStringReader;
+import net.sourceforge.plantuml.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -59,7 +57,7 @@ public class PlantUmlUtil {
     }
 
     public static File createBarChart(String barTitle, List<String> horizontalAxisTitles, String verticalAxisTitle,
-                                      List<ChartBar> bars) {
+                                      List<ChartBar> bars, boolean useDynamicScaling) {
 
         if (bars.size() > diagramColors.size()) {
             throw new IllegalStateException("don't have enough diagram colors to create bar diagram");
@@ -74,7 +72,7 @@ public class PlantUmlUtil {
                     var measurements = chartBar.values().stream()
                             .map(m -> {
                                 if (m == 0) {
-                                    return 0.00001; // heigh = 0 in diagram is not possible in plantuml
+                                    return 0.00001; // height = 0 in diagram is not possible in plantuml
                                 } else {
                                     return m;
                                 }
@@ -90,21 +88,44 @@ public class PlantUmlUtil {
         var maxValue = getMaxValueForChart(allValues);
         var spacing = getBarChartSpacing(allValues);
 
+        var scaling = useDynamicScaling ? "%s spacing %s grid".formatted(maxValue, spacing) : """
+                6.0 ticks [0:"1", 1:"10", 2:"100", 3:"1000", 4:"10'000", 5:"100'000", 6:"1'000'000"] label-top
+                """;
+
         var content = """
                 @startchart
+                skinparam dpi 300
+                scale 1.5
                 
                 title
                 %s
                 end title
                 
                 h-axis %s
-                v-axis "%s" 0 --> %s spacing %s grid
+                v-axis "%s" 0 --> %s
                 
                 %s
                 
                 legend right
+                
+                <style>
+                chartDiagram {
+                    bar {
+                        LineThickness 1
+                    }
+                    axis {
+                        LineColor #34495e
+                        LineThickness 1.5
+                        FontSize 11
+                    }
+                    grid {
+                        LineColor #dddddd
+                        LineThickness 1
+                    }
+                }
+                </style>
                 @endchart
-                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, maxValue, spacing, barStrings);
+                """.formatted(barTitle, hAxisTitle, verticalAxisTitle, scaling, barStrings);
 
         var tmpFile = FileUtil.createTmpFile("plantuml", "csv");
         try (FileWriter fw = new FileWriter(tmpFile)) {
