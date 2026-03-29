@@ -6,16 +6,7 @@ Diese Metrik wird nicht mit Stockfish verglichen, da dies sehr unrealistisch wä
 Der Vergleich beschränkt sich auf die verschiedenen Eigenimplementierungen, um festzustellen, welche Ansätze die grössten Zeitersparnisse bringen.
 
 \subsection{Testaufbau}
-Alle Tests wurden auf demselben Rechner mit den folgenden Spezifikationen durchgeführt:
-\begin{itemize}
-    \item Betriebssystem: Microsoft Windows 11 Pro
-    \item CPU: AMD Ryzen 7 7800X3D, 4.20 GHz, 8 cores / 16 threads
-    \item Mainboard: MSI B650M GAMING PLUS WIFI
-    \item RAM: 64GB DDR5
-    \item GPU: RTX 4080 Super
-\end{itemize}
-
-Die Tests wurden als \gls{glos:JUnit}-Tests konzipiert.
+Alle Tests wurden als \gls{glos:JUnit}-Tests konzipiert.
 Für die Tests wurden zwölf Schachpositionen ausgewählt: Sieben stammten aus \gls{glos:lichess} Puzzles, vier wurden von einer KI generiert und manuell überprüft, und eine wurde manuell erstellt.
 Es wurde ein \texttt{@ParameterizedTest} erstellt, der die erwähnten Positionen als \texttt{@MethodSource} verwendet.
 So wird die Testlogik nur einmal geschrieben und für jede Schachposition ausgeführt.

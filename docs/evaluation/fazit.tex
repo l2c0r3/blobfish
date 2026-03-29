@@ -1,0 +1,25 @@
+\section{Fazit}
+Aus der Evaluation (Tabelle~\ref{tab:quality-test-rangliste}) ist ersichtlich, dass die beste Zugqualität durch die Kombination der Evaluationsstrategien \textit{MateAware}, \textit{Material} und \textit{PieceSquare} erzielt wird.
+
+Die Evaluation der Rechenzeit zeigt auf, dass die beste Rechenzeit durch die Alpha-Beta-Pruning Optimierung erreicht wird.
+Bei einer Zugtiefe von vier oder mehr zeigt sich die Kombination aus Alpha-Beta-Pruning und Caching als die schnellste Variation.
+
+Somit zeigen sich die folgenden Algorithmus- und Strategiekombinationen als die besten:
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|r|}
+            \hline
+            \textbf{Algorithmus} & \textbf{Evaluationsstrategiekombination} & \textbf{Zugtiefe} \\
+            \hline
+            \rowcolor[HTML]{FFFFFF}
+            MiniMaxAlphaBetaSequential & MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & < 4 \\
+            \hline
+            \rowcolor[HTML]{EFEFEF}
+            MiniMaxAlphaBetaSequentialWithCache & MateAwareEvaluation \& MaterialEvaluation \& PieceSquareEvaluation & >=4 \\
+            \hline
+        \end{tabular}%
+    }
+    \caption{Kombination für beste Zugqualität und kürzeste Rechenzeit}
+    \label{tab:beste-zugqualitaet-und-kuerzeste-rechenzeit}
+\end{table}
