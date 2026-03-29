@@ -1,2 +1,6 @@
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialAlgorithmProvider
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialWithCacheAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelWithCacheAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialWithCacheAlgorithmProvider

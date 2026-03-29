@@ -210,6 +210,20 @@ class ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer {
 }
 
 
+class ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialAlgorithmProvider {
+	{field} {static} -ALGORITHM_NAME : String
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxAlphaBetaSequential
+	{method} +getAlgorithmName () : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialWithCacheAlgorithmProvider {
+	{field} {static} -ALGORITHM_NAME : String
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxAlphaBetaSequentialWithCache
+	{method} +getAlgorithmName () : String
+}
+
+
 class ch.hslu.cas.msed.blobfish.game.player.MiniMaxBotPlayer {
 	{method} +getNextMove ( paramChessBoard1 : ch.hslu.cas.msed.blobfish.base.ChessBoard ) : String
 }
@@ -230,9 +244,23 @@ class ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelAlgorithmProvider {
 }
 
 
+class ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelWithCacheAlgorithmProvider {
+	{field} {static} -ALGORITHM_NAME : String
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxParallelWithCache
+	{method} +getAlgorithmName () : String
+}
+
+
 class ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialAlgorithmProvider {
 	{field} {static} -ALGORITHM_NAME : String
 	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.MiniMaxSequential
+	{method} +getAlgorithmName () : String
+}
+
+
+class ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialWithCacheAlgorithmProvider {
+	{field} {static} -ALGORITHM_NAME : String
+	{method} +create ( paramint1 : int , paramEvaluationStrategy2 : ch.hslu.cas.msed.blobfish.base.EvaluationStrategy , paramPlayerColor3 : ch.hslu.cas.msed.blobfish.base.PlayerColor ) : ch.hslu.cas.msed.blobfish.minimax.cached.MiniMaxSequentialWithCache
 	{method} +getAlgorithmName () : String
 }
 
@@ -456,10 +484,14 @@ ch.hslu.cas.msed.blobfish.game.player.BotPlayerFactory "1" o-- "0..*"  ch.hslu.c
 ch.hslu.cas.msed.blobfish.game.player.BotPlayerFactory "1" o-- "0..*"  ch.hslu.cas.msed.blobfish.game.player.BotPlayerProvider : BOT_PLAYERS
 ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer *--  ch.hslu.cas.msed.blobfish.game.InputReader : reader
 ch.hslu.cas.msed.blobfish.game.player.HumanCliPlayer --|>  ch.hslu.cas.msed.blobfish.game.player.AbstractPlayer
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxAlphaBetaSequentialWithCacheAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxBotPlayer --|>  ch.hslu.cas.msed.blobfish.game.player.BotPlayer
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxBotPlayerProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotPlayerProvider
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxParallelWithCacheAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
 ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
+ch.hslu.cas.msed.blobfish.game.player.MiniMaxSequentialWithCacheAlgorithmProvider ..|>  ch.hslu.cas.msed.blobfish.game.player.BotAlgorithmProvider
 ch.hslu.cas.msed.blobfish.game.ui.board.AlphanumericBorderFieldRenderer ..|>  ch.hslu.cas.msed.blobfish.game.ui.board.BorderFieldRenderer
 ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer *--  ch.hslu.cas.msed.blobfish.game.ui.board.BorderFieldRenderer : borderFieldRenderer
 ch.hslu.cas.msed.blobfish.game.ui.board.BoardRenderer *--  ch.hslu.cas.msed.blobfish.game.ui.board.FieldRenderer : fieldRenderer
