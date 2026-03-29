@@ -65,11 +65,9 @@ Medianwerte dienen dem Vergleich der zentralen Tendenz.
 Für die Auswertung der Resultate wurde erstmals eine Nutzwertanalyse angedacht.
 Da Abhängigkeiten zwischen den Variablen (insbesondere zwischen Rechenzeit, Suchtiefe und Zugqualität) zu Verzerrungen führen können, wurde diese Methode nicht eingesetzt.
 Stattdessen werden die Zugqualität und die Rechenzeit separat evaluiert.
-Die Interpretation erfolgt anhand einer rangbasierten Bewertungsmethode (für Zugqualität) und direktem Metrikvergleich (für Rechenzeit).
+Die Interpretation erfolgt anhand einer rangbasierten Bewertungsmethode für die Zugqualität und direktem Metrikvergleich für die Rechenzeit.
 
 \section{Stockfish}
-Die Engine wird mit \gls{glos:stockfish} verglichen. Nicht, weil davon ausgegangen wird, dass die entwickelte Engine mithalten kann,
-sondern vielmehr, um daraus zu lernen und einen Referenzpunkt zu haben.
 
 Die grundlegende Idee besteht darin, \gls{glos:JUnit}-Tests zu schreiben, welche mit \gls{glos:stockfish} interagieren. Dafür muss
 \gls{glos:stockfish} von der Maschine aus erreichbar sein, auf welcher der \gls{glos:JUnit}-Test ausgeführt wird.
@@ -79,7 +77,7 @@ Testausführung beliebige Docker-Container zu starten und diese nach Abschluss d
 
 Da \gls{glos:stockfish} selbst weder ein Docker-Image noch ein Dockerfile veröffentlicht hat, wurde mithilfe von
 (\cite{stockfishCompilingFromSource}) und (\cite{socatExamples}) ein eigenes Dockerfile erstellt.
-Daraus kann ein Image gebaut und somit auch ein Container gestartet werden.
+Daraus kann ein Image gebaut und ein Container gestartet werden.
 
 Um während der Tests mit \gls{glos:stockfish} kommunizieren zu können, wird ein Client benötigt. Ein weit verbreitetes
 Kommunikationsprotokoll, das von vielen Schach-Engines und auch von \gls{glos:stockfish} verwendet wird, ist das \href{https://backscattering.de/chess/uci/}{UCI-Protokoll}.
@@ -129,7 +127,7 @@ Die Kombinationen von den Evaluationen sind interessant, da so potenziell eine n
 erreicht werden kann.
 
 
-\texttt{EvaluationUtil} enthält eine Methode, welche alle Evaluationsmöglichkeiten zurückgibt. \\
+\texttt{EvaluationUtil} enthält eine Methode, welche alle Evaluationsmöglichkeiten zurückgibt.
 Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwendet. Diese Java-Bibliothek ermöglicht es
 unter anderem packages zu scannen. In unserem Fall wird es dafür genutzt, um alle Klassen herauszufinden, welche
 das Interface \texttt{EvalStrategy} implementieren. Anschliessend wird jeweils ein Objekt davon initialisiert.
