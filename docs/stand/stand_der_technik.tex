@@ -18,7 +18,7 @@ Bekannte Organisationen, welche \gls{glos:elo}-Rankings erstellen, sind \gls{glo
 vielen Rankings von beiden Organisationen hat, Stand März 2026, \gls{glos:stockfish} die Nase vorn (\cite{ccrlRating,cegtRating}).
 
 Ein anderer spannender Vergleich ist das Schachcomputerturnier von \gls{glos:tcec}.
-Eine Besonderheit von diesem Turnier ist, dass die Computer, im Vergleich zu den Modis von \gls{glos:ccrl} oder \gls{glos:cegt},
+Eine Besonderheit von diesem Turnier ist, dass die Computer, im Vergleich zu den Modi von \gls{glos:ccrl} oder \gls{glos:cegt},
 eine lange Bedenkzeit haben.
 Dieses Turnier ist in Seasons aufgeteilt, welche jeweils ungefähr 3-4 Monate dauern. Die letzten 5 ausgetragenen Seasons
 (Season 18 bis Season 23) hat ebenfalls \gls{glos:stockfish} gewonnen (\cite{tcecWebseite}).
@@ -46,7 +46,7 @@ Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch 
 Der Algorithmus hat in nicht-\glspl{glos:nullsummenspiel}n auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
 In \glspl{glos:nullsummenspiel}n sind diese zwei Logiken gleich, in nicht-\glspl{glos:nullsummenspiel}n jedoch nicht (\cite{minimaxwiki}).
 
-Da Schach ein rundenbasiertes \gls{glos:nullsummenspiel} mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut um die besten Züge eines Spielers zu berechnen.
+Da Schach ein rundenbasiertes \gls{glos:nullsummenspiel} mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut, um die besten Züge eines Spielers zu berechnen.
 
 \begin{figure}[H]
     \centering
@@ -123,7 +123,7 @@ Die meisten Personen, die Schach anfangen zu spielen, lernen ziemlich schnell, d
 \end{itemize}
 Diese Figurenwerte werden von nun an als Basiswerte bezeichnet.
 Durch weitere Recherche kann festgestellt werden, dass die Basiswerte unterschiedliche Variationen haben (\cite{chesspiecerelativevalue}).
-Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufer einen grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springer.
+Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufern einen grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springer.
 
 Zudem hängt der genaue Wert der Schachfiguren von zusätzlichen Faktoren ab, wie der Position der Figuren, sowie der aktuellen \gls{glos:partiephase}.
 Läufer haben einen grösseren Wert in \glspl{glos:offene-position}, während Springer einen grösseren Wert in \glspl{glos:geschlossene-position} haben (\cite{openclosedpositions}).
@@ -209,7 +209,7 @@ In diesem Kapitel werden ausschliesslich die in dieser Arbeit implementierten Op
 Die Performance Optimierung, welche in der Programmierarbeit schon implementiert wurde, ist die Parallelisierung des Minimax-Algorithmus.
 Für diese Implementierung wurde keine Recherche betrieben, sondern nur das Wissen aus dem \gls{glos:cas} \gls{glos:msed} angewandt.
 Da die Suche nach dem besten Zug als ein ständig verzweigender Baum dargestellt werden kann, wurde festgestellt, dass die Verzweigungen parallel ausgeführt werden können, um Zeit zu sparen.
-Im \gls{glos:cas} wurde das ForkJoin Prinzip vorgestellt, dass sich sehr gut für diesen Fall eignet.
+Im \gls{glos:cas} wurde das ForkJoin Prinzip vorgestellt, das sich sehr gut für diesen Fall eignet.
 Mehr Informationen zur konkreten Umsetzung sind im Unterkapitel~\ref{subsec:real-minimax-parallel} zu finden.
 
 \subsection{Alpha-Beta-Pruning}
@@ -217,7 +217,7 @@ Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, d
 
 Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
 Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfade komplett übersprungen werden (\cite{alphabetagreatlearning}).
-Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht ist sehr von der Reihenfolge der Auswertung abhängig (\cite{moveordering}).
+Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht, ist sehr von der Reihenfolge der Auswertung abhängig (\cite{moveordering}).
 Je früher der beste Zustand ausgewertet wird, desto mehr Pfade können übersprungen werden.
 
 In der Abbildung~\ref{fig:minimax-alpha-beta-tree-0} ist die Ausgangslage für das nächste Beispiel zu sehen.
@@ -273,7 +273,7 @@ Falls hier die Zustände in einer anderen Reihenfolge wären, z.B., wie in der A
 \end{figure}
 
 Das Ergebnis des Minimax-Algorithmus mit Alpha-Beta-Pruning ist in der Abbildung~\ref{fig:minimax-alpha-beta-tree-end} dargestellt.
-Der Pfad des optimalen Zustands ist blau und die übersprungen Pfade/Zustände sind grau markiert.
+Der Pfad des optimalen Zustands ist blau und die übersprungenen Pfade/Zustände sind grau markiert.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{generated-diagrams/general-alpha-beta-tree-example-end}
@@ -284,7 +284,7 @@ Der Pfad des optimalen Zustands ist blau und die übersprungen Pfade/Zustände s
 \subsection{Caching}
 Eine bestimmte Position auf dem Schachbrett kann durch viele unterschiedliche Zugkombinationen entstehen.
 Somit wird bei der Suche nach dem nächsten besten Zug die gleiche Schachposition meist mehrmals evaluiert.
-Um die mehrfache Evaluation der gleichen Schachposition zu vermeiden wird die Evaluation \gls{glos:cache}d.
+Um die mehrfache Evaluation der gleichen Schachposition zu vermeiden, wird die Evaluation \gls{glos:cache}d.
 Die evaluierte Position wird als \gls{glos:cache} key verwendet.
 Der Speicher der Schachpositionen und deren zugehörigen Evaluationen wird auch als \gls{glos:transpositionstabelle} bezeichnet.
 
@@ -296,7 +296,7 @@ Die für dieses Projekt relevanten und zu berücksichtigenden Punkte sind folgen
     \item Für Alpha-Beta-Pruning muss der Grenzwert (Alpha oder Beta) gespeichert werden
     \item Die Zughistorie muss für die \gls{glos:cache}-Werte beibehalten werden
 \end{enumerate}
-Für eine Schachposition darf der Evaluationswert aus einer \gls{glos:transpositionstabelle} abgerufen werden, nur wenn die Suchtiefe grösser oder gleich der zu evaluierender Suchtiefe ist.
+Für eine Schachposition darf der Evaluationswert aus einer \gls{glos:transpositionstabelle} abgerufen werden, nur wenn die Suchtiefe grösser oder gleich der zu evaluierenden Suchtiefe ist.
 Falls der zwischengespeicherte Wert eine kleinere Suchtiefe hat, kann es sein, dass der Evaluationswert nicht richtig ist, da aus der aktuellen Schachposition mehrere Züge im Voraus evaluiert werden.
 
 Bei der Alpha-Beta-Pruning Optimierung werden gewisse Pfade übersprungen.

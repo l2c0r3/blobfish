@@ -44,7 +44,7 @@ Dieser Ansatz ermöglicht eine relative Bewertung der Zugqualität, ohne auf abs
 Die Evaluation der Rechenzeit hingegen erfolgt als Benchmarking gegen den Minimax-Algorithmus ohne jegliche Optimierungen.
 Auch hierfür werden alle Engine-Konfigurationen auf identischen Schachpositionen und auch auf identischer Hardware getestet.
 Es wird für jede Position und alle definierten Zugtiefen der beste Zug berechnet.
-Bei diesen Messungen ist jedoch nicht der beste Zug die wichtige Information, sondern die benötigte Rechenzeit um diesen zu herausfinden.
+Bei diesen Messungen ist jedoch nicht der beste Zug die wichtige Information, sondern die benötigte Rechenzeit um diesen herauszufinden.
 Die Messungen werden mehrmals durchgeführt und die Rechenzeiten werden festgehalten.
 Dieses Vorgehen ermöglicht eine relative Bewertung der Rechenzeit im Hinblick auf die Zugtiefe - wobei Ausreisser aufgrund der mehrfachen Wiederholungen der Messungen nur einen geringen Einfluss auf das Ergebnis haben.
 
@@ -129,7 +129,7 @@ Die Kombinationen von den Evaluationen sind interessant, da so potenziell eine n
 erreicht werden kann.
 
 
-\texttt{EvaluationUtil} enthält eine Methode, welche alle möglichen Evaluationmöglichkeiten zurückgibt. \\
+\texttt{EvaluationUtil} enthält eine Methode, welche alle möglichen Evaluationsmöglichkeiten zurückgibt. \\
 Dafür wurde \href{https://github.com/classgraph/classgraph}{classgraph} verwendet. Diese Java-Bibliothek ermöglicht es
 unter anderem packages zu scannen. In unserem Fall wird es dafür genutzt, um alle Klassen herauszufinden, welche
 das Interface \texttt{EvalStrategy} implementieren. Anschliessend wird jeweils ein Objekt davon initialisiert.

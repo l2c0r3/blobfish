@@ -1,6 +1,6 @@
 \section{Algorithmen}
 In der Programmierarbeit wurden mit Java schon zwei Versionen des Minimax-Algorithmus implementiert.
-Eine sequentielle (Normalfall) und eine parallele (mittels ForkJoin) Lösung.
+Eine sequenzielle (Normalfall) und eine parallele (mittels ForkJoin) Lösung.
 Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier kurz dokumentiert.
 
 \subsection{Minimax sequenziell}
@@ -59,9 +59,9 @@ Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTas
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
 
 Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit implementiert, laut Dozentenfeedback aus der Programmierarbeit.
-Bei einer kleinen Anzahl an legalen Züge ist der Overhead zur Threaderstellung grösser als der Geschwindigkeitsgewinn.
+Bei einer kleinen Anzahl an legalen Zügen ist der Overhead zur Threaderstellung grösser als der Geschwindigkeitsgewinn.
 Ähnlich werden bei einer grossen Zugtiefe schon viele Threads erstellt und das Erstellen von weiteren Threads führt zu einem Overhead.
-Die Einführung des Thresholds sorgt dafür, dass in diesen Situationen die Schachzüge sequentiell, bzw.\ im gleichen Thread evaluiert werden.
+Die Einführung des Thresholds sorgt dafür, dass in diesen Situationen die Schachzüge sequenziell, bzw.\ im gleichen Thread evaluiert werden.
 
 Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Erstellung neuer Tasks ersichtlich.
 \lstinputlisting[

@@ -10,7 +10,7 @@ Somit haben die Schachfiguren folgende Basiswerte:
     \item Turm - 500
     \item Dame - 900
 \end{itemize}
-Da der König nicht gefressen werden kann, aber trotzdem ein Angriffsziel bleiben soll, wurde für diese Figur ein grosser Basiswert definiert - 99, multipliziert durch 100, ergibt 9900.
+Da der König nicht gefressen werden kann, aber trotzdem ein Angriffsziel bleiben soll, wurde für diese Figur ein grosser Basiswert definiert - 99, multipliziert mit 100, ergibt 9900.
 \lstinputlisting[
     firstline=8,
     lastline=14,
@@ -93,7 +93,7 @@ Alle leeren Felder enthalten \texttt{null}.
     label={lst:piece-record}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/Piece.java}
 
-Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird dessen Wert aus der entsprechenden \gls{glos:pst} ausgelesen.
+Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird deren Wert aus der entsprechenden \gls{glos:pst} ausgelesen.
 Gleich wie bei den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
 Alle Werte werden am Schluss aufsummiert.
 
