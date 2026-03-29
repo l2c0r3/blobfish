@@ -38,42 +38,38 @@ Diese Arbeit befasst sich ausschliesslich mit dem Minimax-Algorithmus, und alle 
 Andere Algorithmen, wie beispielsweise der Monte-Carlo-Algorithmus, fallen nicht in den Rahmen dieser Arbeit.
 
 \subsection{Minimax}
-Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
+Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, davon ausgehend, dass der Gegner ebenfalls optimal spielt.
 Dieser Algorithmus wird meist für rundenbasierte \glspl{glos:nullsummenspiel} mit 2 Spielern verwendet.
 Der Algorithmus versucht den maximalen Verlust des Spielers zu minimieren - daher der Name Minimax.
 Mit dieser Logik soll der beste Zug/Pfad für den Spieler gefunden werden, auch wenn der Gegner optimal spielt.
 
-Der Algorithmus hat in nicht-\glspl{glos:nullsummenspiel}n auch eine alternative Version, Maximin genannt, wobei der minimale Gewinn des Spielers maximiert wird.
+Der Algorithmus hat in nicht-\glspl{glos:nullsummenspiel}n auch eine alternative Version, Maximin genannt, in dem der minimale Gewinn des Spielers maximiert wird.
 In \glspl{glos:nullsummenspiel}n sind diese zwei Logiken gleich, in nicht-\glspl{glos:nullsummenspiel}n jedoch nicht (\cite{minimaxwiki}).
 
 Da Schach ein rundenbasiertes \gls{glos:nullsummenspiel} mit 2 Spielern ist, eignet sich dieser Algorithmus sehr gut, um die besten Züge eines Spielers zu berechnen.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{generated-diagrams/general-minimax}
-    \caption{Ablaufdiagramm für Minimax}
-    \label{fig:minimax-flowchart}
-\end{figure}
-
 Der Algorithmus kann zu Visualisierungszwecken als Baum mit einem Tiefensuchverfahren dargestellt werden.
-Ausgenommen der Tiefe 0 (Baumwurzel), stellt jede Tiefe alle Zustände des Spieles dar, welche ein Spieler erzeugen kann.
+Bis auf die Tiefe 0, der Baumwurzel, stellt jede Tiefe alle Zustände des Spieles dar, welche ein Spieler erzeugen kann.
 Somit sind in der Tiefe 1 alle Zustände enthalten, die der Spieler 1 erzeugen kann.
 Die Tiefe 2 stellt alle Zustände dar, die Spieler 2 anschliessend erreichen kann (\cite{minimaxchessprogramming}).
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-0}
+    \includegraphics[width=0.6\linewidth]{generated-diagrams/general-minimax-tree-example-0}
     \caption{Minimax Beispielbaum - Ausgangslage}
     \label{fig:minimax-tree-0}
 \end{figure}
 
-Dieser Baum enthält 5 Endzustände (unterste Knoten).
-Beim Durchlaufen des Baums wird die Vergleichsfunktion immer zwischen min und max umgeschaltet.
-Der Baum wird zuerst zu einem Endzustand durchgelaufen, der Zustand wird gemerkt und danach zum übergeordneten Knoten (Entscheidungsknoten) zurückverfolgt.
-So werden alle Kinderknoten des vorherigen Entscheidungsknoten traversiert und die Zustände mit der entsprechenden Vergleichsfunktion (hier min) verglichen.
+\newpage
+
+Im Beispiel hat der Baum 5 Endzustände, welche in der Grafik als unterste Knoten dargestellt sind.
+Zwischen den unterschiedlichen Stufen des Baums wird die Vergleichsfunktion immer zwischen min und max umgeschaltet. \\
+Bei einer Berechnung, zum Beispiel für den nächsten besten Zug im Schach, wird zuerst zu einem Endzustand durchgelaufen, der
+Zustand gemerkt und anschliessend zum übergeordneten Knoten, den Entscheidungsknoten, zurückverfolgt. \\
+So werden alle Kinderknoten des vorherigen Entscheidungsknotens traversiert und die Zustände mit der entsprechenden Vergleichsfunktion (hier min) verglichen.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-1}
+    \includegraphics[width=0.6\linewidth]{generated-diagrams/general-minimax-tree-example-1}
     \caption{Minimax Beispielbaum - Schritt 1}
     \label{fig:minimax-tree-1}
 \end{figure}
@@ -82,16 +78,18 @@ Als nächstes werden alle Entscheidungsknoten der gleichen Ebene auf die gleiche
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-2}
+    \includegraphics[width=0.6\linewidth]{generated-diagrams/general-minimax-tree-example-2}
     \caption{Minimax Beispielbaum - Schritt 2}
     \label{fig:minimax-tree-2}
 \end{figure}
+
+\newpage
 
 Als letztes wird noch die oberste Ebene auf die gleiche Art berechnet, diesmal wird jedoch der Maximalwert berechnet.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example-3}
+    \includegraphics[width=0.6\linewidth]{generated-diagrams/general-minimax-tree-example-3}
     \caption{Minimax Beispielbaum - Schritt 3}
     \label{fig:minimax-tree-3}
 \end{figure}
@@ -100,15 +98,27 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{generated-diagrams/general-minimax-tree-example}
+    \includegraphics[width=0.6\linewidth]{generated-diagrams/general-minimax-tree-example}
     \caption{Minimax Beispielbaum - Zusammengefasst}
     \label{fig:minimax-tree}
 \end{figure}
 
+\newpage
+
+Das Ablaufdiagramm sieht folgendermassen aus:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{generated-diagrams/general-minimax}
+    \caption{Ablaufdiagramm für Minimax}
+    \label{fig:minimax-flowchart}
+\end{figure}
+
+\newpage
 
 \section{Heuristiken}
 Schach-Engines befassen sich mit vielen unterschiedlichen Heuristiken, die für die Auswertung der Schachpositionen verwendet werden.
-Einige solche Heuristiken sind \textit{materialistische Evaluation}, \textit{Piece-Square-Tabellen}, \textit{Königssicherheit} und \textit{Gefangene Figuren}~\cite{evaluation}.
+Einige solche Heuristiken sind \textit{materialistische Evaluation}, \textit{Piece-Square-Tabellen}, \textit{Königssicherheit} und \textit{Gefangene Figuren} (\cite{evaluation}).
 In diesem Kapitel werden ausschliesslich die in dieser Arbeit implementierten Heuristiken beschrieben.
 
 \subsection{Materialistische Evaluation}
@@ -123,11 +133,8 @@ Die meisten Personen, die Schach anfangen zu spielen, lernen ziemlich schnell, d
 \end{itemize}
 Diese Figurenwerte werden von nun an als Basiswerte bezeichnet.
 Durch weitere Recherche kann festgestellt werden, dass die Basiswerte unterschiedliche Variationen haben (\cite{chesspiecerelativevalue}).
-Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufern einen grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springer.
-
-Zudem hängt der genaue Wert der Schachfiguren von zusätzlichen Faktoren ab, wie der Position der Figuren, sowie der aktuellen \gls{glos:partiephase}.
-Läufer haben einen grösseren Wert in \glspl{glos:offene-position}, während Springer einen grösseren Wert in \glspl{glos:geschlossene-position} haben (\cite{openclosedpositions}).
-Je weniger Figuren sich am Schachbrett befinden, desto stärker ist ein Turm, somit hat er in den späteren \glspl{glos:partiephase} einen grösseren Wert.
+Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufern einen
+grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springern.
 
 \subsection{Piece Square Tabellen}
 Je nachdem, wo sich eine Schachfigur befindet, kann sie einen höheren oder niedrigeren Wert als ihren Basiswert haben.
@@ -140,7 +147,7 @@ Die Tabelle enthält Werte für jedes Feld auf dem Schachbrett, für die dazugeh
 Diese Werte werden zum Basiswert jener Figur hinzugefügt, bzw.\ vom Basiswert subtrahiert (\cite{piecesquaretable}).
 
 Komplexere Schach-Engines können pro Figur mehrere Tabellen enthalten - für jede \gls{glos:partiephase} eine andere Tabelle.
-Beispielsweise weist ein König in der Eröffnung und im Mittelspiel drastisch andere \gls{glos:pst}-Werte auf als im Endspiel.
+Beispielsweise hat der König in der Eröffnung und im Mittelspiel komplett unterschiedliche \gls{glos:pst}-Werte als im Endspiel.
 In der Eröffnung und im Mittelspiel sollte der König so gut wie möglich versteckt werden, damit er schwer anzugreifen ist.
 Im Endspiel wird der König zu einer wichtigen Figur und sollte aktiv werden.
 
@@ -202,7 +209,7 @@ Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
 \section{Performance Verbesserungen}
 Ähnlich zu den Heuristiken werden bei den Entwicklungen von Schachcomputern viele unterschiedliche Performance Verbesserungen implementiert.
 Unterschiedliche Engines verwenden unterschiedliche Ansätze.
-Die besten Schach-Engines verwenden eine Mischung an diversen Ansätzen, um beste Ergebnisse zu erreichen.
+Die besten Schach-Engines verwenden eine Mischung verschiedener Ansätze, um die besten Ergebnisse zu erzielen.
 In diesem Kapitel werden ausschliesslich die in dieser Arbeit implementierten Optimierungen erläutert.
 
 \subsection{Parallelisierung}
@@ -212,13 +219,15 @@ Da die Suche nach dem besten Zug als ein ständig verzweigender Baum dargestellt
 Im \gls{glos:cas} wurde das ForkJoin Prinzip vorgestellt, das sich sehr gut für diesen Fall eignet.
 Mehr Informationen zur konkreten Umsetzung sind im Unterkapitel~\ref{subsec:real-minimax-parallel} zu finden.
 
-\subsection{Alpha-Beta-Pruning}
-Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Ergebnis nicht beeinflussen, abgeschnitten werden.
+\newpage
 
-Wir haben zuvor gesehen, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
+\subsection{Alpha-Beta-Pruning}
+Alpha-Beta-Pruning ist eine Optimierung des Minimax-Algorithmus, wobei Knoten, die das Endergebnis nicht beeinflussen, abgeschnitten werden.
+
+Zuvor wurde aufgezeigt, dass mit jeder Tiefe des Baums im Minimax-Algorithmus die Anzahl der möglichen Zustände sehr stark ansteigt.
 Diese Optimierung versucht die Berechnungszeit der optimalen Züge zu beschleunigen, indem gewisse Pfade komplett übersprungen werden (\cite{alphabetagreatlearning}).
 Die Entscheidung, ob ein Pfad übersprungen werden kann oder nicht, ist sehr von der Reihenfolge der Auswertung abhängig (\cite{moveordering}).
-Je früher der beste Zustand ausgewertet wird, desto mehr Pfade können übersprungen werden.
+Je früher der beste Pfad ausgewertet wird, desto mehr Pfade können übersprungen werden.
 
 In der Abbildung~\ref{fig:minimax-alpha-beta-tree-0} ist die Ausgangslage für das nächste Beispiel zu sehen.
 \begin{figure}[H]
@@ -227,6 +236,8 @@ In der Abbildung~\ref{fig:minimax-alpha-beta-tree-0} ist die Ausgangslage für d
     \caption{Minimax Alpha-Beta Beispielbaum - Ausgangslage}
     \label{fig:minimax-alpha-beta-tree-0}
 \end{figure}
+
+\newpage
 
 Hier muss die komplette linke Seite des Baumes durchgelaufen werden, ohne dass eine Alpha-Beta Pruning Optimierung gemacht werden kann.
 Im linken Teil des mittleren Teil-Baumes wird Stufe 2 auf die gleiche Art bestimmt.
@@ -248,6 +259,8 @@ Somit kann festgestellt werden, dass es keine Rolle spielt welche Werte in den S
     \label{fig:minimax-alpha-beta-tree-2}
 \end{figure}
 
+\newpage
+
 Die gleiche Logik wird auch an die rechte Seite des Baumes angewandt.
 \begin{figure}[H]
     \centering
@@ -263,6 +276,8 @@ Auf dieser Seite ergibt sich die gleiche Optimierungsmöglichkeit.
     \caption{Minimax Alpha-Beta Beispielbaum - Schritt 4}
     \label{fig:minimax-alpha-beta-tree-4}
 \end{figure}
+
+\newpage
 
 Falls hier die Zustände in einer anderen Reihenfolge wären, z.B., wie in der Abbildung~\ref{fig:minimax-alpha-beta-tree-5}, müsste die ganze Seite traversiert werden und es könnte keine Optimierung stattfinden.
 \begin{figure}[H]
@@ -281,6 +296,8 @@ Der Pfad des optimalen Zustands ist blau und die übersprungenen Pfade/Zustände
     \label{fig:minimax-alpha-beta-tree-end}
 \end{figure}
 
+\newpage
+
 \subsection{Caching}
 Eine bestimmte Position auf dem Schachbrett kann durch viele unterschiedliche Zugkombinationen entstehen.
 Somit wird bei der Suche nach dem nächsten besten Zug die gleiche Schachposition meist mehrmals evaluiert.
@@ -289,7 +306,7 @@ Die evaluierte Position wird als \gls{glos:cache} key verwendet.
 Der Speicher der Schachpositionen und deren zugehörigen Evaluationen wird auch als \gls{glos:transpositionstabelle} bezeichnet.
 
 Eine \gls{glos:transpositionstabelle} ist normalerweise eine \gls{glos:hashtabelle}, wobei der Schlüssel ein \gls{glos:hash} der evaluierten Position ist und der Wert ist grundsätzlich das Ergebnis der Evaluation.
-Beim Abrufen von Werten aus einem \gls{glos:cache} sind einige Punkte zu beachten, darum enthalten Werte einer \gls{glos:transpositionstabelle} normalerweise noch zusätzliche Informationen~\cite{transpositiontable}.
+Beim Abrufen von Werten aus einem \gls{glos:cache} sind einige Punkte zu beachten, darum enthalten Werte einer \gls{glos:transpositionstabelle} normalerweise noch zusätzliche Informationen (\cite{transpositiontable}).
 Die für dieses Projekt relevanten und zu berücksichtigenden Punkte sind folgende:
 \begin{enumerate}
     \item Die Suchtiefe der Evaluation muss gespeichert werden
@@ -308,5 +325,5 @@ Wenn mehrere unterschiedliche Zugfolgen von einer bestimmten Position aus zur gl
 Um diese Logik beizubehalten, muss die Zughistorie auch bei Evaluationen aus dem \gls{glos:cache} korrekt bleiben.
 
 Für den Schlüssel der \gls{glos:transpositionstabelle} wird oft ein 64-bit \gls{glos:zobristhash} verwendet.
-Dieser \gls{glos:hash} ist schnell berechenbar, braucht nicht viel Speicher und erlaubt es Veränderungen in der Schachposition einfach im \gls{glos:hash} darzustellen~\cite{zobristhash}.
+Dieser \gls{glos:hash} ist schnell berechenbar, braucht nicht viel Speicher und erlaubt es Veränderungen in der Schachposition einfach im \gls{glos:hash} darzustellen (\cite{zobristhash}).
 Diese Funktion liegt ausserhalb des Rahmens dieser Arbeit und wird daher nicht im Detail behandelt.

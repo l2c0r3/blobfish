@@ -2,7 +2,7 @@
 \label{sec:rechenzeit}
 Die Rechenzeit bezieht sich auf die Zeit, die benötigt wird, um aus einer Schachposition den besten Zug zu berechnen.
 Je kürzer die Zeit, desto besser die Auswertung.
-Diese Metrik wird nicht mit Stockfish verglichen, da dies sehr unrealistisch wäre.
+Diese Metrik wird nicht mit \gls{glos:stockfish} verglichen, da dies sehr unrealistisch wäre.
 Der Vergleich beschränkt sich auf die verschiedenen Eigenimplementierungen, um festzustellen, welche Ansätze die grössten Zeitersparnisse bringen.
 
 \subsection{Testaufbau}
@@ -34,6 +34,8 @@ Der Test stellt ausserdem sicher, dass alle wiederholten Messungen sowie alle Al
 Durch diese Prüfung wird sichergestellt, dass alle Zeitunterschiede gültig sind.
 
 Die Testergebnisse werden in Dateien gespeichert, die zur Erstellung von Diagrammen verwendet werden.
+
+\newpage
 
 \subsection{Testresultate}
 Für jede Position wurde ein \gls{glos:plantuml}-Diagramm erstellt mit den Algorithmen, Zugtiefen und Rechenzeiten.
@@ -72,20 +74,21 @@ Untenstehend noch das Diagramm für die Zugtiefe 5.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{evaluation/report/performance/performance-at-depth-5-by-strategy}
+    \includegraphics[width=0.9\linewidth]{evaluation/report/performance/performance-at-depth-5-by-strategy}
     \caption{Rechenzeit für Zugtiefe 5}
     \label{fig:rechenzeit-fuer-tiefe-5-pro-strategie}
 \end{figure}
 
 \subsection{Interpretation}
 Die Messungen zeigen, dass die Alpha-Beta-Pruning-Optimierung den grössten Leistungsgewinn bringt.
-Es ist erstaunlich zu sehen, genau wie viel schneller diese Optimierung im Vergleich zum Caching und zur Parallelisierung ist.
+Es ist erstaunlich zu sehen, wie viel schneller diese Optimierung im Vergleich zum Caching und zur Parallelisierung ist.
 
 Der Zeitunterschied gegenüber einer einfachen Parallelisierung lässt sich durch die begrenzte Anzahl verfügbarer CPUs erklären.
-Jedoch wäre die nötige Anzahl CPUs bei grösseren Zugtiefen fast nicht erreichbar um die gleiche Leistung zu Alpha-Beta-Pruning zu erreichen, da bei jeder zusätzlichen Tiefe die Anzahl der nötigen Evaluationen exponentiell steigen kann.
+Allerdings wäre die dafür benötigte Anzahl an CPUs bei grösseren Suchtiefen kaum erreichbar, um die gleiche Leistung
+wie beim Alpha-Beta-Pruning zu erzielen, da mit jeder zusätzlichen Tiefe die Anzahl der notwendigen Evaluationen exponentiell ansteigen kann.
 
-Bei ganz kleinen Zugtiefen scheint der Overhead der Caching-Implementation grösser zu sein, als der Gewinn.
+Bei sehr kleinen Zugtiefen scheint der Overhead der Caching-Implementierung grösser zu sein als der Gewinn.
 Der Leistungsgewinn der Caching-Optimierung steigt mit der Zugtiefe.
-Dies ist einfach zu erklären - je grösser die Zugtiefe, desto mehr Möglichkeiten auf die gleiche Schachposition mehrmals zu stossen.
+Dies lässt sich einfach erklären: Mit zunehmender Suchtiefe steigt die Wahrscheinlichkeit, mehrfach auf dieselbe Schachposition zu treffen.
 
 Im Vergleich zu den unterschiedlichen Algorithmus-Optimierungen ist der Rechenzeitunterschied zwischen den diversen Evaluationsstrategien vernachlässigbar.

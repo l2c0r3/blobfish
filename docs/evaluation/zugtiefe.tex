@@ -1,7 +1,7 @@
 \section{Zugtiefe}
-Die Zugtiefe ist die Anzahl Schachzüge, die im Voraus durchgespielt werden während der Bestimmung des nächsten besten Zuges aus einer bestimmten Schachposition.
-Sie wird als abhängige Variable betrachtet, die von der Rechenzeit beeinflusst wird, und dient eher der erklärenden Analyse als der direkten Bewertung.
-Je schneller eine Position ausgewertet wird, desto mehr Züge im Voraus können innerhalb einer angemessenen Zeitspanne analysiert werden.
+Die Zugtiefe ist die Anzahl an Schachzügen, die im Voraus berechnet werden, um den nächsten besten Zug von einer bestimmten Schachposition zu bestimmen.
+Sie wird als abhängige Variable betrachtet, da sie von der Rechenzeit beeinflusst wird, und dient eher der erklärenden Analyse als der direkten Bewertung.
+Je schneller eine Position ausgewertet werden kann, desto mehr Züge im Voraus können innerhalb einer angemessenen Zeitspanne analysiert werden.
 
 \subsection{Testaufbau}
 Da die Zugtiefe direkt von der Rechenzeit abhängig ist, wurde hier der gleiche \gls{glos:JUnit}-Test verwendet, wie für die Rechenzeitberechnung (Kapitel~\ref{sec:rechenzeit}).
@@ -14,7 +14,8 @@ Folglich wurde der Test vollständig ausgeführt, womit die genauen Rechenzeiten
 Die finale Testausführung lief knapp unter 7 Tagen.
 
 \subsection{Testresultate}
-Aus den Diagrammen im Anhang (Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}) ergibt sich die folgende maximale Zugtiefe innerhalb 10 Sekunden (Mediane Rechenzeit aus 10 Evaluationen):
+Aus den Diagrammen im Anhang (Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}) ergibt sich die folgende maximale Zugtiefe, die mit dem Testsetup innerhalb von 10 Sekunden berechnet werden kann.
+Dabei wurde die Rechenzeit als Median aus 10 Messungen bestimmt.
 \begin{table}[H]
     \centering
     \resizebox{\textwidth}{!}{%

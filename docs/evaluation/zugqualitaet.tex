@@ -1,7 +1,7 @@
 \section{Zugqualität}
 Mit der Zugqualität wird festgestellt, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
-Um \enquote{das Beste} zu definieren, wird Stockfish 18 als Referenzengine verwendet. Stockfish 18 ist die neueste Version von Stockfish (Stand: März 2026). \\
-Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe~\ref{subsec:vergleichSchachcomputer}).
+Um \enquote{das Beste} zu definieren, wird \gls{glos:stockfish} 18, die neuste Version (Stand: März 2026), als Referenzengine verwendet. \\
+Sie wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe Kapitel~\ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
 
@@ -26,7 +26,7 @@ vergeben, für den zweitbesten 6 usw.:
     label={lst:qualitTestHeadPointDistro}
 ]{../src/test/java/ch/hslu/cas/msed/blobfish/QualityTest.java}
 
-Anhand der erreichten Punktzahl und der gewählten Züge können die Evaluationsfunktionen nun miteinander verglichen werden.
+Nach der Punktevergabe werden automatisiert Diagramme und eine Rangliste erstellt, anhand derer die Evaluationsfunktionen verglichen werden können.
 
 \subsubsection{Learnings aus einer vorherigen Ausführung}
 
