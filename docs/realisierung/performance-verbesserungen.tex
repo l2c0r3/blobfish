@@ -2,16 +2,16 @@
 
 \subsection{Alpha-Beta-Pruning}
 Zunächst war vorgesehen, sämtliche Optimierungen sowohl für die sequenzielle als auch für die parallele Implementierung des Minimax-Algorithmus umzusetzen.
-Nach einer Recherche in Alpha-Beta-Pruning ergab sich, dass diese Optimierung für sequenzielle Implementierungen vorgesehen ist.
+Nach einer Recherche zu Alpha-Beta-Pruning ergab sich, dass diese Optimierung ausschliesslich für die sequenzielle Implementierungen vorgesehen ist.
 
-Es bestehen auch Ansätze für parallele Implementierungen, wie Young Brothers Wait Concept.
-Die Idee ist, dass der Zug mit der höchsten Wahrscheinlichkeit, der beste zu sein, zuerst evaluiert wird - danach werden alle anderen Züge parallel evaluiert.
-Somit können die restlichen Züge mit dem ersten verglichen werden~\cite{alphabetaybwc}.
+Es bestehen auch Ansätze für parallele Implementierungen, wie \textit{Young Brothers Wait Concept}.
+Die Idee vom \textit{Young Brothers Wait Concept} ist, dass der Zug, welcher wahrscheinlich am Beste ist, zuerst evaluiert wird.
+Anschliessend können anderen Züge parallel evaluiert und am Schluss mit dem ersten verglichen werden (\cite{alphabetaybwc}).
 
-Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgewinn sehr variabel und unerheblich.
+Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgewinn sehr variabel.
 Aus diesen Gründen wurde die Alpha-Beta-Pruning Optimierung nur für die sequenzielle Implementierung umgesetzt.
 
-Die ursprüngliche Implementierung des Minimax-Algorithmus musste nur minimal angepasst werden, um diese Optimierung einzubauen.
+Die ursprüngliche Implementierung des Minimax-Algorithmus musste für das Alpha-Beta-Pruning nur minimal angepasst werden.
 Es wurden zwei neue Parameter zur Funktion hinzugefügt: \texttt{alpha} und \texttt{beta}.
 Diese merken sich die relevanten Werte der vorherigen Evaluationen und anhand dessen wird entschieden, ob die Suche vorzeitig abgebrochen werden kann (\cite{alphabetachessprogramming}).
 Der Entscheid passiert nach der Evaluation jedes Schachzuges.
@@ -23,7 +23,8 @@ Der Entscheid passiert nach der Evaluation jedes Schachzuges.
     label={lst:minimax-sequenziell-alpha-beta}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxAlphaBetaSequential.java}
 
-Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig, darum werden sie vor der Iteration sortiert.
+Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig. Je früher der Beste Zug gefunden wird, desto mehr
+\enquote{schlechtere} Züge können frühzeitig verworfen werden. Darum werden die Züge vor der Iteration sortiert.
 Die Sortierung ist zunächst sehr primitiv - es werden zuerst die Züge ausgewertet, welche eine Figur fressen, da diese eine grössere Chance haben bessere Werte zu liefern.
 \lstinputlisting[
     firstline=45,
@@ -32,6 +33,8 @@ Die Sortierung ist zunächst sehr primitiv - es werden zuerst die Züge ausgewer
     caption={Sortierung für Alpha-Beta-Pruning},
     label={lst:minimax-sequenziell-alpha-beta-sorting}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxAlphaBetaSequential.java}
+
+\newpage
 
 \subsection{Caching}
 Das Caching der Evaluationen der Schachpositionen wurde bei allen drei Implementierungen des Minimax-Algorithmus umgesetzt, um festzustellen, wo dieser Ansatz am effektivsten ist:
@@ -72,7 +75,8 @@ Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene \te
 Die sequentiellen Implementierungen verwenden eine einfache \textit{java.util.HashMap}, wobei die parallele Implementierung eine \textit{java.util.concurrent.ConcurrentHashMap} verwendet.
 
 Der Schlüssel der \gls{glos:transpositionstabelle} ist die FEN Notation einer Position - als \texttt{String}.
-Der Wert wurde mit dem folgenden Java-Record abgebildet:
+Der Wert wurde mit dem folgenden Java-Record abgebildet.
+Eine Instanz dieses Records enthält den Evaluationswert, die Suchtiefe, den nächsten besten Zug aus dieser Position und den Grenzwerttyp:
 \lstinputlisting[
     firstline=3,
     lastline=3,
@@ -80,7 +84,9 @@ Der Wert wurde mit dem folgenden Java-Record abgebildet:
     caption={EvaluationCacheEntry},
     label={lst:evaluation-cache-entry}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCacheEntry.java}
-Eine Instanz dieses Records enthält den Evaluationswert, die Suchtiefe, den nächsten besten Zug aus dieser Position und den Grenzwerttyp.
+
+\newpage
+
 Der Grenzwerttyp wird beim Alpha-Beta-Pruning verwendet.
 \lstinputlisting[
     firstline=16,
@@ -91,8 +97,8 @@ Der Grenzwerttyp wird beim Alpha-Beta-Pruning verwendet.
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCacheEntry.java}
 
 Um bei den zwischengespeicherten Werten aus der \gls{glos:transpositionstabelle} die korrekte Zughistorie abzubilden, könnte auch die relative Zughistorie gespeichert werden.
-Dies kann bei vielen zwischengespeicherten Werten und grosser Suchtiefe zu Memory-Problemen führen.
-Um dieses Problem zu vermeiden wird nur der nächste beste Zug aus der zwischengespeicherten Schachposition persistiert.
+Dies kann aber bei vielen zwischengespeicherten Werten und grosser Suchtiefe zu Memory-Problemen führen.
+Um dieses Problem zu vermeiden, wird nur der nächste beste Zug aus der zwischengespeicherten Schachposition persistiert.
 Mit dieser Information kann die Zughistorie nach Bedarf auf die folgende Art nachgebildet werden:
 \lstinputlisting[
     firstline=39,
@@ -108,6 +114,8 @@ Somit sind alle Positionen aus der \gls{glos:principalvariation} im \gls{glos:ca
 
 Die Verwendung des \glspl{glos:cache} ist bei jeder Implementierung grundsätzlich gleich.
 Es wird darum nur am MiniMax mit Alpha-Beta-Pruning Beispiel erläutert.
+
+\newpage
 
 Als Erstes wird in der Auswertungsfunktion geschaut, ob der \gls{glos:cache} einen gültigen Eintrag für die zu evaluierende Position enthält.
 Falls dies der Fall ist, wird die Zughistorie nachgebildet und die Evaluation mit der neuen Historie wird, ohne weitere Evaluationen, zurückgegeben.

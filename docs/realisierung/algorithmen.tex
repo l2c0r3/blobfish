@@ -1,28 +1,29 @@
 \section{Algorithmen}
 In der Programmierarbeit wurden mit Java schon zwei Versionen des Minimax-Algorithmus implementiert.
-Eine sequenzielle (Normalfall) und eine parallele (mittels ForkJoin) Lösung.
-Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier kurz dokumentiert.
+Eine sequenzielle und eine parallele Lösung.
+Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basieren, werden sie hier dokumentiert.
 
 \subsection{Minimax sequenziell}
 \label{subsec:minimax-sequenziell}
-Die sequenzielle Implementierung des Minimax-Algorithmus ist ziemlich unkompliziert.
-Es besteht eine rekursive Funktion, die für jeden legalen Schachzug, bis zu einer bestimmten Tiefe, ausgeführt wird (\cite{minimaxgeeks}).
-Diese Funktion implementiert die Minimax-Logik mit einer Abweichung vom Standard-Minimax-Algorithmus - sie protokolliert die Zugverläufe für jeden Zugpfad.
-Dies aus zwei Gründen:
+Die sequenzielle Implementierung des Minimax-Algorithmus ist übersichtlich.
+Es besteht eine rekursive Funktion, die für jeden legalen Schachzug, bis zu einer bestimmten Tiefe, ausgeführt wird (\cite{minimaxgeeks}). \\
+Die eigen umgesetzte Funktion implementiert die Minimax-Logik mit zwei zusätzlichen Funktionen: Einerseits wird der Zugpfad protokolliert und anderseits
+wird der Pfad nicht weiter verfolgt, wenn das Ende des Spiels erkennt wird (z.B.\ Schachmatt).
+
+Das Protokollieren des Zugpfades bringt uns folgende Vorteile:
 \begin{enumerate}
-    \item Erleichtertes Debugging
+    \item Es erleichtert das Debugging
     \item Bei Zügen mit dem gleichen Ergebnis wird der Zug mit der geringeren Tiefe, bzw.\ kürzeren Historie genommen
 \end{enumerate}
 
-Zusätzlich besteht eine vorzeitige Rückgabe bei Zug-Pfaden, welche zum Schluss vom Spiel führen (z.B.\ Schachmatt). \\
-Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer bestimmten Zugkombination nach 3 Zügen Schachmatt erzeugt - somit rechnet die Funktion nur bis zur Tiefe 3.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{generated-diagrams/sequential-minimax}
+    \includegraphics[width=0.68\linewidth]{generated-diagrams/sequential-minimax}
     \caption{Ablaufdiagramm - Minimax sequenziell}
     \label{fig:minimax-sequential}
 \end{figure}
+
+\newpage
 
 Die Umsetzung sieht im Code folgendermassen aus:
 \lstinputlisting[
@@ -32,6 +33,8 @@ Die Umsetzung sieht im Code folgendermassen aus:
     caption={Minimax sequenziell},
     label={lst:minimax-sequenziell}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxSequential.java}
+
+\newpage
 
 \subsection{Minimax parallel}
 \label{subsec:real-minimax-parallel}
@@ -48,6 +51,8 @@ Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind un
     \label{fig:minimax-parallel}
 \end{figure}
 
+\newpage
+
 Jeder Task führt die \texttt{compute}-Methode aus.
 Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTask} Klasse, bzw.\ die \texttt{compute}-Methode.
 \lstinputlisting[
@@ -58,9 +63,9 @@ Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTas
     label={lst:minimax-forkjoin-task-compute}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
 
-Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit implementiert, laut Dozentenfeedback aus der Programmierarbeit.
+Die Threshold-Logik in dieser Methode wurde nachträglich aufgrund des Feedbacks des Dozenten aus der Programmierarbeit implementiert.
 Bei einer kleinen Anzahl an legalen Zügen ist der Overhead zur Threaderstellung grösser als der Geschwindigkeitsgewinn.
-Ähnlich werden bei einer grossen Zugtiefe schon viele Threads erstellt und das Erstellen von weiteren Threads führt zu einem Overhead.
+Ähnlich werden bei einer grossen Zugtiefe zu viele Threads erstellt und das Managen der Threads führt zu einem Overhead.
 Die Einführung des Thresholds sorgt dafür, dass in diesen Situationen die Schachzüge sequenziell, bzw.\ im gleichen Thread evaluiert werden.
 
 Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Erstellung neuer Tasks ersichtlich.
@@ -71,6 +76,8 @@ Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Ers
     caption={Minimax ForkJoin Task - Sub-Task Erstellung},
     label={lst:minimax-forkjoin-task-subtask-erstellung}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
+
+\newpage
 
 Die Erstellung des ersten Tasks befindet sich in der Klasse \texttt{MiniMaxParallel}.
 Dieser Task wird über den ForkJoin \texttt{commonPool} ausgeführt.
