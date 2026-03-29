@@ -1,6 +1,6 @@
 \section{Zugqualität}
 Mit der Zugqualität wird festgestellt, welche Evaluationsfunktion bzw. welche Kombination von Evaluationsfunktionen \enquote{am besten} ist.
-Um \enquote{das Beste} zu definieren, wird Stockfish 18 als Referenzengine verwendet. Stockfish 18 ist die neuste Version von Stockfish (Stand: März 2026). \\
+Um \enquote{das Beste} zu definieren, wird Stockfish 18 als Referenzengine verwendet. Stockfish 18 ist die neueste Version von Stockfish (Stand: März 2026). \\
 Stockfish wurde gewählt, da es derzeit als führender Schachcomputer angesehen werden kann (siehe~\ref{subsec:vergleichSchachcomputer}).
 
 \subsection{Testaufbau}
@@ -110,14 +110,14 @@ So hätte bei Position \textit{r1bq1rk1/ppp2ppp/2np1n2/4p3/2B1P3/2NP1N2/} \\ \te
 \texttt{MaterialEvaluation \& PieceSquareEvaluation} die zwei Punkte Unterschied ausgleichen können, da es hier mehr Punkte
 gewonnen hätte.
 
-Bei der Analyse der einzelnen Pfäden lässt sich gesamthaft sagen, dass häufig einer der Top
+Bei der Analyse der einzelnen Pfade lässt sich gesamthaft sagen, dass häufig einer der Top
 Moves gewählt wurde. So hat beispielsweise bei \textit{r4rk1/ppp2ppp/2np1q2/4p3/2B1P3/ 2NP1Q2/PPP2PPP/R4RK1 b - - 0 1}
 \texttt{MaterialEvaluation \& PieceSquareEvaluation} die ersten 4 Top Moves berechnet, was generell die Aussagekraft
 von \texttt{MaterialEvaluation \& PieceSquareEvaluation} bestärkt.
 
 Generell lässt sich sagen, dass die eigene Engine als sehr aggressiv empfunden wurde und häufig die Figuren tauschen möchte, was
 zumindest innerhalb der Testpositionen geholfen hat. \\
-Werden die Berechnung mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von \gls{glos:stockfish}
+Werden die Berechnungen mit der Tiefe von 20 betrachtet, stellt man fest, dass in dem Fall die Züge von \gls{glos:stockfish}
 eher \enquote{positional plays} sind - also Züge, welche nicht direkt eine gegnerische Figur schlagen, sondern Züge, welche die
 eigene Position verbessern oder die gegnerische verschlechtern. \\
 Hier kommt die Schwäche von unseren Evaluationen zum Vorschein - sie kennen solche Züge aktuell noch nicht.

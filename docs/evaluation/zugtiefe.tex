@@ -5,9 +5,9 @@ Je schneller eine Position ausgewertet wird, desto mehr Züge im Voraus können 
 
 \subsection{Testaufbau}
 Da die Zugtiefe direkt von der Rechenzeit abhängig ist, wurde hier der gleiche \gls{glos:JUnit}-Test verwendet, wie für die Rechenzeitberechnung (Kapitel~\ref{sec:rechenzeit}).
-Die Ausführung dieser Tests ist sehr Zeitaufwändig, vor allem bei grösseren Zugtiefen.
+Die Ausführung dieser Tests ist sehr zeitaufwändig, vor allem bei grösseren Zugtiefen.
 Darum wurde entschieden, dass die maximale Zugtiefe eines Algorithmus erreicht wurde, sobald die Rechenzeit 10 Sekunden überschreitet.
-Diese Grenze wurde nicht technisch durchgesetzt, sondern durch das wiederholende Ausführen des Tests für alle Positionen mit unterschiedlichen Tiefen.
+Diese Grenze wurde nicht technisch durchgesetzt, sondern durch das wiederholte Ausführen des Tests für alle Positionen mit unterschiedlichen Tiefen.
 Sobald die Rechenzeit überzeugend 10 Sekunden überschritt, wurde diese Tiefe fest im Test hinterlegt. \\
 Eine Ausnahme bildete hier die sequenzielle Implementierung des Minimax-Algorithmus ohne jegliche Optimierungen (Kapitel~\ref{subsec:minimax-sequenziell}), um einen besseren Vergleich zu ermöglichen.
 Folglich wurde der Test vollständig ausgeführt, womit die genauen Rechenzeiten dokumentiert wurden. \\
