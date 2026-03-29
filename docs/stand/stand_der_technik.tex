@@ -34,6 +34,8 @@ Standard, Rapid etc. (\cite{comparableElo}).
 
 
 \section{Algorithmen}
+Diese Arbeit befasst sich ausschliesslich mit dem Minimax-Algorithmus, und alle Optimierungen beziehen sich auf diesen Algorithmus.
+Andere Algorithmen, wie beispielsweise der Monte-Carlo-Algorithmus, fallen nicht in den Rahmen dieser Arbeit.
 
 \subsection{Minimax}
 Der Minimax-Algorithmus wird in der Spieltheorie verwendet, um den optimalen Zug für einen Spieler zu finden, angenommen der Gegner spielt auch optimal.
@@ -105,6 +107,9 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
 
 
 \section{Heuristiken}
+Schach-Engines befassen sich mit vielen unterschiedlichen Heuristiken, die für die Auswertung der Schachpositionen verwendet werden.
+Einige solche Heuristiken sind \textit{materialistische Evaluation}, \textit{Piece-Square-Tabellen}, \textit{Königssicherheit} und \textit{Gefangene Figuren}~\cite{evaluation}.
+In diesem Kapitel werden ausschliesslich die in dieser Arbeit implementierten Heuristiken beschrieben.
 
 \subsection{Materialistische Evaluation}
 Die auf den ersten Blick wahrscheinlich einfachste Heuristik, die jeder Schachspieler kennt, ist die materialistische Evaluation der Schachfiguren.
@@ -195,6 +200,10 @@ Somit entspricht der Tabellenwert 20 einem Figurenwert von 0.2.
 
 
 \section{Performance Verbesserungen}
+Ähnlich zu den Heuristiken werden bei den Entwicklungen von Schachcomputern viele unterschiedliche Performance Verbesserungen implementiert.
+Unterschiedliche Engines verwenden unterschiedliche Ansätze.
+Die besten Schach-Engines verwenden eine Mischung an diversen Ansätzen, um beste Ergebnisse zu erreichen.
+In diesem Kapitel werden ausschliesslich die in dieser Arbeit implementierten Optimierungen erläutert.
 
 \subsection{Parallelisierung}
 Die Performance Optimierung, welche in der Programmierarbeit schon implementiert wurde, ist die Parallelisierung des Minimax-Algorithmus.

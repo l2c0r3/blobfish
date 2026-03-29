@@ -23,9 +23,9 @@ Für die Berechnung des Materialwertes einer Position werden die Basiswerte alle
 Die Basiswerte der schwarzen Figuren werden negiert.
 Bei einer positiven Endsumme hat der Spieler mit den weissen Figuren den Vorteil, bei einer negativen Summe hat der Spieler mit den schwarzen Figuren den Vorteil, und bei einem Ergebnis von 0 ist die Position in Bezug auf das Material ausgeglichen.
 \lstinputlisting[
-    firstline=18,
-    lastline=40,
-    firstnumber=18,
+    firstline=15,
+    lastline=33,
+    firstnumber=15,
     caption={Materialistische Evaluation},
     label={lst:material-evaluation}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/MaterialEvaluation.java}
@@ -44,18 +44,18 @@ Es wurde die gleiche Logik wie bei \gls{glos:lichess} verwendet, nämlich befind
 Die Bauern und Könige sind hier ausgeschlossen.
 
 \lstinputlisting[
-    firstline=107,
-    lastline=116,
-    firstnumber=107,
+    firstline=105,
+    lastline=114,
+    firstnumber=105,
     caption={Endspiel-Berechnung},
     label={lst:endspiel-berechnung}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/ChessBoard.java}
 
 Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
 \lstinputlisting[
-    firstline=14,
-    lastline=42,
-    firstnumber=14,
+    firstline=9,
+    lastline=38,
+    firstnumber=9,
     caption={Piece Square Evaluation},
     label={lst:piece-square-evaluation}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEvaluation.java}
@@ -101,9 +101,9 @@ Die Arrays für die \glspl{glos:pst} wurden so strukturiert, dass der Zuschauer 
 Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für den schwarzen Spieler das Feld h1.
 
 \lstinputlisting[
-    firstline=81,
-    lastline=90,
-    firstnumber=81,
+    firstline=77,
+    lastline=86,
+    firstnumber=77,
     caption={PST für den Turm},
     label={lst:pst-fuer-turm}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEvaluation.java}
@@ -174,7 +174,7 @@ Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den We
     \label{fig:index-felder-tabelle-spiegelung}
 \end{figure}
 
-Ein konkretes Beispiel: \\
+\textbf{Ein konkretes Beispiel:} \\
 Ein weisser Turm befindet sich auf dem Schachfeld b2.
 Gemäss Abbildung~\ref{fig:index-felder-tabelle} beträgt der ursprüngliche Index für dieses \gls{glos:feld} 9.
 Der benötigte Index um den korrekten Wert aus der \gls{glos:pst} auszulesen ist 49.
