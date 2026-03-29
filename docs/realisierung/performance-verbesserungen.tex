@@ -24,7 +24,7 @@ Der Entscheid passiert nach der Evaluation jedes Schachzuges.
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/MiniMaxAlphaBetaSequential.java}
 
 Zusätzlich ist bei dieser Optimierung die Reihenfolge der Züge wichtig, darum werden sie vor der Iteration sortiert.
-Die Sortierung ist zunächst sehr primitiv - es werden Züge, die eine Figur fangen, zuerst ausgewertet, da diese eine grössere Chance haben bessere Werte zu liefern.
+Die Sortierung ist zunächst sehr primitiv - es werden zuerst die Züge ausgewertet, welche eine Figur fressen, da diese eine grössere Chance haben bessere Werte zu liefern.
 \lstinputlisting[
     firstline=45,
     lastline=46,
@@ -41,7 +41,7 @@ Das Caching der Evaluationen der Schachpositionen wurde bei allen drei Implement
     \item MiniMax sequentiell mit Alpha-Beta-Pruning
 \end{itemize}
 
-Für den \gls{glos:cache} wurde eine Klasse erstellt, die intern eine Map verwendet.
+Für den \gls{glos:cache} wurde eine Klasse erstellt, die intern eine \texttt{Map} verwendet.
 \lstinputlisting[
     firstline=8,
     lastline=9,
@@ -59,9 +59,9 @@ Diese Klasse enthält eine Instanz des \glspl{glos:cache}, die für alle geerbte
     caption={MiniMaxCachedAlgo},
     label={lst:minimax-cached-algo}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/MiniMaxCachedAlgo.java}
-Da der \gls{glos:cache} auch in einer Multi-threaded Implementierung verwendet wird, muss die verwendete Map für die \gls{glos:transpositionstabelle} Thread-safe sein.
+Da der \gls{glos:cache} auch in einer Multi-threaded Implementierung verwendet wird, muss die verwendete \texttt{Map} für die \gls{glos:transpositionstabelle} Thread-safe sein.
 Um den Overhead von Thread-Safety bei den sequentiellen Implementierungen zu vermeiden, bietet die \texttt{MiniMaxCachedAlgo} Klasse eine abstrakte Methode für die Instanziierung der \gls{glos:transpositionstabelle}.
-Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene Map-Implementierung verwenden.
+Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene \texttt{Map}-Implementierung verwenden.
 \lstinputlisting[
     firstline=17,
     lastline=17,
@@ -71,7 +71,7 @@ Jede erbende Klasse muss diese Funktion überschreiben und somit ihre eigene Map
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/MiniMaxCachedAlgo.java}
 Die sequentiellen Implementierungen verwenden eine einfache \textit{java.util.HashMap}, wobei die parallele Implementierung eine \textit{java.util.concurrent.ConcurrentHashMap} verwendet.
 
-Der Schlüssel der \gls{glos:transpositionstabelle} ist die FEN Notation einer Position - als String.
+Der Schlüssel der \gls{glos:transpositionstabelle} ist die FEN Notation einer Position - als \texttt{String}.
 Der Wert wurde mit dem folgenden Java-Record abgebildet:
 \lstinputlisting[
     firstline=3,
@@ -90,9 +90,9 @@ Der Grenzwerttyp wird beim Alpha-Beta-Pruning verwendet.
     label={lst:evaluation-cache-entry-bound-type}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/cached/base/EvaluationCacheEntry.java}
 
-Um bei den zwischengespeicherten Werten aus der \gls{glos:transpositionstabelle} die korrekte Zughistorie abzubilden könnte die relative Zughistorie auch gespeichert werden.
+Um bei den zwischengespeicherten Werten aus der \gls{glos:transpositionstabelle} die korrekte Zughistorie abzubilden, könnte auch die relative Zughistorie gespeichert werden.
 Dies kann bei vielen zwischengespeicherten Werten und grossen Suchtiefe zu Memory-Problemen führen.
-Um dieses Problem zu vermeiden wird nur der nächste beste Zug aus der zwischengespeicherten Schachposition gespeichert.
+Um dieses Problem zu vermeiden wird nur der nächste beste Zug aus der zwischengespeicherten Schachposition persistiert.
 Mit dieser Information kann die Zughistorie nach Bedarf auf die folgende Art nachgebildet werden:
 \lstinputlisting[
     firstline=39,
@@ -109,7 +109,7 @@ Somit sind alle Positionen aus der \gls{glos:principalvariation} im \gls{glos:ca
 Die Verwendung des \glspl{glos:cache} ist bei jeder Implementierung grundsätzlich gleich.
 Es wird darum nur am MiniMax mit Alpha-Beta-Pruning Beispiel erläutert.
 
-Als Erstes wird in der Funktion geschaut, ob der \gls{glos:cache} einen gültigen Eintrag für die zu evaluierende Position enthält.
+Als Erstes wird in der Auswertungsfunktion geschaut, ob der \gls{glos:cache} einen gültigen Eintrag für die zu evaluierende Position enthält.
 Falls dies der Fall ist, wird die Zughistorie nachgebildet und die Evaluation mit der neuen Historie wird, ohne weitere Evaluationen, zurückgegeben.
 \lstinputlisting[
     firstline=41,

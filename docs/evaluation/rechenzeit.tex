@@ -23,8 +23,10 @@ var strategy = CompositeEvaluationStrategy.builder().add(new MateAwareEvaluation
 \end{lstlisting}
 
 
-Der Test erstellt alle möglichen Kombinationen der Algorithmen und Evaluationsstrategien und führt sie für die parametrierte Position aus.
+Dieser Test verwendet die gleichen Kombinationen der Evaluationsstrategien wie der Zugqualitätstest, jedoch kombiniert mit allen Algorithmen, und führt sie für die parametrierte Position aus.
 Zusätzlich kann noch die Suchtiefe für jede Kombination eingestellt werden.
+Für die meisten Kombinationen wird eine Tiefe von 5 eingestellt.
+Die Alpha-Beta-Pruning Implementierungen zeigten sich bei vorherigen Ausführungen performanter und werden aus diesem Grund auf die Tiefe 7 eingestellt. \\
 Alle Messungen werden zehnmal durchgeführt und es wird der Median aller Durchführungen berechnet.
 Somit sollten grosse Ausreisser die Resultate nicht stark beeinflussen.
 
@@ -47,7 +49,7 @@ Alle Diagramme befinden sich im Anhang unter Rechenzeit Daten~\ref{ch:performanc
 Für die vertikale Achse wurde eine \gls{glos:logskala} zur Basis 10 verwendet, da sich die Rechenzeiten pro Tiefe stark unterscheiden.
 Bei einer linearen Skala könnten entweder die kleineren Werte nicht verglichen werden, oder die Diagramme müssten sehr hoch sein.
 
-Für die Zugtiefen 6 und 7 wurden nur die Algorithmen mit der Alpha-Beta-Pruning Optimierung (mit und ohne Caching) evaluiert.
+Wie vorher erwähnt wurden für die Zugtiefen 6 und 7 nur die Algorithmen mit der Alpha-Beta-Pruning Optimierung (mit und ohne Caching) evaluiert.
 Der Grund dafür ist der grosse Unterschied der Rechenzeiten - der Test würde viel zu lange dauern.
 
 Für die grösste gemeinsam berechenbare Zugtiefe wurde noch eine Tabelle erstellt, welche die relativen Rechengeschwindigkeiten zum nicht optimierten Algorithmus aufzeigt.
@@ -62,9 +64,9 @@ Die Zahlen geben den Geschwindigkeitsmultiplikator im Vergleich zum ursprünglic
 \end{table}
 
 Die Werte in der Tabelle sind Medianwerte über alle Schachpositionen.
-Die weiteren Tabellen befinden sich im Anhang unter Rechengeschwindigkeitsmultiplikator im Vergleich zu \texttt{MiniMaxSequential}~\ref{sec:performance-gains}.
+Die weiteren Tabellen befinden sich im Anhang unter Rechengeschwindigkeitsmultiplikator im Vergleich zu MiniMaxSequential~\ref{sec:performance-gains}.
 
-Für eine kompaktere Darstellung der Evaluationen unterschiedlicher Algorithmen und Strategien wurden pro Zugtiefe noch ein Diagramm erstellt.
+Für eine kompaktere Darstellung der Evaluationen unterschiedlicher Algorithmen und Strategien wurde pro Zugtiefe noch ein Diagramm erstellt.
 Diese Diagramme befinden sich ebenfalls im Anhang, unter Rechenzeiten pro Zugtiefe~\ref{sec:rechenzeiten-pro-zugtiefe}.
 Untenstehend noch das Diagramm für die Zugtiefe 5.
 

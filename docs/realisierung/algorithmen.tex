@@ -7,15 +7,15 @@ Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basi
 \label{subsec:minimax-sequenziell}
 Die sequenzielle Implementierung des Minimax-Algorithmus ist ziemlich unkompliziert.
 Es besteht eine rekursive Funktion, die für jeden legalen Schachzug, bis zu einer bestimmten Tiefe, ausgeführt wird (\cite{minimaxgeeks}).
-Die Funktion implementiert die Minimax-Logik mit einer Abweichung vom Standard-Minimax-Algorithmus - sie protokolliert die Zugverläufe für jede Zugkombination.
+Diese Funktion implementiert die Minimax-Logik mit einer Abweichung vom Standard-Minimax-Algorithmus - sie protokolliert die Zugverläufe für jeden Zugpfad.
 Dies aus zwei Gründen:
 \begin{enumerate}
     \item Erleichtertes Debugging
     \item Bei Zügen mit dem gleichen Ergebnis wird der Zug mit der geringeren Tiefe, bzw.\ kürzeren Historie genommen
 \end{enumerate}
 
-Zusätzlich besteht eine vorzeitige Rückgabe bei Zug-Pfaden, welche zum Schluss vom Spiel führen (z.B.\ Schachmatt).
-Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer Zugkombination nach 3 Zügen Schachmatt erzeugt - somit rechnet die Funktion nur bis zur Tiefe 3.
+Zusätzlich besteht eine vorzeitige Rückgabe bei Zug-Pfaden, welche zum Schluss vom Spiel führen (z.B.\ Schachmatt). \\
+Beispiel: Die angegebene Tiefe ist 5, jedoch wird mit einer bestimmten Zugkombination nach 3 Zügen Schachmatt erzeugt - somit rechnet die Funktion nur bis zur Tiefe 3.
 
 \begin{figure}[H]
     \centering
@@ -50,7 +50,6 @@ Anschliessend wird gewartet bis alle Tasks einer bestimmten Tiefe fertig sind un
 
 Jeder Task führt die \texttt{compute}-Methode aus.
 Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTask} Klasse, bzw.\ die \texttt{compute}-Methode.
-Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit implementiert, laut Dozentenfeedback aus der Programmierarbeit.
 \lstinputlisting[
     firstline=33,
     lastline=53,
@@ -58,6 +57,11 @@ Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit imple
     caption={Minimax ForkJoin Task - compute Methode},
     label={lst:minimax-forkjoin-task-compute}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
+
+Die Threshold-Logik in dieser Methode wurde nachträglich in dieser Arbeit implementiert, laut Dozentenfeedback aus der Programmierarbeit.
+Bei einer kleinen Anzahl an legalen Züge ist der Overhead zur Threaderstellung grösser als der Geschwindigkeitsgewinn.
+Ähnlich werden bei einer grossen Zugtiefe schon viele Threads erstellt und das Erstellen von weiteren Threads führt zu einem Overhead.
+Die Einführung des Thresholds sorgt dafür, dass in diesen Situationen die Schachzüge sequentiell, bzw.\ im gleichen Thread evaluiert werden.
 
 Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Erstellung neuer Tasks ersichtlich.
 \lstinputlisting[
@@ -69,7 +73,7 @@ Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Ers
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/minimax/base/MiniMaxRecursiveTask.java}
 
 Die Erstellung des ersten Tasks befindet sich in der Klasse \texttt{MiniMaxParallel}.
-Dieser wird über den ForkJoin \texttt{commonPool} ausgeführt.
+Dieser Task wird über den ForkJoin \texttt{commonPool} ausgeführt.
 \lstinputlisting[
     firstline=26,
     lastline=34,

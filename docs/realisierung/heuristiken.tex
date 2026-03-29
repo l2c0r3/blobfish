@@ -1,7 +1,7 @@
 \section{Heuristiken}
 
 \subsection{Materialistische Evaluation}
-Für die materialistische Evaluation wurde die Standardvariation der Basiswerte verwendet, jedoch mit 100 multipliziert, um weitere Verfeinerungen leichter berechnen zu können.
+Für die materialistische Evaluation wurde die Standardvariation der Basiswerte der Schachfiguren verwendet, jedoch mit 100 multipliziert, um weitere Verfeinerungen leichter berechnen zu können (\cite{evaluationofpieces}). \\
 Somit haben die Schachfiguren folgende Basiswerte:
 \begin{itemize}
     \item Bauer - 100
@@ -10,7 +10,7 @@ Somit haben die Schachfiguren folgende Basiswerte:
     \item Turm - 500
     \item Dame - 900
 \end{itemize}
-Da der König nicht genommen werden kann, aber trotzdem ein Angriffsziel bleiben soll, wurde für diese Figur ein grosser Basiswert definiert - 99, multipliziert durch 100, ergibt 9900.
+Da der König nicht gefressen werden kann, aber trotzdem ein Angriffsziel bleiben soll, wurde für diese Figur ein grosser Basiswert definiert - 99, multipliziert durch 100, ergibt 9900.
 \lstinputlisting[
     firstline=8,
     lastline=14,
@@ -38,7 +38,7 @@ Die von Stockfish verwendeten Basiswerte der Figuren erschienen unlogisch und h�
 
 Schlussendlich wurden die \glspl{glos:pst} von \href{https://www.chessprogramming.org/Simplified_Evaluation_Function}{Chess Programming Wiki}~verwendet (\cite{piecesquaretablesef}).
 Dementsprechend wurden für den König zwei \glspl{glos:pst} erstellt.
-Eine für Eröffnung und das Mittelspiel und eine für das Endspiel.
+Eine für Eröffnung und das Mittelspiel und eine für das Endspiel. \\
 Die Unterscheidung zwischen dem Mittelspiel und dem Endspiel ist auch nicht standardisiert und hat mehrere Interpretationen (\cite{chessendgame}).
 Es wurde die gleiche Logik wie bei \gls{glos:lichess} verwendet, nämlich befindet sich die Partie im Endspiel, sobald nicht mehr als 6 Schachfiguren im Spiel sind.
 Die Bauern und Könige sind hier ausgeschlossen.
@@ -51,7 +51,7 @@ Die Bauern und Könige sind hier ausgeschlossen.
     label={lst:endspiel-berechnung}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/ChessBoard.java}
 
-Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach.
+Die Implementation der \gls{glos:pst} Evaluation ist ziemlich einfach und befindet sich im folgenden Code-Abschnitt.
 \lstinputlisting[
     firstline=9,
     lastline=38,
@@ -78,12 +78,12 @@ Die Abbildung~\ref{fig:index-felder-tabelle} stellt das genaue Index-Schachfeld 
         % Last row with no borders
         \multicolumn{1}{c}{} & \multicolumn{1}{c}{A}  & \multicolumn{1}{c}{B}  & \multicolumn{1}{c}{C} & \multicolumn{1}{c}{D} & \multicolumn{1}{c}{E} & \multicolumn{1}{c}{F} & \multicolumn{1}{c}{G} & \multicolumn{1}{c}{H} \\
     \end{tabular}
-    \caption{Indexwerte für die Schachfelder}
+    \caption{Indexwerte für die Schachfelder eines Schachbretts}
     \label{fig:index-felder-tabelle}
 \end{figure}
 
-Für jedes Feld, wo sich eine Figur befindet, ist im entsprechenden Index ein `Piece` Objekt enthalten.
-Alle leeren Felder enthalten `null`.
+Für jedes Feld, wo sich eine Figur befindet, ist im entsprechenden Index ein \texttt{Piece} Objekt enthalten.
+Alle leeren Felder enthalten \texttt{null}.
 
 \lstinputlisting[
     firstline=3,
@@ -94,11 +94,12 @@ Alle leeren Felder enthalten `null`.
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/base/Piece.java}
 
 Folglich wird durch das ganze Brett iteriert und überall wo sich eine Figur befindet, wird dessen Wert aus der entsprechenden \gls{glos:pst} ausgelesen.
-Wie mit den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
+Gleich wie bei den anderen Evaluationen werden Werte für den schwarzen Spieler negiert.
 Alle Werte werden am Schluss aufsummiert.
 
 Die Arrays für die \glspl{glos:pst} wurden so strukturiert, dass der Zuschauer die Perspektive seines Schachbretts hat.
-Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für den schwarzen Spieler das Feld h1.
+Dies sollte das Erstellen und Anpassen der \glspl{glos:pst} für die Entwickler einfach halten.
+Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld \textbf{a8} und für den schwarzen Spieler das Feld \textbf{h1}.
 
 \lstinputlisting[
     firstline=77,
@@ -108,7 +109,7 @@ Für den weissen Spieler ist Index 0 dieses Arrays das Schachfeld a8 und für de
     label={lst:pst-fuer-turm}
 ]{../src/main/java/ch/hslu/cas/msed/blobfish/eval/PieceSquareEvaluation.java}
 
-Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays.
+Dieser Array-Aufbau entspricht nicht dem Aufbau des vorherigen Schachbrett-Arrays (Abbildung~\ref{fig:index-felder-tabelle}).
 Um die richtigen Werte für den weissen Spieler abzurufen, müssen die \glspl{glos:reihe} und für den schwarzen Spieler die \glspl{glos:linie} gespiegelt werden.
 
 \lstinputlisting[
@@ -175,7 +176,7 @@ Die Nummern in den Feldern sind die Indexe für den jeweiligen Spieler um den We
 \end{figure}
 
 \textbf{Ein konkretes Beispiel:} \\
-Ein weisser Turm befindet sich auf dem Schachfeld b2.
+Ein weisser Turm befindet sich auf dem Schachfeld \textbf{b2}.
 Gemäss Abbildung~\ref{fig:index-felder-tabelle} beträgt der ursprüngliche Index für dieses \gls{glos:feld} 9.
 Der benötigte Index um den korrekten Wert aus der \gls{glos:pst} auszulesen ist 49.
 Die entsprechende \gls{glos:pst} liefert gemäss Code-Ausschnitt~\ref{lst:pst-fuer-turm} den Wert 0.

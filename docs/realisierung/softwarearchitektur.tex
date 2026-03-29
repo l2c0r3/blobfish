@@ -1,6 +1,6 @@
 \section{Softwarearchitektur}
 
-Nachfolgend wird mittels des \gls{glos:c4} die Softwarearchitektur von blobfish dokumentiert.
+Nachfolgend wird mittels des \gls{glos:c4}s die Softwarearchitektur von blobfish dokumentiert.
 
 \subsection{Systemkontext}
 
@@ -14,7 +14,7 @@ Der Systemkontext stellt den Kontext dar, in welchem sich die Applikation befind
 \end{figure}
 
 Angefangen mit dem Systemkontext, ist zu erkennen, dass es sich oberflächlich um ein einfaches System handelt: Ein Schachspieler,
-welcher über einer CLI gegen einen Schachcomputer, blobfish, Schach spielt.
+welcher über eine CLI gegen einen Schachcomputer, blobfish, Schach spielt.
 
 \subsection{Container}
 
@@ -34,13 +34,13 @@ Anhand des Component-Diagramms sind die 4 Packages und deren Abhängigkeit unter
     \label{fig:c4-component}
 \end{figure}
 
-Das \textit{base} Package enthält grundlegende Datenstrukturen wie das \texttt{ChessBoard}, \texttt{Piece}, Interfaces sowie Util Klassen.
-Des Weiteren wrapped sie primär mit der \texttt{ChessBoard} Klasse die \textit{chesslib} Bibliothek, welche unter anderem für die Zuggenerierung
-und Spiellogik verwendet wird.
+Das \textit{base} Package enthält grundlegende Datenstrukturen wie \texttt{ChessBoard} und \texttt{Piece}, diverse Interfaces sowie Util Klassen.
+Des Weiteren wird die \texttt{ChessBoard} Klasse als ein Adapter für die \textit{chesslib} Bibliothek verwendet.
+Diese Bibliothek ist, unter anderem, für die Zuggenerierung und Spiellogik zuständig.
 
-Das Package \textit{eval} oder \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
+Die Packages \textit{eval} und \textit{minimax} sind sehr spezialisiert. So beinhaltet \textit{eval} die Heuristiken, um
 Schachpositionen zu bewerten und \textit{minimax} unterschiedliche Implementierungen des Minimax-Algorithmus. \\
-Auffällig dabei ist, dass beide Packages keine direkte Abhängigkeit miteinander haben, was so bewusst umgesetzt wurde.
+Auffällig dabei ist, dass beide Packages keine direkte Abhängigkeit zueinander haben, was so bewusst umgesetzt wurde.
 Die Verbindung zwischen den beiden Packages wird über das Interface \texttt{EvaluationStrategy} aus dem \textit{base}-Package hergestellt,
 welches die Kopplung zwischen Bewertungslogik und Suchalgorithmus auflöst.
 
@@ -66,9 +66,10 @@ zu erhalten.
 Der Code für die Bewertung von Spielpositionen befindet sich bis auf das Interface \texttt{EvaluationStrategy} im \textit{eval}
 Package. Dafür steht in der Darstellung exemplarisch \texttt{PieceSquareEvaluation}. Die restlichen Heuristiken sind
 übersichtshalber nicht dargestellt. \\
-Um mehrere Heuristiken zu kombinieren, wurde die Klasse \texttt{CompositeEvaluationStrategy} implementiert. Über das
-Builder-Pattern können fluent Klassen vom Typ \texttt{EvaluationStrategy} übergeben werden, welche dann über die \texttt{getEvaluation}-Methode
-für eine Gesamtbewertung verwendet werden. \\
+Um mehrere Heuristiken zu kombinieren, wurde die Klasse \texttt{CompositeEvaluationStrategy} implementiert.
+Für das Kombinieren von Evaluationen (\texttt{EvaluationStrategy}) implementiert diese Klasse das Composite-Pattern.
+Die Gesamtbewertung aller beinhaltenden Evaluationsstrategien erfolgt über die \texttt{getEvaluation}-Methode.
+Zusätzlich können über das Builder-Pattern Klassen vom Typ \texttt{EvaluationStrategy} fluent übergeben werden. \\
 Mittels dieses Designs können einfach weitere Heuristiken implementiert und beliebig kombiniert werden, ohne bestehenden Code anpassen
 zu müssen.
 
@@ -87,5 +88,5 @@ Methode \texttt{getBestPath()}. \\
 Vom Interface \texttt{MiniMaxAlgo}, welches eine Zwischenabstraktion darstellt, leiten sich die Implementierungen des Minimax-Algorithmus ab.
 Hier exemplarisch \texttt{MiniMaxSequential} und \texttt{MiniMaxSequentialWithCache}. Die Klassen sind übersichtshalber
 minimalistisch und nicht vollzählig dargestellt. \\
-Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung von Bots vom konkreten Algorithmus und ermöglicht es,
+Das Interface \texttt{BotPlayerProvider} entkoppelt die Erzeugung der Bots über das UI vom konkreten Algorithmus und ermöglicht es,
 verschiedene Bots für unterschiedliche \texttt{BotAlgorithm} bereitzustellen.
