@@ -1,7 +1,7 @@
 \section{Rechenzeit}
 \label{sec:rechenzeit}
 Die Rechenzeit bezieht sich auf die Zeit, die benötigt wird, um aus einer Schachposition den besten Zug zu berechnen.
-Je schneller, desto besser.
+Je kürzer die Zeit, desto besser die Auswertung.
 Diese Metrik wird nicht mit \gls{glos:stockfish} verglichen, da dies sehr unrealistisch wäre.
 Der Vergleich beschränkt sich auf die verschiedenen Eigenimplementierungen, um festzustellen, welche Ansätze die grössten Zeitersparnisse bringen.
 
@@ -85,7 +85,7 @@ Es ist erstaunlich zu sehen, wie viel schneller diese Optimierung im Vergleich z
 
 Der Zeitunterschied gegenüber einer einfachen Parallelisierung lässt sich durch die begrenzte Anzahl verfügbarer CPUs erklären.
 Allerdings wäre die dafür benötigte Anzahl an CPUs bei grösseren Suchtiefen kaum erreichbar, um die gleiche Leistung
-wie beim Alpha-Beta-Pruning zu erzielen, da mit jeder zusätzlichen Tiefe die Anzahl der notwendigen Evaluationen exponentiell ansteigt.
+wie beim Alpha-Beta-Pruning zu erzielen, da mit jeder zusätzlichen Tiefe die Anzahl der notwendigen Evaluationen exponentiell ansteigen kann.
 
 Bei sehr kleinen Zugtiefen scheint der Overhead der Caching-Implementierung grösser zu sein als der Gewinn.
 Der Leistungsgewinn der Caching-Optimierung steigt mit der Zugtiefe.
