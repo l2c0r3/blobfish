@@ -2,11 +2,11 @@
 
 \subsection{Alpha-Beta-Pruning}
 Zunächst war vorgesehen, sämtliche Optimierungen sowohl für die sequenzielle als auch für die parallele Implementierung des Minimax-Algorithmus umzusetzen.
-Nach einer Recherche zu Alpha-Beta-Pruning ergab sich, dass diese Optimierung ausschliesslich für die sequenzielle Implementierungen vorgesehen ist.
+Nach einer Recherche zu Alpha-Beta-Pruning ergab sich, dass diese Optimierung primär für die sequenziellen Implementierungen vorgesehen ist.
 
 Es bestehen auch Ansätze für parallele Implementierungen, wie \textit{Young Brothers Wait Concept}.
-Die Idee vom \textit{Young Brothers Wait Concept} ist, dass der Zug, welcher wahrscheinlich am Beste ist, zuerst evaluiert wird.
-Anschliessend können anderen Züge parallel evaluiert und am Schluss mit dem ersten verglichen werden (\cite{alphabetaybwc}).
+Die Idee vom \textit{Young Brothers Wait Concept} ist, dass der Zug, welcher am wahrscheinlichsten der Beste ist, zuerst evaluiert wird.
+Anschliessend können die restlichen Züge parallel evaluiert und am Schluss mit dem ersten Zug verglichen werden (\cite{alphabetaybwc}).
 
 Bei solchen Ansätzen ist jedoch die Umsetzung umständlich und der Leistungsgewinn sehr variabel.
 Aus diesen Gründen wurde die Alpha-Beta-Pruning Optimierung nur für die sequenzielle Implementierung umgesetzt.

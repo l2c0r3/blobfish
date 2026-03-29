@@ -7,7 +7,7 @@ Da die weiteren Verbesserungen in dieser Arbeit an diesen Implementierungen basi
 \label{subsec:minimax-sequenziell}
 Die sequenzielle Implementierung des Minimax-Algorithmus ist übersichtlich.
 Es besteht eine rekursive Funktion, die für jeden legalen Schachzug, bis zu einer bestimmten Tiefe, ausgeführt wird (\cite{minimaxgeeks}). \\
-Die eigen umgesetzte Funktion implementiert die Minimax-Logik mit zwei zusätzlichen Funktionen: Einerseits wird der Zugpfad protokolliert und anderseits
+Die eigen umgesetzte Funktion implementiert die Minimax-Logik mit zwei zusätzlichen Merkmalen: Einerseits wird der Zugpfad protokolliert und anderseits
 wird der Pfad nicht weiter verfolgt, wenn das Ende des Spiels erkennt wird (z.B.\ Schachmatt).
 
 Das Protokollieren des Zugpfades bringt uns folgende Vorteile:
@@ -65,7 +65,7 @@ Der folgende Code-Abschnitt zeigt die Hauptlogik der \texttt{MiniMaxRecursiveTas
 
 Die Threshold-Logik in dieser Methode wurde nachträglich aufgrund des Feedbacks des Dozenten aus der Programmierarbeit implementiert.
 Bei einer kleinen Anzahl an legalen Zügen ist der Overhead zur Threaderstellung grösser als der Geschwindigkeitsgewinn.
-Ähnlich werden bei einer grossen Zugtiefe zu viele Threads erstellt und das Managen der Threads führt zu einem Overhead.
+Ähnlich werden bei einer grossen Zugtiefe viele Threads erstellt, was zu einem Overhead bei der Threadverwaltung führt.
 Die Einführung des Thresholds sorgt dafür, dass in diesen Situationen die Schachzüge sequenziell, bzw.\ im gleichen Thread evaluiert werden.
 
 Im Code-Abschnitt~\ref{lst:minimax-forkjoin-task-subtask-erstellung} ist die Erstellung neuer Tasks ersichtlich.

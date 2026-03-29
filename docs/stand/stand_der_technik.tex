@@ -65,7 +65,7 @@ Im Beispiel hat der Baum 5 Endzustände, welche in der Grafik als unterste Knote
 Zwischen den unterschiedlichen Stufen des Baums wird die Vergleichsfunktion immer zwischen min und max umgeschaltet. \\
 Bei einer Berechnung, zum Beispiel für den nächsten besten Zug im Schach, wird zuerst zu einem Endzustand durchgelaufen, der
 Zustand gemerkt und anschliessend zum übergeordneten Knoten, den Entscheidungsknoten, zurückverfolgt. \\
-So werden alle Kinderknoten des vorherigen Entscheidungsknoten traversiert und die Zustände mit der entsprechenden Vergleichsfunktion (hier min) verglichen.
+So werden alle Kinderknoten des vorherigen Entscheidungsknotens traversiert und die Zustände mit der entsprechenden Vergleichsfunktion (hier min) verglichen.
 
 \begin{figure}[H]
     \centering
@@ -105,7 +105,7 @@ Das Endresultat kann mit der folgenden Abbildung zusammengefasst werden:
 
 \newpage
 
-Das Ablaufdiagramm würde folgendermassen aussehen:
+Das Ablaufdiagramm sieht folgendermassen aus:
 
 \begin{figure}[H]
     \centering
@@ -134,7 +134,7 @@ Die meisten Personen, die Schach anfangen zu spielen, lernen ziemlich schnell, d
 Diese Figurenwerte werden von nun an als Basiswerte bezeichnet.
 Durch weitere Recherche kann festgestellt werden, dass die Basiswerte unterschiedliche Variationen haben (\cite{chesspiecerelativevalue}).
 Somit kann z.B.\ der Läufer einen grösseren Basiswert als der Springer haben, da die Kombination von zwei Läufern einen
-grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springer.
+grösseren Anteil des Schachbretts kontrollieren kann, als die Kombination von zwei Springern.
 
 \subsection{Piece Square Tabellen}
 Je nachdem, wo sich eine Schachfigur befindet, kann sie einen höheren oder niedrigeren Wert als ihren Basiswert haben.
