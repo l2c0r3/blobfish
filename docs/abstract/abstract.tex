@@ -1,21 +1,31 @@
 \selectlanguage{english}
 
 \begin{abstract}
-    Diese Arbeit befasst sich mit der Entwicklung von \textit{blobfish}, einer einfachen Schach-Engine als Alternative zu etablierten Schach-Engines wie Stockfish.
-    Ziel war es, ein vertieftes Verständnis für den Aufbau und die Funktionsweise von Schachcomputern zu erlangen und darauf basierend eine eigene, vereinfachte Implementierung zu realisieren.
+    Diese Arbeit befasst sich mit der Entwicklung von \textit{blobfish}, einer einfacher Schach-Engine Alternative zu Stockfish.
+    Ziel war es, ein vertieftes Verständnis für den Aufbau und die Funktionsweise von Schachcomputern zu erlangen und darauf basierend eine eigene zu realisieren.
 
-    Ausgehend von einer bestehenden Basis, welche den Minimax-Algorithmus (sequenzielle und parallele Variante) und eine materialistische Bewertungsfunktion verwendet, wurden gezielte Verbesserungen vorgenommen.
+    Ausgehend von einer bestehenden Basis, welche eine sequenzielle und eine parallele Variante des Minimax-Algorithmus sowie eine materialistische Bewertungsfunktion verwendet, wurden gezielte Verbesserungen vorgenommen.
     Dazu gehören die Erweiterung der Heuristiken, insbesondere durch den Einsatz von Piece-Square-Tabellen, sowie Optimierungen der Laufzeit mittels Alpha-Beta-Pruning und Caching in Form von Transpositionstabellen.
+    Im Rahmen der Evaluation wurde die Zugqualität, Rechenzeit und erreichbare Zugtiefe des Systems untersucht.
 
-    Die entwickelte Softwarearchitektur folgt einem modularen Ansatz, der eine klare Trennung zwischen Suchalgorithmus und Bewertungsstrategie ermöglicht.
-    Dadurch können verschiedene Heuristiken flexibel kombiniert und erweitert werden.
+    In der Evaluation der Zugqualität wurde ein Punktesystem entworfen, um der eigen gefundene Top-Zug mit den Top-Zügen von Stockfish 18 zu vergleichen.
+    Die Auswertung von 18 Position bei einer Zugtiefe von 8 zeigte, dass mit der Kombination der eigen implementierten \texttt{MateAwareEvaluation} \texttt{MaterialEvaluation} und \texttt{PieceSquareEvaluation} bereits \textbf{72\%} der maximal möglichen Punkte erzielt werden kann.
+    Die ursprüngliche Kombination von \texttt{MateAwareEvaluation} und \texttt{MaterialEvaluation} erreichten im Vergleich ca.\ 56\% der möglichen Punkte.
 
-    Im Rahmen der Evaluation wurde die Zugqualität, Rechenzeit und erreichbare Zugtiefe des Systems untersucht und mit bestehenden Ansätzen verglichen.
-    Die Ergebnisse zeigen, dass auch mit vergleichsweise einfachen Mitteln signifikante Verbesserungen erzielt werden können, wenngleich die Leistungsfähigkeit und Qualität nicht mit führenden Engines konkurriert.
+    Bei der Evaluation der Rechenzeit wurden 12 Positionen untersucht.
+    Ausgehend von der Tiefe 1 wurde pro implementierter Minimax-Algorithmus 10 Mal der beste Zug berechnet.
+    Diese Berechnungen wurden bis zur Zugtiefe 5, bzw.\ 7 durchgeführt, je nach Leistungsfähigkeit der Algorithmen bei geringeren Tiefen.
+    Die Auswertung zeigt, dass die \texttt{MiniMaxAlphaBetaSequentialWithCache} Implementierung im Median \textbf{955} Mal schneller ist, als die ursprüngliche sequenzielle Variante.
 
-    Die Arbeit demonstriert, dass bereits durch grundlegende Algorithmen und gezielte Optimierungen ein funktionaler und nachvollziehbarer Schachcomputer entwickelt werden kann, und bietet eine solide Grundlage für weiterführende Erweiterungen.
+    Zuletzt wurde die erreichbare Zugtiefe analysiert.
+    Ausgegangen von denselben 12 Positionen wie bei der Rechenzeit, wurde untersucht, welche maximale Tiefe innerhalb von 10 Sekunden berechnet werden kann.
+    Hierbei haben die Alpha-Beta-Varianten, unabhängig davon, ob mit oder ohne Cache, die höchste Tiefe von \textbf{6} erreicht.
+    Im Gegensatz hat der ursprüngliche sequenzielle Minimax-Algorithmus eine Tiefe von 3 erreicht.
 
-    \vspace{4em}
+    So demonstriert die Arbeit, dass mit grundlegenden Algorithmen und gezielten Optimierungen ein funktionaler und nachvollziehbarer Schachcomputer entwickelt werden kann.
+    Die Arbeit bildet eine solide Grundlage für weiterführende Erweiterungen, welche z.B.\ in die Richtung Iterative Deepening, UCI-Support oder auch weiteren Heuristiken wie Pawn Structure, Mobility oder King Safety gehen kann.
+
+    \vspace{1.5em}
 
     \begin{center}
         \textbf{Erklärung zum Einsatz generativer KI}
