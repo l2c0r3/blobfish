@@ -1,22 +1,22 @@
 Ziel dieser Evaluation ist die systematische Vergleichsanalyse verschiedener Konfigurationen der implementierten Schach-Engine hinsichtlich ihrer Spielstärke und ihrer rechnerischen Effizienz.
-Jede Konfiguration besteht aus einer Kombination aus Suchalgorithmus und Bewertungsstrategie.
+Jede Konfiguration besteht aus einer Kombination aus Suchalgorithmus und Evaluationsstrategie.
 
 Die Untersuchung orientiert sich an folgenden Forschungsfragen:
 \begin{itemize}
-\item Welchen Einfluss haben unterschiedliche Bewertungsstrategien auf die Zugqualität?
+\item Welchen Einfluss haben unterschiedliche Evaluationsstrategien auf die Zugqualität?
 \item Wie wirken sich algorithmische Optimierungen auf die Rechenzeit aus?
 \item Wie beeinflusst die zu berechnende Zugtiefe die Rechenzeit?
 \end{itemize}
 
-Zur Beantwortung dieser Fragestellungen wird ein kontrolliertes experimentelles Setup mit quantitativen Metriken verwendet.
+Zur Beantwortung dieser Fragestellungen wird ein kontrollierter Versuchsaufbau unter Verwendung quantitativer Metriken eingesetzt.
 
 \section{Versuchsdesign}
-Die Studie folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehrere unabhängige Variablen systematisch variiert werden, während alle übrigen Bedingungen konstant gehalten werden.
+Die Arbeit folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehrere unabhängige Variablen systematisch variiert werden, während alle übrigen Bedingungen konstant gehalten werden.
 
 \textbf{Unabhängige Variablen}
 \begin{itemize}
 \item Suchalgorithmus (Minimax-Varianten mit Optimierungen)
-\item Bewertungsstrategie
+\item Evaluationsstrategie
 \end{itemize}
 
 \textbf{Abhängige Variablen}
@@ -32,11 +32,11 @@ Die Studie folgt einem kontrollierten faktoriellen Versuchsdesign, bei dem mehre
 \item Konfiguration der Referenz-Engine
 \end{itemize}
 
-Die Suchtiefe wird nicht als unabhängiges Bewertungskriterium betrachtet, da sie direkt von der verfügbaren Rechenzeit abhängt und zugleich die Zugqualität beeinflusst.
+Die Suchtiefe wird nicht als unabhängiges Bewertungskriterium betrachtet, da sie direkt von der Rechenzeit abhängt und zugleich die Zugqualität beeinflusst.
 Stattdessen wird sie als erklärende Hilfsgrösse betrachtet.
 
 \section{Benchmarking-Ansatz}
-Die Evaluation der Zugqualität erfolgt als Benchmarking gegen ein Referenzsystem, wobei \gls{glos:stockfish} als starker Vergleichsmassstab dient.
+Die Evaluation der Zugqualität erfolgt als Benchmarking gegen eine Referenz-Engine, wobei \gls{glos:stockfish} als starker Vergleichsmassstab dient.
 Alle Engine-Konfigurationen werden auf identischen Schachpositionen getestet.
 Für jede Position wird der von der implementierten Engine gewählte Zug mit den besten Zügen der Referenz-Engine bei gleicher Suchtiefe verglichen.
 Dieser Ansatz ermöglicht eine relative Bewertung der Zugqualität, ohne auf absolute Bewertungswerte angewiesen zu sein.
