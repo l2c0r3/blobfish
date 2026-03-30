@@ -142,7 +142,7 @@
     %TITELSEITE
     \KOMAoption{headsepline}{false} %Remove pipes
     \include{preamble/Titelblatt}
-    \include{preamble/Eidesstattliche_Erklaerung}
+    \input{preamble/Eidesstattliche_Erklaerung}
 
     %Add Footer
     \pagenumbering{arabic}
@@ -150,7 +150,11 @@
     \KOMAoption{headsepline}{true}
 
     % Abstract
+    \begingroup
+    \let\oldabstract\abstract
+    \renewcommand{\abstract}{\vspace*{-4cm}\oldabstract}
     \subfile{abstract/abstract.tex}
+    \endgroup
 
     \newpage
     \tableofcontents
