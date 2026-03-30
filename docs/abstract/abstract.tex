@@ -1,10 +1,10 @@
 \selectlanguage{english}
 
 \begin{abstract}
-    Diese Arbeit befasst sich mit der Entwicklung von \textit{blobfish}, einer einfachen Schach-Engine als Alternative zu etablierten Schach-Engines wie Stockfish.
-    Ziel war es, ein vertieftes Verständnis für den Aufbau und die Funktionsweise von Schachcomputern zu erlangen und darauf basierend eine eigene, vereinfachte Implementierung zu realisieren.
+    Diese Arbeit befasst sich mit der Entwicklung von \textit{blobfish}, einer einfacher Schach-Engine Alternative zu Stockfish.
+    Ziel war es, ein vertieftes Verständnis für den Aufbau und die Funktionsweise von Schachcomputern zu erlangen und darauf basierend eine eigene zu realisieren.
 
-    Ausgehend von einer bestehenden Basis, welche den Minimax-Algorithmus (sequenzielle und parallele Variante) und eine materialistische Bewertungsfunktion verwendet, wurden gezielte Verbesserungen vorgenommen.
+    Ausgehend von einer bestehenden Basis, welche einen sequenzielle und parallele Variante des Minimax-Algorithmus sowie eine materialistische Bewertungsfunktion verwendet, wurden gezielte Verbesserungen vorgenommen.
     Dazu gehören die Erweiterung der Heuristiken, insbesondere durch den Einsatz von Piece-Square-Tabellen, sowie Optimierungen der Laufzeit mittels Alpha-Beta-Pruning und Caching in Form von Transpositionstabellen.
 
     Die entwickelte Softwarearchitektur folgt einem modularen Ansatz, der eine klare Trennung zwischen Suchalgorithmus und Bewertungsstrategie ermöglicht.
@@ -12,20 +12,21 @@
 
     Im Rahmen der Evaluation wurde die Zugqualität, Rechenzeit und erreichbare Zugtiefe des Systems untersucht. \\
     In der Evaluation der Zugqualität wurde ein Punktesystem entworfen, um der eigen gefunden Top-Zug mit den Top-Züge von Stockfish 18 zu vergleichen.
-    Bei der Auswertung von 18 Position und einer Tiefe von 8 zeigte, dass mit der Kombination der eigen Implementierten \texttt{MateAwareEvaluation} \texttt{MaterialEvaluation} und \texttt{PieceSquareEvaluation} bereits \textbf{72\%} der möglichen Punkte erzielt werden kann.
-    Die ursprüngliche Kombination von \texttt{MateAwareEvaluation} und \texttt{MaterialEvaluation} im Vergleich erreichten ca. \textbf{56\%} der möglichen Punkte.\\
+    Die Auswertung von 18 Position bei einer Tiefe von 8 zeigte, dass mit der Kombination der eigen Implementierten \texttt{MateAwareEvaluation} \texttt{MaterialEvaluation} und \texttt{PieceSquareEvaluation} bereits \textbf{72\%} der maximal möglichen Punkte erzielt werden kann.
+    Die ursprüngliche Kombination von \texttt{MateAwareEvaluation} und \texttt{MaterialEvaluation} im Vergleich erreichten ca. 56\% der möglichen Punkte.\\
     Bei der Evaluation der Rechenzeit wurden 12 Positionen untersucht.
-    Ausgehend von der Tiefe 1 wurde pro Minimax-Algorithmus 10 Mal der beste Zug berechnet.
+    Ausgehend von der Tiefe 1 wurde pro implementierter Minimax-Algorithmus 10 Mal der beste Zug berechnet.
     Diese Berechnungen wurden bis zur Tiefe 5 oder 7 durchgeführt, je nach performance vorherigen Tiefen.
     Die Auswertung zeigt, dass die \texttt{MiniMaxAlphaBetaSequentialWithCache} Implementierung im Median \textbf{955} Mal schneller ist, als der ursprüngliche sequenzielle Minimax-Algorithmus Variante. \\
     Zuletzt wurde die erreichbare Zugtiefe analysiert.
     Ausgegangen von den selben 12 Positione wie bei der Rechenzeit wurde untersucht, welche maximale Tiefe innerhalb von 10 Sekunden berechnet werden kann.
-    Hierbei haben Alpha-Beta-Variante, unabhängig davon mit oder ohne Cache, die höchste Tiefe von 6 erreicht.
-    Im Gegensatz hat ursprüngliche sequenzielle Minimax-Algorithmus eine Tiefe von 3 erreicht.
+    Hierbei haben die Alpha-Beta-Varianten, unabhängig davon mit oder ohne Cache, die höchste Tiefe von \textbf{6} erreicht.
+    Im Gegensatz hat der ursprüngliche sequenzielle Minimax-Algorithmus eine Tiefe von 3 erreicht.
 
-    So demonstiert die Arbeit, dass mit grundlegende Algorithmen und gezielte Optimierungen einen funktionalen und nachvollziehbaren Schachcomputer entwickelt werden kann.
-    Die Arbeit bildet eine solide Grundlage für weiterführende Erweiterungen, welche in Richtung Iterative Deepening, UCI Support aber weitere
-    Diesasd können
+    So demonstiert die Arbeit, dass mit grundlegende Algorithmen und gezielten Optimierungen einen funktionalen und nachvollziehbaren Schachcomputer entwickelt werden kann.
+    Die Arbeit bildet eine solide Grundlage für weiterführende Erweiterungen, welche z.B in die Richtung Iterative Deepening, UCI-Support oder auch weiteren Heuristiken wie Pawn Structure, Mobility oder King Safety gehen kann.
+
+    \newpage
 
     \vspace{2em}
 
