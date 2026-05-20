@@ -12,7 +12,7 @@
         <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <junit.version>6.0.3</junit.version>
+        <junit.version>6.1.0</junit.version>
         <testcontainers.version>2.0.4</testcontainers.version>
         <jline.version>4.0.9</jline.version>
         <lombok.version>1.18.44</lombok.version>
